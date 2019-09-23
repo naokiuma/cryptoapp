@@ -6,7 +6,7 @@
     <div class="p-hero__title">
       <h2>CryptoTrend</h2>
       <p>SNSを使い仮想通貨の<br>
-      情報を集めるお手伝いをするサービスです。</p>
+      情報を集めるお手伝いをす、サービスです。</p>
 
 
     </div>
