@@ -1,0 +1,26 @@
+.p-plobrem{
+  text-align: center;
+  width: 50%;
+  margin-top: auto;
+  margin-bottom: auto;
+  @media screen and (max-width: $res-max-width){
+    width: 100%;
+  }
+
+  &__container{
+    width: 100%;
+    display: flex;
+    margin: 100px auto;
+  }
+  h4{
+    font-size: $font-m;
+    margin: 10px;
+    @media screen and (max-width: $res-max-width){
+    font-size: $font-s;
+    }
+  }
+  img{
+    width: 60%;
+    margin: 25px;
+  }
+}

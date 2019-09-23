@@ -1,0 +1,28 @@
+.p-sidebtn{
+  width: 100%;
+  height: 10%;
+  font-size: 1.3vw;
+  display: block;
+  &__container{
+    height: 100%;
+  }
+  &__coin{
+    height: 30px;
+    width: 100%;
+    background-color: #e2e22b9e;
+    &__container{
+      height: 70%;
+    }
+  }
+  &__highlight{
+    height: 30px;
+    width: 100%;
+    background-color: red;
+    font-weight: bold;
+    font-size: 1rem;
+  }
+}
+
+.btn_active{
+  background-color: #00f7ffb0;
+}

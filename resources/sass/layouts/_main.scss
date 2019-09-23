@@ -1,0 +1,22 @@
+
+.l-main{
+  width: 100%;
+  height: 900px;
+  overflow: hidden;
+  &__sub{
+    width: 100%;
+    height: 600px;
+    display: flex;
+    @media screen and (max-width: $res-max-width){
+      display: block;
+    }
+  }
+  &__mini{
+    width: 100%;
+    height: 400px;
+  }
+  &__twitter{
+    width: 100%;
+    height: 100%;
+  }
+}

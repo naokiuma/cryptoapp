@@ -1,0 +1,60 @@
+/*トップページスライドショー「swiper（プラグイン）」のcss*/
+
+.p-swiper__top{
+  text-align: center;
+  font-size: 2rem;
+  margin: 5% auto 0 auto;
+  overflow: hidden;
+}
+
+.p-swiper__size{
+  height: 500px;
+  width: 90%;
+  margin:5% auto 0 auto;
+  overflow: hidden;
+}
+
+.p-swiper__position{
+  top: 550px;
+}
+
+.p-swiper__card{
+  height: 100%;
+  width:100%;
+  h3{
+    position:absolute;
+    font-size: 2vw;
+    top: 5%;
+    left: 5%;
+    width: 50%;
+    height: 20%;
+    background-color: #7fffe569;
+    padding: 10px 0 0 10px;
+  }
+  img{
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.p-swiper__prev{
+  position: absolute;
+  top: 200px;
+  width: 40px;
+  height: 50px;
+  z-index: 10;
+  cursor: pointer;
+  font-size: 40px;
+
+}
+
+.p-swiper__next{
+  position: absolute;
+  top: 200px;
+  right:0;
+  width: 40px;
+  height: 50px;
+  z-index: 10;
+  cursor: pointer;
+  font-size: 40px;
+}

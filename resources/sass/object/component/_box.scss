@@ -1,0 +1,35 @@
+.c-box{
+  height: 100%;
+  h2{
+    text-align: center;
+    padding: 10%;
+    margin: 2em 10%;
+    color: #232323;
+    border-left: solid 10px #ffc06e;
+    border-right: solid 10px #ffc06e;
+    font-size: 35px;
+    @media screen and (max-width: $res-max-width){
+    font-size: $font-m;
+    margin: 0 10% 2em 10%;
+    }
+  }
+  p{
+    line-height: 24px;
+    text-align: center;
+    width: 80%;
+    margin: auto;
+    @media screen and (max-width: $res-max-width){
+      text-align: left;
+    }
+  }
+  &__big{
+    font-size: 25px;
+  }
+  &__sp{
+    text-align: center;
+    margin-top: 30px;
+  }
+  &__icon{
+    font-size: 100px;
+  }
+}

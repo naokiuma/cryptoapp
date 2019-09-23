@@ -1,0 +1,36 @@
+.p-autofollow{
+  &__container{
+  height: 300px;
+  text-align: center;
+  width: 100%;
+
+  h2{
+    height: 50px;
+    width: 50%;
+    margin: auto;
+    line-height: 50px;
+    background-color: aquamarine;
+    margin: 30px auto;
+    border: 3px solid yellow;
+  }
+  h3{
+    margin: 30px auto;
+  }
+  input{
+    height: 20px;
+  }
+  }
+
+  &__description
+  {
+    animation-duration: 0.3s;
+    -webkit-animation-name: toup;
+    animation-name: toup;
+  }
+
+  &__start{
+    width: 200px;
+    height: 50px;
+    font-size: 20px;
+  }
+}

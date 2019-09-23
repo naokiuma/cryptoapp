@@ -1,0 +1,38 @@
+.p-decs__main{
+  text-align: center;
+  @media screen and (max-width: $res-max-width){
+    text-align: left;
+  }
+}
+
+.p-desc__container{
+  width: 100%;
+  height: 300px;
+  h2{
+    font-size: 4vw;
+  }
+}
+
+.p-desc__title{
+  width: 60%;
+  margin: 10% auto 5% auto;
+  border-bottom: 1px solid;
+  h2{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}
+
+.p-desc__text{
+  width: 70%;
+  line-height: 30px;
+  margin:auto;
+  border-bottom: 1px solid;
+  @media screen and (max-width: $res-max-width){
+    text-align: left;
+  }
+  p{
+    margin-left: auto;
+    margin-right: auto;
+  }
+}

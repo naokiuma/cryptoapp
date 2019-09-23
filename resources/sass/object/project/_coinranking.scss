@@ -1,0 +1,56 @@
+.p-coinranking{
+    &__top{
+      text-align: center;
+      font-size: 2vw;
+      padding: 5%;
+    }
+    &__each{
+      font-size: 50px;
+    }
+    &__container{
+    float: left;
+    margin: 5% 5% 10% 5%;
+    width: 60%;
+    height: 80vh;
+      h2{
+        padding: 5%;
+      }
+      h3{
+        font-size: 2.0vw;
+        padding: 1%;
+        background-color: #bcf0c3;
+        width: 100;
+        margin: auto auto;
+        text-align: center;
+      }
+      span{
+        font-size: 10px;
+      }
+    }
+    &__table{
+      text-align: center;
+      width: 100%;
+      background-color: beige;
+      border: 1px solid;
+      animation-duration: 0.3s;
+      -webkit-animation-name: toleft;
+      animation-name: toleft;
+      table{
+        width: 100%;
+      }
+      th{
+
+        background-color: #bcf0c3;
+        border: 1px solid;
+      }
+      td{
+
+        font-size: 1vw;
+        letter-spacing: 5px;
+        padding: 5px;
+        border: 1px solid;
+      }
+    }
+
+
+}

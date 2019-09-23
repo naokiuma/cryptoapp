@@ -1,0 +1,55 @@
+// Fonts
+@import url('https://fonts.googleapis.com/css?family=Nunito');
+
+// Variables
+@import 'variables';
+
+// Bootstrapは不使用
+//@import '~bootstrap/scss/bootstrap';
+
+//--------------------------------------------------------------------------
+
+//flocss形式で各ファイルを読み込み
+
+//foundation--------
+
+@import 'foundation/reset';
+@import 'foundation/base';
+
+//layouts----------
+@import 'layouts/billboard';
+@import 'layouts/header';
+@import 'layouts/main';
+@import 'layouts/side';
+@import 'layouts/footer';
+
+
+//object----------
+//component
+@import 'object/component/card';
+@import 'object/component/fonticon';
+@import 'object/component/form';
+@import 'object/component/text';
+@import 'object/component/box';
+@import 'object/component/flash';
+
+//project
+@import 'object/project/autofollow';
+@import 'object/project/coinranking';
+@import 'object/project/description';
+@import 'object/project/functions';
+@import 'object/project/hero';
+@import 'object/project/logo';
+@import 'object/project/header';
+@import 'object/project/news';
+@import 'object/project/problem';
+@import 'object/project/sidebtn';
+@import 'object/project/start';
+//@import 'object/project/swiper';
+@import 'object/project/twitter';
+
+
+//utility
+@import 'object/utility/error';
+@import 'object/utility/height';
+@import 'object/utility/width';

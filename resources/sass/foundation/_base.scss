@@ -1,0 +1,107 @@
+$main-color:#c5f4f4;
+$notes-color:#373636;
+$p-letterspacing:30px;
+$font-xl:36px;
+$font-l:24px;
+$font-m:20px;
+$font-s:16px;
+$res-max-width:768px;
+
+
+
+body{
+  background-color:#FFF;
+  font-family: 'Futura', 'Century Gothic', 'Hiragino Kaku Gothic ProN', Meiryo, 'MS PGothic', Sans-serif;
+  font-size:80%;
+}
+
+
+html{
+  	overflow-y:scroll;
+    width: 100%;
+}
+
+img {
+	border:0;
+}
+
+h1{
+  font-size: $font-xl;
+  letter-spacing: 1.0em;
+}
+
+h2{
+  font-size:$font-l;
+}
+
+h3{
+  font-size:$font-m;
+}
+
+p{
+  font-size: $font-s;
+  letter-spacing: 1px;
+}
+
+a{
+  text-decoration: none;
+  color: black;
+}
+//アイコンフォントツイッターには青色
+.fa-twitter{
+   color: aqua;
+}
+.fa-coins{
+  color:#ffda00;
+}
+
+.fa-newspaper{
+  color: #9d0909e6;
+}
+
+.fa-arrow-down{
+  font-size: 150px;
+  color: #82c91e;
+}
+
+/*------アニメーション------*/
+@keyframes toleft{
+  from {
+  opacity: 0;
+  transform: translateX(100px);
+}
+
+  to {
+  opacity: 01;
+  transform: translateX(0);
+}
+}
+
+@keyframes toup{
+  from {
+  opacity: 0;
+  transform: translateY(100px);
+}
+
+  to {
+  opacity: 01;
+  transform: translateY(0);
+}
+}
+
+
+
+
+.v-enter-active,
+.v-leave-active{
+  position: absolute;
+  transition: all 1s;
+}
+.v-enter,
+.v-leave-to{
+  transform:translateX(50px);
+  opacity: 0;
+}
+.v-move{
+  transition:transform 1s;
+}

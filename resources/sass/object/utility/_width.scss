@@ -1,0 +1,20 @@
+.u-width__wide{
+  width: 70%;
+  background-color: #8ee1e814;
+  display: block;
+  @media screen and (max-width: $res-max-width){
+    width: 100%;
+    background-color: $main-color;
+  }
+}
+
+.u-width__narrow{
+  width: 30%;
+  background-color: $main-color;
+  display: block;
+  text-align: center;
+  line-height: 500px;
+  @media screen and (max-width: $res-max-width){
+    display: none;
+  }
+}

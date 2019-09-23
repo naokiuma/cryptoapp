@@ -1,0 +1,42 @@
+.c-card{
+  width: 45%;
+  height: 300px;
+  background-color: white;
+  margin: 10px 10px;
+  text-align: center;
+  animation-duration: 0.8s;
+  -webkit-animation-name: toleft;
+  animation-name: toleft;
+  a{
+    font-size: 80%;
+
+  }
+  p{
+    margin: 1rem;
+    max-height: 40%;
+    height: 20%;
+    margin: 10px 5px 0px 5px;
+    font-size: 1vw;
+    letter-spacing: 1px;
+    }
+  button{
+    margin-top: 5%;
+  }
+  &__header{
+    display: flex;
+    justify-content: space-between;
+    height: 60px;
+    line-height: 60px;
+    margin-top: 1%;
+    font-size: 1vw;
+  h4{
+      margin-right: 10%;
+      letter-spacing: 2px;
+      font-weight: bold;
+    }
+  img{
+    width: 60px;
+    margin-left: 3%;
+  }
+}
+}

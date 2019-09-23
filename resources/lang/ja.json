@@ -1,0 +1,17 @@
+{
+  "Title":"タイトル",
+  "Category":"カテゴリー",
+  "Name":"名前",
+  "E-Mail Address":"E-mailアドレス",
+  "Password":"パスワード",
+  "Confirm Password":"パスワード再入力",
+  "Use Twitter":"ツイッターアカウントを登録する",
+  "Register":"登録する",
+  "Login":"ログイン",
+  "Forgot Your Password?":"パスワードを忘れましたか？",
+  "Remember Me":"ログイン情報を記録する",
+  "Reset Password":"パスワードをリセットする",
+  "auth.failed":"認証に失敗しました",
+  "Send":"送信",
+  "Reset":"リセット"
+}

@@ -1,0 +1,47 @@
+.p-start{
+  width: 60%;
+  height: 300px;
+  display: block;
+  margin: auto;
+  background-color: #25cdce;
+  text-align: center;
+  float: left;
+    @media screen and (max-width: $res-max-width){
+      height: 80px;
+      width: 80%;
+    }
+    &__container{
+      display: flex;
+    }
+  &__text{
+    width: 100%;
+    color: white;
+    font-weight: lighter;
+    letter-spacing: 20px;
+    height: 100%;
+    line-height: 300px;
+    @media screen and (max-width: $res-max-width){
+      height: 60px;
+      line-height: 60px;
+    }
+    p{
+      font-size: 10vw;
+    }
+  }
+  &__under{
+    display: block;
+    width: 100%;
+    height: 20px;
+    background-color: #85ff16;
+    font-size: 14px;
+    p{
+      @media screen and (max-width: $res-max-width){
+        height: 50%;
+        font-size: 12px;
+
+    }
+
+
+    }
+  }
+}

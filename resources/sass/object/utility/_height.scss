@@ -1,0 +1,14 @@
+.u-short{
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+    @media screen and (max-width: $res-max-width){
+      
+    }
+  p{
+    padding-top: 3%;
+  }
+  h2{
+    font-size: $font-xl;
+  }
+}
