@@ -32,7 +32,7 @@
 @else
 
 <!--ツイッター認証をしていない場合は下記を表示-->
-<div class="c-text">
+<div class="c-text p-twiiter__top">
   <p>各アカウントのフォローをするにはTwitter認証をしてください。</p>
   <a href="auth/twitter" class=""><i class="fab fa-twitter"></i>Twitter認証を行う。</a>
 </div>

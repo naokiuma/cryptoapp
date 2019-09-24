@@ -103,7 +103,7 @@ class AutofollowController extends Controller
     $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_users"]);
     $temp_user = array();
     //$temp_userにスクリーンネームのみ格納。
-    for($i=0; $i<1; $i++){//本来15
+    for($i=0; $i<12; $i++){//本来15
         if(!$lookupuser[$i]->following){
          $temp_user[] = ($lookupuser[$i]);
        }

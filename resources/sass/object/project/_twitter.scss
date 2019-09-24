@@ -1,13 +1,26 @@
-.p-twiiter__container{
-  width: 100%;
-  margin: 15px auto;
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: center;
-  background-color: #c5f4f4;
-  h2{
-    text-align: center;
+.p-twiiter{
+  &__container{
     width: 100%;
-    margin: 24px;
+    margin: 15px auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: #c5f4f4;
+    h2{
+      text-align: center;
+      width: 100%;
+      margin: 24px;
+    }
   }
+  &__top{
+    height: 100px;
+    a{
+      font-size: 20px;
+      display: block;
+      width: 50%;
+      margin: 20px auto;
+      background-color: #1e9bc936;
+    }
+  }
+
 }

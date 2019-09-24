@@ -3,6 +3,12 @@
   height: 10%;
   font-size: 1.3vw;
   display: block;
+  &:hover{
+    transform: translate3d(0, 1px, 0);
+    color: #007db9;
+    box-shadow: none;
+    background: #fff;
+  }
   &__container{
     height: 100%;
   }
@@ -10,6 +16,12 @@
     height: 30px;
     width: 100%;
     background-color: #e2e22b9e;
+    &:hover{
+      transform: translate3d(0, 1px, 0);
+      color: #007db9;
+      box-shadow: none;
+      background: #fff;
+    }
     &__container{
       height: 70%;
     }

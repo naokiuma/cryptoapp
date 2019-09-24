@@ -355,9 +355,8 @@ header {
 .l-footernavi__container {
   background-color: #c5f4f4;
   color: black;
-  height: 150px;
+  line-height: 20px;
   margin: auto;
-  line-height: 50px;
   display: flex;
   justify-content: space-between;
 }
@@ -370,6 +369,7 @@ header {
 
 .l-footernavi__container ul {
   padding: 10px;
+  width: 20%;
 }
 
 .l-footernavi__container li {
@@ -603,6 +603,15 @@ header {
   width: 200px;
   height: 50px;
   font-size: 20px;
+  border: 2px solid;
+  box-shadow: 3px 2px;
+}
+
+.p-autofollow__start:hover {
+  transform: translate3d(0, 5px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 
 .p-coinranking__top {
@@ -1033,6 +1042,13 @@ header {
   display: block;
 }
 
+.p-sidebtn:hover {
+  transform: translate3d(0, 1px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
+}
+
 .p-sidebtn__container {
   height: 100%;
 }
@@ -1041,6 +1057,13 @@ header {
   height: 30px;
   width: 100%;
   background-color: #e2e22b9e;
+}
+
+.p-sidebtn__coin:hover {
+  transform: translate3d(0, 1px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 
 .p-sidebtn__coin__container {
@@ -1081,6 +1104,7 @@ header {
 }
 
 .p-start__text {
+  border: 1px solid;
   width: 100%;
   color: white;
   font-weight: lighter;
@@ -1128,6 +1152,18 @@ header {
   text-align: center;
   width: 100%;
   margin: 24px;
+}
+
+.p-twiiter__top {
+  height: 100px;
+}
+
+.p-twiiter__top a {
+  font-size: 20px;
+  display: block;
+  width: 50%;
+  margin: 20px auto;
+  background-color: #1e9bc936;
 }
 
 .u-error {
