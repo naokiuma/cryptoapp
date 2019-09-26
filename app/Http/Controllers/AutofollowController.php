@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\DB; //これ参考https://readouble.com/laravel/5.7/ja/queries.html
 use Illuminate\Database\Eloquent\Model;
 use App\Autofollow;
+use App\User;
 use Session;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
@@ -42,11 +43,48 @@ class AutofollowController extends Controller
 
   //トップページ
   public function index(){
+
+    Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
+
+
+      //まずは前回にフォローした日付を確認し、違う日であればリセットする。（日本時間）
+      date_default_timezone_set('Asia/Tokyo');
+      $today = date("Y-m-d");
+      Log::debug("本日の日付".$today);
+      $dbfollow_day = Auth::user()->follow_day;
+      Log::debug("DB上のフォローした日".$dbfollow_day);
+
+    //db上のフォローをした日付と本日が違う場合
+      if($today !== $dbfollow_day)
+      {
+          Log::debug("日付が異なります。DB上のフォロー数をリセットし、日付を変更します。");
+          //フォロー数をリセットし、本日に日付に更新。
+          Auth::user()->follow_count = 0;
+          Auth::user()->follow_day = $today;
+            Auth::user()->save();
+        }else{
+          //db上のフォローをした日付と本日が同じ場合
+          Log::debug("以前の日付と同じです。");
+      }
+
+
+    //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
+    Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないようにする");
+
+    $follow_count = Auth::user()->follow_count;
+    Log::debug("本日このサービスでフォローした数".$follow_count);
+      if($follow_count > 385)
+      {
+        Log::debug("すでに385フォロー超えています。");
+        //ここにフォローをできないようにする処理を入れる。
+      }
+
     //情報を取得するにはSession::get
     //情報を置くにはSession::put
     //情報を消すにはSession::forget
 
-    //まとめてフォローをできるかどうかの判定。$autofollow_readyが1ならできない、0ならできる。
+    //まとめてフォローをできるかどうかの判定（15分ごとの判定）。
+    //$autofollow_readyが1ならできない、0ならできる。
     //まずはセッションにtoday_follow_timeがあるかどうかを確認。
     if(Session::get('today_follow_time')){
       $autofollow_ready = 1;//ある場合はオートフォロー不可能。
@@ -80,10 +118,9 @@ class AutofollowController extends Controller
         $autofollow_ready = 0;//オートフォロー可能な状態
       }
 
-
-
     Log::debug("オートフォローの状態です。".$autofollow_ready);
     Log::debug("0だと実施可能です");
+
 
 
     //もしセッション情報がない場合Twitter認証をしていないため、ビュー側では下記の情報は出さない。
