@@ -7,8 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Socialite;
 use Session;
-
-//Eloquentモデルを使う、coinモデルも使う
 use Illuminate\Database\Eloquent\Model;
 use App\Coin;
 use Abraham\TwitterOAuth\TwitterOAuth;
@@ -16,6 +14,7 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 
 class NewsController extends Controller
 {
+
   //------------------ニュース一覧アクション
 
   public function index()
@@ -30,14 +29,16 @@ class NewsController extends Controller
 
     //記事のタイトルとURLを取り出して配列に格納
     for ($i = 0; $i < count($items); $i++) {
-
-        $list[$i]['title'] = mb_convert_encoding($items[$i]->title ,"UTF-8", "auto");
-        $list[$i]['url'] = $items[$i]->link;
-        $list[$i]['pubDate'] = $items[$i]->pubDate;
+        $list[$i]['title'] = mb_convert_encoding($items[$i]->title,"UTF-8", "auto");//mb_convert_encodingで文字列を変換
+        $list[$i]['url'] = mb_convert_encoding($items[$i]->link,"UTF-8", "auto");
+        $list[$i]['pubDate'] = mb_convert_encoding($items[$i]->pubDate,"UTF-8", "auto");
+        //メディア画像がある場合はその画像を、ない場合はサービス画像を。
         if(isset($items[$i]->children('media', true)->content)){
+          //記事のmedia内に画像があれば読み込む
           $list[$i]['image_url'] = (string)$items[$i]->children('media', true)->content->attributes()->url;
         }else{
-          $list[$i]['image_url'] = "https://lh3.googleusercontent.com/proxy/zZkaMJXugQ6S8kQ_fzt3XM59R_t872SSjJu6IDEcAlUPrbgNeaSl8iD14TlKQBP0EE44r_mo0a5Fnn9hzQody0kA3vqNezjsiNWK4nzipcGMdOTe=-w150-h150-c";
+          //記事のmedia内に画像がなければサンプル画像
+          $list[$i]['image_url'] = "../img/hero_img.jpg";
         }
       }
 

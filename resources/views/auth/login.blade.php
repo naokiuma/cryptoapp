@@ -51,7 +51,7 @@
                 </button><br>
 
                 @if (Route::has('password.request'))
-                    <a class="c-form__btm" href="{{ route('password.request') }}">
+                    <a href="{{ route('password.request') }}">
                         {{ __('Forgot Your Password?') }}
                     </a>
                 @endif

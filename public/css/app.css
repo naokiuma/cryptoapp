@@ -307,13 +307,24 @@ a {
   background-position: center bottom;
 }
 
+.l-billboard__mini {
+  height: 500px;
+  background-size: cover;
+  width: 60%;
+  margin: 0 auto 100px auto;
+}
+
 header {
   width: 100%;
-  height: 80px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   background-color: #c5f4f4;
   border-bottom: 3px solid;
+  position: fixed;
+  /* ヘッダーの固定 */
+  top: 0px;
+  z-index: 10;
 }
 
 .l-main {
@@ -324,7 +335,7 @@ header {
 
 .l-main__sub {
   width: 100%;
-  height: 600px;
+  height: 700px;
   display: flex;
 }
 
@@ -355,6 +366,7 @@ header {
 .l-footernavi__container {
   background-color: #c5f4f4;
   color: black;
+  border-top: solid black 1px;
   line-height: 20px;
   margin: auto;
   display: flex;
@@ -471,7 +483,15 @@ header {
   font-size: 20px;
   border: 3px solid;
   background-color: #c5f4f4;
-  margin-top: 30px;
+  margin: 15px;
+  box-shadow: 4px 4px;
+}
+
+.c-form__btn:hover {
+  transform: translate3d(0, 5px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 
 .c-form__container {
@@ -494,8 +514,9 @@ header {
 }
 
 .c-text h3 {
-  background-color: #5fa09361;
+  background-color: #002824c7;
   width: 100%;
+  font-weight: lighter;
 }
 
 .c-text__attention span {
@@ -521,6 +542,7 @@ header {
   border-left: solid 10px #ffc06e;
   border-right: solid 10px #ffc06e;
   font-size: 35px;
+  background-color: #fff76eb8;
 }
 
 @media screen and (max-width: 768px) {
@@ -550,6 +572,13 @@ header {
 .c-box__sp {
   text-align: center;
   margin-top: 30px;
+  display: none;
+}
+
+@media screen and (max-width: 768px) {
+  .c-box__sp {
+    display: block;
+  }
 }
 
 .c-box__icon {
@@ -694,6 +723,12 @@ header {
   font-size: 4vw;
 }
 
+@media screen and (max-width: 768px) {
+  .p-desc__container {
+    height: 200px;
+  }
+}
+
 .p-desc__title {
   width: 60%;
   margin: 10% auto 5% auto;
@@ -725,10 +760,12 @@ header {
 
 .p-functions__container {
   height: 700px;
-  width: 100vw;
+  width: 100%;
   display: flex;
   background-size: cover;
   background-image: url(/images/tw_sp.png?c256f657313cc8a80489fba37888b4ec);
+  border-top: 5px solid;
+  border-bottom: 5px solid;
 }
 
 @media screen and (max-width: 768px) {
@@ -917,21 +954,6 @@ header {
   color: white;
 }
 
-.p-header__logo {
-  width: 20%;
-  text-align: center;
-  height: inherit;
-  line-height: 80px;
-  padding: 0 1vw;
-  font-size: 15px;
-  letter-spacing: 4px;
-}
-
-.p-header__logo a {
-  text-decoration: none;
-  color: black;
-}
-
 .p-header__navi {
   align-items: center;
   margin: auto 0 auto 0;
@@ -942,6 +964,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-header__navi {
     font-size: 10px;
+    /* 位置(上0px) */
   }
 }
 
@@ -963,6 +986,21 @@ header {
   width: 30px;
 }
 
+.p-header__logo {
+  width: 20%;
+  text-align: center;
+  height: inherit;
+  line-height: 60px;
+  padding: 0 1vw;
+  font-size: 15px;
+  letter-spacing: 4px;
+}
+
+.p-header__logo a {
+  text-decoration: none;
+  color: black;
+}
+
 .p-news__container {
   display: flex;
   flex-wrap: wrap;
@@ -972,21 +1010,25 @@ header {
 .p-news__card {
   background-color: #647bf366;
   padding: 1%;
-  width: calc(100% / 3);
+  width: calc(100% / 2);
   box-sizing: border-box;
+  text-align: center;
 }
 
-.p-news__card h3 {
-  margin-bottom: 5%;
-  height: 90px;
-  text-align: center;
-  font-size: 1.2vw;
+@media screen and (max-width: 768px) {
+  .p-news__card {
+    width: 100%;
+  }
 }
 
 .p-news__card h4 {
   margin-bottom: 5%;
-  height: 90px;
+  height: 60px;
   text-align: center;
+  padding: 10px 5%;
+  font-size: 16px;
+  background-color: #00afff59;
+  text-align: left;
 }
 
 .p-news__card img {
@@ -994,6 +1036,7 @@ header {
   margin-left: auto;
   margin-right: auto;
   display: block;
+  box-shadow: 4px 4px #668AD8;
 }
 
 .p-news__card span {
@@ -1122,14 +1165,20 @@ header {
 
 .p-start__text p {
   font-size: 10vw;
+  transition: 1s;
+  box-shadow: 4px 4px black;
+}
+
+.p-start__text p:hover {
+  background-color: aquamarine;
+  transition: 1s;
 }
 
 .p-start__under {
   display: block;
   width: 100%;
   height: 20px;
-  background-color: #85ff16;
-  font-size: 14px;
+  margin: 10px;
 }
 
 @media screen and (max-width: 768px) {
@@ -1166,6 +1215,14 @@ header {
   background-color: #1e9bc936;
   padding: 20px;
   border: solid 0.5px;
+  box-shadow: 4px 4px;
+}
+
+.p-twiiter__top a:hover {
+  transform: translate3d(0, 5px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 
 .u-error {

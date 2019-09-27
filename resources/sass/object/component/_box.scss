@@ -8,6 +8,7 @@
     border-left: solid 10px #ffc06e;
     border-right: solid 10px #ffc06e;
     font-size: 35px;
+    background-color: #fff76eb8;;
     @media screen and (max-width: $res-max-width){
     font-size: $font-m;
     margin: 0 10% 2em 10%;
@@ -28,6 +29,11 @@
   &__sp{
     text-align: center;
     margin-top: 30px;
+    display: none;
+    @media screen and (max-width: $res-max-width){
+      display: block;
+    }
+
   }
   &__icon{
     font-size: 100px;

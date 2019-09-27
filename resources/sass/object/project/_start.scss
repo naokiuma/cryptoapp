@@ -21,20 +21,26 @@
     letter-spacing: 20px;
     height: 100%;
     line-height: 300px;
+
     @media screen and (max-width: $res-max-width){
       height: 60px;
       line-height: 60px;
     }
     p{
       font-size: 10vw;
+      transition: 1s;
+      box-shadow: 4px 4px black;
+      &:hover{
+        background-color: aquamarine;
+        transition: 1s;
+      }
     }
   }
   &__under{
     display: block;
     width: 100%;
     height: 20px;
-    background-color: #85ff16;
-    font-size: 14px;
+    margin: 10px;
     p{
       @media screen and (max-width: $res-max-width){
         height: 50%;

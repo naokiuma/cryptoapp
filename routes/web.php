@@ -62,8 +62,11 @@ Route::group(['middleware' => 'check'],function(){
 });
 
 //逆にログインしている場合はトップにリダイレクトさせるページ。（パスワードリマインダーなど）
-Route::group(['middleware' => 'logout'],function(){
-  Route::get('register', 'Auth\RegisterController@showRegistrationForm');
-  Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm');
-  Route::get('login','Auth\LoginController@showLoginForm');
-});
+//何かおかしいので、これらのページ側でログインしてたらリダイレクトさせる。
+//        return redirect('/')->with('flash_message',__('すでにログインしています。'));
+
+//Route::group(['middleware' => 'logout'],function(){
+//  Route::get('register', 'Auth\RegisterController@showRegistrationForm');//何かおかしいログウト状態で行ったらエラー
+//  Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm');
+//  Route::get('login','Auth\LoginController@showLoginForm');//何かおかしい
+//});

@@ -11,6 +11,9 @@
   h2{
     font-size: 4vw;
   }
+  @media screen and (max-width: $res-max-width){
+    height: 200px;
+  }
 }
 
 .p-desc__title{

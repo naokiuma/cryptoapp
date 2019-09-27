@@ -13,6 +13,9 @@
   </p>
 </div>
 
+<div class="l-billboard__mini" style="background-image: url('../img/check-hard.png')" >
+</div>
+
 <div id="coinapp">
     <coin-component></coin-component>
     <!--全てajaxでajax/coinsから取得-->

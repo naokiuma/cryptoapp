@@ -13,6 +13,9 @@
   </p>
 </div>
 
+<div class="l-billboard__mini" style="background-image: url('../img/tw_sp.png')" >
+</div>
+
 
 <section class="l-main__twitter">
 

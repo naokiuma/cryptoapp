@@ -1952,7 +1952,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -37754,6 +37753,10 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.showCoins, function(pcoin) {
           return _c("div", { staticClass: "p-coinranking__table" }, [
+            _c("h3", [_vm._v("各種コインデータ")]),
+            _vm._v(
+              "\n        ※最大値、最低値は前日一日の取引金額です。\n           "
+            ),
             _c("table", [
               _c("th", [_vm._v("コイン名")]),
               _c("th", [_vm._v("1時間のツイート数")]),

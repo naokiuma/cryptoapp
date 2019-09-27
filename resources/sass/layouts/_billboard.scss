@@ -4,5 +4,10 @@
   background-image: url("../img/hero_image.jpg");
   background-size: cover;
   background-position:center bottom;
-
+  &__mini{
+    height: 500px;
+    background-size: cover;
+    width: 60%;
+    margin: 0 auto 100px auto;
+  }
 }

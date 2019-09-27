@@ -1,10 +1,12 @@
 .p-functions{
   &__container{
     height: 700px;
-    width: 100vw;
+    width: 100%;
     display: flex;
     background-size: cover;
     background-image:url(../img/tw_sp.png);
+    border-top: 5px solid;
+    border-bottom: 5px solid;
       @media screen and (max-width: $res-max-width){
         height: 1000px;
         display: block;

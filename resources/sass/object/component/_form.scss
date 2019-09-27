@@ -30,7 +30,16 @@
      font-size: $font-m;
      border: 3px solid;
      background-color: #c5f4f4;
-     margin-top: 30px;
+     margin: 15px;
+     box-shadow: 4px 4px;
+     &:hover{
+       transform: translate3d(0, 5px, 0);
+        color: #007db9;
+        box-shadow: none;
+        background: #fff;
+     }
+
+
    }
    &__container{
      margin: 10% auto;

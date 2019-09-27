@@ -30,7 +30,6 @@
 
   <section class="p-coinranking__container">
 
-
         <div class="p-coinranking__table" v-if="hour_show">
           <h3>1時間のデータ <span> 更新日時：{{coins[0].updated_at}}</span></h3>
 
@@ -70,20 +69,20 @@
               <td>{{ i + 1 }}</td><td>{{coin.name}}</td> <td>{{coin.week}}</td>
           </tr>
           </table>
-
         </div>
 
 
-
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
+        <h3>各種コインデータ</h3>
+        ※最大値、最低値は前日一日の取引金額です。
            <table>
            <th>コイン名</th><th>1時間のツイート数</th><th>1日のツイート数</th><th>1週間のツイート数</th><th>最大値</th><th>最低値</th>
            <tr>
                <td>{{pcoin.name}}</td><td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td>{{pcoin.week}}</td><td>{{pcoin.high}}</td><td>{{pcoin.low}}</td>
            </tr>
            </table>
+       </div>
 
-         </div>
   </section>
 
 </section>

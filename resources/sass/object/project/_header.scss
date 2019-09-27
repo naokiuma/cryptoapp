@@ -1,23 +1,42 @@
-.p-header__navi{
-  align-items: center;
-  margin: auto 0 auto 0;
-  font-size: 0.8rem;
-  letter-spacing: 1.5px;
-  @media screen and (max-width: $res-max-width){
-  font-size: 10px;
-  }
-  ul{
-    display: flex;
+.p-header{
+  &__navi{
     align-items: center;
+    margin: auto 0 auto 0;
+    font-size: 0.8rem;
+    letter-spacing: 1.5px;
+    @media screen and (max-width: $res-max-width){
+    font-size: 10px;
+                  /* 位置(上0px) */
+    }
+    ul{
+      display: flex;
+      align-items: center;
+    }
+    li{
+      padding:1em;
+      a{
+        text-decoration: none;
+        color: black;
+      }
+    }
+    img{
+      width: 30px;
+    }
   }
-  li{
-    padding:1em;
+  &__logo{
+    width: 20%;
+    text-align: center;
+    height: inherit;
+    line-height: 60px;
+    padding: 0 1vw;
+    font-size: 15px;
+
+    letter-spacing: 4px;
     a{
       text-decoration: none;
       color: black;
     }
   }
-  img{
-    width: 30px;
-  }
+
+
 }

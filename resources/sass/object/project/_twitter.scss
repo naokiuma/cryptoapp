@@ -22,6 +22,13 @@
       background-color: #1e9bc936;
       padding: 20px;
       border: solid 0.5px;
+      box-shadow: 4px 4px;
+      &:hover{
+        transform: translate3d(0, 5px, 0);
+        color: #007db9;
+        box-shadow: none;
+        background: #fff;
+      }
     }
   }
 

@@ -12,6 +12,10 @@
   </p>
 </div>
 
+<div class="l-billboard__mini" style="background-image: url('../img/swiper_news.jpg')" >
+
+</div>
+
   <div id="newsapp">
       <news-component
       :list_gn="{{ json_encode($list_gn) }}" >
