@@ -4,9 +4,11 @@
   height: 900px;
   overflow: hidden;
   &__sub{
-    width: 100%;
+    width: 95%;
     height: 700px;
     display: flex;
+    margin-left: auto;
+    margin-right: auto;
     @media screen and (max-width: $res-max-width){
       display: block;
     }
