@@ -4,7 +4,6 @@ namespace App\Exceptions;
 
 use Exception;
 use Illuminate\Foundation\Exceptions\Handler as ExceptionHandler;
-use Symfony\Component\HttpKernel\Exception\HttpExceptionInterface;
 
 class Handler extends ExceptionHandler
 {
@@ -50,13 +49,6 @@ class Handler extends ExceptionHandler
         return parent::render($request, $exception);
     }
 
-    /**
-     * 共通エラーページ
-     */
-    protected function renderHttpException(\Symfony\Component\HttpKernel\Exception\HttpException $e)
-    {
-        $status = $e->getStatusCode();
-        return response()->view("errors.common", ['exception' => $e], $status);
-    }
+
 
 }
