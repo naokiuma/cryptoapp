@@ -11,6 +11,10 @@
     background-color: #002824c7;
     width: 100%;
     font-weight: lighter;
+    @media screen and (max-width: $res-max-width){
+      background-color: $main-color
+
+    }
   }
   &__attention{
     span{

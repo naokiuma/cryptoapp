@@ -376,6 +376,7 @@ header {
 @media screen and (max-width: 768px) {
   .l-footernavi__container {
     display: block;
+    width: 100%;
   }
 }
 
@@ -519,6 +520,12 @@ header {
   font-weight: lighter;
 }
 
+@media screen and (max-width: 768px) {
+  .c-text h3 {
+    background-color: #c5f4f4;
+  }
+}
+
 .c-text__attention span {
   color: #963636;
   /*文字色*/
@@ -657,7 +664,6 @@ header {
   float: left;
   margin: 5% 5% 10% 5%;
   width: 60%;
-  height: 80vh;
 }
 
 .p-coinranking__container h2 {
@@ -702,6 +708,18 @@ header {
   letter-spacing: 5px;
   padding: 5px;
   border: 1px solid;
+}
+
+.p-coinranking__table tr {
+  height: 50px;
+  line-height: 50px;
+}
+
+@media screen and (max-width: 768px) {
+  .p-coinranking__table tr {
+    height: 20px;
+    line-height: 20px;
+  }
 }
 
 .p-decs__main {
@@ -1264,10 +1282,12 @@ header {
 
 .u-width__narrow {
   width: 30%;
+  height: 60%;
   background-color: #c5f4f4;
   display: block;
   text-align: center;
   line-height: 500px;
+  box-shadow: 8px 8px 2px 2px;
 }
 
 @media screen and (max-width: 768px) {

@@ -37753,10 +37753,8 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.showCoins, function(pcoin) {
           return _c("div", { staticClass: "p-coinranking__table" }, [
-            _c("h3", [_vm._v("各種コインデータ")]),
-            _vm._v(
-              "\n        ※最大値、最低値は前日一日の取引金額です。\n           "
-            ),
+            _vm._m(2, true),
+            _vm._v(" "),
             _c("table", [
               _c("th", [_vm._v("コイン名")]),
               _c("th", [_vm._v("1時間のツイート数")]),
@@ -37798,6 +37796,16 @@ var staticRenderFns = [
     return _c("h3", [
       _vm._v("1週間のデータ "),
       _c("span", [_vm._v(" 更新日時：")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("h3", [
+      _vm._v("各種コインデータ"),
+      _c("br"),
+      _vm._v("※最大値、最低値は日本円と対象コインの前日一日の取引金額です。")
     ])
   }
 ]

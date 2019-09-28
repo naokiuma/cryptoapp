@@ -73,8 +73,8 @@
 
 
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
-        <h3>各種コインデータ</h3>
-        ※最大値、最低値は前日一日の取引金額です。
+        <h3>各種コインデータ<br>※最大値、最低値は日本円と対象コインの前日一日の取引金額です。</h3>
+
            <table>
            <th>コイン名</th><th>1時間のツイート数</th><th>1日のツイート数</th><th>1週間のツイート数</th><th>最大値</th><th>最低値</th>
            <tr>

@@ -126,10 +126,18 @@
 
 </section>
 
+<div class="p-desc__container">
+
+<h2 class="p-desc__title c-text">
+  さっそく始めよう。
+</h2>
+
+</div>
+<!--
 <h2 class="c-text u-short">
   <span>さっそく始めよう。</span>
 </h2>
-
+-->
 
   <section class="p-functions__container u-mouseover__resurt">
       <div class="p-functions__twiiter u-mouseover__twitter">

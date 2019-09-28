@@ -10,10 +10,12 @@
 
 .u-width__narrow{
   width: 30%;
+  height: 60%;
   background-color: $main-color;
   display: block;
   text-align: center;
   line-height: 500px;
+  box-shadow: 8px 8px 2px 2px;
   @media screen and (max-width: $res-max-width){
     display: none;
   }

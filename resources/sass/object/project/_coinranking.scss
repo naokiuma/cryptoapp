@@ -11,7 +11,6 @@
     float: left;
     margin: 5% 5% 10% 5%;
     width: 60%;
-    height: 80vh;
       h2{
         padding: 5%;
       }
@@ -49,6 +48,15 @@
         letter-spacing: 5px;
         padding: 5px;
         border: 1px solid;
+      }
+
+      tr{
+        height: 50px;
+        line-height: 50px;
+        @media screen and (max-width: $res-max-width){
+          height: 20px;
+          line-height: 20px;
+        }
       }
     }
 

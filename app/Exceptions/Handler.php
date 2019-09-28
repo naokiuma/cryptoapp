@@ -48,4 +48,14 @@ class Handler extends ExceptionHandler
     {
         return parent::render($request, $exception);
     }
+
+    /**
+     * 共通エラーページ
+     */
+    protected function renderHttpException(\Symfony\Component\HttpKernel\Exception\HttpException $e)
+    {
+        $status = $e->getStatusCode();
+        return response()->view("errors.common", ['exception' => $e], $status);
+    }
+
 }
