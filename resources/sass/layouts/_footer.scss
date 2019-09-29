@@ -15,6 +15,8 @@
     ul{
       padding: 10px;
       width: 20%;
+      @media screen and (max-width: $res-max-width){
+        width: 50%;
     }
     li{
       padding-bottom: 5px;

@@ -1,7 +1,10 @@
 .l-billboard{
   width: 100%;
   height: 100vh;
-  background-image: url("../img/hero_image.jpg");
+
+  //background-image: url("../img/hero_image.jpg");
+//background-image: url({{ url::asset('/img/hero_image.jpg'); }})
+//  background-image: url({{ url::asset('images/bg-menu.png'); }})
   background-size: cover;
   background-position:center bottom;
   &__mini{

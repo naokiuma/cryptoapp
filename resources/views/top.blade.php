@@ -39,13 +39,13 @@
   <div class="p-plobrem">
 
     <h4>情報をどう探せばいいのかわからない。</h4>
-    <img src="../img/search.jpg" alt="">
+    <img alt="サーチ" src="{{ asset('/img/search.jpg') }}">
 
   </div>
   <div class="p-plobrem">
 
-    <h4>情報をまとめるのに時間がかかる。</h4>
-    <img src="../img/search2.jpg" alt="">
+    <h4>関連情報を探してまとめるのに時間がかかる。</h4>
+    <img alt="サーチ" src="{{ asset('/img/search2.jpg') }}">
 
   </div>
 
@@ -144,20 +144,22 @@
         <div class="c-text">
           <a href="{{ url('autofollow') }}"><h3>まとめてフォロー</h3></a>
         </div>
-        <img class="p-functions__sp" src="../img/tw_sp.png" alt="スマートフォン用の画像">
+        <img class="p-functions__sp" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
       </div>
 
       <div class="p-functions__coins u-mouseover__coins">
         <div class="c-text">
           <a href="{{ url('coin') }}"><h3>通貨トレンド情報</h3></a>
         </div>
-        <img class="p-functions__sp" src="../img/check-hard.png" alt="スマートフォン用の画像">
+        <img class="p-functions__sp" src="{{ asset('/img/check-hard.png') }}" alt="スマートフォン用の画像" >
+
       </div>
       <div class="p-functions__news u-mouseover__news">
         <div class="c-text">
           <a href="{{ url('news') }}"><h3>仮想通貨ニュース</h3></a>
         </div>
-        <img class="p-functions__sp" src="../img/swiper_news.jpg" alt="スマートフォン用の画像">
+        <img class="p-functions__sp" src="{{ asset('/img/swiper_news.jpg') }}" alt="スマートフォン用の画像" >
+
       </div>
 </section>
 
