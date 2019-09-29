@@ -27,7 +27,7 @@ Route::get('coin/week','CoinController@week')->name('coin.week');//1日のツイ
 Route::get('news','NewsController@index')->name('news');
 //ニュースの中の更新コントローラー（テスト）
 //Route::get('news/test','NewsController@test')->name('test');
-//zaifのデータを取得テスト
+//zaifのデータを取得テスト。まだここかよ！
 Route::get('news/test2','NewsController@test2')->name('test2');
 
 //オートフォローコントローラー

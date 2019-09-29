@@ -1,5 +1,4 @@
 @import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
-
 /*
 html5doctor.com Reset Stylesheet
 v1.6.1
@@ -7,76 +6,18 @@ Last Updated: 2010-09-17
 Author: Richard Clark - http://richclarkdesign.com
 Twitter: @rich_clark
 */
-
-html,
-body,
-div,
-span,
-object,
-iframe,
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-blockquote,
-pre,
-abbr,
-address,
-cite,
-code,
-del,
-dfn,
-em,
-img,
-ins,
-kbd,
-q,
-samp,
-small,
-strong,
-sub,
-sup,
-var,
-b,
-i,
-dl,
-dt,
-dd,
-ol,
-ul,
-li,
-fieldset,
-form,
-label,
-legend,
-table,
-caption,
-tbody,
-tfoot,
-thead,
-tr,
-th,
-td,
-article,
-aside,
-canvas,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section,
-summary,
-time,
-mark,
-audio,
-video {
+html, body, div, span, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+abbr, address, cite, code,
+del, dfn, em, img, ins, kbd, q, samp,
+small, strong, sub, sup, var,
+b, i,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section, summary,
+time, mark, audio, video {
   margin: 0;
   padding: 0;
   border: 0;
@@ -91,17 +32,8 @@ body {
   line-height: 1;
 }
 
-article,
-aside,
-details,
-figcaption,
-figure,
-footer,
-header,
-hgroup,
-menu,
-nav,
-section {
+article, aside, details, figcaption, figure,
+footer, header, hgroup, menu, nav, section {
   display: block;
 }
 
@@ -109,15 +41,12 @@ nav ul {
   list-style: none;
 }
 
-blockquote,
-q {
+blockquote, q {
   quotes: none;
 }
 
-blockquote:before,
-blockquote:after,
-q:before,
-q:after {
+blockquote:before, blockquote:after,
+q:before, q:after {
   content: "";
   content: none;
 }
@@ -131,7 +60,6 @@ a {
 }
 
 /* change colours to suit your needs */
-
 ins {
   background-color: #ff9;
   color: #000;
@@ -139,7 +67,6 @@ ins {
 }
 
 /* change colours to suit your needs */
-
 mark {
   background-color: #ff9;
   color: #000;
@@ -151,8 +78,7 @@ del {
   text-decoration: line-through;
 }
 
-abbr[title],
-dfn[title] {
+abbr[title], dfn[title] {
   border-bottom: 1px dotted;
   cursor: help;
 }
@@ -163,7 +89,6 @@ table {
 }
 
 /* change border colour to suit your needs */
-
 hr {
   display: block;
   height: 1px;
@@ -173,8 +98,7 @@ hr {
   padding: 0;
 }
 
-input,
-select {
+input, select {
   vertical-align: middle;
 }
 
@@ -234,55 +158,46 @@ a {
 }
 
 /*------アニメーション------*/
-
 @-webkit-keyframes toleft {
   from {
     opacity: 0;
     transform: translateX(100px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
-
 @keyframes toleft {
   from {
     opacity: 0;
     transform: translateX(100px);
   }
-
   to {
     opacity: 1;
     transform: translateX(0);
   }
 }
-
 @-webkit-keyframes toup {
   from {
     opacity: 0;
     transform: translateY(100px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 @keyframes toup {
   from {
     opacity: 0;
     transform: translateY(100px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
-
 .v-enter-active,
 .v-leave-active {
   position: absolute;
@@ -302,18 +217,16 @@ a {
 .l-billboard {
   width: 100%;
   height: 100vh;
-  background-image: url(/images/hero_image.jpg?21350811813bca51613f759170af5928);
+  background-image: url("../img/hero_image.jpg");
   background-size: cover;
   background-position: center bottom;
 }
-
 .l-billboard__mini {
-  height: 200px;
+  height: 300px;
   background-size: cover;
   width: 60%;
   margin: 100px auto;
 }
-
 .l-billboard__mini img {
   width: 100%;
 }
@@ -336,7 +249,6 @@ header {
   height: 900px;
   overflow: hidden;
 }
-
 .l-main__sub {
   width: 95%;
   height: 700px;
@@ -344,19 +256,16 @@ header {
   margin-left: auto;
   margin-right: auto;
 }
-
 @media screen and (max-width: 768px) {
   .l-main__sub {
     display: block;
     height: 600px;
   }
 }
-
 .l-main__mini {
   width: 100%;
   height: 400px;
 }
-
 .l-main__twitter {
   width: 100%;
   height: 100%;
@@ -379,29 +288,24 @@ header {
   display: flex;
   justify-content: space-between;
 }
-
 @media screen and (max-width: 768px) {
   .l-footernavi__container {
     display: block;
     width: 100%;
   }
 }
-
 .l-footernavi__container ul {
   padding: 10px;
   width: 20%;
 }
-
 @media screen and (max-width: 768px) {
   .l-footernavi__container ul {
     width: 50%;
   }
 }
-
 .l-footernavi__container li {
   padding-bottom: 5px;
 }
-
 .l-footernavi__container a {
   color: black;
 }
@@ -417,11 +321,9 @@ header {
   -webkit-animation-name: toleft;
   animation-name: toleft;
 }
-
 .c-card a {
   font-size: 80%;
 }
-
 .c-card p {
   margin: 1rem;
   max-height: 40%;
@@ -430,11 +332,9 @@ header {
   font-size: 1vw;
   letter-spacing: 1px;
 }
-
 .c-card button {
   margin-top: 5%;
 }
-
 .c-card__header {
   display: flex;
   justify-content: space-between;
@@ -443,13 +343,11 @@ header {
   margin-top: 1%;
   font-size: 1vw;
 }
-
 .c-card__header h4 {
   margin-right: 10%;
   letter-spacing: 2px;
   font-weight: bold;
 }
-
 .c-card__header img {
   width: 60px;
   margin-left: 3%;
@@ -464,25 +362,20 @@ header {
   width: 90%;
   margin: 20px auto;
 }
-
 .c-form__group {
   margin: 3%;
 }
-
 .c-form__title {
   font-size: 36px;
   text-align: center;
   margin: 30px;
 }
-
 .c-form__body {
   text-align: center;
 }
-
 .c-form__label {
   font-size: 20px;
 }
-
 .c-form__control {
   vertical-align: middle;
   width: 60%;
@@ -490,7 +383,6 @@ header {
   margin-top: 10px;
   border: 1px solid;
 }
-
 .c-form__btn {
   width: 200px;
   height: 40px;
@@ -500,14 +392,12 @@ header {
   margin: 15px;
   box-shadow: 4px 4px;
 }
-
 .c-form__btn:hover {
   transform: translate3d(0, 5px, 0);
   color: #007db9;
   box-shadow: none;
   background: #fff;
 }
-
 .c-form__container {
   margin: 10% auto;
 }
@@ -515,7 +405,6 @@ header {
 .c-text {
   text-align: center;
 }
-
 .c-text span {
   color: #364e96;
   /*文字色*/
@@ -526,19 +415,16 @@ header {
   border-bottom: solid 1px #364e96;
   /*下線*/
 }
-
 .c-text h3 {
   background-color: #002824c7;
   width: 100%;
   font-weight: lighter;
 }
-
 @media screen and (max-width: 768px) {
   .c-text h3 {
     background-color: #c5f4f4;
   }
 }
-
 .c-text__attention span {
   color: #963636;
   /*文字色*/
@@ -553,7 +439,6 @@ header {
 .c-box {
   height: 100%;
 }
-
 .c-box h2 {
   text-align: center;
   padding: 10%;
@@ -564,43 +449,36 @@ header {
   font-size: 35px;
   background-color: #fff76eb8;
 }
-
 @media screen and (max-width: 768px) {
   .c-box h2 {
     font-size: 20px;
     margin: 0 10% 2em 10%;
   }
 }
-
 .c-box p {
   line-height: 24px;
   text-align: center;
   width: 80%;
   margin: auto;
 }
-
 @media screen and (max-width: 768px) {
   .c-box p {
     text-align: left;
   }
 }
-
 .c-box__big {
   font-size: 25px;
 }
-
 .c-box__sp {
   text-align: center;
   margin-top: 30px;
   display: none;
 }
-
 @media screen and (max-width: 768px) {
   .c-box__sp {
     display: block;
   }
 }
-
 .c-box__icon {
   font-size: 100px;
 }
@@ -622,7 +500,6 @@ header {
   text-align: center;
   width: 100%;
 }
-
 .p-autofollow__container h2 {
   height: 50px;
   width: 50%;
@@ -632,22 +509,18 @@ header {
   margin: 30px auto;
   border: 3px solid yellow;
 }
-
 .p-autofollow__container h3 {
   margin: 30px auto;
 }
-
 .p-autofollow__container input {
   height: 20px;
 }
-
 .p-autofollow__description {
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
   -webkit-animation-name: toup;
   animation-name: toup;
 }
-
 .p-autofollow__start {
   width: 200px;
   height: 50px;
@@ -655,7 +528,6 @@ header {
   border: 2px solid;
   box-shadow: 3px 2px;
 }
-
 .p-autofollow__start:hover {
   transform: translate3d(0, 5px, 0);
   color: #007db9;
@@ -668,21 +540,17 @@ header {
   font-size: 2vw;
   padding: 5%;
 }
-
 .p-coinranking__each {
   font-size: 50px;
 }
-
 .p-coinranking__container {
   float: left;
   margin: 5% 5% 10% 5%;
   width: 60%;
 }
-
 .p-coinranking__container h2 {
   padding: 5%;
 }
-
 .p-coinranking__container h3 {
   font-size: 2vw;
   padding: 1%;
@@ -691,11 +559,9 @@ header {
   margin: auto auto;
   text-align: center;
 }
-
 .p-coinranking__container span {
   font-size: 10px;
 }
-
 .p-coinranking__table {
   text-align: center;
   width: 100%;
@@ -706,28 +572,23 @@ header {
   -webkit-animation-name: toleft;
   animation-name: toleft;
 }
-
 .p-coinranking__table table {
   width: 100%;
 }
-
 .p-coinranking__table th {
   background-color: #bcf0c3;
   border: 1px solid;
 }
-
 .p-coinranking__table td {
   font-size: 1vw;
   letter-spacing: 5px;
   padding: 5px;
   border: 1px solid;
 }
-
 .p-coinranking__table tr {
   height: 50px;
   line-height: 50px;
 }
-
 @media screen and (max-width: 768px) {
   .p-coinranking__table tr {
     height: 20px;
@@ -738,7 +599,6 @@ header {
 .p-decs__main {
   text-align: center;
 }
-
 @media screen and (max-width: 768px) {
   .p-decs__main {
     text-align: left;
@@ -748,17 +608,14 @@ header {
 .p-desc__container {
   width: 100%;
 }
-
 .p-desc__container h2 {
   font-size: 4vw;
 }
-
 .p-desc__title {
   width: 60%;
   margin: 10% auto 5% auto;
   border-bottom: 1px solid;
 }
-
 .p-desc__title h2 {
   margin-left: auto;
   margin-right: auto;
@@ -770,13 +627,11 @@ header {
   margin: auto;
   border-bottom: 1px solid;
 }
-
 @media screen and (max-width: 768px) {
   .p-desc__text {
     text-align: left;
   }
 }
-
 .p-desc__text p {
   margin-left: auto;
   margin-right: auto;
@@ -787,11 +642,10 @@ header {
   width: 100%;
   display: flex;
   background-size: cover;
-  background-image: url(/images/tw_sp.png?c256f657313cc8a80489fba37888b4ec);
+  background-image: url(../img/tw_sp.png);
   border-top: 5px solid;
   border-bottom: 5px solid;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__container {
     height: 900px;
@@ -799,24 +653,20 @@ header {
     background-image: none;
   }
 }
-
 .p-functions__container h2 {
   height: 20%;
   width: 40%;
   margin: 5% auto 0 auto;
 }
-
 .p-functions__container h3 {
   color: white;
   padding: 5px;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__container h3 {
     color: black;
   }
 }
-
 .p-functions__twiiter {
   width: calc(100% / 3);
   height: 100%;
@@ -828,7 +678,6 @@ header {
   /*左右中央揃え*/
   align-items: center;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__twiiter {
     background-color: #00fffaa3;
@@ -837,7 +686,6 @@ header {
     width: 100%;
   }
 }
-
 .p-functions__coins {
   height: 100%;
   width: calc(100% / 3);
@@ -849,7 +697,6 @@ header {
   /*左右中央揃え*/
   align-items: center;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__coins {
     display: block;
@@ -858,7 +705,6 @@ header {
     background-color: #ffff0091;
   }
 }
-
 .p-functions__news {
   height: 100%;
   width: calc(100% / 3);
@@ -870,7 +716,6 @@ header {
   /*左右中央揃え*/
   align-items: center;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__news {
     display: block;
@@ -879,7 +724,6 @@ header {
     background-color: #dea487;
   }
 }
-
 .p-functions_button {
   display: inline-block;
   padding: 0.5em 1em;
@@ -892,7 +736,6 @@ header {
   height: 50px;
   font-size: 20px;
 }
-
 .p-functions_button:active {
   /*ボタンを押したとき*/
   transform: translateY(4px);
@@ -900,11 +743,9 @@ header {
   border-bottom: none;
   /*線を消す*/
 }
-
 .p-functions__sp {
   display: none;
 }
-
 @media screen and (max-width: 768px) {
   .p-functions__sp {
     display: block;
@@ -922,7 +763,6 @@ header {
   width: 30%;
   height: 30%;
 }
-
 @media screen and (max-width: 768px) {
   .p-hero__title {
     top: 20%;
@@ -930,7 +770,6 @@ header {
     width: 80%;
   }
 }
-
 .p-hero__title h2 {
   font-size: 5vw;
   -webkit-animation-duration: 2s;
@@ -938,14 +777,12 @@ header {
   -webkit-animation-name: toleft;
           animation-name: toleft;
 }
-
 .p-hero__title h2::after {
   content: "\30AF\30EA\30D7\30C8\30C8\30EC\30F3\30C9";
   font-size: 1.5vw;
   display: block;
   padding: 15px;
 }
-
 .p-hero__title p {
   line-height: 24px;
 }
@@ -959,11 +796,9 @@ header {
   width: 20%;
   border-radius: 20%;
 }
-
 .p-hero__icon ul {
   padding: 5%;
 }
-
 .p-hero__icon li {
   font-size: 1vw;
   padding: 10px 0;
@@ -973,7 +808,6 @@ header {
   -webkit-animation-name: toleft;
           animation-name: toleft;
 }
-
 .p-hero__icon p {
   padding: 10px 0 0 25px;
   font-size: 1vw;
@@ -986,32 +820,26 @@ header {
   font-size: 0.8rem;
   letter-spacing: 1.5px;
 }
-
 @media screen and (max-width: 768px) {
   .p-header__navi {
     font-size: 10px;
     /* 位置(上0px) */
   }
 }
-
 .p-header__navi ul {
   display: flex;
   align-items: center;
 }
-
 .p-header__navi li {
   padding: 1em;
 }
-
 .p-header__navi li a {
   text-decoration: none;
   color: black;
 }
-
 .p-header__navi img {
   width: 30px;
 }
-
 .p-header__logo {
   width: 20%;
   text-align: center;
@@ -1021,12 +849,10 @@ header {
   font-size: 15px;
   letter-spacing: 4px;
 }
-
 .p-header__logo a {
   text-decoration: none;
   color: black;
 }
-
 .p-header__margin {
   height: 60px;
 }
@@ -1044,13 +870,11 @@ header {
   box-sizing: border-box;
   text-align: center;
 }
-
 @media screen and (max-width: 768px) {
   .p-news__card {
     width: 100%;
   }
 }
-
 .p-news__card h4 {
   margin-bottom: 5%;
   height: 60px;
@@ -1060,7 +884,6 @@ header {
   background-color: #00afff59;
   text-align: left;
 }
-
 .p-news__card img {
   width: 90%;
   margin-left: auto;
@@ -1068,7 +891,6 @@ header {
   display: block;
   box-shadow: 4px 4px #668AD8;
 }
-
 .p-news__card span {
   font-size: 0.7rem;
 }
@@ -1079,30 +901,25 @@ header {
   margin-top: auto;
   margin-bottom: auto;
 }
-
 @media screen and (max-width: 768px) {
   .p-plobrem {
     width: 100%;
   }
 }
-
 .p-plobrem__container {
   width: 100%;
   display: flex;
   margin: 100px auto;
 }
-
 .p-plobrem h4 {
   font-size: 20px;
   margin: 10px;
 }
-
 @media screen and (max-width: 768px) {
   .p-plobrem h4 {
     font-size: 16px;
   }
 }
-
 .p-plobrem img {
   width: 60%;
   margin: 25px;
@@ -1114,35 +931,29 @@ header {
   font-size: 1.3vw;
   display: block;
 }
-
 .p-sidebtn:hover {
   transform: translate3d(0, 1px, 0);
   color: #007db9;
   box-shadow: none;
   background: #fff;
 }
-
 .p-sidebtn__container {
   height: 100%;
 }
-
 .p-sidebtn__coin {
   height: 30px;
   width: 100%;
   background-color: #e2e22b9e;
 }
-
 .p-sidebtn__coin:hover {
   transform: translate3d(0, 1px, 0);
   color: #007db9;
   box-shadow: none;
   background: #fff;
 }
-
 .p-sidebtn__coin__container {
   height: 70%;
 }
-
 .p-sidebtn__highlight {
   height: 30px;
   width: 100%;
@@ -1164,18 +975,15 @@ header {
   text-align: center;
   float: left;
 }
-
 @media screen and (max-width: 768px) {
   .p-start {
     height: 80px;
     width: 80%;
   }
 }
-
 .p-start__container {
   display: flex;
 }
-
 .p-start__text {
   border: 1px solid;
   width: 100%;
@@ -1185,32 +993,27 @@ header {
   height: 100%;
   line-height: 300px;
 }
-
 @media screen and (max-width: 768px) {
   .p-start__text {
     height: 80px;
     line-height: 80px;
   }
 }
-
 .p-start__text p {
   font-size: 10vw;
   transition: 1s;
   box-shadow: 4px 4px black;
 }
-
 .p-start__text p:hover {
   background-color: aquamarine;
   transition: 1s;
 }
-
 .p-start__under {
   display: block;
   width: 100%;
   height: 20px;
   margin: 10px;
 }
-
 @media screen and (max-width: 768px) {
   .p-start__under p {
     height: 50%;
@@ -1226,23 +1029,19 @@ header {
   justify-content: center;
   background-color: #c5f4f4;
 }
-
 .p-twiiter__container h2 {
   text-align: center;
   width: 100%;
   margin: 24px;
 }
-
 .p-twiiter__top {
   height: 300px;
 }
-
 @media screen and (max-width: 768px) {
   .p-twiiter__top {
     height: 250px;
   }
 }
-
 .p-twiiter__top a {
   font-size: 20px;
   display: block;
@@ -1253,7 +1052,6 @@ header {
   border: solid 0.5px;
   box-shadow: 4px 4px;
 }
-
 .p-twiiter__top a:hover {
   transform: translate3d(0, 5px, 0);
   color: #007db9;
@@ -1276,11 +1074,9 @@ header {
   line-height: 200px;
   text-align: center;
 }
-
 .u-short p {
   padding-top: 3%;
 }
-
 .u-short h2 {
   font-size: 36px;
 }
@@ -1290,7 +1086,6 @@ header {
   background-color: #8ee1e814;
   display: block;
 }
-
 @media screen and (max-width: 768px) {
   .u-width__wide {
     width: 100%;
@@ -1307,10 +1102,8 @@ header {
   line-height: 500px;
   box-shadow: 8px 8px 2px 2px;
 }
-
 @media screen and (max-width: 768px) {
   .u-width__narrow {
     display: none;
   }
 }
-
