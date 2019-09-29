@@ -51,8 +51,6 @@
 </div>
 
 
-autofollow/addfollow
-
 @endif
 
 </section>

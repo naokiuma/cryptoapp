@@ -302,7 +302,7 @@ a {
 .l-billboard {
   width: 100%;
   height: 100vh;
-  background-image: url("/img/hero_image.jpg");
+  background-image: url(/images/hero_image.jpg?21350811813bca51613f759170af5928);
   background-size: cover;
   background-position: center bottom;
 }
@@ -348,6 +348,7 @@ header {
 @media screen and (max-width: 768px) {
   .l-main__sub {
     display: block;
+    height: 600px;
   }
 }
 
@@ -793,7 +794,7 @@ header {
 
 @media screen and (max-width: 768px) {
   .p-functions__container {
-    height: 1000px;
+    height: 900px;
     display: block;
     background-image: none;
   }
@@ -830,6 +831,7 @@ header {
 
 @media screen and (max-width: 768px) {
   .p-functions__twiiter {
+    background-color: #00fffaa3;
     display: block;
     height: 300px;
     width: 100%;
@@ -853,6 +855,7 @@ header {
     display: block;
     height: 300px;
     width: 100%;
+    background-color: #ffff0091;
   }
 }
 
@@ -873,7 +876,7 @@ header {
     display: block;
     height: 300px;
     width: 100%;
-    background-image: url();
+    background-color: #dea487;
   }
 }
 
@@ -1025,7 +1028,7 @@ header {
 }
 
 .p-header__margin {
-  height: 80px;
+  height: 60px;
 }
 
 .p-news__container {

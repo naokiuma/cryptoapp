@@ -41,6 +41,7 @@ export default{
         }
       },
       mounted(){
+      console.log(this.autofollowsample_ajax)
           var self = this;
           var url = this.autofollowsample_ajax;
           axios.get(url).then(function(response){

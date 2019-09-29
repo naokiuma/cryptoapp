@@ -2165,6 +2165,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['autofollowsample_ajax'],
   data: function data() {
     return {
       el: '#nologinapp',
@@ -2172,8 +2173,9 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    console.log(this.autofollowsample_ajax);
     var self = this;
-    var url = '/autofollow/addfollow';
+    var url = this.autofollowsample_ajax;
     axios.get(url).then(function (response) {
       self.sampleusers = response.data;
     });
@@ -2243,7 +2245,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users_results', 'follow_users', 'autofollow_ready'],
+  props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax'],
   data: function data() {
     return {
       el: '#twitter',
@@ -2275,7 +2277,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log(data);
       console.log(index);
       var self = this;
-      var url = '/autofollow';
+      var url = this.autofollow_ajax;
       axios.post(url, {
         data: data
       }).then(function (res) {
@@ -2294,7 +2296,7 @@ __webpack_require__.r(__webpack_exports__);
       var allusers = this.users;
       console.log(allusers);
       var self = this;
-      var url = '/autofollow/all';
+      var url = this.autofollowall_ajax;
       axios.post(url, {
         allusers: allusers
       }).then(function (res) {
