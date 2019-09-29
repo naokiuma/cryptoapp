@@ -26,7 +26,14 @@
 
 <script>
 
+
+
+
+
 export default{
+      props:[
+          'autofollowsample_ajax',
+      ],
       data:function(){
           return{
           el: '#nologinapp',
@@ -35,7 +42,7 @@ export default{
       },
       mounted(){
           var self = this;
-          var url = '/autofollow/addfollow';
+          var url = this.autofollowsample_ajax;
           axios.get(url).then(function(response){
             self.sampleusers = response.data;
           });

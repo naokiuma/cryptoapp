@@ -106,7 +106,7 @@ export default{
                 var allusers = this.users;
                 console.log(allusers);
                 var self = this;
-                var url = autofollowall_ajax;
+                var url = this.autofollowall_ajax;
                 axios.post(url,{
                 allusers})
                 .then((res)=>{
