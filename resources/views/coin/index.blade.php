@@ -12,8 +12,8 @@
     ※1時間/1日/1週間単位で集計しています。
   </p>
 </div>
-
-<div class="l-billboard__mini" style="background-image: url('../img/check-hard.png')" >
+<div class="l-billboard__mini">
+  <img alt="コイン" src="{{ asset('/img/check-hard.png') }}">
 </div>
 
 <div id="coinapp">

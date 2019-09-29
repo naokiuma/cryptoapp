@@ -11,6 +11,7 @@
     margin-right: auto;
     @media screen and (max-width: $res-max-width){
       display: block;
+      height: 600px;
     }
   }
   &__mini{

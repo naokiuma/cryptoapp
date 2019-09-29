@@ -54,7 +54,9 @@ export default{
       props:[
       'users_results',
       'follow_users',
-      'autofollow_ready'
+      'autofollow_ready',
+      'autofollow_ajax',
+      'autofollowall_ajax'
       ],
       data:function(){
           return{
@@ -86,7 +88,7 @@ export default{
                 console.log(data);
                 console.log(index)
                 var self = this;
-                var url = '/autofollow';
+                var url = this.autofollow_ajax;
                 axios.post(url, {
                 data})
                 .then((res)=>{
@@ -104,7 +106,7 @@ export default{
                 var allusers = this.users;
                 console.log(allusers);
                 var self = this;
-                var url = '/autofollow/all';
+                var url = autofollowall_ajax;
                 axios.post(url,{
                 allusers})
                 .then((res)=>{
