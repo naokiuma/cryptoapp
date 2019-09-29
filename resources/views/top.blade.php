@@ -142,20 +142,20 @@
   <section class="p-functions__container u-mouseover__resurt">
       <div class="p-functions__twiiter u-mouseover__twitter">
         <div class="c-text">
-          <a href="/autofollow"><h3>まとめてフォロー</h3></a>
+          <a href="{{ url('autofollow') }}"><h3>まとめてフォロー</h3></a>
         </div>
         <img class="p-functions__sp" src="../img/tw_sp.png" alt="スマートフォン用の画像">
       </div>
 
       <div class="p-functions__coins u-mouseover__coins">
         <div class="c-text">
-          <a href="/coin"><h3>通貨トレンド情報</h3></a>
+          <a href="{{ url('coin') }}"><h3>通貨トレンド情報</h3></a>
         </div>
         <img class="p-functions__sp" src="../img/check-hard.png" alt="スマートフォン用の画像">
       </div>
       <div class="p-functions__news u-mouseover__news">
         <div class="c-text">
-          <a href="/news"><h3>仮想通貨ニュース</h3></a>
+          <a href="{{ url('news') }}"><h3>仮想通貨ニュース</h3></a>
         </div>
         <img class="p-functions__sp" src="../img/swiper_news.jpg" alt="スマートフォン用の画像">
       </div>
@@ -191,9 +191,9 @@
     </ul>
 
     <ul>
-      <li><a href="/autofollow"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-      <li><a href="/coin"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-      <li><a href="/news"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+      <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+      <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+      <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
     </ul>
 
     <ul>
