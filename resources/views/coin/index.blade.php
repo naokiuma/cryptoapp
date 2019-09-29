@@ -17,7 +17,8 @@
 </div>
 
 <div id="coinapp">
-    <coin-component></coin-component>
+    <coin-component
+    coin_ajax="{{ url('ajax/coin') }}"></coin-component>
     <!--全てajaxでajax/coinsから取得-->
 </div>
 

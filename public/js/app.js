@@ -1953,6 +1953,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
+  props: ['coin_ajax'],
   data: function data() {
     return {
       coins: [],
@@ -1968,7 +1969,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     this.showHour();
     var self = this;
-    var url = '/ajax/coin';
+    var url = this.coin_ajax;
     axios.get(url).then(function (response) {
       self.coins = response.data;
       console.log(self.coins);

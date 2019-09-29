@@ -92,6 +92,10 @@
 
 <script>
     export default {
+        props:[
+        'coin_ajax'
+        ],
+
         data:function(){
             return{
             coins:[],
@@ -107,7 +111,7 @@
         mounted(){
         this.showHour();
             var self = this;
-            var url = '/ajax/coin';
+            var url = this.coin_ajax;
             axios.get(url).then(function(response){
               self.coins = response.data;
               console.log(self.coins);
