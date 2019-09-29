@@ -308,10 +308,14 @@ a {
 }
 
 .l-billboard__mini {
-  height: 500px;
+  height: 200px;
   background-size: cover;
   width: 60%;
-  margin: 0 auto 100px auto;
+  margin: 100px auto;
+}
+
+.l-billboard__mini img {
+  width: 100%;
 }
 
 header {
@@ -1020,6 +1024,10 @@ header {
   color: black;
 }
 
+.p-header__margin {
+  height: 80px;
+}
+
 .p-news__container {
   display: flex;
   flex-wrap: wrap;
@@ -1177,8 +1185,8 @@ header {
 
 @media screen and (max-width: 768px) {
   .p-start__text {
-    height: 60px;
-    line-height: 60px;
+    height: 80px;
+    line-height: 80px;
   }
 }
 
@@ -1224,6 +1232,12 @@ header {
 
 .p-twiiter__top {
   height: 300px;
+}
+
+@media screen and (max-width: 768px) {
+  .p-twiiter__top {
+    height: 250px;
+  }
 }
 
 .p-twiiter__top a {

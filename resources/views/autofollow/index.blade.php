@@ -13,7 +13,8 @@
   </p>
 </div>
 
-<div class="l-billboard__mini" style="background-image: url('../img/tw_sp.png')" >
+<div class="l-billboard__mini">
+  <img alt="ツイッター" src="{{ asset('/img/tw_sp.png') }}">
 </div>
 
 

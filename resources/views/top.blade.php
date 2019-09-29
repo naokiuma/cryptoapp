@@ -67,10 +67,9 @@
 
     <div class="c-box u-width__wide">
       <h2>まとめてフォロー</h2>
-      <p>SNSサービス『Twitter』からプロフィールや名前に<br>
-      『仮想通貨』と入っているアカウントのみを表示させました。<br>
-      一人一人選んでフォローはもちろん、画面一覧のアカウントを<br>
-      <span class="c-box__big">「まとめてフォロー」</span>することも可能です。<br>
+      <p>SNSサービス『Twitter』からプロフィールや名前に『仮想通貨』と入っているアカウントのみを表示させました。<br>
+      <br>
+      一人一人選んでフォローはもちろん、画面一覧のアカウントを「まとめてフォロー」することも可能です。<br>
       <span class="u-attention">※「まとめてフォロー」は<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">Twitter社の仕様</a>に準じたフォローの制限数を設けています。
       </span>
       </p>
@@ -95,7 +94,7 @@
 
     <div class="c-box u-width__wide">
       <h2>通貨トレンド</h2>
-      <p><span class="c-box__big">今どのコインがツイッターで話題なのか？</span><br>
+      <p>今どのコインがツイッターで話題なのか？<br>
         各通貨のツイート数に応じて、ランキング形式でお伝えします。<br>
         <span class="u-attention">※過去[1時間/1日/一週間]ベースで集計。</span>
       </p>
@@ -187,9 +186,9 @@
   <div class="l-footernavi__container">
 
     <ul>
-      <li><a href="/register">新規登録</a></li>
-      <li><a href="/login">ログイン</a></li>
-      <li><a href="password/reset">パスワードを忘れた方</a></li>
+      <li><a href="{{ url('register') }}">新規登録</a></li>
+      <li><a href="{{ url('login') }}">ログイン</a></li>
+      <li><a href="{{ url('password.reset') }}">パスワードを忘れた方</a></li>
     </ul>
 
     <ul>

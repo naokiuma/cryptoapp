@@ -14,6 +14,9 @@
   }
   &__top{
     height: 300px;
+    @media screen and (max-width: $res-max-width){
+      height: 250px;
+    }
     a{
       font-size: 20px;
       display: block;

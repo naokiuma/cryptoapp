@@ -13,7 +13,7 @@
         <p>最新ツイート：<br>
         {{sampleuser.tweet}}</p><br>
         フォロー数：{{sampleuser.friends_count}} フォロワー数：{{sampleuser.followers_count}}<br>
-        <button>@{{ sampleuser.screen_name }} をフォローするにはツイッター認証が必要です。</button>
+        <button>フォローするにはツイッター認証が必要です。</button>
 
     </div>
   </div>

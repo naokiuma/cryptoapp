@@ -37960,13 +37960,7 @@ var render = function() {
           ),
           _c("br"),
           _vm._v(" "),
-          _c("button", [
-            _vm._v(
-              "@" +
-                _vm._s(sampleuser.screen_name) +
-                " をフォローするにはツイッター認証が必要です。"
-            )
-          ])
+          _c("button", [_vm._v("フォローするにはツイッター認証が必要です。")])
         ])
       }),
       0

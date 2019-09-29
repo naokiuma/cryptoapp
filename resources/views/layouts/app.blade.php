@@ -34,8 +34,8 @@
     <section class="p-header__navi">
       @guest
       <ul>
-        <li><a href="/register">新規登録</a></li>
-        <li><a href="/login">ログイン</a></li>
+        <li><a href="{{ url('register') }}">新規登録</a></li>
+        <li><a href="{{ url('login') }}">ログイン</a></li>
       </ul>
       @else
       <ul>
@@ -59,6 +59,9 @@
       @endguest
     </section>
   </header>
+  <div class="p-header__margin">
+
+  </div>
   <!-- フラッシュメッセージ -->
   @if (session('flash_message'))
       <div class="c-flash__message">
