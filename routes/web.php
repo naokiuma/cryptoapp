@@ -18,9 +18,9 @@ Route::get('/', function () {
 
 //コインコントローラー
 Route::get('coin','CoinController@index')->name('coin');
-Route::get('coin/hour','CoinController@hour')->name('coin/hour');//1日のツイート数を検索。cronで実施。
-Route::get('coin/day','CoinController@day')->name('coin/day');//1日のツイート数を検索。cronで実施。
-Route::get('coin/week','CoinController@week')->name('coin/week');//1日のツイート数を検索。cronで実施。
+Route::get('coin/hour','CoinController@hour')->name('coin.hour');//1日のツイート数を検索。cronで実施。
+Route::get('coin/day','CoinController@day')->name('coin.day');//1日のツイート数を検索。cronで実施。
+Route::get('coin/week','CoinController@week')->name('coin.week');//1日のツイート数を検索。cronで実施。
 
 
 //ニュースコントローラー
@@ -32,24 +32,24 @@ Route::get('news/test2','NewsController@test2')->name('test2');
 
 //オートフォローコントローラー
 Route::get('autofollow','AutofollowController@index')->name('autofollow');//表示
-Route::post('autofollow','AutofollowController@follow');//フォロー
-Route::post('autofollow/all','AutofollowController@allfollow');//フォロー
-Route::get('autofollow/addfollow','AutofollowController@addfollow');//DBにツイッターアカウントを追加。cronに追加する処理
+Route::post('autofollow','AutofollowController@follow')->name('autofollow.follow');//フォロー
+Route::post('autofollow/all','AutofollowController@allfollow')->name('autofollow.all');//フォロー
+Route::get('autofollow/addfollow','AutofollowController@addfollow')->name('autofollow.addfollow');//DBにツイッターアカウントを追加。cronに追加する処理
 
 
 
 
 
 // 認証系。ツイッターログインURL
-Route::get('auth/twitter', 'Auth\TwitterController@redirectToProvider');
+Route::get('auth/twitter', 'Auth\TwitterController@redirectToProvider')->name('auth.twitter');
 // コールバックURL
-Route::get('auth/twitter/callback', 'Auth\TwitterController@handleProviderCallback');
+Route::get('auth/twitter/callback', 'Auth\TwitterController@handleProviderCallback')->name('auth.twitter.callback');
 // ログアウトURL
-Route::get('auth/twitter/logout', 'Auth\TwitterController@logout');
+Route::get('auth/twitter/logout', 'Auth\TwitterController@logout')->name('auth.twitter.logout');
 
 //ajaxのデータを表示させるvuew
-Route::get('ajax/coin', 'AjaxController@coin');
-Route::get('ajax/users', 'AjaxController@users');
+Route::get('ajax/coin', 'AjaxController@coin')->name('ajax.coin');;
+Route::get('ajax/users', 'AjaxController@users')->name('ajax.users');;
 
 
 
