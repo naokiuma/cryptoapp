@@ -4,7 +4,7 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
-use App\Http\Controllers\NewsController;
+use App\Http\Controllers\CoinController;
 
 
 
@@ -44,8 +44,8 @@ class TestCommand extends Command
     public function handle()
     {
       // ここに処理を記述
-      logger()->info('testcommand実行！！news/test2も処理します。.');
-      NewsController::test2(); //実行するタスク
+      logger()->info('testcommand実行！！coinのhighandlowも処理します。');
+      CoinController::highandlow(); //実行するタスク
       //return ('news/test2');
       //echo "testcommand実行！！\n";
 

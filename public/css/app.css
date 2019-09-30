@@ -267,6 +267,31 @@ header {
   background-size: cover;
   background-attachment: fixed;
   padding-top: 20px;
+  /*
+                  &:before{
+                    background-image: url("../img/blue.png");
+                  background-size: cover;
+                  background-attachment: fixed;
+                  padding-top: 20px;
+                  position: fixed;
+                  height: 100vh;
+                  content: "";
+                  display: block;
+                  top: 0;
+                  left: 0;
+                  width: 100vw;
+                  height: 100vh;
+                  z-index: -1;
+                  transform: translateZ(0);
+                  }
+  */
+}
+@media screen and (max-width: 768px) {
+  .l-main__sub__container {
+    background-image: none;
+    background-color: #fff7ca;
+    color: black;
+  }
 }
 .l-main__mini {
   width: 100%;

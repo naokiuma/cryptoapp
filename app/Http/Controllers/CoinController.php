@@ -519,4 +519,87 @@ class CoinController extends Controller
     }
 
 
+    //取引価格取得
+    public static function highandlow(){
+
+      $API_btc_URL = "https://coincheck.com/api/ticker";
+      $btc_json = file_get_contents($API_btc_URL);
+      $btc_json = mb_convert_encoding($btc_json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+      $btc = json_decode($btc_json, true);
+      echo "ビットコイン最大値".$btc['high'];
+      echo "<br>";
+      echo "ビットコイン最低値".$btc['low'];
+
+      $API_eth_URL = "https://api.zaif.jp/api/1/ticker/eth_jpy";
+      $eth_json = file_get_contents($API_eth_URL);
+      $eth_json = mb_convert_encoding($eth_json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+      $eth = json_decode($eth_json, true);
+      echo "<br>";
+      echo "イーサリアム最大値".$eth['high'];
+      echo "<br>";
+      echo "イーサリアム最低値".$eth['low'];
+
+      $API_xem_URL = "https://api.zaif.jp/api/1/ticker/xem_jpy";
+      $xem_json = file_get_contents($API_xem_URL);
+      $xem_json = mb_convert_encoding($xem_json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+      $xem = json_decode($xem_json, true);
+      echo "<br>";
+      echo "ネム最大値".$xem['high'];
+      echo "<br>";
+      echo "ネム最低値".$xem['low'];
+
+      $API_bch_URL = "https://api.zaif.jp/api/1/ticker/bch_jpy";
+      $bch_json = file_get_contents($API_bch_URL);
+      $bch_json = mb_convert_encoding($bch_json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+      $bch = json_decode($bch_json, true);
+      echo "<br>";
+      echo "ビットコインキャッシュ最大値".$bch['high'];
+      echo "<br>";
+      echo "ビットコインキャッシュ最低値".$bch['low'];
+
+
+      $API_mona_URL = "https://api.zaif.jp/api/1/ticker/mona_jpy";
+      $mona_json = file_get_contents($API_mona_URL);
+      $mona_json = mb_convert_encoding($mona_json, 'UTF8', 'ASCII,JIS,UTF-8,EUC-JP,SJIS-WIN');
+      $mona = json_decode($mona_json, true);
+      echo "<br>";
+      echo "モナコイン最大値".$mona['high'];
+      echo "<br>";
+      echo "モナコインキャッシュコイン".$mona['low'];
+
+
+      $coin_btc = Coin::where('id', 1)->first();
+      $coin_eth = Coin::where('id', 2)->first();
+      $coin_xem = Coin::where('id', 7)->first();
+      $coin_bch = Coin::where('id', 9)->first();
+      $coin_mona = Coin::where('id', 10)->first();
+
+
+      $coin_btc->high = $btc['high'];
+      $coin_btc->low = $btc['low'];
+      $coin_btc->save();
+
+      $coin_eth->high = $eth['high'];
+      $coin_eth->low = $eth['low'];
+      $coin_eth->save();
+
+      $coin_xem->high = $xem['high'];
+      $coin_xem->low = $xem['low'];
+      $coin_xem->save();
+
+      $coin_bch->high = $bch['high'];
+      $coin_bch->low = $bch['low'];
+      $coin_bch->save();
+
+      $coin_mona->high = $mona['high'];
+      $coin_mona->low = $mona['low'];
+      $coin_mona->save();
+
+
+      return;
+
+    }
+
+
+
 }
