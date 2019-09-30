@@ -642,7 +642,7 @@ header {
   width: 100%;
   display: flex;
   background-size: cover;
-  background-image: url(../img/tw_sp.png);
+  background-image: url("../img/tw_sp.png");
   border-top: 5px solid;
   border-bottom: 5px solid;
 }
@@ -897,7 +897,7 @@ header {
 
 .p-plobrem {
   text-align: center;
-  width: 50%;
+  width: 40%;
   margin-top: auto;
   margin-bottom: auto;
 }
@@ -909,6 +909,7 @@ header {
 .p-plobrem__container {
   width: 100%;
   display: flex;
+  justify-content: center;
   margin: 100px auto;
 }
 .p-plobrem h4 {
@@ -921,7 +922,7 @@ header {
   }
 }
 .p-plobrem img {
-  width: 60%;
+  width: 80%;
   margin: 25px;
 }
 

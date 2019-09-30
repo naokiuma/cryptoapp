@@ -1,6 +1,6 @@
 .p-plobrem{
   text-align: center;
-  width: 50%;
+  width: 40%;
   margin-top: auto;
   margin-bottom: auto;
   @media screen and (max-width: $res-max-width){
@@ -10,6 +10,7 @@
   &__container{
     width: 100%;
     display: flex;
+     justify-content: center;
     margin: 100px auto;
   }
   h4{
@@ -20,7 +21,7 @@
     }
   }
   img{
-    width: 60%;
+    width: 80%;
     margin: 25px;
   }
 }
