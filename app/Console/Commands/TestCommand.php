@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Log;
 use App\Http\Controllers\NewsController;
 
 
+
 class TestCommand extends Command
 {
     /**
@@ -44,9 +45,9 @@ class TestCommand extends Command
     {
       // ここに処理を記述
       logger()->info('testcommand実行！！news/test2も処理します。.');
+      NewsController::test2(); //実行するタスク
       //return ('news/test2');
       //echo "testcommand実行！！\n";
-
 
     }
 }

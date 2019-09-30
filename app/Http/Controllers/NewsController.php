@@ -38,7 +38,7 @@ class NewsController extends Controller
           $list[$i]['image_url'] = (string)$items[$i]->children('media', true)->content->attributes()->url;
         }else{
           //記事のmedia内に画像がなければサンプル画像
-          $list[$i]['image_url'] = "../img/hero_img.jpg";
+          $list[$i]['image_url'] = "./img/hero_img.jpg";
         }
       }
 
@@ -227,7 +227,7 @@ $coin_rep->save();
 
 
 //取引価格取得
-public function test2(){
+public static function test2(){
 
   $API_btc_URL = "https://coincheck.com/api/ticker";
   $btc_json = file_get_contents($API_btc_URL);

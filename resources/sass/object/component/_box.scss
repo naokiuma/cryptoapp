@@ -2,7 +2,7 @@
   height: 100%;
   h2{
     text-align: center;
-    padding: 10%;
+    padding: 5%;
     margin: 2em 10%;
     color: #232323;
     border-left: solid 10px #ffc06e;
@@ -19,6 +19,7 @@
     text-align: center;
     width: 80%;
     margin: auto;
+    color: white;
     @media screen and (max-width: $res-max-width){
       text-align: left;
     }

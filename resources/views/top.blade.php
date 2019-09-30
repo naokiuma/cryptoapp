@@ -63,67 +63,72 @@
 </h2>
 
 
-<section class="l-main__sub">
+<section class="l-main__sub__container">
 
-    <div class="c-box u-width__wide">
-      <h2>まとめてフォロー</h2>
-      <p>SNSサービス『Twitter』からプロフィールや名前に『仮想通貨』と入っているアカウントのみを表示させました。<br>
-      <br>
-      一人一人選んでフォローはもちろん、画面一覧のアカウントを「まとめてフォロー」することも可能です。<br>
-      <span class="u-attention">※「まとめてフォロー」は<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">Twitter社の仕様</a>に準じたフォローの制限数を設けています。
-      </span>
-      </p>
-      <div class="c-box__sp"><!--スマホのみ表示-->
-        <i class="fab fa-twitter c-box__icon"></i>
+
+  <section class="l-main__sub">
+
+      <div class="c-box u-width__wide">
+        <h2>まとめてフォロー</h2>
+        <p>SNSサービス『Twitter』からプロフィールや名前に『仮想通貨』と入っているアカウントのみを表示させました。<br>
+        <br>
+        一人一人選んでフォローはもちろん、画面一覧のアカウントを「まとめてフォロー」することも可能です。<br>
+        ※「まとめてフォロー」は<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">Twitter社の仕様</a>に準じたフォローの制限数を設けています。
+
+        </p>
+        <div class="c-box__sp"><!--スマホのみ表示-->
+          <i class="fab fa-twitter c-box__icon"></i>
+        </div>
+
       </div>
 
-    </div>
-
-    <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-      <i class="fab fa-twitter c-fonticon"></i>
-    </div>
-</section>
-
-
-
-<section class="l-main__sub">
-
-    <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-      <i class="fas fa-coins c-fonticon"></i>
-    </div>
-
-    <div class="c-box u-width__wide">
-      <h2>通貨トレンド</h2>
-      <p>今どのコインがツイッターで話題なのか？<br>
-        各通貨のツイート数に応じて、ランキング形式でお伝えします。<br>
-        <span class="u-attention">※過去[1時間/1日/一週間]ベースで集計。</span>
-      </p>
-
-      <div class="c-box__sp"><!--スマホのみ表示-->
-        <i class="fas fa-coins c-box__icon"></i>
+      <div class="c-box u-width__narrow"><!--スマホでは非表示-->
+        <i class="fab fa-twitter c-fonticon"></i>
       </div>
-    </div>
-
-</section>
+  </section>
 
 
 
-<section class="l-main__sub">
+  <section class="l-main__sub">
 
-    <div class="c-box u-width__wide">
-      <h2>仮想通貨ニュース</h2>
-      <p class="c-text">界隈のニュースも見逃さないようにしましょう。<br>
-      仮想通貨関連のキーワードを持つGoogleニュースのみまとめました。</p>
-      <div class="c-box__sp"><!--スマホのみ表示-->
-        <i class="far fa-newspaper c-box__icon"></i>
+      <div class="c-box u-width__narrow"><!--スマホでは非表示-->
+        <i class="fas fa-coins c-fonticon"></i>
       </div>
-    </div>
 
-    <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-      <i class="far fa-newspaper c-fonticon"></i>
-    </div>
+      <div class="c-box u-width__wide">
+        <h2>通貨トレンド</h2>
+        <p>今どのコインがツイッターで話題なのか？<br>
+          各通貨のツイート数に応じて、ランキング形式でお伝えします。<br>
+          ※過去[1時間/1日/一週間]ベースで集計。
+        </p>
 
+        <div class="c-box__sp"><!--スマホのみ表示-->
+          <i class="fas fa-coins c-box__icon"></i>
+        </div>
+      </div>
+
+  </section>
+
+
+
+  <section class="l-main__sub">
+
+      <div class="c-box u-width__wide">
+        <h2>仮想通貨ニュース</h2>
+        <p class="c-text">界隈のニュースも見逃さないようにしましょう。<br>
+        仮想通貨関連のキーワードを持つGoogleニュースのみまとめました。</p>
+        <div class="c-box__sp"><!--スマホのみ表示-->
+          <i class="far fa-newspaper c-box__icon"></i>
+        </div>
+      </div>
+
+      <div class="c-box u-width__narrow"><!--スマホでは非表示-->
+        <i class="far fa-newspaper c-fonticon"></i>
+      </div>
+
+  </section>
 </section>
+
 
 <div class="p-desc__container">
 

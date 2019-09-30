@@ -222,7 +222,6 @@ a {
   background-position: center bottom;
 }
 .l-billboard__mini {
-  height: 300px;
   background-size: cover;
   width: 60%;
   margin: 100px auto;
@@ -251,7 +250,7 @@ header {
 }
 .l-main__sub {
   width: 95%;
-  height: 700px;
+  height: 600px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -261,6 +260,13 @@ header {
     display: block;
     height: 600px;
   }
+}
+.l-main__sub__container {
+  width: 100%;
+  background-image: url("../img/blue.png");
+  background-size: cover;
+  background-attachment: fixed;
+  padding-top: 20px;
 }
 .l-main__mini {
   width: 100%;
@@ -441,7 +447,7 @@ header {
 }
 .c-box h2 {
   text-align: center;
-  padding: 10%;
+  padding: 5%;
   margin: 2em 10%;
   color: #232323;
   border-left: solid 10px #ffc06e;
@@ -460,6 +466,7 @@ header {
   text-align: center;
   width: 80%;
   margin: auto;
+  color: white;
 }
 @media screen and (max-width: 768px) {
   .c-box p {
@@ -1090,7 +1097,6 @@ header {
 @media screen and (max-width: 768px) {
   .u-width__wide {
     width: 100%;
-    background-color: #c5f4f4;
   }
 }
 
