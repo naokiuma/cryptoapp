@@ -5,9 +5,9 @@
 
   <section class="l-side">
     <div class="p-sidebtn__container">
-      <button class="p-sidebtn" v-on:click="showHour" type="button" name="button">過去1時間のランキング</button>
-      <button class="p-sidebtn" v-on:click="showDay" type="button" name="button">過去１日のランキング</button>
-      <button class="p-sidebtn" v-on:click="showWeek" type="button" name="button">過去1週間のランキング</button>
+      <button class="p-sidebtn" v-on:click="showHour" type="button" name="button">過去1時間</button>
+      <button class="p-sidebtn" v-on:click="showDay" type="button" name="button">過去１日</button>
+      <button class="p-sidebtn" v-on:click="showWeek" type="button" name="button">過去1週間</button>
 
         <div class="p-sidebtn__coin__container">
           <div v-for="pcoin in coins"
@@ -31,10 +31,10 @@
   <section class="p-coinranking__container">
 
         <div class="p-coinranking__table" v-if="hour_show">
-          <h3>1時間のデータ <span> 更新日時：{{coins[0].updated_at}}</span></h3>
+          <h3>過去1時間 <span> 更新日時：{{coins[0].updated_at}}</span></h3>
 
           <table>
-          <th>ランキング</th><th>コイン名</th><th>ツイート数</th>
+          <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByHour"
               v-bind:key="coin.id">
 
@@ -45,10 +45,10 @@
 
 
         <div class="p-coinranking__table" v-if="day_show">
-          <h3>1日のデータ <span> 更新日時：</span></h3>
+          <h3>過去1日 <span> 更新日時：</span></h3>
 
           <table>
-          <th>ランキング</th><th>コイン名</th><th>ツイート数</th>
+          <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByDay"
               v-bind:key="coin.id">
 
@@ -59,10 +59,10 @@
 
 
         <div class="p-coinranking__table" v-if="week_show">
-          <h3>1週間のデータ <span> 更新日時：</span></h3>
+          <h3>過去1週間 <span> 更新日時：</span></h3>
 
           <table>
-          <th>ランキング</th><th>コイン名</th><th>ツイート数</th>
+          <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByWeek"
               v-bind:key="coin.id">
 

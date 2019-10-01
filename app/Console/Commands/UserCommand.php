@@ -4,26 +4,24 @@ namespace App\Console\Commands;
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\Log;
+use App\Http\Controllers\AutofollowController;
 
 
-
-class TestCommand extends Command
+class UserCommand extends Command
 {
     /**
      * The name and signature of the console command.
      *
      * @var string
      */
-         //コマンド名を設定（元：command:name→変更後：command:testcommand）
-    protected $signature = 'command:testcommand';
+    protected $signature = 'command:usercommand';
 
     /**
      * The console command description.
      *
      * @var string
      */
-         //コマンドの説明（元：Command description→変更後：testcommandのコマンド説明）
-    protected $description = 'testcommandのコマンド説明';
+    protected $description = 'フォローユーザーのDB上データを更新します';
 
     /**
      * Create a new command instance.
@@ -41,12 +39,7 @@ class TestCommand extends Command
      * @return mixed
      */
     public function handle()
-    {
-      // ここに処理を記述
-      logger()->info('testcommand実行！！');
-
-      //return ('news/test2');
-      //echo "testcommand実行！！\n";
-
+    {//実行するタスク
+        AutofollowController::addfollow();
     }
 }

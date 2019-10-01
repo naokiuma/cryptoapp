@@ -3,5 +3,8 @@
   height: 70vh;
   background-color: $main-color;
   float: left;
-  margin: 5% 0 10% 5%;
+  margin: 5% 0% 5% 5%;
+  @media screen and (max-width: $res-max-width){
+    margin: 5% 2%;
+  }
 }

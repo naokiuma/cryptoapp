@@ -37602,7 +37602,7 @@ var render = function() {
             attrs: { type: "button", name: "button" },
             on: { click: _vm.showHour }
           },
-          [_vm._v("過去1時間のランキング")]
+          [_vm._v("過去1時間")]
         ),
         _vm._v(" "),
         _c(
@@ -37612,7 +37612,7 @@ var render = function() {
             attrs: { type: "button", name: "button" },
             on: { click: _vm.showDay }
           },
-          [_vm._v("過去１日のランキング")]
+          [_vm._v("過去１日")]
         ),
         _vm._v(" "),
         _c(
@@ -37622,7 +37622,7 @@ var render = function() {
             attrs: { type: "button", name: "button" },
             on: { click: _vm.showWeek }
           },
-          [_vm._v("過去1週間のランキング")]
+          [_vm._v("過去1週間")]
         ),
         _vm._v(" "),
         _c(
@@ -37677,7 +37677,7 @@ var render = function() {
         _vm.hour_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
               _c("h3", [
-                _vm._v("1時間のデータ "),
+                _vm._v("過去1時間 "),
                 _c("span", [
                   _vm._v(" 更新日時：" + _vm._s(_vm.coins[0].updated_at))
                 ])
@@ -37686,7 +37686,7 @@ var render = function() {
               _c(
                 "table",
                 [
-                  _c("th", [_vm._v("ランキング")]),
+                  _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
                   _c("th", [_vm._v("ツイート数")]),
                   _vm._v(" "),
@@ -37711,7 +37711,7 @@ var render = function() {
               _c(
                 "table",
                 [
-                  _c("th", [_vm._v("ランキング")]),
+                  _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
                   _c("th", [_vm._v("ツイート数")]),
                   _vm._v(" "),
@@ -37736,7 +37736,7 @@ var render = function() {
               _c(
                 "table",
                 [
-                  _c("th", [_vm._v("ランキング")]),
+                  _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
                   _c("th", [_vm._v("ツイート数")]),
                   _vm._v(" "),
@@ -37787,19 +37787,13 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", [
-      _vm._v("1日のデータ "),
-      _c("span", [_vm._v(" 更新日時：")])
-    ])
+    return _c("h3", [_vm._v("過去1日 "), _c("span", [_vm._v(" 更新日時：")])])
   },
   function() {
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("h3", [
-      _vm._v("1週間のデータ "),
-      _c("span", [_vm._v(" 更新日時：")])
-    ])
+    return _c("h3", [_vm._v("過去1週間 "), _c("span", [_vm._v(" 更新日時：")])])
   },
   function() {
     var _vm = this

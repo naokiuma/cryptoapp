@@ -31,6 +31,12 @@
       <a href="{{ url('/') }}">CryptoTrend</a>
     </div>
 
+    <div class="p-spnavi__toggle p-spnavi__trigger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </div>
+
     <section class="p-header__navi">
       @guest
       <ul>
@@ -46,15 +52,6 @@
         <li>{{$user->name}}</li>
         <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
 
-<!--元の。9/29修正
-        <li><a href="/autofollow"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-        <li><a href="/coin"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-        <li><a href="/news"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
-        <li><a href="/auth/twitter/logout">ログアウト</a></li>
-        <li>{{$user->name}}</li>
-        <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
-      </ul>
--->
 
       @endguest
     </section>

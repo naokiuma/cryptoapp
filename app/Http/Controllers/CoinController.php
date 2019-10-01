@@ -19,7 +19,7 @@ class CoinController extends Controller
 
 
     //dbに1時間のツイート数をインサートする処理（定期バッジをする）
-    public function hour()
+    public static function hour()
     {
 
       $config = config('services');
@@ -41,7 +41,7 @@ class CoinController extends Controller
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_hour,'until' => $now_time, );
       // 取得
-      $request_loop = 30; //15分の上限 180
+      $request_loop = 1; //15分の上限 180
       $tweet_results = array();
       $results = $oAuth->get("search/tweets", $options);
       for($i=0; $i<$request_loop; $i++){
@@ -60,7 +60,7 @@ class CoinController extends Controller
 
       $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
       $count = count($tweet_results);//ツイート数
-      echo $count . "←tweet_resultsの中身";
+      //echo $count . "←tweet_resultsの中身";
 
       for($i = 0; $i < $count; $i++){
         if(stristr($tweet_results[$i]['text'],"ビットコイン") !== false){
@@ -209,7 +209,7 @@ class CoinController extends Controller
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_day,'until' => $now_time, );
       // 取得
-      $request_loop = 10; //上限 180
+      $request_loop = 24; //上限 180
       $tweet_results = array();
       $results = $oAuth->get("search/tweets", $options);
 
@@ -376,7 +376,7 @@ class CoinController extends Controller
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_week,'until' => $now_time, );
       // 取得
-      $request_loop = 30; //上限 180
+      $request_loop = 100; //上限 180
       $tweet_results = array();
       $results = $oAuth->get("search/tweets", $options);
 

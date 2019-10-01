@@ -224,9 +224,8 @@ class AutofollowController extends Controller
 }
 
 
-
-  //ユーザーを1日に数人DB追加。cronで実施する処理。ーーーーーーーーーーーーーーーー
-  public function addfollow(){
+  //ユーザーを1日に数人DB追加。cronで実施。ーーーーーーーーーーーーーーーー
+  public static function addfollow(){
 
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];	// APIキー

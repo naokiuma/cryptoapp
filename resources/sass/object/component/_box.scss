@@ -22,6 +22,7 @@
     color: white;
     @media screen and (max-width: $res-max-width){
       text-align: left;
+      color: black;
     }
   }
   &__big{
