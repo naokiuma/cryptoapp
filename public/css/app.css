@@ -596,18 +596,24 @@ header {
   .p-coinranking__container {
     margin: 5% 2%;
     width: 95%;
+    min-height: 475px;
   }
 }
 .p-coinranking__container h2 {
   padding: 5%;
 }
 .p-coinranking__container h3 {
-  font-size: 2vw;
+  font-size: 16px;
   padding: 1%;
   background-color: #bcf0c3;
   width: 100;
   margin: auto auto;
   text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .p-coinranking__container h3 {
+    font-size: 12px;
+  }
 }
 .p-coinranking__container span {
   font-size: 10px;
@@ -1002,7 +1008,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-sidebtn {
     display: inline-block;
-    width: 30%;
+    width: 32%;
     height: 50px;
   }
 }
@@ -1028,6 +1034,7 @@ header {
 }
 .p-sidebtn__coin__container {
   height: 70%;
+  text-align: center;
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn__coin__container {
@@ -1038,10 +1045,9 @@ header {
 }
 .p-sidebtn__highlight {
   height: 30px;
-  width: 100%;
-  background-color: #ff000069;
-  font-weight: bold;
-  font-size: 1rem;
+  background-color: #ff570061;
+  font-weight: liter;
+  width: 60%;
 }
 
 .btn_active {

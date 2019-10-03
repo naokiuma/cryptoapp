@@ -73,12 +73,11 @@
 
 
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
-        <h3>各種コインデータ<br>※最大値、最低値は日本円と対象コインの前日一日の取引金額です。</h3>
-
+        <h3>コイン名：{{pcoin.name}}</h3>
            <table>
-           <th>コイン名</th><th>1時間のツイート数</th><th>1日のツイート数</th><th>1週間のツイート数</th><th>最大値</th><th>最低値</th>
+          <th>hour</th><th>day</th><th>week</th><th>最高取引価格/24h</th><th>最安取引価格/24h</th>
            <tr>
-               <td>{{pcoin.name}}</td><td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td>{{pcoin.week}}</td><td>{{pcoin.high}}</td><td>{{pcoin.low}}</td>
+          <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td>{{pcoin.week}}</td><td>{{pcoin.high}}</td><td>{{pcoin.low}}</td>
            </tr>
            </table>
        </div>
@@ -101,6 +100,8 @@
             coins:[],
             showCoins:[],
             exitCoins:[],
+            link_before:'https://twitter.com/search?q=',
+            link_after:'&src=typed_query',
             hour_show:false,
             day_show:false,
             week_show:false,

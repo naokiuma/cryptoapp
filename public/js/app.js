@@ -1951,7 +1951,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax'],
   data: function data() {
@@ -1959,6 +1958,8 @@ __webpack_require__.r(__webpack_exports__);
       coins: [],
       showCoins: [],
       exitCoins: [],
+      link_before: 'https://twitter.com/search?q=',
+      link_after: '&src=typed_query',
       hour_show: false,
       day_show: false,
       week_show: false,
@@ -37756,18 +37757,16 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.showCoins, function(pcoin) {
           return _c("div", { staticClass: "p-coinranking__table" }, [
-            _vm._m(2, true),
+            _c("h3", [_vm._v("コイン名：" + _vm._s(pcoin.name))]),
             _vm._v(" "),
             _c("table", [
-              _c("th", [_vm._v("コイン名")]),
-              _c("th", [_vm._v("1時間のツイート数")]),
-              _c("th", [_vm._v("1日のツイート数")]),
-              _c("th", [_vm._v("1週間のツイート数")]),
-              _c("th", [_vm._v("最大値")]),
-              _c("th", [_vm._v("最低値")]),
+              _c("th", [_vm._v("hour")]),
+              _c("th", [_vm._v("day")]),
+              _c("th", [_vm._v("week")]),
+              _c("th", [_vm._v("最高取引価格/24h")]),
+              _c("th", [_vm._v("最安取引価格/24h")]),
               _vm._v(" "),
               _c("tr", [
-                _c("td", [_vm._v(_vm._s(pcoin.name))]),
                 _c("td", [_vm._v(_vm._s(pcoin.hour))]),
                 _c("td", [_vm._v(_vm._s(pcoin.day))]),
                 _c("td", [_vm._v(_vm._s(pcoin.week))]),
@@ -37794,16 +37793,6 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("h3", [_vm._v("過去1週間 "), _c("span", [_vm._v(" 更新日時：")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", [
-      _vm._v("各種コインデータ"),
-      _c("br"),
-      _vm._v("※最大値、最低値は日本円と対象コインの前日一日の取引金額です。")
-    ])
   }
 ]
 render._withStripped = true
