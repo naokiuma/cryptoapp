@@ -14,6 +14,9 @@
     font-size: 5vw;
     animation-duration: 2s;
     animation-name: toleft;
+    @media screen and (max-width: $res-max-width){
+      font-size: $font-xl;
+    }    
     &::after{
       content:"クリプトトレンド";
       font-size: 1.5vw;

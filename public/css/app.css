@@ -305,7 +305,6 @@ header {
 .l-side {
   width: 20%;
   height: 70vh;
-  background-color: #c5f4f4;
   float: left;
   margin: 5% 0% 5% 5%;
 }
@@ -414,10 +413,15 @@ header {
 }
 .c-form__control {
   vertical-align: middle;
-  width: 60%;
+  width: 600px;
   height: 30px;
   margin-top: 10px;
   border: 1px solid;
+}
+@media screen and (max-width: 768px) {
+  .c-form__control {
+    width: 600px;
+  }
 }
 .c-form__btn {
   width: 200px;
@@ -524,10 +528,10 @@ header {
 .c-flash__message {
   text-align: center;
   font-size: 20px;
-  width: 100%;
+  width: 60%;
   margin-left: auto;
   margin-right: auto;
-  background-color: #fb002e82;
+  background-color: #fb000038;
   height: 30px;
   line-height: 30px;
   transition: 1s;
@@ -653,16 +657,28 @@ header {
   width: 100%;
 }
 .p-desc__container h2 {
-  font-size: 4vw;
+  font-size: 36px;
 }
+@media screen and (max-width: 768px) {
+  .p-desc__container h2 {
+    font-size: 24px;
+  }
+}
+
 .p-desc__title {
-  width: 60%;
+  width: 80%;
   margin: 10% auto 5% auto;
   border-bottom: 1px solid;
 }
 .p-desc__title h2 {
+  font-size: 36px;
   margin-left: auto;
   margin-right: auto;
+}
+@media screen and (max-width: 768px) {
+  .p-desc__title h2 {
+    font-size: 20px;
+  }
 }
 
 .p-desc__text {
@@ -820,6 +836,11 @@ header {
           animation-duration: 2s;
   -webkit-animation-name: toleft;
           animation-name: toleft;
+}
+@media screen and (max-width: 768px) {
+  .p-hero__title h2 {
+    font-size: 36px;
+  }
 }
 .p-hero__title h2::after {
   content: "\30AF\30EA\30D7\30C8\30C8\30EC\30F3\30C9";

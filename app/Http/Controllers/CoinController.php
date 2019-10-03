@@ -37,7 +37,7 @@ class CoinController extends Controller
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
       $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "仮想通貨ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_hour,'until' => $now_time, );
       // 取得
@@ -205,7 +205,7 @@ class CoinController extends Controller
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
       $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "仮想通貨ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_day,'until' => $now_time, );
       // 取得
@@ -372,7 +372,7 @@ class CoinController extends Controller
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
       $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "仮想通貨ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_week,'until' => $now_time, );
       // 取得

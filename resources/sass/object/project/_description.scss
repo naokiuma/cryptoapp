@@ -10,10 +10,11 @@
 //  height: 300px;
   h2{
     font-size: $font-xl;
+    @media screen and (max-width: $res-max-width){
+    font-size: $font-l;
+    }
   }
-  @media screen and (max-width: $res-max-width){
-  font-size: 20px;
-  }
+
 }
 
 .p-desc__title{
