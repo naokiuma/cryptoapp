@@ -31,11 +31,11 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule)
     {
       //スケジュールの登録(->everyFiveMinutes();は5分ごと。
-      $schedule->command('command:usercommand')->daily();//1日に一度、ユーザー情報を更新
-      $schedule->command('command:coincommand')->daily();//1日に一度、coinの取引高を更新
+      $schedule->command('command:usercommand')->hourly();//1日に一度、ユーザー情報を更新
+      $schedule->command('command:coincommand')->hourly();//1日に一度、coinの取引高を更新
       $schedule->command('command:coinhourcommand')->hourly();//1時間に一度、1時間のツイート数を更新
-      $schedule->command('command:coindaycommand')->daily();//1日に一度、1日のツイート数を更新
-      $schedule->command('command:coinweekcommand')->daily();//1日に一度、1週間のツイート数を更新
+      $schedule->command('command:coindaycommand')->hourly();//1日に一度、1日のツイート数を更新
+      $schedule->command('command:coinweekcommand')->hourly();//1日に一度、1週間のツイート数を更新
     }
         // $schedule->command('inspire')
         //          ->hourly();
