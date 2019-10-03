@@ -310,7 +310,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .l-side {
-    margin: 5% 2%;
+    width: 100%;
   }
 }
 
@@ -995,6 +995,11 @@ header {
   height: 10%;
   font-size: 10px;
   display: block;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn {
+    display: inline-block;
+  }
 }
 .p-sidebtn:hover {
   transform: translate3d(0, 1px, 0);
