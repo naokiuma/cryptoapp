@@ -4,6 +4,8 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\Http\Controllers\CoinController;
+
 
 class Kernel extends ConsoleKernel
 {
@@ -36,6 +38,14 @@ class Kernel extends ConsoleKernel
       $schedule->command('command:coinhourcommand')->hourly();//1時間に一度、1時間のツイート数を更新
       $schedule->command('command:coindaycommand')->twiceDaily(11, 23);//1日に2度、1日のツイート数を更新
       $schedule->command('command:coinweekcommand')->daily();//1日に一度、1週間のツイート数を更新
+
+
+      $schedule->call(function(){
+
+          CoinController::day();
+
+      });
+
     }
         // $schedule->command('inspire')
         //          ->hourly();
