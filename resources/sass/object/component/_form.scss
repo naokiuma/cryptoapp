@@ -19,10 +19,13 @@
    }
    &__control{
      vertical-align: middle;
-     width: 60%;
+     width: 600px;
      height: 30px;
      margin-top: 10px;
      border: 1px solid;
+     @media screen and (max-width: $res-max-width){
+      width: 600px;
+     }
    }
    &__btn{
      width: 200px;
