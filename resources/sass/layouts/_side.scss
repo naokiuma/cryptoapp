@@ -5,5 +5,7 @@
   margin: 5% 0% 5% 5%;
   @media screen and (max-width: $res-max-width){
     width: 100%;
+    margin: auto;
+    height: auto;
   }
 }

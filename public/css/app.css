@@ -311,6 +311,8 @@ header {
 @media screen and (max-width: 768px) {
   .l-side {
     width: 100%;
+    margin: auto;
+    height: auto;
   }
 }
 
@@ -593,7 +595,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-coinranking__container {
     margin: 5% 2%;
-    width: 70%;
+    width: 100%;
   }
 }
 .p-coinranking__container h2 {
@@ -999,6 +1001,8 @@ header {
 @media screen and (max-width: 768px) {
   .p-sidebtn {
     display: inline-block;
+    width: 30%;
+    height: 50px;
   }
 }
 .p-sidebtn:hover {
@@ -1024,10 +1028,17 @@ header {
 .p-sidebtn__coin__container {
   height: 70%;
 }
+@media screen and (max-width: 768px) {
+  .p-sidebtn__coin__container {
+    display: flex;
+    flex-wrap: wrap;
+    height: auto;
+  }
+}
 .p-sidebtn__highlight {
   height: 30px;
   width: 100%;
-  background-color: red;
+  background-color: #ff000069;
   font-weight: bold;
   font-size: 1rem;
 }
