@@ -7,6 +7,7 @@
   box-sizing: border-box;
   @media screen and (max-width: $res-max-width){
   display: inline-block;
+  margin: 5px;
   }
   span{
     position: absolute;

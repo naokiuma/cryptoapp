@@ -595,7 +595,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-coinranking__container {
     margin: 5% 2%;
-    width: 100%;
+    width: 95%;
   }
 }
 .p-coinranking__container h2 {
@@ -890,6 +890,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-header__navi {
     font-size: 10px;
+    display: none;
   }
 }
 .p-header__navi ul {
@@ -1058,6 +1059,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-spnavi__trigger {
     display: inline-block;
+    margin: 5px;
   }
 }
 .p-spnavi__trigger span {
