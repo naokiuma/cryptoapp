@@ -185,7 +185,7 @@ class CoinController extends Controller
 
 
     //dbに1weekのツイート数をインサートする処理（定期バッジをする）
-    public function day()
+    public static function day()
     {
 
       $config = config('services');
@@ -353,7 +353,7 @@ class CoinController extends Controller
 
 
 
-    public function week()
+    public static function week()
     //dbに1日のツイート数をインサートする処理（cronにする）
     {
 
