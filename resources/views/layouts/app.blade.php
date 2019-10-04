@@ -31,29 +31,35 @@
       <a href="{{ url('/') }}">CryptoTrend</a>
     </div>
 
-    <div class="p-spnavi__toggle p-spnavi__trigger">
+    <div class="p-spnavi js-spnavi__trigger">
       <span></span>
       <span></span>
       <span></span>
     </div>
 
     <section class="p-header__navi">
-      @guest
-      <ul>
-        <li><a href="{{ url('register') }}">新規登録</a></li>
-        <li><a href="{{ url('login') }}">ログイン</a></li>
-      </ul>
-      @else
-      <ul>
-        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
-        <li><a href="{{ url('auth/twitter/logout') }}">ログアウト</a></li>
-        <li>{{$user->name}}</li>
-        <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
+      <div>
+        <ul>
+          <li>{{$user->name}}</li>
+          <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
+        </ul>
+      </div>
 
-
-      @endguest
+      <div class="p-header__menu">
+        @guest
+        <ul>
+          <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
+          <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
+        </ul>
+        @else
+        <ul>
+          <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+          <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+          <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+          <li><a href="{{ url('auth/twitter/logout') }}"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
+        </ul>
+        @endguest
+      </div>
     </section>
   </header>
   <div class="p-header__margin">

@@ -12,32 +12,23 @@ use App\User;
 use Session;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
-//print_r($follow_users);
-//Log::debug($temp_user);
-
 class AutofollowController extends Controller
 {
 
-/*レートリミット確認。メモ
-  $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-  $limitstatus = $oAuth->get("application/rate_limit_status", ["screen_name" => $username]);
-  Log::debug("リミットレートです。");
-  print_r($limitstatus);//確認用
-  */
-
 //ログインユーザーのセッション情報を元にまとめる関数。
   public function twitteroauth(){
-    Log::debug("セッション情報です");
-    Log::debug(Session('user_token'));
-    Log::debug(Session('user_tokensecret'));
-    $config = config('services');
-    $consumerKey = $config['twitter']['client_id'];	// APIキー
-    $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
-    $accessToken = (Session('user_token'));	// ログインユーザーのアクセストークン（twiitercontloreにて、セッション情報として保管）
-    $accessTokenSecret = (Session('user_tokensecret'));	// ログインユーザーのアクセストークンシークレット
-    $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-    return $oAuth;
+      Log::debug("セッション情報です");
+      Log::debug(Session('user_token'));
+      Log::debug(Session('user_tokensecret'));
+      $config = config('services');
+      $consumerKey = $config['twitter']['client_id'];	// APIキー
+      $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
+      $accessToken = (Session('user_token'));	// ログインユーザーのアクセストークン（twiitercontloreにて、セッション情報として保管）
+      $accessTokenSecret = (Session('user_tokensecret'));	// ログインユーザーのアクセストークンシークレット
+      $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+      return $oAuth;
   }
+
 //------------------------------------
 
 

@@ -7,6 +7,9 @@
   animation-duration: 0.8s;
   -webkit-animation-name: toleft;
   animation-name: toleft;
+  @media screen and (max-width: $res-max-width){
+    width: 90%;
+  }
   a{
     font-size: 80%;
 
@@ -16,8 +19,11 @@
     max-height: 40%;
     height: 20%;
     margin: 10px 5px 0px 5px;
-    font-size: 1vw;
+    font-size: $font-s;
     letter-spacing: 1px;
+      @media screen and (max-width: $res-max-width){
+        font-size: 10px;
+      }
     }
   button{
     margin-top: 5%;
@@ -28,11 +34,14 @@
     height: 60px;
     line-height: 60px;
     margin-top: 1%;
-    font-size: 1vw;
+    font-size: $font-s;
   h4{
       margin-right: 10%;
       letter-spacing: 2px;
       font-weight: bold;
+        @media screen and (max-width: $res-max-width){
+          font-size: 12px;
+        }
     }
   img{
     width: 60px;

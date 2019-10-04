@@ -4,10 +4,11 @@
     margin: auto 0 auto 0;
     font-size: 0.8rem;
     letter-spacing: 1.5px;
+    display: flex;
     @media screen and (max-width: $res-max-width){
     font-size: 10px;
     display: none;
-    
+
     }
     ul{
       display: flex;

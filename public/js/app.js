@@ -37694,7 +37694,11 @@ var render = function() {
                   _vm._l(_vm.sortCoinsByHour, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
                       _c("td", [_vm._v(_vm._s(i + 1))]),
-                      _c("td", [_vm._v(_vm._s(coin.name))]),
+                      _c("td", [
+                        _c("a", { attrs: { href: coin.name } }, [
+                          _vm._v(_vm._s(coin.name))
+                        ])
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(coin.hour))])
                     ])

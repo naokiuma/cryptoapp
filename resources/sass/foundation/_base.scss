@@ -64,6 +64,10 @@ a{
 .fa-arrow-down{
   font-size: 150px;
   color: #82c91e;
+    @media screen and (max-width: $res-max-width){
+    font-size: 100px;
+    }
+
 }
 
 /*------アニメーション------*/

@@ -38,7 +38,7 @@
           <tr v-for="(coin,i) in sortCoinsByHour"
               v-bind:key="coin.id">
 
-              <td>{{ i + 1 }}</td><td>{{coin.name}}</td> <td>{{coin.hour}}</td>
+              <td>{{ i + 1 }}</td><td><a :href="coin.name">{{coin.name}}</a></td> <td>{{coin.hour}}</td>
           </tr>
           </table>
         </div>

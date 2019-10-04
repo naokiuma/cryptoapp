@@ -12,6 +12,7 @@
     font-size: $font-xl;
     @media screen and (max-width: $res-max-width){
     font-size: $font-l;
+    height: 100px;
     }
   }
 
@@ -21,6 +22,9 @@
   width: 80%;
   margin: 10% auto 5% auto;
   border-bottom: 1px solid;
+    @media screen and (max-width: $res-max-width){
+    padding-bottom: 5%;
+    }
   h2{
     font-size: $font-xl;
     margin-left: auto;

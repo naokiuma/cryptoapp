@@ -10,8 +10,11 @@
   &__container{
     width: 100%;
     display: flex;
-     justify-content: center;
+    justify-content: center;
     margin: 100px auto;
+      @media screen and (max-width: $res-max-width){
+        margin: 50px auto;
+      }
   }
   h4{
     font-size: $font-m;

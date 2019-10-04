@@ -156,6 +156,11 @@ a {
   font-size: 150px;
   color: #82c91e;
 }
+@media screen and (max-width: 768px) {
+  .fa-arrow-down {
+    font-size: 100px;
+  }
+}
 
 /*------アニメーション------*/
 @-webkit-keyframes toleft {
@@ -358,6 +363,11 @@ header {
   -webkit-animation-name: toleft;
   animation-name: toleft;
 }
+@media screen and (max-width: 768px) {
+  .c-card {
+    width: 90%;
+  }
+}
 .c-card a {
   font-size: 80%;
 }
@@ -366,8 +376,13 @@ header {
   max-height: 40%;
   height: 20%;
   margin: 10px 5px 0px 5px;
-  font-size: 1vw;
+  font-size: 16px;
   letter-spacing: 1px;
+}
+@media screen and (max-width: 768px) {
+  .c-card p {
+    font-size: 10px;
+  }
 }
 .c-card button {
   margin-top: 5%;
@@ -378,12 +393,17 @@ header {
   height: 60px;
   line-height: 60px;
   margin-top: 1%;
-  font-size: 1vw;
+  font-size: 16px;
 }
 .c-card__header h4 {
   margin-right: 10%;
   letter-spacing: 2px;
   font-weight: bold;
+}
+@media screen and (max-width: 768px) {
+  .c-card__header h4 {
+    font-size: 12px;
+  }
 }
 .c-card__header img {
   width: 60px;
@@ -670,6 +690,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-desc__container h2 {
     font-size: 24px;
+    height: 100px;
   }
 }
 
@@ -677,6 +698,11 @@ header {
   width: 80%;
   margin: 10% auto 5% auto;
   border-bottom: 1px solid;
+}
+@media screen and (max-width: 768px) {
+  .p-desc__title {
+    padding-bottom: 5%;
+  }
 }
 .p-desc__title h2 {
   font-size: 36px;
@@ -892,6 +918,7 @@ header {
   margin: auto 0 auto 0;
   font-size: 0.8rem;
   letter-spacing: 1.5px;
+  display: flex;
 }
 @media screen and (max-width: 768px) {
   .p-header__navi {
@@ -937,7 +964,7 @@ header {
 }
 
 .p-news__card {
-  background-color: #647bf366;
+  background-color: #64f38b42;
   padding: 1%;
   width: calc(100% / 2);
   box-sizing: border-box;
@@ -984,6 +1011,11 @@ header {
   display: flex;
   justify-content: center;
   margin: 100px auto;
+}
+@media screen and (max-width: 768px) {
+  .p-plobrem__container {
+    margin: 50px auto;
+  }
 }
 .p-plobrem h4 {
   font-size: 20px;
@@ -1047,14 +1079,14 @@ header {
   height: 30px;
   background-color: #ff570061;
   font-weight: liter;
-  width: 60%;
+  width: 100%;
 }
 
 .btn_active {
   background-color: #00f7ffb0;
 }
 
-.p-spnavi__trigger {
+.p-spnavi {
   display: none;
   position: relative;
   width: 50px;
@@ -1063,12 +1095,12 @@ header {
   box-sizing: border-box;
 }
 @media screen and (max-width: 768px) {
-  .p-spnavi__trigger {
+  .p-spnavi {
     display: inline-block;
     margin: 5px;
   }
 }
-.p-spnavi__trigger span {
+.p-spnavi span {
   position: absolute;
   left: 0;
   width: 100%;
@@ -1079,22 +1111,22 @@ header {
   transition: all 0.4s;
   box-sizing: border-box;
 }
-.p-spnavi__trigger span:nth-of-type(1) {
+.p-spnavi span:nth-of-type(1) {
   top: 0;
 }
-.p-spnavi__trigger span:nth-of-type(2) {
+.p-spnavi span:nth-of-type(2) {
   top: 20px;
 }
-.p-spnavi__trigger span:nth-of-type(3) {
+.p-spnavi span:nth-of-type(3) {
   bottom: 0;
 }
-.p-spnavi__trigger:active span:nth-of-type(1) {
+.p-spnavi:active span:nth-of-type(1) {
   transform: translateY(20px) rotate(-45deg);
 }
-.p-spnavi__trigger:active span:nth-of-type(2) {
+.p-spnavi:active span:nth-of-type(2) {
   opacity: 0;
 }
-.p-spnavi__trigger:active span:nth-of-type(3) {
+.p-spnavi:active span:nth-of-type(3) {
   transform: translateY(-20px) rotate(45deg);
 }
 
