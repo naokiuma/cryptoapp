@@ -193,7 +193,7 @@
     <ul>
       <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
       <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
-      <li><a href="{{ url('password.reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
+      <li><a href="{{ url('password/reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
     </ul>
 
     <ul>

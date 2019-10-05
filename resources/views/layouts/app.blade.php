@@ -38,12 +38,6 @@
     </div>
 
     <section class="p-header__navi">
-      <div>
-        <ul>
-          <li>{{$user->name}}</li>
-          <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
-        </ul>
-      </div>
 
       <div class="p-header__menu">
         @guest
@@ -52,6 +46,12 @@
           <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
         </ul>
         @else
+        <div>
+          <ul>
+            <li>{{$user->name}}</li>
+            <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
+          </ul>
+        </div>
         <ul>
           <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
           <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>

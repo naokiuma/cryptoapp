@@ -15,11 +15,11 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 class AutofollowController extends Controller
 {
 
-//ログインユーザーのセッション情報を元にまとめる関数。
+//ログインユーザーのセッション情報を元に、ツイッター認証情報をまとめる関数。
   public function twitteroauth(){
-      Log::debug("セッション情報です");
-      Log::debug(Session('user_token'));
-      Log::debug(Session('user_tokensecret'));
+      //Log::debug("セッション情報です");
+      //Log::debug(Session('user_token'));
+      //Log::debug(Session('user_tokensecret'));
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];	// APIキー
       $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
@@ -34,11 +34,8 @@ class AutofollowController extends Controller
 
   //トップページ
   public function index(){
-
+    //まずは前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）
     Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
-
-
-      //まずは前回にフォローした日付を確認し、違う日であればリセットする。（日本時間）
       date_default_timezone_set('Asia/Tokyo');
       $today = date("Y-m-d");
       Log::debug("本日の日付".$today);
@@ -52,9 +49,9 @@ class AutofollowController extends Controller
           //フォロー数をリセットし、本日に日付に更新。
           Auth::user()->follow_count = 0;
           Auth::user()->follow_day = $today;
-            Auth::user()->save();
+          Auth::user()->save();
         }else{
-          //db上のフォローをした日付と本日が同じ場合
+          //db上のフォローをした日付と本日が同じ場合は特に何もしない
           Log::debug("以前の日付と同じです。");
       }
 
@@ -64,21 +61,21 @@ class AutofollowController extends Controller
 
     $follow_count = Auth::user()->follow_count;
     Log::debug("本日このサービスでフォローした数".$follow_count);
-      if($follow_count > 385)
+      if($follow_count > 385)//テストではここを1にする。
       {
         Log::debug("すでに385フォロー超えています。");
         //ここにフォローをできないようにする処理を入れる。
+        Session::put('today_follow_end', true);
+
       }
 
-    //情報を取得するにはSession::get
-    //情報を置くにはSession::put
-    //情報を消すにはSession::forget
+
 
     //まとめてフォローをできるかどうかの判定（15分ごとの判定）。
-    //$autofollow_readyが1ならできない、0ならできる。
+    //$autofollow_readyが1ならフォローできない、0ならできる。
     //まずはセッションにtoday_follow_timeがあるかどうかを確認。
     if(Session::get('today_follow_time')){
-      $autofollow_ready = 1;//ある場合はオートフォロー不可能。
+      $autofollow_ready = 1;//1の場合はオートフォロー不可能。
       $nowtime = date("Y/m/d H:i:s");//現在時刻
       $last_followtime = Session::get('today_follow_time');
       Log::debug('最後にオートフォローした時間です'.$last_followtime);
