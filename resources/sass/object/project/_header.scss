@@ -1,4 +1,21 @@
 .p-header{
+  &__logo{
+    width: 20%;
+    text-align: center;
+    height: inherit;
+    line-height: 60px;
+    padding: 0 1vw;
+    font-size: 15px;
+    letter-spacing: 4px;
+    a{
+      text-decoration: none;
+      color: black;
+    }
+  }
+  &__margin{
+    height: 60px;
+  }
+
   &__navi{
     align-items: center;
     margin: auto 0 auto 0;
@@ -7,8 +24,6 @@
     display: flex;
     @media screen and (max-width: $res-max-width){
     font-size: 10px;
-    display: none;
-
     }
     ul{
       display: flex;
@@ -25,23 +40,39 @@
       width: 30px;
     }
   }
-  &__logo{
-    width: 20%;
-    text-align: center;
-    height: inherit;
-    line-height: 60px;
-    padding: 0 1vw;
-    font-size: 15px;
-
-    letter-spacing: 4px;
-    a{
-      text-decoration: none;
-      color: black;
+  &__menu{
+    display: flex;
+    @media screen and (max-width: $res-max-width){
+      display: block;
+      position: absolute;
+      top: 0;
+      right: -100%;
+      background: rgba(255, 255, 255, .85);
+      width: 80%;
+      height: 100vh; //ウインドウのサイズいっぱい。100%だと、親要素の100%になる
+      padding-top: 50px;
+      transition: .1s;
+      &__active {
+        transition: .5s;
+        transform: translateX(-120%); //menuにactiveというクラスがついた時に移動。
+        z-index: 2;
+        right: 100;
+      }
+    }
+    ul{
+        @media screen and (max-width: $res-max-width){
+          position: absolute;
+          left: 100px;
+          display: block;
+          font-size: 16px;
+          top: 100px;
+          left: 20px;
+          width: 60%;
+        }
     }
   }
-  &__margin{
-    height: 60px;
-  }
+
+
 
 
 }

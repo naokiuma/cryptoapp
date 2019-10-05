@@ -32,6 +32,9 @@
         box-shadow: none;
         background: #fff;
       }
+      @media screen and (max-width: $res-max-width){
+        font-size: 16px;
+      }
     }
   }
 

@@ -9,8 +9,10 @@ use Illuminate\Support\Facades\DB; //これ参考https://readouble.com/laravel/5
 use Illuminate\Database\Eloquent\Model;
 use App\Autofollow;
 use App\User;
+use App\Updatetime;
 use Session;
 use Abraham\TwitterOAuth\TwitterOAuth;
+
 
 class AutofollowController extends Controller
 {
@@ -32,7 +34,7 @@ class AutofollowController extends Controller
 //------------------------------------
 
 
-  //トップページ
+  //オートフォロートップページ
   public function index(){
     //まずは前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）
     Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
@@ -49,15 +51,15 @@ class AutofollowController extends Controller
           //フォロー数をリセットし、本日に日付に更新。
           Auth::user()->follow_count = 0;
           Auth::user()->follow_day = $today;
-          Auth::user()->save();
+          Auth::user()->update();
         }else{
           //db上のフォローをした日付と本日が同じ場合は特に何もしない
-          Log::debug("以前の日付と同じです。");
+          Log::debug("以前の日付と同じです。フォロー数は維持されます。");
       }
 
 
     //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
-    Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないようにする");
+    Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
     $follow_count = Auth::user()->follow_count;
     Log::debug("本日このサービスでフォローした数".$follow_count);
@@ -107,11 +109,11 @@ class AutofollowController extends Controller
       }
 
     Log::debug("オートフォローの状態です。".$autofollow_ready);
-    Log::debug("0だと実施可能です");
+    Log::debug("0だと実施可能です。１だと実施できません。");
 
 
 
-    //もしセッション情報がない場合Twitter認証をしていないため、ビュー側では下記の情報は出さない。
+    //もしセッション情報がない場合、Twitter認証をしていないということになるため、ビュー側では下記の情報は出さない。
     //代わりにajaxでdb上のユーザーデータを表示させる。値は$temp_userに入れます。
     $oAuth = $this->twitteroauth();//関数
     $follow_users = array();
@@ -143,8 +145,6 @@ class AutofollowController extends Controller
       //ここでjson形式にして、綺麗に見ることができる。//https://lab.syncer.jp/Tool/JSON-Viewer/
       //echo $results[0]->name."<br>";
       //var_export($results[0]->following);//var_exportはfollowing情報も出せる。
-      //Log::debug($users_results);
-      //Log::debug($follow_users);
 
     return view('autofollow/index',compact('users_results','follow_users','autofollow_ready'));
     //$follow_usersはランダムにDBから取得したユーザー情報。
@@ -174,6 +174,14 @@ class AutofollowController extends Controller
       //$options = array('user_id' => $user_id);
       Log::debug("フォローします。".$username);
       $oAuth->post("friendships/create", ["screen_name" => $username]);
+
+      $now_follow_num = Auth::user()->follow_count;
+      Log::debug("db上の数です。。".$now_follow_num);
+      $sum = $now_follow_num + 1;
+      Log::debug("dbに1を足しました、saveします！db上の数は→".$sum);
+      Auth::user()->follow_count = $sum;
+      Auth::user()->update();
+
 
   return response()->json(['result' => true]);
   }
@@ -212,9 +220,8 @@ class AutofollowController extends Controller
 }
 
 
-  //ユーザーを1日に数人DB追加。cronで実施。ーーーーーーーーーーーーーーーー
+  //ユーザーを1日に数人DB追加。cronで夜9時、深夜0時、深夜3時に実行。実施。ーーーーーーーーーーーーーーーー
   public static function addfollow(){
-
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];	// APIキー
       $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
@@ -228,7 +235,13 @@ class AutofollowController extends Controller
       $options = array('q'=>$search_key, 'count'=>100, 'lang' =>'ja','entities' => false, 'page' => 1,);
       $users_results = array();
 
-      $options['page'] = 1;
+
+      //ランダムにページ数を取得
+      $num = mt_rand(1,10);
+      $num2 = $num++;
+      $num3 = $num2++;
+
+      $options['page'] = $num;
       $results = $oAuth->get("users/search", $options);
       for($i=0; $i<20; $i++){
             $users_results[$i]['screen_name'] = $results[$i]->screen_name;
@@ -247,7 +260,7 @@ class AutofollowController extends Controller
 
         }
 
-        $options['page'] = 2;
+        $options['page'] = $num2;
         $results = $oAuth->get("users/search", $options);
         for($i=0; $i<20; $i++){
             $users_results[$i+20]['screen_name'] = $results[$i]->screen_name;
@@ -266,7 +279,7 @@ class AutofollowController extends Controller
 
         }
 
-        $options['page'] = 3;
+        $options['page'] = $num3;
         $results = $oAuth->get("users/search", $options);
         for($i=0; $i<20; $i++){
             $users_results[$i+40]['screen_name'] = $results[$i]->screen_name;
@@ -284,20 +297,29 @@ class AutofollowController extends Controller
             $users_results[$i+40]['following'] = $results[$i]->following;
         }
 
-        //同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
-        //第二引数で情報を挿入または更新。
+        //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
+        //第二引数で情報を挿入、または既存のユーザー情報があるなら更新。
         for($i=0; $i<60; $i++){
           $autofollow = Autofollow::updateOrCreate(
-          ['screen_name' => $users_results[$i]['screen_name']],//第一引数
+          [//第一引数
+            'screen_name' => $users_results[$i]['screen_name']
+          ],
           [//第二引数
           'screen_name' => $users_results[$i]['screen_name'],'twitter_id' => $users_results[$i]['twitter_id'],
           'name' => $users_results[$i]['name'],'text' => $users_results[$i]['tweet'],
           'registtime' => $users_results[$i]['registtime'],
-          ]
+        ]
         );
         }
+        //DB上の更新日時記録テーブルを更新
+        date_default_timezone_set('Asia/Tokyo');
+        $now_time = date("Y-m-d H:i:s");//今の時間
+        Log::debug($now_time);
+        $addusertime_update = Updatetime::where('id', 5)->first();//dbからデータ取得
+        $data = ['updated_at' => $now_time];
+        $addusertime_update->update($data);
 
-      //print_r($users_results);
+
       header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
       //jsonにする処理
       $results = json_encode($users_results,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -306,26 +328,3 @@ class AutofollowController extends Controller
   }
 
 }
-
-
-
-  //参考：        $list[$i]['url'] = $items[$i]->link;
-  /*
-      一覧画面では各Twitterアカウントのユーザ名（＠と英数字のもの）、
-      アカウント名、フォロー数、フォロワー数、プロフィール、最新ツイート一件を表示する。
-      [nickname] => sagaluma
-      [name] => ひよこ橋
-      [followers_count] => 1975
-      [friends_count] => 1805
-      [description] => クライミングやってる/Switch/チキン南蛮/ビール/webサービス関連業務7年くらい/プログラミングは去年初めました/html css js php/vue.js/laravel
-      [status]['text'] => 最新のツイート
-      [token] => 110430424-0CD5oaOGcLHcH2LtiPDmFEFuTkUHBLV0H3Qb8rYk
-      [tokenSecret] => ZwnlujdVGpqOLNiCXaPi2ZP21qXrn9NuOOH48SHdLtbrz
-      [created_at] => Mon Feb 01 14:29:46 +0000 2010
-      [avatar] => http://pbs.twimg.com/profile_images/1160763260305465344/ndZ5tmba_normal.jpg
-  */
-      //header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
-      //jsonにする処理
-     //$results = json_encode($users_results,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-     //$results = json_decode($users_results,true);
-    //print_r($results);

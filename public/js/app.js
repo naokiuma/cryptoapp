@@ -1985,7 +1985,6 @@ __webpack_require__.r(__webpack_exports__);
         return arr.slice().sort(function (a, b) {
           return b.hour - a.hour;
         });
-        console.log(arr);
       }
     },
     sortCoinsByDay: function sortCoinsByDay() {
@@ -1995,7 +1994,6 @@ __webpack_require__.r(__webpack_exports__);
         return arr.slice().sort(function (a, b) {
           return b.day - a.day;
         });
-        console.log(arr);
       }
     },
     sortCoinsByWeek: function sortCoinsByWeek() {
@@ -2005,7 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
         return arr.slice().sort(function (a, b) {
           return b.week - a.week;
         });
-        console.log(arr);
       }
     }
   },
@@ -50319,6 +50316,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./sp-menu */ "./resources/js/sp-menu.js");
+
 __webpack_require__(/*! ./mouseover_change */ "./resources/js/mouseover_change.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
@@ -50777,7 +50776,6 @@ __webpack_require__.r(__webpack_exports__);
 //トップページの機能一覧部分。マウスオーバーで背景画像が変わる。
 $(document).ready(function () {
   if ($(window).width() > 630) {
-    //スマホ縦持ちでは背景画像のcover表示が不自然になるためある程度狭い端末では処理しない
     $(".u-mouseover__twitter").hover(function () {
       $(".u-mouseover__resurt").css('background-image', 'url("./img/tw_sp.png")');
     }), $(".u-mouseover__coins").hover(function () {
@@ -50786,6 +50784,22 @@ $(document).ready(function () {
       $(".u-mouseover__resurt").css('background-image', 'url("./img/swiper_news.jpg")');
     });
   }
+});
+
+/***/ }),
+
+/***/ "./resources/js/sp-menu.js":
+/*!*********************************!*\
+  !*** ./resources/js/sp-menu.js ***!
+  \*********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//スマホメニューの開閉処理
+$(document).ready(function () {
+  $('.js-spnavi__trigger').on('click', function () {
+    $('.p-header__menu').toggleClass('p-header__menu__active');
+  });
 });
 
 /***/ }),

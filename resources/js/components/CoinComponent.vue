@@ -127,7 +127,6 @@
             return arr.slice().sort(function(a,b){
               return b.hour - a.hour;
               });
-              console.log(arr);
                 }
               },
           sortCoinsByDay:function(){
@@ -137,7 +136,6 @@
             return arr.slice().sort(function(a,b){
               return b.day - a.day;
               });
-              console.log(arr);
                 }
               },
           sortCoinsByWeek:function(){
@@ -147,7 +145,6 @@
             return arr.slice().sort(function(a,b){
               return b.week - a.week;
               });
-              console.log(arr);
                 }
               }
 

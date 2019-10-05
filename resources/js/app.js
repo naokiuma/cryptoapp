@@ -5,7 +5,9 @@
  */
 
 require('./bootstrap');
+require('./sp-menu');
 require('./mouseover_change');
+
 
 window.Vue = require('vue');
 

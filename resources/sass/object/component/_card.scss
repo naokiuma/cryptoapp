@@ -19,11 +19,9 @@
     max-height: 40%;
     height: 20%;
     margin: 10px 5px 0px 5px;
-    font-size: $font-s;
+    font-size: 10px;
     letter-spacing: 1px;
-      @media screen and (max-width: $res-max-width){
-        font-size: 10px;
-      }
+
     }
   button{
     margin-top: 5%;

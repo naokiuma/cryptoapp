@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
 use Abraham\TwitterOAuth\TwitterOAuth;
+use App\Updatetime;
 use App\Coin;
 
 class CoinController extends Controller
@@ -179,12 +180,22 @@ class CoinController extends Controller
     $coin_rep->hour = $rep;
     $coin_rep->save();
 
+
+    //DB上の更新日時記録テーブルを更新
+    date_default_timezone_set('Asia/Tokyo');
+    $now_time = date("Y-m-d H:i:s");//今の時間
+    //Log::debug($now_time);
+    $addusertime_update = Updatetime::where('id', 1)->first();//dbからデータ取得
+    $data = ['updated_at' => $now_time];
+    $addusertime_update->update($data);
+
     return view('coin/hour');
     }
 
 
 
-    //dbに1weekのツイート数をインサートする処理（定期バッジをする）
+
+    //dbに1日のツイート数をインサートする処理（cronでの定期バッジをする）
     public static function day()
     {
 
@@ -198,9 +209,6 @@ class CoinController extends Controller
       $before_day = date('Y-m-d_H:i:s', strtotime('-1 day', time()))."_JST";//先日の時間
       echo '<pre>'; print_r($now_time); echo '</pre>';
       echo '<pre>'; print_r($before_day); echo '</pre>';
-
-      //各種通貨の
-
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
@@ -348,13 +356,21 @@ class CoinController extends Controller
     $coin_rep->day = $rep;
     $coin_rep->save();
 
+
+    //DB上の更新日時記録テーブルを更新
+    date_default_timezone_set('Asia/Tokyo');
+    $now_time = date("Y-m-d H:i:s");//今の時間
+    //Log::debug($now_time);
+    $addusertime_update = Updatetime::where('id', 2)->first();//dbからデータ取得
+    $data = ['updated_at' => $now_time];
+    $addusertime_update->update($data);
+
     return view('coin/day');
     }
 
 
-
+    //dbに1週間のツイート数をインサートする処理（cronでの定期バッジをする）
     public static function week()
-    //dbに1日のツイート数をインサートする処理（cronにする）
     {
 
       $config = config('services');
@@ -515,6 +531,14 @@ class CoinController extends Controller
     $coin_rep->week = $rep;
     $coin_rep->save();
 
+    //DB上の更新日時記録テーブルを更新
+    date_default_timezone_set('Asia/Tokyo');
+    $now_time = date("Y-m-d H:i:s");//今の時間
+    //Log::debug($now_time);
+    $addusertime_update = Updatetime::where('id', 3)->first();//dbからデータ取得
+    $data = ['updated_at' => $now_time];
+    $addusertime_update->update($data);
+
     return view('coin/week');
     }
 
@@ -596,6 +620,13 @@ class CoinController extends Controller
       $coin_mona->save();
 
 
+      //DB上の更新日時記録テーブルを更新
+      date_default_timezone_set('Asia/Tokyo');
+      $now_time = date("Y-m-d H:i:s");//今の時間
+      //Log::debug($now_time);
+      $addusertime_update = Updatetime::where('id', 4)->first();//dbからデータ取得
+      $data = ['updated_at' => $now_time];
+      $addusertime_update->update($data);
       return;
 
     }
