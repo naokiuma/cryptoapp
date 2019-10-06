@@ -102,10 +102,23 @@ input, select {
   vertical-align: middle;
 }
 
+#wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
 body {
   background-color: #FFF;
   font-family: "Futura", "Century Gothic", "Hiragino Kaku Gothic ProN", Meiryo, "MS PGothic", Sans-serif;
   font-size: 80%;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+footer {
+  margin-top: auto;
 }
 
 html {
@@ -563,7 +576,6 @@ header {
 }
 
 .p-autofollow__container {
-  height: 400px;
   text-align: center;
   width: 100%;
 }
@@ -604,10 +616,15 @@ header {
 .p-autofollow__description {
   width: 80%;
   margin: auto;
-  -webkit-animation-duration: 0.3s;
-          animation-duration: 0.3s;
+  -webkit-animation-duration: 0.5s;
+          animation-duration: 0.5s;
   -webkit-animation-name: toup;
   animation-name: toup;
+}
+@media screen and (max-width: 768px) {
+  .p-autofollow__description h3 {
+    font-size: 16px;
+  }
 }
 .p-autofollow__start {
   width: 200px;
@@ -629,6 +646,54 @@ header {
   font-size: 16px;
   -webkit-animation: 2s linear infinite blink_effect;
           animation: 2s linear infinite blink_effect;
+}
+
+.p-about__container {
+  text-align: left;
+  width: 90%;
+  margin: auto;
+}
+.p-about__container h2 {
+  line-height: 80px;
+  font-size: 24px;
+  color: #000000cf;
+}
+.p-about__container h3 {
+  font-size: 20px;
+  line-height: 30px;
+  height: 40px;
+}
+.p-about__container h4 {
+  font-size: 16px;
+  line-height: 24px;
+  height: 36px;
+}
+.p-about__container p {
+  line-height: 25px;
+  margin: 10px;
+}
+@media screen and (max-width: 768px) {
+  .p-about__container p {
+    font-size: 14px;
+    letter-spacing: 0.2px;
+  }
+}
+.p-about__container ul {
+  margin: 10px;
+}
+.p-about__container li {
+  line-height: 25px;
+}
+.p-about__container span {
+  background: linear-gradient(transparent 70%, yellow 70%);
+}
+.p-about__container img {
+  margin: 10px;
+  width: 200px;
+}
+.p-about__contents {
+  background-color: #00000014;
+  padding: 30px;
 }
 
 .p-coinranking__top {
@@ -718,6 +783,7 @@ header {
 }
 .p-desc__container h2 {
   font-size: 36px;
+  color: #000000cf;
 }
 @media screen and (max-width: 768px) {
   .p-desc__container h2 {
@@ -806,7 +872,6 @@ header {
 }
 @media screen and (max-width: 768px) {
   .p-functions__twiiter {
-    background-color: #00fffaa3;
     display: block;
     height: 300px;
     width: 100%;
@@ -828,7 +893,6 @@ header {
     display: block;
     height: 300px;
     width: 100%;
-    background-color: #ffff0091;
   }
 }
 .p-functions__news {
@@ -847,7 +911,6 @@ header {
     display: block;
     height: 300px;
     width: 100%;
-    background-color: #dea487;
   }
 }
 .p-functions_button {
@@ -1203,13 +1266,11 @@ header {
 }
 
 .p-start {
-  width: 60%;
+  width: 100%;
   height: 300px;
   display: block;
   margin: auto;
-  background-color: #25cdce;
   text-align: center;
-  float: left;
 }
 @media screen and (max-width: 768px) {
   .p-start {
@@ -1241,6 +1302,20 @@ header {
   box-shadow: 4px 4px black;
 }
 .p-start__text p:hover {
+  background-color: aquamarine;
+  transition: 1s;
+}
+.p-start button {
+  width: 300px;
+  height: 80px;
+  display: block;
+  margin: auto;
+  background-color: #25cdce;
+  text-align: center;
+  box-shadow: 4px 4px black;
+  font-size: 36px;
+}
+.p-start button:hover {
   background-color: aquamarine;
   transition: 1s;
 }
@@ -1301,6 +1376,18 @@ header {
     font-size: 16px;
   }
 }
+.p-twiiter__ready::after {
+  content: "\25CF";
+  font-family: "Courier New", Courier, monospace;
+  color: #3ad95e;
+  position: relative;
+  top: -5px;
+  right: -3px;
+  font-size: 15px;
+  text-shadow: 0px 0px 2px #22e86185;
+  -webkit-animation: 2s linear infinite blink_effect;
+          animation: 2s linear infinite blink_effect;
+}
 
 .u-error {
   display: block;
@@ -1317,11 +1404,6 @@ header {
   line-height: 200px;
   text-align: center;
   display: block;
-}
-@media screen and (max-width: 768px) {
-  .u-short {
-    height: 100px;
-  }
 }
 .u-short p {
   padding-top: 3%;

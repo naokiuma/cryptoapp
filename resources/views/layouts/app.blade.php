@@ -26,6 +26,9 @@
 
 </head>
 <body>
+<div id="wrapper">
+
+
   <header class="l-header">
     <div class="p-header__logo">
       <a href="{{ url('/') }}">CryptoTrend</a>
@@ -36,16 +39,22 @@
       <div class="p-header__menu">
         @guest
           <ul>
-            <li><a href="{{ url('register') }}">TOP</a></li>
+            <li><a href="{{ url('/') }}">TOP</a></li>
             <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
             <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
+            <li><a href="{{ url('about') }}">本サービスについて</a></li>
           </ul>
-          @else
+        @else
           <ul>
-            <li><a href="{{ url('register') }}">TOP</a></li>
+            <li><a href="{{ url('/') }}">TOP</a></li>
+            @if (session('today_follow_time'))
+            <li><a class="p-twiiter__ready" href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+            @else
             <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+            @endif
             <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
             <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+            <li><a href="{{ url('about') }}">本サービスについて</a></li>
             <li><a href="{{ url('auth/twitter/logout') }}"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
           </ul>
       </div>
@@ -56,7 +65,7 @@
             <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
           </ul>
         </div>
-        @endguest
+      @endguest
 
     </section>
 
@@ -65,7 +74,7 @@
       <span></span>
       <span></span>
     </div>
-    
+
   </header>
   <div class="p-header__margin">
 
@@ -77,18 +86,49 @@
       </div>
   @endif
 
-
   @yield('content')
+
+
+  <footer>
+    <div class="l-footernavi__container">
+      @guest
+
+      <ul>
+        <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
+        <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
+        <li><a href="{{ url('password/reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('about') }}">本サービスについて</a></li>
+      </ul>
+
+      @else
+      <ul>
+        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('about') }}">本サービスについて</a></li>
+      </ul>
+
+      @endguest
+    </div>
+  </footer>
 
 
 
   <!-- Scripts -->
   <script src="{{ asset('js/app.js') }}" defer></script>
 
-
-
-
-
-
+</div>
 </body>
 </html>

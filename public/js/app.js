@@ -1951,6 +1951,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
@@ -37810,8 +37811,6 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.showCoins, function(pcoin) {
           return _c("div", { staticClass: "p-coinranking__table" }, [
-            _c("h3", [_vm._v(_vm._s(pcoin.name))]),
-            _vm._v(" "),
             _c("h3", [
               _c(
                 "a",
@@ -37839,7 +37838,9 @@ var render = function() {
                 _c("td", [_vm._v(_vm._s(pcoin.hour))]),
                 _c("td", [_vm._v(_vm._s(pcoin.day))]),
                 _c("td", [_vm._v(_vm._s(pcoin.week))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pcoin.high))]),
+                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pcoin.low))])
               ])
             ])
@@ -38208,7 +38209,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("まとめてフォローは、実施ごとに15分経過するまで利用できません。"),
+      _vm._v(
+        "まとめてフォローは、一度実施すると次の実施まで15分開ける必要があります。"
+      ),
       _c("br"),
       _vm._v("\n          詳しくは"),
       _c(

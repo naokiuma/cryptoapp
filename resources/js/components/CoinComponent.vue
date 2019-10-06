@@ -17,7 +17,6 @@
             {{pcoin.name}}
             </button>
           </div>
-
           <button class="p-sidebtn__highlight" v-on:click="resetCoin()">
           リセット</button>
 
@@ -71,16 +70,18 @@
         </div>
 
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
-        <h3>{{pcoin.name}}</h3>
         <h3><a :href="'https://twitter.com/search?q=' + pcoin.name + '&src=typed_query'" target="_blank">{{ pcoin.name }}</a></h3>
 
            <table>
           <th>hour</th><th>day</th><th>week</th><th>最高取引価格/24h</th><th>最安取引価格/24h</th>
            <tr>
-          <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td>{{pcoin.week}}</td><td>{{pcoin.high}}</td><td>{{pcoin.low}}</td>
+          <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td >{{pcoin.week}}</td>
+          <td>{{pcoin.high}}</td>
+          <td>{{pcoin.low}}</td>
            </tr>
            </table>
        </div>
+
 
   </section>
 

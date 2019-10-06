@@ -17,7 +17,7 @@
         </div>
 
           <div class="p-autofollow__description" v-show="autofollow">
-            <p>まとめてフォローは、実施ごとに15分経過するまで利用できません。<br>
+            <p>まとめてフォローは、一度実施すると次の実施まで15分開ける必要があります。<br>
             詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">こちら</a></p>
 
             <h3>まとめてフォロー機能を実施しますか？</h3>

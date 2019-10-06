@@ -1,6 +1,5 @@
 .p-autofollow{
   &__container{
-  height: 400px;
   text-align: center;
   width: 100%;
     @media screen and (max-width: $res-max-width){
@@ -40,9 +39,15 @@
   {
     width: 80%;
     margin: auto;
-    animation-duration: 0.3s;
+    animation-duration: 0.5s;
     -webkit-animation-name: toup;
     animation-name: toup;
+
+      h3{
+        @media screen and (max-width: $res-max-width){
+          font-size: 16px;
+        }
+      }
   }
 
   &__start{

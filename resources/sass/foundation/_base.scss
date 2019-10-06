@@ -8,13 +8,26 @@ $font-s:16px;
 $res-max-width:768px;
 
 
+//つけたしたもの
+#wrapper{
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
 
 body{
   background-color:#FFF;
   font-family: 'Futura', 'Century Gothic', 'Hiragino Kaku Gothic ProN', Meiryo, 'MS PGothic', Sans-serif;
   font-size:80%;
+  display: flex;//つけたしたもの
+  flex-direction: column;
+  min-height: 100vh;
 }
 
+//つけたしたもの
+footer{
+  margin-top: auto;
+}
 
 html{
   	overflow-y:scroll;

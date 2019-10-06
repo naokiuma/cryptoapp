@@ -21,10 +21,6 @@
 @if (session('today_follow_end'))
 
 <div class="p-desc__container">
-
-  <h2 class="p-desc__title c-text">
-    <i class="fab fa-twitter"></i>まとめてフォロー機能
-  </h2>
   <p class="p-desc__text c-text">
     本日はすでに多くのフォローを実施しているため、まとめてフォロー、個別フォローもできません。<br>
     明日以降アクセスしてください。<br>

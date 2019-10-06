@@ -1,0 +1,47 @@
+.p-about{
+  &__container{
+  text-align: left;
+  width: 90%;
+  margin: auto;
+  h2{
+    line-height: 80px;
+    font-size: $font-l;
+    color: #000000cf;
+  }
+  h3{
+    font-size: $font-m;
+    line-height: 30px;
+    height: 40px;
+  }
+  h4{
+    font-size: 16px;
+    line-height: 24px;
+    height: 36px;
+  }
+  p{
+    line-height: 25px;
+    margin: 10px;
+    @media screen and (max-width: $res-max-width){
+      font-size: 14px;
+      letter-spacing: 0.2px;
+    }
+  }
+  ul{
+    margin: 10px;
+  }
+  li{
+    line-height: 25px;
+  }
+  span{
+    background:linear-gradient(transparent 70%, yellow 70%);
+  }
+  img{
+    margin: 10px;
+    width: 200px;
+  }
+  }
+  &__contents{
+    background-color: #00000014;
+    padding: 30px;
+  }
+}

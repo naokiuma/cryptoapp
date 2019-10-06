@@ -7,9 +7,10 @@
 
 .p-desc__container{
   width: 100%;
-//  height: 300px;
+
   h2{
     font-size: $font-xl;
+    color: #000000cf;
     @media screen and (max-width: $res-max-width){
       font-size: $font-l;
       height: 30px;

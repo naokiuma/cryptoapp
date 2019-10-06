@@ -170,41 +170,65 @@
 
 <!--早速始める情報-->
 <section class="l-main__mini">
-  <div class="p-start__container">
 
+    <div class="p-start">
+        <a href="{{ url('register') }}"><button type="button" name="button">SiGN UP</button></a>
+      <div class="p-start__under">
+        <p>※メールアドレス、Twitterアカウントが必要です。</p>
+      </div>
+    </div>
+</section>
+
+<!--
   <div class="p-start">
     <div class="p-start__text">
       <a href="{{ url('register') }}"><p>SiGN UP</p></a>
+      <a href="{{ url('register') }}"><button type="button" name="button">SiGN UP</button></a>
     </div>
     <div class="p-start__under">
       <p>※メールアドレス、Twitterアカウントが必要です。</p>
     </div>
   </div>
-  </div>
-</section>
 
-<footer>
-  <div class="l-footernavi__container">
+-->
 
-    <ul>
-      <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
-      <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
-      <li><a href="{{ url('password/reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
-    </ul>
 
-    <ul>
-      <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-      <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-      <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
-    </ul>
 
-    <ul>
-      <li>閲覧環境</li>
-      <li>Twitterフォロー制限について</li>
-    </ul>
 
-  </div>
-</footer>
+  <footer>
+    <div class="l-footernavi__container">
+      @guest
+
+      <ul>
+        <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
+        <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
+        <li><a href="{{ url('password/reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('about') }}">本サービスについて</a></li>
+      </ul>
+
+      @else
+      <ul>
+        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
+        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
+        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
+      </ul>
+
+      <ul>
+        <li><a href="{{ url('about') }}">本サービスについて</a></li>
+      </ul>
+
+      @endguest
+    </div>
+  </footer>
 
 
 @endsection
