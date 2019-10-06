@@ -69,7 +69,7 @@ class AutofollowController extends Controller
 
     $follow_count = Auth::user()->follow_count;
         //Log::debug("本日このサービスでフォローした数".$follow_count);
-      if($follow_count > 384) //本来は385にする！
+      if($follow_count > 20) //本来は385にする！
       {
         Log::debug("すでに385フォロー超えています。");
         Session::put('today_follow_end', true);
