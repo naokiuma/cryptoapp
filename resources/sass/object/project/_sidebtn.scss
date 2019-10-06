@@ -20,7 +20,7 @@
   &__coin{
     height: 30px;
     width: 100%;
-    background-color: #e2e22b9e;
+    background-color: #07f4b84a;
     &:hover{
       transform: translate3d(0, 1px, 0);
       color: #007db9;
@@ -32,8 +32,10 @@
       text-align: center;
       @media screen and (max-width: $res-max-width){
         display: flex;
+        justify-content: center;
         flex-wrap: wrap;
         height: auto;
+        background-color: #7fffdf54;
       }
     }
   }

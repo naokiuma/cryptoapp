@@ -18,8 +18,8 @@
       margin: 5% auto 0 auto;
     }
     h3{
-    color:white;
-    padding: 5px;
+    color:black;
+    padding: 10px;
     @media screen and (max-width: $res-max-width){
       color:black;
     }
@@ -30,7 +30,7 @@
     width: calc(100% / 3);
     height: 100%;
     display: block;
-    border-left: dashed 0.1px #ffffff52;
+    border-left: dashed 2px #ffffff52;
     text-align: center;
     display: flex;
     justify-content: center; /*左右中央揃え*/
@@ -47,7 +47,7 @@
     height: 100%;
     width: calc(100% / 3);
     display: block;
-    border-left: dashed 0.1px #ffffff52;
+    border-left: dashed 2px #ffffff52;
     text-align: center;
     display: flex;
     justify-content: center; /*左右中央揃え*/
@@ -64,7 +64,7 @@
     height: 100%;
     width: calc(100% / 3);
     display: block;
-    border-left: dashed 0.1px #ffffff52;
+    border-left: dashed 2px #ffffff52;
     text-align: center;
     display: flex;
     justify-content: center; /*左右中央揃え*/

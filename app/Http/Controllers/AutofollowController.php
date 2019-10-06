@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
@@ -94,7 +95,7 @@ class AutofollowController extends Controller
 
       $difMinutes = ($difSeconds - ($difSeconds % 60)) / 60;
       $diffTime = $difMinutes % 60;
-      Log::debug('分の差の計算です。'.$diffTime);
+      Log::debug($diffTime."分経過しています。");
 
           if($diffTime > 14){//15分経過しているなら
             Log::debug("前回のオートフォローから15分経過しました！タイムをリセットします。");
@@ -111,9 +112,7 @@ class AutofollowController extends Controller
     Log::debug("オートフォローの状態です。".$autofollow_ready);
     Log::debug("0だと実施可能です。１だと実施できません。");
 
-
-
-    //もしセッション情報がない場合、Twitter認証をしていないということになるため、ビュー側では下記の情報は出さない。
+    //もしセッション情報がない場合、Twitter認証をしていないということになるため、ビュー側ではフォローできるアカウント情報は出さない。
     //代わりにajaxでdb上のユーザーデータを表示させる。値は$temp_userに入れます。
     $oAuth = $this->twitteroauth();//関数
     $follow_users = array();
@@ -122,29 +121,29 @@ class AutofollowController extends Controller
       $randomUser = Autofollow::inRandomOrder()->first();
       //それを$follow_usersに詰め込む
       array_push($follow_users,$randomUser->screen_name);
-        }
+      }
 
     $follow_users = implode(",", $follow_users);//クォーテーションをつける。
     //$follow_usersはランダムにDBから取得したユーザー情報。
     //$follow_usersから取得した中で、ログインユーザーがフォローしてないユーザーの情報を取得し$lookupuserに格納。
     $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_users"]);
     $temp_user = array();
-    //$temp_userにスクリーンネームのみ格納。
-    for($i=0; $i<12; $i++){//本来15
+    //$temp_userにランダムユーザーのスクリーンネームのみ格納。
+    for($i=0; $i<15; $i++){//本来15
         if(!$lookupuser[$i]->following){
          $temp_user[] = ($lookupuser[$i]);
        }
     }
 
-    //jsonエンコードし、ユーザー情報を取得する。
+    //$temp_userをjsonエンコードし、$users_resultsユーザー情報を取得する。
     $users_results = json_encode($temp_user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-    //json確認用
-    //header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
-    //print_r($users_results);
-      //echo gettype($results);配列かオブジェクトか調べる関数。配列だった。
-      //ここでjson形式にして、綺麗に見ることができる。//https://lab.syncer.jp/Tool/JSON-Viewer/
-      //echo $results[0]->name."<br>";
-      //var_export($results[0]->following);//var_exportはfollowing情報も出せる。
+
+//    if($autofollow_ready == 1){
+//      Log::debug("前回のまとめてフォローから'.$diffTime.'分経過しています");
+      //Session::put('difftime', $diffTime);
+//      return view('autofollow/index',compact('users_results','follow_users','autofollow_ready','diffTime'));
+      //diffTime はまとめてフォローを実施した場合に、前回からどの程度経過しているか、分で表示
+//     }
 
     return view('autofollow/index',compact('users_results','follow_users','autofollow_ready'));
     //$follow_usersはランダムにDBから取得したユーザー情報。
@@ -176,7 +175,7 @@ class AutofollowController extends Controller
       $oAuth->post("friendships/create", ["screen_name" => $username]);
 
       $now_follow_num = Auth::user()->follow_count;
-      Log::debug("db上の数です。。".$now_follow_num);
+      Log::debug("db上の数です。".$now_follow_num);
       $sum = $now_follow_num + 1;
       Log::debug("dbに1を足しました、saveします！db上の数は→".$sum);
       Auth::user()->follow_count = $sum;
@@ -194,27 +193,54 @@ class AutofollowController extends Controller
 
     //Log::debug("リクエストの中身（フォロー対象のユーザー。）");  //フォローボタンを押した時に送られる中身
     Log::debug($request->allusers);
+    $count = count($request->allusers);
     Log::debug("オールフォローを実施します。");
+    Log::debug("フォローする人数です".$count);
 
     //$get_allfollow = explode(",", (array)$request->allusers->screen_name);//クォーテーションをつける。
     Log::debug("オールフォローを実施しました。");
-    Log::debug("配列にしたものです。");
     //Log::debug($get_allfollow);
+
+    $now_follow_num = Auth::user()->follow_count;
+    Log::debug("db上の数です。".$now_follow_num);
+    $now_follow_num = $now_follow_num + $count;
+    Log::debug("dbにオールフォロー数を足しました、saveします！db上の数は→".$now_follow_num);
+    Auth::user()->follow_count = $now_follow_num;
+    Auth::user()->update();
 
     $oAuth = $this->twitteroauth();
     foreach ($request->allusers as $value)
     {
-    $target = $value['screen_name'];
-    $oAuth->post("friendships/create", ["screen_name" => $target]);
-    Log::debug($target."をフォローしました");
-  }
+      $target = $value['screen_name'];
+      $oAuth->post("friendships/create", ["screen_name" => $target]);
+      Log::debug($target."をフォローしました");
+    }
+
+
+    $now_follow_num = Auth::user()->follow_count;
+    Log::debug("db上の数です。".$now_follow_num);
+    $sum = $now_follow_num + 1;
+
+    Log::debug("db上の本日のフォロー数はこちらに更新されます。→".$sum);
+    Auth::user()->follow_count = $sum;
+    Auth::user()->update();
+
+
+    $now_follow_num = Auth::user()->follow_count;
+    Log::debug("db上の数です。".$now_follow_num);
+    $sum = $now_follow_num + 1;
+
+
+
+
 
   //オールフォローをしたら。セッション[today_follow_time]に時間を入れる。
   if(!Session::get('today_follow_time')){
-    Log::debug("today_follow_timeのセッションはありません。値を入れます");
-    $nowtime = date("Y/m/d H:i:s");
-    Session::put('today_follow_time', $nowtime);
-  }
+        Log::debug("today_follow_timeのセッションはありません。値を入れます");
+        $nowtime = date("Y/m/d H:i:s");
+        Session::put('today_follow_time', $nowtime);
+      }
+
 
     return view('autofollow/addfollow');
 }

@@ -13,8 +13,13 @@ class CoinController extends Controller
 {
     public function index()
     {
+      $coinupdatedate = Updatetime::all();//全てのコインの更新日時
+      $hour = $coinupdatedate[0]["updated_at"];
+      $day = $coinupdatedate[1]["updated_at"];
+      $week = $coinupdatedate[2]["updated_at"];
+      $highlow = $coinupdatedate[3]["updated_at"];
 
-      return view('coin/index');
+      return view('coin/index',compact('hour','day','week','highlow'));
     }
 
 
@@ -543,7 +548,8 @@ class CoinController extends Controller
     }
 
 
-    //取引価格取得
+    //---------------coincheckや、zaifなどのパブリックAPIから取引価格取得。
+    //ページにアクセスするとまとめた情報を見ることができる
     public static function highandlow(){
 
       $API_btc_URL = "https://coincheck.com/api/ticker";

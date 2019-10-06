@@ -437,7 +437,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .c-form__control {
-    width: 600px;
+    width: 300px;
   }
 }
 .c-form__btn {
@@ -473,7 +473,7 @@ header {
   /*下線*/
 }
 .c-text h3 {
-  background-color: #002824c7;
+  background-color: #60ded27a;
   width: 100%;
   font-weight: lighter;
 }
@@ -517,7 +517,9 @@ header {
   text-align: center;
   width: 80%;
   margin: auto;
-  color: white;
+  padding: 10px;
+  color: black;
+  background-color: #c4f5ffa1;
 }
 @media screen and (max-width: 768px) {
   .c-box p {
@@ -555,7 +557,7 @@ header {
 }
 
 .p-autofollow__container {
-  height: 300px;
+  height: 400px;
   text-align: center;
   width: 100%;
 }
@@ -566,7 +568,8 @@ header {
   line-height: 50px;
   background-color: aquamarine;
   margin: 30px auto;
-  border: 3px solid yellow;
+  border: 3px solid #232323;
+  font-size: 20px;
 }
 .p-autofollow__container h3 {
   margin: 30px auto;
@@ -575,6 +578,8 @@ header {
   height: 20px;
 }
 .p-autofollow__description {
+  width: 80%;
+  margin: auto;
   -webkit-animation-duration: 0.3s;
           animation-duration: 0.3s;
   -webkit-animation-name: toup;
@@ -685,7 +690,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-desc__container h2 {
     font-size: 24px;
-    height: 100px;
+    height: 30px;
   }
 }
 
@@ -748,8 +753,8 @@ header {
   margin: 5% auto 0 auto;
 }
 .p-functions__container h3 {
-  color: white;
-  padding: 5px;
+  color: black;
+  padding: 10px;
 }
 @media screen and (max-width: 768px) {
   .p-functions__container h3 {
@@ -760,7 +765,7 @@ header {
   width: calc(100% / 3);
   height: 100%;
   display: block;
-  border-left: dashed 0.1px #ffffff52;
+  border-left: dashed 2px #ffffff52;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -779,7 +784,7 @@ header {
   height: 100%;
   width: calc(100% / 3);
   display: block;
-  border-left: dashed 0.1px #ffffff52;
+  border-left: dashed 2px #ffffff52;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -798,7 +803,7 @@ header {
   height: 100%;
   width: calc(100% / 3);
   display: block;
-  border-left: dashed 0.1px #ffffff52;
+  border-left: dashed 2px #ffffff52;
   text-align: center;
   display: flex;
   justify-content: center;
@@ -877,6 +882,11 @@ header {
   display: block;
   padding: 15px;
 }
+@media screen and (max-width: 768px) {
+  .p-hero__title h2::after {
+    font-size: 14px;
+  }
+}
 .p-hero__title p {
   line-height: 24px;
 }
@@ -913,7 +923,7 @@ header {
   text-align: center;
   height: inherit;
   line-height: 60px;
-  padding: 0 1vw;
+  padding: 0 3vw;
   font-size: 15px;
   letter-spacing: 4px;
 }
@@ -1083,7 +1093,7 @@ header {
 .p-sidebtn__coin {
   height: 30px;
   width: 100%;
-  background-color: #e2e22b9e;
+  background-color: #07f4b84a;
 }
 .p-sidebtn__coin:hover {
   transform: translate3d(0, 1px, 0);
@@ -1098,8 +1108,10 @@ header {
 @media screen and (max-width: 768px) {
   .p-sidebtn__coin__container {
     display: flex;
+    justify-content: center;
     flex-wrap: wrap;
     height: auto;
+    background-color: #7fffdf54;
   }
 }
 .p-sidebtn__highlight {
@@ -1232,6 +1244,8 @@ header {
 @media screen and (max-width: 768px) {
   .p-twiiter__top {
     height: 250px;
+    width: 80%;
+    margin: auto;
   }
 }
 .p-twiiter__top a {

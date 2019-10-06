@@ -6,7 +6,7 @@
     <div v-for="(sampleuser,index) in sampleusers" v-bind:key="index" class="c-card">
       <div class="c-card__header">
         <img :src="sampleuser.profile_image" alt="">
-        <h4><a :href="'https://twitter.com/' + sampleuser.screen_name" class="">{{ sampleuser.name }}</a></h4>
+        <h4><a :href="'https://twitter.com/' + sampleuser.screen_name" target="_blank">{{ sampleuser.name }}</a></h4>
 
       </div>
         <p>{{ sampleuser.description}}</p>

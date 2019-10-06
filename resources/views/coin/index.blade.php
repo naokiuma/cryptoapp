@@ -18,8 +18,12 @@
 
 <div id="coinapp">
     <coin-component
-    coin_ajax="{{ url('ajax/coin') }}"></coin-component>
-    <!--全てajaxでajax/coinsから取得-->
+    coin_ajax="{{ url('ajax/coin') }}"
+    hour = "{{$hour}}"
+    day = "{{$day}}"
+    week = "{{$week}}"
+    >
+  </coin-component>
 </div>
 
 @endsection

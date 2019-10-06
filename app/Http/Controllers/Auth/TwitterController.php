@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
-//use Illuminate\Http\Request;
 use App\User;
 use Auth;
 use Socialite;
@@ -10,36 +9,35 @@ use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 
-
 //Socialite::driver('twitter')->user();で
 //返ってくるオブジェクトはTwitterのアカウント名や、
 //画像URLなどなどかなり多くの情報を持っています。
 
-
 class TwitterController extends Controller
 {
   use AuthenticatesUsers;
-  //ツイッターの認証ページへリダイレクト。
-  public function redirectToProvider(){
-    //コールバック関数によりhandleProviderCallbackのアクションへ。
-    return Socialite::driver('twitter')->redirect();
-  }
 
-  //ツイッターからユーザー情報を取得する関数。
-  public function handleProviderCallback(){
-    //Log::debug(print_r("handleProviderCallbackにきた。", true));
+    //ツイッターの認証ページへリダイレクト。
+    public function redirectToProvider(){
+          //コールバック関数により本ファイル29行目handleProviderCallbackアクションへ。
+          return Socialite::driver('twitter')->redirect();
+        }
+
+
+        //ツイッターからユーザー情報を取得する関数。
+    public function handleProviderCallback(){
       try{
             $twitterUser = Socialite::driver('twitter')->user();
-            //Log::debug('Twitter情報を取得');
             $user_token = $twitterUser->token;
             $user_tokensecret = $twitterUser->tokenSecret;
+            //セッション情報としてツイッターユーザーの情報を保持。
             Session::put('user_token', $user_token);
             Session::put('user_tokensecret', $user_tokensecret);
             //Log::debug("ログインユーザーのトークンとシークレットトークンです。");
             //Log::debug(Session('user_token'));
             //Log::debug(Session('user_tokensecret'));
 
-         }catch (Exception $e){
+         }catch (Exception $e){//ログインユーザーを取得できない場合は再度認証ページへ
             return redirect('auth/twitter');
          }
 
@@ -47,7 +45,7 @@ class TwitterController extends Controller
        if(Auth::check()){
          //ログインしている＝すでにユーザー登録済みなので、ユーザーIDを取得し
          //そのカラムにツイッター情報を追加する
-         Log::debug('最新のTwitter情報をdbに登録します。');
+         //Log::debug('最新のTwitter情報をdbに登録します。');
          $user_id = Auth::user()->id;
          $user_date = User::where('id',$user_id)->first();
          //Log::debug(print_r($twitterUser->id, true));
@@ -61,9 +59,9 @@ class TwitterController extends Controller
          ])->save();
         Auth::login($user_date, true);
         return redirect()->route('top');
+
+        //ログインしてないなら、ツイッターアカウントののあるユーザーに登録しログインする
       }else{
-        //ログインしてないなら、別関数でツイッターカラムのあるユーザーに登録しログインする
-        //Log::debug(print_r("ログインしていない", true));
          $user_date = $this->findOrCreateUser($twitterUser);
          Auth::login($user_date, true);
         return redirect()->route('top');

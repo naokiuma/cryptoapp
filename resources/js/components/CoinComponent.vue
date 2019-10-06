@@ -31,49 +31,49 @@
   <section class="p-coinranking__container">
 
         <div class="p-coinranking__table" v-if="hour_show">
-          <h3>過去1時間 <span> 更新日時：{{coins[0].updated_at}}</span></h3>
+          <h3>過去1時間 <span> 更新日時：{{hour}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByHour"
               v-bind:key="coin.id">
-
-              <td>{{ i + 1 }}</td><td><a :href="coin.name">{{coin.name}}</a></td> <td>{{coin.hour}}</td>
+              <td>{{ i + 1 }}</td><td><a :href="'https://twitter.com/search?q=' + coin.name + '&src=typed_query'" target="_blank">{{coin.name}}</a></td> <td>{{coin.hour}}</td>
           </tr>
           </table>
         </div>
 
 
         <div class="p-coinranking__table" v-if="day_show">
-          <h3>過去1日 <span> 更新日時：</span></h3>
+          <h3>過去1日 <span> 更新日時：{{day}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByDay"
               v-bind:key="coin.id">
 
-              <td>{{ i + 1 }}</td><td>{{coin.name}}</td> <td>{{coin.day}}</td>
+              <td>{{ i + 1 }}</td><td><a :href="'https://twitter.com/search?q=' + coin.name + '&src=typed_query'" target="_blank">{{coin.name}}</a></td> <td>{{coin.day}}</td>
           </tr>
           </table>
         </div>
 
 
         <div class="p-coinranking__table" v-if="week_show">
-          <h3>過去1週間 <span> 更新日時：</span></h3>
+          <h3>過去1週間 <span> 更新日時：{{week}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
           <tr v-for="(coin,i) in sortCoinsByWeek"
               v-bind:key="coin.id">
 
-              <td>{{ i + 1 }}</td><td>{{coin.name}}</td> <td>{{coin.week}}</td>
+              <td>{{ i + 1 }}</td><td><a :href="'https://twitter.com/search?q=' + coin.name + '&src=typed_query'" target="_blank">{{coin.name}}</a></td> <td>{{coin.week}}</td>
           </tr>
           </table>
         </div>
 
-
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
-        <h3>コイン名：{{pcoin.name}}</h3>
+        <h3>{{pcoin.name}}</h3>
+        <h3><a :href="'https://twitter.com/search?q=' + pcoin.name + '&src=typed_query'" target="_blank">{{ pcoin.name }}</a></h3>
+
            <table>
           <th>hour</th><th>day</th><th>week</th><th>最高取引価格/24h</th><th>最安取引価格/24h</th>
            <tr>
@@ -92,7 +92,10 @@
 <script>
     export default {
         props:[
-        'coin_ajax'
+        'coin_ajax',
+        'hour',
+        'day',
+        'week'
         ],
 
         data:function(){
@@ -100,6 +103,7 @@
             coins:[],
             showCoins:[],
             exitCoins:[],
+            coinalldate:this.coinupdatedate,
             link_before:'https://twitter.com/search?q=',
             link_after:'&src=typed_query',
             hour_show:false,
@@ -110,19 +114,20 @@
             }
         },
         mounted(){
+        console.log(this.hour);
+        console.log(this.week);
         this.showHour();
             var self = this;
             var url = this.coin_ajax;
             axios.get(url).then(function(response){
               self.coins = response.data;
               console.log(self.coins);
-              console.log(self.coins[0]);
             });
         },
         computed:{
           sortCoinsByHour:function(){
             if(this.hour_show){
-            console.log("時間でソートします。");
+
             var arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.hour - a.hour;
@@ -131,7 +136,7 @@
               },
           sortCoinsByDay:function(){
             if(this.day_show){
-            console.log("一日でソートします。");
+
             var arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.day - a.day;

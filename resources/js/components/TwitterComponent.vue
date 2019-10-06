@@ -4,7 +4,8 @@
 
     <div class="p-autofollow__container" v-show="!reset_ok">
     <p>現在、まとめてフォロー機能は利用できません。<br>
-    本機能は15分に一度利用可能です。</p>
+    本機能は15分に一度利用可能です。利用できるまで残り分。
+    手動で一人ずつのフォローは可能です。</p>
     </div>
 
     <div class="p-autofollow__container" v-show="reset_ok">
@@ -15,7 +16,7 @@
       </label>
 
       <div class="p-autofollow__description" v-show="autofollow">
-      <p>一度にまとめてフォローできる数は15アカウント以下です。<br>
+      <p>画面上のアカウントを一度にまとめてフォローします。<br>
       1度実施すると、15分経過するまで利用できません。詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">こちら</a></p>
 
       <h3>まとめてフォロー機能を実施しますか？</h3>
@@ -32,7 +33,7 @@
 
       <div class="c-card__header">
         <img :src="user.profile_image_url" alt="">
-        <h4>{{ user.name }}</h4>
+        <h4><a :href="'https://twitter.com/' + user.screen_name" target="_blank">{{ user.name }}</a></h4>
       </div>
         <p>{{ user.description}}</p>
         <p>最新ツイート：<br>
@@ -67,6 +68,7 @@ export default{
         }
       },
       mounted(){
+            console.log(this.diffTime);
             console.log(this.users_results);
             console.log(this.follow_users);
             console.log(this.autofollow_ready);

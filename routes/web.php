@@ -16,21 +16,24 @@ Route::get('/', function () {
     return view('top');
 })->name('top');
 
+Route::get('/about', function () {
+    return view('about');
+})->name('about');
+
+
 //コインコントローラー
-Route::get('coin','CoinController@index')->name('coin');
+Route::get('coin','CoinController@index')->name('coin');//コイン情報まとめページへのリンク
 Route::get('coin/hour','CoinController@hour')->name('coin.hour');//1日のツイート数を検索。cronで実施。
 Route::get('coin/day','CoinController@day')->name('coin.day');//1日のツイート数を検索。cronで実施。
 Route::get('coin/week','CoinController@week')->name('coin.week');//1日のツイート数を検索。cronで実施。
+Route::get('coin/highandlow','CoinController@highandlow')->name('coin.highandlow');//1日のツイート数を検索。cronで実施。
 
 
 //ニュースコントローラー
 Route::get('news','NewsController@index')->name('news');
-//ニュースの中の更新コントローラー（テスト）
-//Route::get('news/test','NewsController@test')->name('test');
-//zaifのデータを取得テスト。まだここかよ！
-Route::get('news/test2','NewsController@test2')->name('test2');
 
-//オートフォローコントローラー
+
+//オートフォローコントローラー（フォローを実施できるページ）
 Route::get('autofollow','AutofollowController@index')->name('autofollow');//表示
 Route::post('autofollow','AutofollowController@follow')->name('autofollow.follow');//フォロー
 Route::post('autofollow/all','AutofollowController@allfollow')->name('autofollow.all');//フォロー

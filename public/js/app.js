@@ -1952,12 +1952,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['coin_ajax'],
+  props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
     return {
       coins: [],
       showCoins: [],
       exitCoins: [],
+      coinalldate: this.coinupdatedate,
       link_before: 'https://twitter.com/search?q=',
       link_after: '&src=typed_query',
       hour_show: false,
@@ -1968,19 +1969,19 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    console.log(this.hour);
+    console.log(this.week);
     this.showHour();
     var self = this;
     var url = this.coin_ajax;
     axios.get(url).then(function (response) {
       self.coins = response.data;
       console.log(self.coins);
-      console.log(self.coins[0]);
     });
   },
   computed: {
     sortCoinsByHour: function sortCoinsByHour() {
       if (this.hour_show) {
-        console.log("時間でソートします。");
         var arr = this.coins;
         return arr.slice().sort(function (a, b) {
           return b.hour - a.hour;
@@ -1989,7 +1990,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     sortCoinsByDay: function sortCoinsByDay() {
       if (this.day_show) {
-        console.log("一日でソートします。");
         var arr = this.coins;
         return arr.slice().sort(function (a, b) {
           return b.day - a.day;
@@ -2242,6 +2242,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax'],
   data: function data() {
@@ -2253,6 +2254,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
+    console.log(this.diffTime);
     console.log(this.users_results);
     console.log(this.follow_users);
     console.log(this.autofollow_ready);
@@ -37676,9 +37678,7 @@ var render = function() {
           ? _c("div", { staticClass: "p-coinranking__table" }, [
               _c("h3", [
                 _vm._v("過去1時間 "),
-                _c("span", [
-                  _vm._v(" 更新日時：" + _vm._s(_vm.coins[0].updated_at))
-                ])
+                _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.hour))])
               ]),
               _vm._v(" "),
               _c(
@@ -37692,9 +37692,19 @@ var render = function() {
                     return _c("tr", { key: coin.id }, [
                       _c("td", [_vm._v(_vm._s(i + 1))]),
                       _c("td", [
-                        _c("a", { attrs: { href: coin.name } }, [
-                          _vm._v(_vm._s(coin.name))
-                        ])
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href:
+                                "https://twitter.com/search?q=" +
+                                coin.name +
+                                "&src=typed_query",
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v(_vm._s(coin.name))]
+                        )
                       ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(coin.hour))])
@@ -37708,7 +37718,10 @@ var render = function() {
         _vm._v(" "),
         _vm.day_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
-              _vm._m(0),
+              _c("h3", [
+                _vm._v("過去1日 "),
+                _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.day))])
+              ]),
               _vm._v(" "),
               _c(
                 "table",
@@ -37720,7 +37733,21 @@ var render = function() {
                   _vm._l(_vm.sortCoinsByDay, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
                       _c("td", [_vm._v(_vm._s(i + 1))]),
-                      _c("td", [_vm._v(_vm._s(coin.name))]),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href:
+                                "https://twitter.com/search?q=" +
+                                coin.name +
+                                "&src=typed_query",
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v(_vm._s(coin.name))]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(coin.day))])
                     ])
@@ -37733,7 +37760,10 @@ var render = function() {
         _vm._v(" "),
         _vm.week_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
-              _vm._m(1),
+              _c("h3", [
+                _vm._v("過去1週間 "),
+                _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.week))])
+              ]),
               _vm._v(" "),
               _c(
                 "table",
@@ -37745,7 +37775,21 @@ var render = function() {
                   _vm._l(_vm.sortCoinsByWeek, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
                       _c("td", [_vm._v(_vm._s(i + 1))]),
-                      _c("td", [_vm._v(_vm._s(coin.name))]),
+                      _c("td", [
+                        _c(
+                          "a",
+                          {
+                            attrs: {
+                              href:
+                                "https://twitter.com/search?q=" +
+                                coin.name +
+                                "&src=typed_query",
+                              target: "_blank"
+                            }
+                          },
+                          [_vm._v(_vm._s(coin.name))]
+                        )
+                      ]),
                       _vm._v(" "),
                       _c("td", [_vm._v(_vm._s(coin.week))])
                     ])
@@ -37758,7 +37802,23 @@ var render = function() {
         _vm._v(" "),
         _vm._l(_vm.showCoins, function(pcoin) {
           return _c("div", { staticClass: "p-coinranking__table" }, [
-            _c("h3", [_vm._v("コイン名：" + _vm._s(pcoin.name))]),
+            _c("h3", [_vm._v(_vm._s(pcoin.name))]),
+            _vm._v(" "),
+            _c("h3", [
+              _c(
+                "a",
+                {
+                  attrs: {
+                    href:
+                      "https://twitter.com/search?q=" +
+                      pcoin.name +
+                      "&src=typed_query",
+                    target: "_blank"
+                  }
+                },
+                [_vm._v(_vm._s(pcoin.name))]
+              )
+            ]),
             _vm._v(" "),
             _c("table", [
               _c("th", [_vm._v("hour")]),
@@ -37782,20 +37842,7 @@ var render = function() {
     )
   ])
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", [_vm._v("過去1日 "), _c("span", [_vm._v(" 更新日時：")])])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("h3", [_vm._v("過去1週間 "), _c("span", [_vm._v(" 更新日時：")])])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -37922,7 +37969,8 @@ var render = function() {
                 "a",
                 {
                   attrs: {
-                    href: "https://twitter.com/" + sampleuser.screen_name
+                    href: "https://twitter.com/" + sampleuser.screen_name,
+                    target: "_blank"
                   }
                 },
                 [_vm._v(_vm._s(sampleuser.name))]
@@ -38091,7 +38139,18 @@ var render = function() {
             _c("div", { staticClass: "c-card__header" }, [
               _c("img", { attrs: { src: user.profile_image_url, alt: "" } }),
               _vm._v(" "),
-              _c("h4", [_vm._v(_vm._s(user.name))])
+              _c("h4", [
+                _c(
+                  "a",
+                  {
+                    attrs: {
+                      href: "https://twitter.com/" + user.screen_name,
+                      target: "_blank"
+                    }
+                  },
+                  [_vm._v(_vm._s(user.name))]
+                )
+              ])
             ]),
             _vm._v(" "),
             _c("p", [_vm._v(_vm._s(user.description))]),
@@ -38136,7 +38195,9 @@ var staticRenderFns = [
     return _c("p", [
       _vm._v("現在、まとめてフォロー機能は利用できません。"),
       _c("br"),
-      _vm._v("\n  本機能は15分に一度利用可能です。")
+      _vm._v(
+        "\n  本機能は15分に一度利用可能です。利用できるまで残り分。\n  手動で一人ずつのフォローは可能です。"
+      )
     ])
   },
   function() {
@@ -38144,7 +38205,7 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("一度にまとめてフォローできる数は15アカウント以下です。"),
+      _vm._v("画面上のアカウントを一度にまとめてフォローします。"),
       _c("br"),
       _vm._v("\n    1度実施すると、15分経過するまで利用できません。詳しくは"),
       _c(

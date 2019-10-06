@@ -5,7 +5,7 @@
 <div class="c-form__container">
           <div class="c-form__title">
             パスワードをリセットする<br>
-            <span class="u-attention">新しいパスワードを設定してください。※6文字以上</span>
+            <span class="u-attention">新しいパスワードを設定してください。※8文字以上</span>
           </div>
 
           <div class="c-form__body">

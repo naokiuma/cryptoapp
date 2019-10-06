@@ -16,6 +16,8 @@
     height: 300px;
     @media screen and (max-width: $res-max-width){
       height: 250px;
+      width: 80%;
+      margin: auto;
     }
     a{
       font-size: 20px;

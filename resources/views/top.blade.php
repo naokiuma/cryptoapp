@@ -174,7 +174,7 @@
 
   <div class="p-start">
     <div class="p-start__text">
-      <p>SiGN UP</p>
+      <a href="{{ url('register') }}"><p>SiGN UP</p></a>
     </div>
     <div class="p-start__under">
       <p>※メールアドレス、Twitterアカウントが必要です。</p>

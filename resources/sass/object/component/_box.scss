@@ -19,7 +19,9 @@
     text-align: center;
     width: 80%;
     margin: auto;
-    color: white;
+    padding: 10px;
+    color: black;
+    background-color: #c4f5ffa1;
     @media screen and (max-width: $res-max-width){
       text-align: left;
       color: black;
