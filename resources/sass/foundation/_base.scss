@@ -95,19 +95,14 @@ a{
 }
 }
 
-
-
-
-.v-enter-active,
-.v-leave-active{
-  position: absolute;
-  transition: all 1s;
-}
-.v-enter,
-.v-leave-to{
-  transform:translateX(50px);
-  opacity: 0;
-}
-.v-move{
-  transition:transform 1s;
+@keyframes blink_effect{
+  0% {
+        opacity: 0;
+    }
+    50% {
+        opacity: 0.5;
+    }
+    100% {
+        opacity: 1;
+    }
 }

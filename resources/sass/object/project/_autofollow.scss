@@ -3,8 +3,10 @@
   height: 400px;
   text-align: center;
   width: 100%;
-
-  h2{
+    @media screen and (max-width: $res-max-width){
+      text-align: left;
+    }
+  button{
     height: 50px;
     width: 50%;
     margin: auto;
@@ -13,9 +15,21 @@
     margin: 30px auto;
     border: 3px solid #232323;
     font-size: 20px;
+    display: block;
+    box-shadow: 3px 2px;
+    &:hover{
+      transform: translate3d(0, 5px, 0);
+      color: #007db9;;
+      box-shadow: none;
+      background: #fff;
+    }
   }
+
   h3{
     margin: 30px auto;
+    @media screen and (max-width: $res-max-width){
+      text-align: center;
+    }
   }
   input{
     height: 20px;
@@ -43,5 +57,13 @@
         box-shadow: none;
         background: #fff;
       }
+  }
+
+  &__ongoing{
+    text-align: center;
+    color: #0351ff;
+    font-weight: bold;
+    font-size: 16px;
+    animation: 2s linear infinite blink_effect;
   }
 }

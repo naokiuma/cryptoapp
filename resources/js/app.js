@@ -33,6 +33,7 @@ Vue.component('nologin-component',require('./components/NologinComponent.vue').d
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
+document.addEventListener("DOMContentLoaded", function(event) {
 
 const newsapp = new Vue({
   el: '#newsapp',
@@ -50,6 +51,8 @@ const nologinapp = new Vue({
   el: '#nologinapp',
 })
 
+
+});
 
 //const app = new Vue({
 //    el: '#app',

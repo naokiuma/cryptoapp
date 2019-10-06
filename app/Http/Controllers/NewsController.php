@@ -32,7 +32,7 @@ class NewsController extends Controller
         $list[$i]['title'] = mb_convert_encoding($items[$i]->title,"UTF-8", "auto");//mb_convert_encodingで文字列を変換
         $list[$i]['url'] = mb_convert_encoding($items[$i]->link,"UTF-8", "auto");
         $list[$i]['pubDate'] = mb_convert_encoding($items[$i]->pubDate,"UTF-8", "auto");
-        //メディア画像がある場合はその画像を、ない場合はサービス画像を。
+        //メディア画像がある場合はその画像を、ない場合はサービスのデフォルト画像を配置。
         if(isset($items[$i]->children('media', true)->content)){
           //記事のmedia内に画像があれば読み込む
           $list[$i]['image_url'] = (string)$items[$i]->children('media', true)->content->attributes()->url;

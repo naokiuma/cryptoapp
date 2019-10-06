@@ -34,8 +34,12 @@ class AutofollowController extends Controller
 
 //------------------------------------
 
-
   //オートフォロートップページ
+
+  //Sessionに'today_follow_end';が入っていると本日の本サービスでのフォローはできないようにします。1日に385人以上を超えたら制限。
+  //Sessionnに
+
+
   public function index(){
     //まずは前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）
     Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
@@ -53,30 +57,34 @@ class AutofollowController extends Controller
           Auth::user()->follow_count = 0;
           Auth::user()->follow_day = $today;
           Auth::user()->update();
+          Session::forget('today_follow_end');//フォロー自体できなくなる処理をリセット
+          Session::forget('today_follow_time');//まとめてフォローをできなくなる処理もリセット
         }else{
           //db上のフォローをした日付と本日が同じ場合は特に何もしない
           Log::debug("以前の日付と同じです。フォロー数は維持されます。");
       }
 
-
     //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
-    Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
+    //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
     $follow_count = Auth::user()->follow_count;
-    Log::debug("本日このサービスでフォローした数".$follow_count);
-      if($follow_count > 385)//テストではここを1にする。
+        //Log::debug("本日このサービスでフォローした数".$follow_count);
+      if($follow_count > 5) //本来は385にする！
       {
         Log::debug("すでに385フォロー超えています。");
-        //ここにフォローをできないようにする処理を入れる。
         Session::put('today_follow_end', true);
 
+      }else{
+        Log::debug("まだフォロー数は385を超えていません。");
       }
 
 
-
-    //まとめてフォローをできるかどうかの判定（15分ごとの判定）。
+    //-----------------------
+    //
+    //■■■まとめてフォローをできるかどうかの判定（15分ごとの判定）。■■■
     //$autofollow_readyが1ならフォローできない、0ならできる。
-    //まずはセッションにtoday_follow_timeがあるかどうかを確認。
+    //まずはセッションにtoday_follow_timeがあるかどうかを確認。ある場合はフラグを1にする。
+    //
     if(Session::get('today_follow_time')){
       $autofollow_ready = 1;//1の場合はオートフォロー不可能。
       $nowtime = date("Y/m/d H:i:s");//現在時刻
@@ -86,18 +94,18 @@ class AutofollowController extends Controller
       //今の時間と、前回のフォロー時間をタイムスタンプに入れる。
       $timeStamp1 = strtotime($nowtime);
       $timeStamp2 = strtotime($last_followtime);
-      Log::debug('$timeStamp1です'.$timeStamp1);
-      Log::debug('$timeStamp2です'.$timeStamp2);
+      //Log::debug('$timeStamp1です'.$timeStamp1);
+      //Log::debug('$timeStamp2です'.$timeStamp2);
 
       //タイムスタンプの差を計算
       $difSeconds = $timeStamp1 - $timeStamp2;
-      Log::debug('$timeStamp1と2の差です。'.$difSeconds);
+      //Log::debug('$timeStamp1と2の差です。'.$difSeconds);
 
       $difMinutes = ($difSeconds - ($difSeconds % 60)) / 60;
       $diffTime = $difMinutes % 60;
       Log::debug($diffTime."分経過しています。");
 
-          if($diffTime > 14){//15分経過しているなら
+          if($diffTime > 14){//15分以上経過しているなら
             Log::debug("前回のオートフォローから15分経過しました！タイムをリセットします。");
             Session::forget('today_follow_time');
             $autofollow_ready = 0;//オートフォロー可能な状態
@@ -110,14 +118,18 @@ class AutofollowController extends Controller
       }
 
     Log::debug("オートフォローの状態です。".$autofollow_ready);
+    Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
     Log::debug("0だと実施可能です。１だと実施できません。");
 
+    //
+    //■■■アカウント一覧を表示させる処理■■■
+    //
     //もしセッション情報がない場合、Twitter認証をしていないということになるため、ビュー側ではフォローできるアカウント情報は出さない。
     //代わりにajaxでdb上のユーザーデータを表示させる。値は$temp_userに入れます。
     $oAuth = $this->twitteroauth();//関数
     $follow_users = array();
     for($i = 0; $i < 30; $i++){
-      //DBからユーザーのscreen_nameのみランダムに取得し、$randomUserに詰め込む。
+      //DBからユーザーを30人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
       $randomUser = Autofollow::inRandomOrder()->first();
       //それを$follow_usersに詰め込む
       array_push($follow_users,$randomUser->screen_name);
@@ -129,21 +141,13 @@ class AutofollowController extends Controller
     $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_users"]);
     $temp_user = array();
     //$temp_userにランダムユーザーのスクリーンネームのみ格納。
-    for($i=0; $i<15; $i++){//本来15
+    for($i=0; $i<3; $i++){//本来15
         if(!$lookupuser[$i]->following){
          $temp_user[] = ($lookupuser[$i]);
        }
     }
-
     //$temp_userをjsonエンコードし、$users_resultsユーザー情報を取得する。
     $users_results = json_encode($temp_user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-
-//    if($autofollow_ready == 1){
-//      Log::debug("前回のまとめてフォローから'.$diffTime.'分経過しています");
-      //Session::put('difftime', $diffTime);
-//      return view('autofollow/index',compact('users_results','follow_users','autofollow_ready','diffTime'));
-      //diffTime はまとめてフォローを実施した場合に、前回からどの程度経過しているか、分で表示
-//     }
 
     return view('autofollow/index',compact('users_results','follow_users','autofollow_ready'));
     //$follow_usersはランダムにDBから取得したユーザー情報。

@@ -2243,6 +2243,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax'],
   data: function data() {
@@ -2250,6 +2256,7 @@ __webpack_require__.r(__webpack_exports__);
       el: '#twitter',
       reset_ok: true,
       autofollow: false,
+      ongoing: false,
       users: this.users_results
     };
   },
@@ -2293,6 +2300,7 @@ __webpack_require__.r(__webpack_exports__);
     },
     autofollowStart: function autofollowStart() {
       console.log("オートフォローします。");
+      this.ongoing = true;
       var allusers = this.users;
       console.log(allusers);
       var self = this;
@@ -38054,48 +38062,19 @@ var render = function() {
         staticClass: "p-autofollow__container"
       },
       [
-        _c("h2", [_vm._v("まとめてフォロー")]),
-        _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            directives: [
-              {
-                name: "model",
-                rawName: "v-model",
-                value: _vm.autofollow,
-                expression: "autofollow"
-              }
-            ],
-            attrs: { type: "checkbox" },
-            domProps: {
-              checked: Array.isArray(_vm.autofollow)
-                ? _vm._i(_vm.autofollow, null) > -1
-                : _vm.autofollow
-            },
+        _c(
+          "button",
+          {
             on: {
-              change: function($event) {
-                var $$a = _vm.autofollow,
-                  $$el = $event.target,
-                  $$c = $$el.checked ? true : false
-                if (Array.isArray($$a)) {
-                  var $$v = null,
-                    $$i = _vm._i($$a, $$v)
-                  if ($$el.checked) {
-                    $$i < 0 && (_vm.autofollow = $$a.concat([$$v]))
-                  } else {
-                    $$i > -1 &&
-                      (_vm.autofollow = $$a
-                        .slice(0, $$i)
-                        .concat($$a.slice($$i + 1)))
-                  }
-                } else {
-                  _vm.autofollow = $$c
-                }
+              click: function($event) {
+                _vm.autofollow = !_vm.autofollow
               }
             }
-          }),
-          _vm._v("\n    画面上のアカウントをまとめてフォローする。\n    ")
-        ]),
+          },
+          [_vm._v("まとめてフォロー")]
+        ),
+        _vm._v(" "),
+        _vm._m(1),
         _vm._v(" "),
         _c(
           "div",
@@ -38111,7 +38090,7 @@ var render = function() {
             staticClass: "p-autofollow__description"
           },
           [
-            _vm._m(1),
+            _vm._m(2),
             _vm._v(" "),
             _c("h3", [_vm._v("まとめてフォロー機能を実施しますか？")]),
             _vm._v(" "),
@@ -38124,6 +38103,22 @@ var render = function() {
               [_vm._v("実施する")]
             )
           ]
+        ),
+        _vm._v(" "),
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ongoing,
+                expression: "ongoing"
+              }
+            ],
+            staticClass: "p-autofollow__ongoing"
+          },
+          [_c("h4", [_vm._v("実施中です・・・しばらくお待ちください。")])]
         )
       ]
     ),
@@ -38196,7 +38191,7 @@ var staticRenderFns = [
       _vm._v("現在、まとめてフォロー機能は利用できません。"),
       _c("br"),
       _vm._v(
-        "\n  本機能は15分に一度利用可能です。利用できるまで残り分。\n  手動で一人ずつのフォローは可能です。"
+        "\n    本機能は15分に一度利用可能です。\n    手動で一人ずつのフォローは可能です。"
       )
     ])
   },
@@ -38204,10 +38199,18 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "p-autofollow__description" }, [
+      _c("p", [_vm._v("画面上のアカウントをまとめて全てフォローします。")])
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("画面上のアカウントを一度にまとめてフォローします。"),
+      _vm._v("まとめてフォローは、実施ごとに15分経過するまで利用できません。"),
       _c("br"),
-      _vm._v("\n    1度実施すると、15分経過するまで利用できません。詳しくは"),
+      _vm._v("\n          詳しくは"),
       _c(
         "a",
         {
@@ -50407,17 +50410,19 @@ Vue.component('nologin-component', __webpack_require__(/*! ./components/NologinC
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-var newsapp = new Vue({
-  el: '#newsapp'
-});
-var coinapp = new Vue({
-  el: '#coinapp'
-});
-var twitterapp = new Vue({
-  el: '#twitterapp'
-});
-var nologinapp = new Vue({
-  el: '#nologinapp'
+document.addEventListener("DOMContentLoaded", function (event) {
+  var newsapp = new Vue({
+    el: '#newsapp'
+  });
+  var coinapp = new Vue({
+    el: '#coinapp'
+  });
+  var twitterapp = new Vue({
+    el: '#twitterapp'
+  });
+  var nologinapp = new Vue({
+    el: '#nologinapp'
+  });
 }); //const app = new Vue({
 //    el: '#app',
 //});

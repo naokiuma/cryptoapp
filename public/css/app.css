@@ -203,22 +203,28 @@ a {
     transform: translateY(0);
   }
 }
-.v-enter-active,
-.v-leave-active {
-  position: absolute;
-  transition: all 1s;
+@-webkit-keyframes blink_effect {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
-.v-enter,
-.v-leave-to {
-  transform: translateX(50px);
-  opacity: 0;
+@keyframes blink_effect {
+  0% {
+    opacity: 0;
+  }
+  50% {
+    opacity: 0.5;
+  }
+  100% {
+    opacity: 1;
+  }
 }
-
-.v-move {
-  transition: transform 1s;
-}
-
 .l-billboard {
   width: 100%;
   height: 100vh;
@@ -561,7 +567,12 @@ header {
   text-align: center;
   width: 100%;
 }
-.p-autofollow__container h2 {
+@media screen and (max-width: 768px) {
+  .p-autofollow__container {
+    text-align: left;
+  }
+}
+.p-autofollow__container button {
   height: 50px;
   width: 50%;
   margin: auto;
@@ -570,9 +581,22 @@ header {
   margin: 30px auto;
   border: 3px solid #232323;
   font-size: 20px;
+  display: block;
+  box-shadow: 3px 2px;
+}
+.p-autofollow__container button:hover {
+  transform: translate3d(0, 5px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 .p-autofollow__container h3 {
   margin: 30px auto;
+}
+@media screen and (max-width: 768px) {
+  .p-autofollow__container h3 {
+    text-align: center;
+  }
 }
 .p-autofollow__container input {
   height: 20px;
@@ -597,6 +621,14 @@ header {
   color: #007db9;
   box-shadow: none;
   background: #fff;
+}
+.p-autofollow__ongoing {
+  text-align: center;
+  color: #0351ff;
+  font-weight: bold;
+  font-size: 16px;
+  -webkit-animation: 2s linear infinite blink_effect;
+          animation: 2s linear infinite blink_effect;
 }
 
 .p-coinranking__top {
@@ -1284,6 +1316,12 @@ header {
   height: 200px;
   line-height: 200px;
   text-align: center;
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  .u-short {
+    height: 100px;
+  }
 }
 .u-short p {
   padding-top: 3%;

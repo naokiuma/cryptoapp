@@ -3,27 +3,33 @@
   <section>
 
     <div class="p-autofollow__container" v-show="!reset_ok">
-    <p>現在、まとめてフォロー機能は利用できません。<br>
-    本機能は15分に一度利用可能です。利用できるまで残り分。
-    手動で一人ずつのフォローは可能です。</p>
+      <p>現在、まとめてフォロー機能は利用できません。<br>
+      本機能は15分に一度利用可能です。
+      手動で一人ずつのフォローは可能です。</p>
     </div>
+
+
 
     <div class="p-autofollow__container" v-show="reset_ok">
-    <h2>まとめてフォロー</h2>
-      <label>
-      <input type="checkbox" v-model="autofollow">
-      画面上のアカウントをまとめてフォローする。
-      </label>
+        <button  v-on:click="autofollow = !autofollow">まとめてフォロー</button>
+        <div class="p-autofollow__description">
+        <p>画面上のアカウントをまとめて全てフォローします。</p>
+        </div>
 
-      <div class="p-autofollow__description" v-show="autofollow">
-      <p>画面上のアカウントを一度にまとめてフォローします。<br>
-      1度実施すると、15分経過するまで利用できません。詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">こちら</a></p>
+          <div class="p-autofollow__description" v-show="autofollow">
+            <p>まとめてフォローは、実施ごとに15分経過するまで利用できません。<br>
+            詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">こちら</a></p>
 
-      <h3>まとめてフォロー機能を実施しますか？</h3>
-      <button class="p-autofollow__start" v-on:click="autofollowStart">実施する</button>
-      </div>
+            <h3>まとめてフォロー機能を実施しますか？</h3>
+            <button class="p-autofollow__start" v-on:click="autofollowStart">実施する</button>
+          </div>
 
+          <div class="p-autofollow__ongoing" v-show="ongoing">
+            <h4>実施中です・・・しばらくお待ちください。</h4>
+          </div>
     </div>
+
+
 
   <div class="p-twiiter__container">
 
@@ -64,6 +70,7 @@ export default{
           el: '#twitter',
           reset_ok:true,
           autofollow:false,
+          ongoing:false,
           users:this.users_results
         }
       },
@@ -105,6 +112,7 @@ export default{
           autofollowStart:function()
               {
                 console.log("オートフォローします。")
+                this.ongoing = true;
                 var allusers = this.users;
                 console.log(allusers);
                 var self = this;
