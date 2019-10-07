@@ -141,7 +141,7 @@ class AutofollowController extends Controller
     $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_users"]);
     $temp_user = array();
     //$temp_userにランダムユーザーのスクリーンネームのみ格納。
-    for($i=0; $i<3; $i++){//本来15
+    for($i=0; $i<15; $i++){//本来15
         if(!$lookupuser[$i]->following){
          $temp_user[] = ($lookupuser[$i]);
        }
@@ -238,7 +238,8 @@ class AutofollowController extends Controller
 
 
 
-  //オールフォローをしたら。セッション[today_follow_time]に時間を入れる。
+  //まとめてフォローをしたら。セッション[today_follow_time]に時間を入れる。
+  //15分経過するまで次のまとめてフォローを実施できないようにする
   if(!Session::get('today_follow_time')){
         Log::debug("today_follow_timeのセッションはありません。値を入れます");
         $nowtime = date("Y/m/d H:i:s");
@@ -250,7 +251,7 @@ class AutofollowController extends Controller
 }
 
 
-  //ユーザーを1日に数人DB追加。cronで夜9時、深夜0時、深夜3時に実行。実施。ーーーーーーーーーーーーーーーー
+  //ユーザーを1日に数人DB追加。cronで数回実施。依存ユーザーの情報がある場合はツイート更新。ーーーーーーーーーーーーーーーー
   public static function addfollow(){
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];	// APIキー

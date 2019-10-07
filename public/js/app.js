@@ -38189,11 +38189,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("現在、まとめてフォロー機能は利用できません。"),
+      _vm._v("現在、まとめてフォロー機能は利用できません。詳しくは"),
+      _c("a", { attrs: { href: "/about" } }, [_vm._v("こちら")]),
       _c("br"),
-      _vm._v(
-        "\n    本機能は15分に一度利用可能です。\n    手動で一人ずつのフォローは可能です。"
-      )
+      _vm._v("\n    本機能は15分に一度利用可能です。"),
+      _c("br"),
+      _vm._v("\n    手動で一人ずつのフォローは可能です。")
     ])
   },
   function() {
@@ -50383,6 +50384,8 @@ module.exports = function(module) {
  */
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
+__webpack_require__(/*! ./flash */ "./resources/js/flash.js");
+
 __webpack_require__(/*! ./sp-menu */ "./resources/js/sp-menu.js");
 
 __webpack_require__(/*! ./mouseover_change */ "./resources/js/mouseover_change.js");
@@ -50832,6 +50835,23 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_TwitterComponent_vue_vue_type_template_id_5da37d96___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
+
+/***/ }),
+
+/***/ "./resources/js/flash.js":
+/*!*******************************!*\
+  !*** ./resources/js/flash.js ***!
+  \*******************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+(function () {
+  'use strict'; // フラッシュメッセージのfadeout
+
+  $(function () {
+    $('.c-flash__message').fadeOut(3000);
+  });
+})();
 
 /***/ }),
 

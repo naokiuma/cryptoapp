@@ -39,14 +39,12 @@
       <div class="p-header__menu">
         @guest
           <ul>
-            <li><a href="{{ url('/') }}">TOP</a></li>
             <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
             <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
             <li><a href="{{ url('about') }}">本サービスについて</a></li>
           </ul>
         @else
           <ul>
-            <li><a href="{{ url('/') }}">TOP</a></li>
             @if (session('today_follow_time'))
             <li><a class="p-twiiter__ready" href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
             @else
@@ -55,15 +53,17 @@
             <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
             <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
             <li><a href="{{ url('about') }}">本サービスについて</a></li>
+            <li>Today`s follow：{{$user->follow_count}}</li>
             <li><a href="{{ url('auth/twitter/logout') }}"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
           </ul>
       </div>
 
-        <div>
+        <div class="p-header__user">
           <ul>
             <li>{{$user->name}}</li>
-            <li><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></li>
+            <li><a href="https://twitter.com/{{$user->handle}}" target="_blank"><img src="{{$user->avatar}}" class="p-header__icon" alt="ツイッター画像"></a></li>
           </ul>
+
         </div>
       @endguest
 
@@ -118,6 +118,7 @@
 
       <ul>
         <li><a href="{{ url('about') }}">本サービスについて</a></li>
+        <li><a href="{{ url('auth/twitter/logout') }}"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
       </ul>
 
       @endguest

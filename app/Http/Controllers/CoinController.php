@@ -13,9 +13,9 @@ class CoinController extends Controller
 {
     public function index()
     {
-      $coinupdatedate = Updatetime::all();//全てのコインの更新日時
-      $hour = $coinupdatedate[0]["updated_at"];
-      $day = $coinupdatedate[1]["updated_at"];
+      $coinupdatedate = Updatetime::all();//全てのコインの更新日時をDBより引用
+      $hour = $coinupdatedate[0]["updated_at"];//時間単位のツイートの更新日時
+      $day = $coinupdatedate[1]["updated_at"];//1日単位のツイートの更新日時
       $week = $coinupdatedate[2]["updated_at"];
       $highlow = $coinupdatedate[3]["updated_at"];
 
@@ -24,10 +24,11 @@ class CoinController extends Controller
 
 
 
-    //dbに1時間のツイート数をインサートする処理（定期バッジをする）
+    //dbに1時間のツイート数をDBインサートする処理（定期バッジをする）
+    //ページにアクセスすると結果も確認可能
     public static function hour()
     {
-
+      //ツイッター認証
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];
       $consumerSecret = $config['twitter']['client_secret'];
@@ -35,15 +36,16 @@ class CoinController extends Controller
       $accessTokenSecret = $config['twitter']['access_token_secret'];
       date_default_timezone_set('Asia/Tokyo');//https://blog.codecamp.jp/php-datetime参考
       $now_time = date("Y-m-d_H:i:s")."_JST";//今の時間
-      $before_hour = date('Y-m-d_H:i:s', strtotime('-1 hour', time()))."_JST";//先日の時間
+      $before_hour = date('Y-m-d_H:i:s', strtotime('-1 hour', time()))."_JST";//カウント開始の時間
       echo '<pre>'; print_r($now_time); echo '</pre>';
       echo '<pre>'; print_r($before_hour); echo '</pre>';
 
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      $search_key ='"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR
+       "ファクトム" OR "リップル" OR "XEM" OR "ライトコイン" OR "ビットコインキャッシュ" OR
+       "モナコイン" OR "DASH" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_hour,'until' => $now_time, );
       // 取得
@@ -52,7 +54,7 @@ class CoinController extends Controller
       $results = $oAuth->get("search/tweets", $options);
       for($i=0; $i<$request_loop; $i++){
         foreach($results->statuses as $val){
-          $tweet_results[]['text'] = $val->text; //とりあえず取得したツイートを配列へ
+          $tweet_results[]['text'] = $val->text; //取得したツイートを配列へ積み重ねていく
         }
       //これ以上取得できるツイートがあるか条件分岐
       if(isset($results->search_metadata->next_results)){
@@ -66,8 +68,8 @@ class CoinController extends Controller
 
       $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
       $count = count($tweet_results);//ツイート数
-      //echo $count . "←tweet_resultsの中身";
 
+      //一致するテキストがあればカウントアップ
       for($i = 0; $i < $count; $i++){
         if(stristr($tweet_results[$i]['text'],"ビットコイン") !== false){
           $btc++;
@@ -200,7 +202,8 @@ class CoinController extends Controller
 
 
 
-    //dbに1日のツイート数をインサートする処理（cronでの定期バッジをする）
+    //dbに1時間のツイート数をDBインサートする処理（定期バッジをする）
+    //ページにアクセスすると結果も確認可能
     public static function day()
     {
 
@@ -217,8 +220,8 @@ class CoinController extends Controller
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR "ファクトム" OR "リップル" OR
+      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "DASH" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_day,'until' => $now_time, );
       // 取得
@@ -392,7 +395,7 @@ class CoinController extends Controller
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "仮想通貨リスク" OR "ファクトム" OR "リップル" OR
+      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR "ファクトム" OR "リップル" OR
       "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_week,'until' => $now_time, );
@@ -548,8 +551,8 @@ class CoinController extends Controller
     }
 
 
-    //---------------coincheckや、zaifなどのパブリックAPIから取引価格取得。
-    //ページにアクセスするとまとめた情報を見ることができる
+    //---------------coincheckや、zaifなどのパブリックAPIから取引価格取得しDBに保管
+    //ページにアクセスするとまとめた情報を見ることもできる
     public static function highandlow(){
 
       $API_btc_URL = "https://coincheck.com/api/ticker";

@@ -3,8 +3,8 @@
   <section>
 
     <div class="p-autofollow__container" v-show="!reset_ok">
-      <p>現在、まとめてフォロー機能は利用できません。<br>
-      本機能は15分に一度利用可能です。
+      <p>現在、まとめてフォロー機能は利用できません。詳しくは<a href="/about">こちら</a><br>
+      本機能は15分に一度利用可能です。<br>
       手動で一人ずつのフォローは可能です。</p>
     </div>
 

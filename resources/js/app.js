@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+require('./flash');
 require('./sp-menu');
 require('./mouseover_change');
 

@@ -2,7 +2,7 @@
 
 @section('content')
 <!--ビルボード-->
-<section class="l-billboard">
+<section class="l-billboard" id="top">
     <div class="p-hero__title">
       <h2>CryptoTrend</h2>
       <p>SNSを使い仮想通貨の<br>
@@ -66,9 +66,9 @@
 
       <div class="c-box u-width__wide">
         <h2>まとめてフォロー</h2>
-        <p>SNSサービス『Twitter』からプロフィールや名前に『仮想通貨』と入っているアカウントのみを表示させました。<br>
+        <p>SNSサービス『Twitter』からプロフィールや名前に<br>『仮想通貨』と入っているアカウントのみを表示させました。<br>
         <br>
-        一人一人選んでフォローはもちろん、画面一覧のアカウントを「まとめてフォロー」することも可能です。<br>
+        一人一人選んでフォローはもちろん、<br>画面一覧のアカウントを「まとめてフォロー」することも可能です。<br>
         ※「まとめてフォロー」は<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">Twitter社の仕様</a>に準じたフォローの制限数を設けています。
 
         </p>
@@ -133,11 +133,7 @@
 </h2>
 
 </div>
-<!--
-<h2 class="c-text u-short">
-  <span>さっそく始めよう。</span>
-</h2>
--->
+
 
   <section class="p-functions__container u-mouseover__resurt">
       <div class="p-functions__twiiter u-mouseover__twitter">
@@ -163,72 +159,32 @@
       </div>
 </section>
 
+
+
+@guest
+
 <h2 class="c-text u-short">
   <span>未登録の方はこちら</span>
 </h2>
 
-
-<!--早速始める情報-->
 <section class="l-main__mini">
 
     <div class="p-start">
-        <a href="{{ url('register') }}"><button type="button" name="button">SiGN UP</button></a>
+        <button type="button" name="button"><a href="{{ url('register') }}">SiGN UP</a></button>
       <div class="p-start__under">
         <p>※メールアドレス、Twitterアカウントが必要です。</p>
       </div>
     </div>
 </section>
 
-<!--
-  <div class="p-start">
-    <div class="p-start__text">
-      <a href="{{ url('register') }}"><p>SiGN UP</p></a>
-      <a href="{{ url('register') }}"><button type="button" name="button">SiGN UP</button></a>
-    </div>
-    <div class="p-start__under">
-      <p>※メールアドレス、Twitterアカウントが必要です。</p>
-    </div>
-  </div>
 
--->
+@endguest
 
 
 
+<div class="u-short">
+  <h2><a href="#top">topへ戻る</a></h2>
 
-  <footer>
-    <div class="l-footernavi__container">
-      @guest
-
-      <ul>
-        <li><a href="{{ url('register') }}"><i class="fas fa-play"></i>新規登録</a></li>
-        <li><a href="{{ url('login') }}"><i class="fas fa-sign-in-alt"></i>ログイン</a></li>
-        <li><a href="{{ url('password/reset') }}"><i class="fas fa-key"></i>パスワードを忘れた方</a></li>
-      </ul>
-
-      <ul>
-        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
-      </ul>
-
-      <ul>
-        <li><a href="{{ url('about') }}">本サービスについて</a></li>
-      </ul>
-
-      @else
-      <ul>
-        <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
-        <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
-        <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
-      </ul>
-
-      <ul>
-        <li><a href="{{ url('about') }}">本サービスについて</a></li>
-      </ul>
-
-      @endguest
-    </div>
-  </footer>
-
+</div>
 
 @endsection
