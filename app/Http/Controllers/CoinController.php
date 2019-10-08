@@ -9,6 +9,8 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 use App\Updatetime;
 use App\Coin;
 
+//通貨トレンド関連のクラス。
+//indexでページを表示させ、hour/day/week/highandlowでdb上のcoinテーブルの値を更新。cronで定期更新
 class CoinController extends Controller
 {
     public function index()
@@ -43,28 +45,32 @@ class CoinController extends Controller
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key ='"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR
-       "ファクトム" OR "リップル" OR "XEM" OR "ライトコイン" OR "ビットコインキャッシュ" OR
-       "モナコイン" OR "DASH" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      $search_key ='"仮想通貨" OR "ビットコイン" OR "Btc" OR "イーサリアム" OR "Eth" OR "イーサリアムクラシック" OR "Etc" OR "仮想通貨リスク" OR "Lisk" OR
+      "ファクトム" OR "Fct" OR "リップル" OR "Xrp" OR "ネム" OR "Nem " OR "ライトコイン" OR "Ltc" OR "ビットコインキャッシュ" OR "Bch" OR
+      "モナコイン" OR "Mona" OR "仮想通貨ダッシュ” OR "Dash" OR "ジーキャッシュ" OR "Zec" OR "モネロ" OR "Xmr" OR "オーガー" OR "Rep"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_hour,'until' => $now_time, );
       // 取得
       $request_loop = 1; //15分の上限 180
       $tweet_results = array();
       $results = $oAuth->get("search/tweets", $options);
+
+
       for($i=0; $i<$request_loop; $i++){
         foreach($results->statuses as $val){
           $tweet_results[]['text'] = $val->text; //取得したツイートを配列へ積み重ねていく
         }
       //これ以上取得できるツイートがあるか条件分岐
-      if(isset($results->search_metadata->next_results)){
-        //次ページのmax_id値を取得
-        $max_id = preg_replace('/.*?max_id=([\d]+)&.*/', '$1', $results->search_metadata->next_results);
-        $options['max_id'] = $max_id; // あればmax_idをoptionsに追加
-        }else{
-        break; // なければループを抜ける
-        }
+        if(isset($results->search_metadata->next_results)){
+          //次ページのmax_id値を取得
+          $max_id = preg_replace('/.*?max_id=([\d]+)&.*/', '$1', $results->search_metadata->next_results);
+          $options['max_id'] = $max_id; // あればmax_idをoptionsに追加
+          }else{
+          break; // なければループを抜ける
+          }
       }
+      //  Log::debug($tweet_results);確認用
+
 
       $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
       $count = count($tweet_results);//ツイート数
@@ -188,7 +194,7 @@ class CoinController extends Controller
     $coin_rep->save();
 
 
-    //DB上の更新日時記録テーブルを更新
+    //DB上の更新日時記録テーブルの「hour/id:1」を更新
     date_default_timezone_set('Asia/Tokyo');
     $now_time = date("Y-m-d H:i:s");//今の時間
     //Log::debug($now_time);
@@ -198,6 +204,9 @@ class CoinController extends Controller
 
     return view('coin/hour');
     }
+
+
+
 
 
 
@@ -217,11 +226,13 @@ class CoinController extends Controller
       $before_day = date('Y-m-d_H:i:s', strtotime('-1 day', time()))."_JST";//先日の時間
       echo '<pre>'; print_r($now_time); echo '</pre>';
       echo '<pre>'; print_r($before_day); echo '</pre>';
+      $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "DASH" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      $search_key = '"仮想通貨" OR "ビットコイン" OR "Btc" OR "イーサリアム" OR "Eth" OR "イーサリアムクラシック" OR "Etc" OR "仮想通貨リスク" OR "Lisk" OR
+      "ファクトム" OR "Fct" OR "リップル" OR "Xrp" OR "ネム" OR "Nem " OR "ライトコイン" OR "Ltc" OR "ビットコインキャッシュ" OR "Bch" OR
+      "モナコイン" OR "Mona" OR "仮想通貨ダッシュ” OR "Dash" OR "ジーキャッシュ" OR "Zec" OR "モネロ" OR "Xmr" OR "オーガー" OR "Rep"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_day,'until' => $now_time, );
       // 取得
@@ -243,6 +254,8 @@ class CoinController extends Controller
         }
       }
 
+        Log::debug($tweet_results);//確認用
+
       $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
       $count = count($tweet_results);//ツイート数
       echo $count . "←tweet_resultsの中身";
@@ -257,7 +270,7 @@ class CoinController extends Controller
         if(stristr($tweet_results[$i]['text'],"イーサリアムクラシック") !== false || stristr($tweet_results[$i]['text'],"ETC") !== false){
           $etc++;
           }
-        if(stristr($tweet_results[$i]['text'],"仮想通貨リスク") !== false || stristr($tweet_results[$i]['text'],"LISK") !== false){
+        if(stristr($tweet_results[$i]['text'],"リスク") !== false || stristr($tweet_results[$i]['text'],"LISK") !== false){
           $lsk++;
           }
         if(stristr($tweet_results[$i]['text'],"ファクトム") !== false || stristr($tweet_results[$i]['text'],"FCT") !== false){
@@ -278,7 +291,7 @@ class CoinController extends Controller
         if(stristr($tweet_results[$i]['text'],"モナコイン") !== false || stristr($tweet_results[$i]['text'],"mona") !== false){
           $mona++;
           }
-        if(stristr($tweet_results[$i]['text'],"仮想通貨ダッシュ") !== false || stristr($tweet_results[$i]['text'],"DASH") !== false){
+        if(stristr($tweet_results[$i]['text'],"ダッシュ") !== false || stristr($tweet_results[$i]['text'],"Dash") !== false){
           $dash++;
           }
         if(stristr($tweet_results[$i]['text'],"ジーキャッシュ") !== false || stristr($tweet_results[$i]['text'],"ZEC") !== false){
@@ -365,7 +378,7 @@ class CoinController extends Controller
     $coin_rep->save();
 
 
-    //DB上の更新日時記録テーブルを更新
+    //DB上の更新日時記録テーブル「day/id:2」を更新
     date_default_timezone_set('Asia/Tokyo');
     $now_time = date("Y-m-d H:i:s");//今の時間
     //Log::debug($now_time);
@@ -395,8 +408,9 @@ class CoinController extends Controller
 
       $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
       #検索ワード複数
-      $search_key = '"ビットコイン" OR "イーサリアム" OR "イーサリアムクラシック" OR "リスク" OR "ファクトム" OR "リップル" OR
-      "ネム" OR "ライトコイン" OR "ビットコインキャッシュ" OR "モナコイン" OR "ダッシュ" OR "ジーキャッシュ" OR "モネロ" OR "オーガー"';
+      $search_key = '"仮想通貨" OR "ビットコイン" OR "Btc" OR "イーサリアム" OR "Eth" OR "イーサリアムクラシック" OR "Etc" OR "仮想通貨リスク" OR "Lisk" OR
+      "ファクトム" OR "Fct" OR "リップル" OR "Xrp" OR "ネム" OR "Nem " OR "ライトコイン" OR "Ltc" OR "ビットコインキャッシュ" OR "Bch" OR
+      "モナコイン" OR "Mona" OR "仮想通貨ダッシュ” OR "Dash" OR "ジーキャッシュ" OR "Zec" OR "モネロ" OR "Xmr" OR "オーガー" OR "Rep"';
       // 取得オプション
       $options = array('q'=>$search_key, 'count'=>100, 'result_type' => 'recent','since' => $before_week,'until' => $now_time, );
       // 取得
@@ -539,7 +553,7 @@ class CoinController extends Controller
     $coin_rep->week = $rep;
     $coin_rep->save();
 
-    //DB上の更新日時記録テーブルを更新
+    //DB上の更新日時記録テーブルの「week/id:3」を更新
     date_default_timezone_set('Asia/Tokyo');
     $now_time = date("Y-m-d H:i:s");//今の時間
     //Log::debug($now_time);

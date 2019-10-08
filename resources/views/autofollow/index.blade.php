@@ -11,7 +11,7 @@
   <p class="p-desc__text c-text">
     Twitter上で『仮想通貨』という名称を含むプロフィールやアカウント一覧を表示します。<br>
     ※ログインアカウントの未フォローユーザーが表示されます。<br>
-    本機能の仕組みについては<a href="/about/#about_twitter" target="_blank">[こちら]</a>を参照してください。
+    本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
 </div>
 
@@ -21,12 +21,13 @@
 </div>
 
 @if (session('today_follow_end'))
+<!--本日のフォローができない。-->>
 
 <div class="p-desc__container">
   <p class="p-desc__text c-text">
     本日はすでに多くのフォローを実施しているため、まとめてフォロー、個別フォローもできません。<br>
     明日以降アクセスしてください。<br>
-    <a href="#">※フォロー制限について</a>
+    <a href="{{ url('about') }}/#about_limit">※フォロー制限について</a>
   </p>
   <div class="u-short"></div>
 

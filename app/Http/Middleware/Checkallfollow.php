@@ -29,18 +29,15 @@ class Checkallfollow
         //今の時間と、前回のフォロー時間をタイムスタンプに入れる。
         $timeStamp1 = strtotime($nowtime);
         $timeStamp2 = strtotime($last_followtime);
-        //Log::debug('$timeStamp1です'.$timeStamp1);
-        //Log::debug('$timeStamp2です'.$timeStamp2);
-
         //タイムスタンプの差を計算
         $difSeconds = $timeStamp1 - $timeStamp2;
         Log::debug('$timeStamp1と2の差です。'.$difSeconds);
-
+        //分を計算
         $difMinutes = ($difSeconds - ($difSeconds % 60)) / 60;
         $diffTime = $difMinutes % 60;
         Log::debug($diffTime."分経過しています。");
 
-            if($diffTime > 14){//15分以上経過しているなら
+            if($diffTime > 14){//15分以上経過しているならセッションを削除しオートフォロー可能な状態に。
               Log::debug("前回のまとめてフォローから15分経過しました！タイムをリセットします。");
               Session::forget('today_follow_time');
               $autofollow_ready = 0;//オートフォロー可能な状態
@@ -51,6 +48,7 @@ class Checkallfollow
         }else{
           $autofollow_ready = 0;//オートフォロー可能な状態
         }
+        
       Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
       Log::debug("まとめてフォローの状態です。".$autofollow_ready);
       Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");

@@ -6,13 +6,20 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\DB; //これ参考https://readouble.com/laravel/5.7/ja/queries.html
+use Illuminate\Support\Facades\DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Autofollow;
 use App\User;
 use App\Updatetime;
 use Session;
 use Abraham\TwitterOAuth\TwitterOAuth;
+
+//まとめてフォロー関連のクラス。
+//twitteroauth でサービスログインユーザーのツイッター情報を取得する。
+//indexまとめてフォローのページ表示/followはフォローの実施アクション/allfollowはまとめてフォローの機能
+//addfollowでdbに定期的（日に一度）ツイッターから情報を取得し、仮想通貨関連のアカウントを取り込む。
+//（それを元にindex側でアカウントを表示します。）
+
 
 
 class AutofollowController extends Controller
@@ -35,15 +42,9 @@ class AutofollowController extends Controller
 //------------------------------------
 
   //オートフォロートップページ
-
   //Sessionに'today_follow_end';が入っていると本日の本サービスでのフォローはできないようにします。1日に385人以上を超えたら制限。
-  //Sessionnに
-
-
   public function index(){
-
-
-    //■■■まずはまとめてフォローをできるかどうかの判定（15分ごとの判定）。■■■
+    //まずはまとめてフォローをできるかどうかの判定（15分ごとの判定）。■■■
     //$autofollow_readyが1ならフォローできない、0ならできる。
     //まずはセッションにtoday_follow_timeがあるかどうかを確認。ある場合はフラグを1にする。
     //
@@ -160,9 +161,6 @@ class AutofollowController extends Controller
     $users_results = json_encode($temp_user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 
-
-
-
     return view('autofollow/index',compact('users_results','follow_users','autofollow_ready'));
     //viewに渡す変数の説明↓
     //$follow_usersはランダムにDBから取得したユーザー情報。
@@ -200,9 +198,10 @@ class AutofollowController extends Controller
       Auth::user()->follow_count = $sum;
       Auth::user()->update();
 
-
   return response()->json(['result' => true]);
   }
+
+
 
 
 
@@ -250,10 +249,7 @@ class AutofollowController extends Controller
     $sum = $now_follow_num + 1;
 
 
-
-
-
-  //まとめてフォローをしたら。セッション[today_follow_time]に時間を入れる。
+  //まとめてフォローをしたらセッション[today_follow_time]に時間を入れる。
   //15分経過するまで次のまとめてフォローを実施できないようにする
   if(!Session::get('today_follow_time')){
         Log::debug("today_follow_timeのセッションはありません。値を入れます");
@@ -261,12 +257,11 @@ class AutofollowController extends Controller
         Session::put('today_follow_time', $nowtime);
       }
 
-
     return view('autofollow/addfollow');
 }
 
 
-  //ユーザーを1日に数人DB追加。cronで数回実施。依存ユーザーの情報がある場合はツイート更新。ーーーーーーーーーーーーーーーー
+  //ーーーーーユーザーを1日に数人DB追加。cronで数回実施。依存ユーザーの情報がある場合はツイート更新。
   public static function addfollow(){
       $config = config('services');
       $consumerKey = $config['twitter']['client_id'];	// APIキー

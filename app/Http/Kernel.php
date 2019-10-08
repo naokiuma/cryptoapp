@@ -31,9 +31,9 @@ class Kernel extends HttpKernel
             \App\Http\Middleware\EncryptCookies::class,
             \Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse::class,
             \Illuminate\Session\Middleware\StartSession::class,
-            // \Illuminate\Session\Middleware\AuthenticateSession::class,
             \Illuminate\View\Middleware\ShareErrorsFromSession::class,
             \App\Http\Middleware\VerifyCsrfToken::class,
+          //  \App\Http\Middleware\ResponseHeader::class,
             \Illuminate\Routing\Middleware\SubstituteBindings::class,
         ],
 
@@ -62,7 +62,7 @@ class Kernel extends HttpKernel
         'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
         'check' => \App\Http\Middleware\CheckLogin::class,
         'logout' => \App\Http\Middleware\Logout::class,
-        'allfollo' => \App\Http\Middleware\Checkallfollow::class,
+        'allfollow' => \App\Http\Middleware\Checkallfollow::class,
 
     ];
 

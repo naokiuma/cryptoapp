@@ -153,6 +153,7 @@ a {
   color: black;
 }
 
+/*------アイコンフォント------*/
 .fa-twitter {
   color: aqua;
 }
@@ -173,6 +174,10 @@ a {
   .fa-arrow-down {
     font-size: 100px;
   }
+}
+
+.fontIcon {
+  font-size: 150px;
 }
 
 /*------アニメーション------*/
@@ -406,28 +411,39 @@ header {
   margin-left: 3%;
 }
 
-.c-fonticon {
-  font-size: 150px;
-}
-
 .c-form {
   height: 700px;
   width: 90%;
   margin: 20px auto;
 }
 .c-form__group {
-  margin: 3%;
+  margin: 5% auto;
+}
+.c-form__group textarea {
+  width: 100%;
+  border: 2px solid;
 }
 .c-form__title {
   font-size: 36px;
   text-align: center;
-  margin: 30px;
+  margin: 0px 30px 75px 30px;
+}
+@media screen and (max-width: 768px) {
+  .c-form__title {
+    margin: 0px 30px 30px 30px;
+    font-size: 20px;
+  }
 }
 .c-form__body {
   text-align: center;
 }
 .c-form__label {
   font-size: 20px;
+}
+@media screen and (max-width: 768px) {
+  .c-form__label {
+    font-size: 16px;
+  }
 }
 .c-form__control {
   vertical-align: middle;
@@ -440,6 +456,9 @@ header {
   .c-form__control {
     width: 300px;
   }
+}
+.c-form__control input {
+  margin-bottom: 10px;
 }
 .c-form__btn {
   width: 200px;
@@ -458,6 +477,7 @@ header {
 }
 .c-form__container {
   margin: 10% auto;
+  width: 70%;
 }
 
 .c-text {
@@ -767,15 +787,14 @@ header {
   background-color: #bcf0c3;
 }
 
-.p-decs__main {
+.p-desc__main {
   text-align: center;
 }
 @media screen and (max-width: 768px) {
-  .p-decs__main {
+  .p-desc__main {
     text-align: left;
   }
 }
-
 .p-desc__container {
   width: 100%;
 }
@@ -789,7 +808,6 @@ header {
     height: 30px;
   }
 }
-
 .p-desc__title {
   width: 80%;
   margin: 10% auto 5% auto;
@@ -810,9 +828,8 @@ header {
     font-size: 20px;
   }
 }
-
 .p-desc__text {
-  width: 70%;
+  width: 80%;
   line-height: 30px;
   margin: auto;
   border-bottom: 1px solid;
@@ -937,7 +954,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-functions__sp {
     display: block;
-    width: 70%;
+    width: 300px;
     margin: 10px auto;
     background-color: beige;
   }
@@ -1167,6 +1184,7 @@ header {
   height: 10%;
   font-size: 10px;
   display: block;
+  box-shadow: 1px 1px;
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn {

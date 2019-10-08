@@ -8,7 +8,6 @@ $font-s:16px;
 $res-max-width:768px;
 
 
-//つけたしたもの
 #wrapper{
   display: flex;
   flex-direction: column;
@@ -62,7 +61,7 @@ a{
 }
 
 
-//アイコンフォントツイッターには青色
+/*------アイコンフォント------*/
 .fa-twitter{
    color: aqua;
 }
@@ -81,6 +80,10 @@ a{
     font-size: 100px;
     }
 
+}
+
+.fontIcon{
+  font-size: 150px;
 }
 
 /*------アニメーション------*/

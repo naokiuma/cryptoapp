@@ -91,11 +91,11 @@
     border-bottom: none;/*線を消す*/
     }
   }
-  &__sp{
+  &__sp{//スマホ用の画像
     display: none;
     @media screen and (max-width: $res-max-width){
       display: block;
-      width: 70%;
+      width: 300px;
       margin: 10px auto;
       background-color: beige;
     }

@@ -4,18 +4,29 @@
   margin: 20px auto;
 
    &__group{
-     margin: 3%;
+     margin: 5% auto;
+     textarea{
+       width: 100%;
+       border: 2px solid;
+     }
    }
    &__title{
     font-size:$font-xl;
     text-align: center;
-    margin:30px;
+    margin:0px 30px 75px 30px;
+      @media screen and (max-width: $res-max-width){
+       margin:0px 30px 30px 30px;
+       font-size: 20px;
+      }
     }
    &__body{
      text-align: center;
    }
    &__label{
      font-size:$font-m;
+     @media screen and (max-width: $res-max-width){
+       font-size: 16px;
+     }
    }
    &__control{
      vertical-align: middle;
@@ -24,8 +35,11 @@
      margin-top: 10px;
      border: 1px solid;
      @media screen and (max-width: $res-max-width){
-      width: 300px;
+       width: 300px;
      }
+    input{
+      margin-bottom: 10px;
+    }
    }
    &__btn{
      width: 200px;
@@ -46,6 +60,7 @@
    }
    &__container{
      margin: 10% auto;
+     width: 70%;
    }
 
 }

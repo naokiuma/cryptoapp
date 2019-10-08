@@ -65,7 +65,7 @@ Route::group(['middleware' => 'check'],function(){
 });
 
 //まとめてフォローのセッションチェック処理を下記、各ページにアクセスするたびに行う
-Route::group(['middleware' => 'allfollo'],function(){
+Route::group(['middleware' => 'allfollow'],function(){
   Route::get('/', function () { return view('top'); })->name('top');
   Route::get('/about', function () {return view('about');})->name('about');
   Route::get('news','NewsController@index')->name('news');

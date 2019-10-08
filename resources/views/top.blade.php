@@ -10,6 +10,7 @@
     </div>
 </section>
 
+
 <!--サービスの説明-->
 <section class="p-decs__main">
   <div class="p-desc__container">
@@ -27,6 +28,8 @@
   </div>
 </section>
 
+
+<!--サービスの説明続き-->
 <h2 class="c-text__attention u-short">
   <span>こんなことに困っていませんか？</span>
 </h2>
@@ -42,25 +45,22 @@
 
     <h4>関連情報を探してまとめるのに時間がかかる。</h4>
     <img alt="サーチ" src="{{ asset('/img/search2.jpg') }}">
-
   </div>
-
 </section>
+
 
 <div class="u-short">
   <i class="fas fa-arrow-down"></i>
 </div>
 
 
-
-
+<!--機能紹介-->
 <h2 class="c-text u-short">
   <span>3つの機能でお手伝いします！</span>
 </h2>
 
 
 <section class="l-main__sub__container">
-
 
   <section class="l-main__sub">
 
@@ -79,7 +79,7 @@
       </div>
 
       <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-        <i class="fab fa-twitter c-fonticon"></i>
+        <i class="fab fa-twitter fontIcon"></i>
       </div>
   </section>
 
@@ -88,7 +88,7 @@
   <section class="l-main__sub">
 
       <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-        <i class="fas fa-coins c-fonticon"></i>
+        <i class="fas fa-coins fontIcon"></i>
       </div>
 
       <div class="c-box u-width__wide">
@@ -119,11 +119,12 @@
       </div>
 
       <div class="c-box u-width__narrow"><!--スマホでは非表示-->
-        <i class="far fa-newspaper c-fonticon"></i>
+        <i class="far fa-newspaper fontIcon"></i>
       </div>
 
   </section>
 </section>
+
 
 
 <div class="p-desc__container">
@@ -131,37 +132,43 @@
 <h2 class="p-desc__title c-text">
   さっそく始めよう。
 </h2>
-
 </div>
-
+<!--各種機能へのリンクとイメージ-->
 
   <section class="p-functions__container u-mouseover__resurt">
       <div class="p-functions__twiiter u-mouseover__twitter">
         <div class="c-text">
           <a href="{{ url('autofollow') }}"><h3>まとめてフォロー</h3></a>
         </div>
-        <img class="p-functions__sp" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
+          <a href="{{ url('autofollow') }}">
+          <img class="p-functions__sp" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
+          </a>
       </div>
 
       <div class="p-functions__coins u-mouseover__coins">
         <div class="c-text">
           <a href="{{ url('coin') }}"><h3>通貨トレンド情報</h3></a>
         </div>
-        <img class="p-functions__sp" src="{{ asset('/img/check-hard.png') }}" alt="スマートフォン用の画像" >
-
+          <a href="{{ url('coin') }}">
+          <img class="p-functions__sp" src="{{ asset('/img/check-hard.png') }}" alt="スマートフォン用の画像" >
+          </a>
       </div>
+
       <div class="p-functions__news u-mouseover__news">
         <div class="c-text">
           <a href="{{ url('news') }}"><h3>仮想通貨ニュース</h3></a>
         </div>
-        <img class="p-functions__sp" src="{{ asset('/img/swiper_news.jpg') }}" alt="スマートフォン用の画像" >
-
+          <a href="{{ url('news') }}">
+          <img class="p-functions__sp" src="{{ asset('/img/swiper_news.jpg') }}" alt="スマートフォン用の画像" >
+          </a>
       </div>
+
 </section>
 
 
 
 @guest
+<!--ログインしていない場合はsignupボタン-->
 
 <h2 class="c-text u-short">
   <span>未登録の方はこちら</span>
@@ -177,10 +184,7 @@
     </div>
 </section>
 
-
 @endguest
-
-
 
 <div class="u-short">
   <h2><a href="#top">topへ戻る</a></h2>

@@ -15,7 +15,7 @@
         <div class="c-form__group">
             <label for="email" class="c-form__label">{{ __('E-Mail Address') }}</label>
 
-            <div class="col-md-6">
+            <div>
                 <input id="email" type="text" class="c-form__control" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
                 @error('email')
                     <span class="u-error" role="alert">
@@ -28,7 +28,7 @@
         <div class="c-form__group">
             <label for="password" class="c-form__label">{{ __('Password') }}</label>
 
-            <div class="col-md-6">
+            <div>
                 <input id="password" type="password" class="c-form__control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
 
                 @error('password')
