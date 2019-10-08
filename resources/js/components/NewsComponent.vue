@@ -22,7 +22,6 @@
         'list_gn'
         ],
         mounted() {
-            console.log('this.list_gn')
         }
     }
 </script>

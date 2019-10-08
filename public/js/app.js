@@ -1977,14 +1977,11 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.hour);
-    console.log(this.week);
     this.showHour();
     var self = this;
     var url = this.coin_ajax;
     axios.get(url).then(function (response) {
       self.coins = response.data;
-      console.log(self.coins);
     });
   },
   computed: {
@@ -2006,7 +2003,6 @@ __webpack_require__.r(__webpack_exports__);
     },
     sortCoinsByWeek: function sortCoinsByWeek() {
       if (this.week_show) {
-        console.log("一週間でソートします。");
         var arr = this.coins;
         return arr.slice().sort(function (a, b) {
           return b.week - a.week;
@@ -2016,7 +2012,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showHour: function showHour() {
-      console.log("1時間のデータ表示。");
       this.hour_show = true;
       this.showCoins = [];
       this.exitCoins = [];
@@ -2024,7 +2019,6 @@ __webpack_require__.r(__webpack_exports__);
       this.week_show = false;
     },
     showDay: function showDay() {
-      console.log("1日のデータ表示。");
       this.day_show = true;
       this.showCoins = [];
       this.exitCoins = [];
@@ -2032,7 +2026,6 @@ __webpack_require__.r(__webpack_exports__);
       this.week_show = false;
     },
     showWeek: function showWeek() {
-      console.log("1週間のデータ表示。");
       this.week_show = true;
       this.showCoins = [];
       this.exitCoins = [];
@@ -2041,22 +2034,17 @@ __webpack_require__.r(__webpack_exports__);
     },
     pushCoin: function pushCoin(pcoin) {
       if (this.exitCoins.indexOf(pcoin.name) == -1) {
-        console.log("未登録です、pushcoin実行します。");
         this.showCoins.push(pcoin);
         this.isClicked = pcoin.id;
         this.exitCoins.push(pcoin.name);
-        console.log("exitcoinです");
-        console.log(this.exitCoins);
         this.hour_show = false;
         this.day_show = false;
         this.week_show = false;
       } else {
-        console.log("すでに登録済みです。");
         this.flash_message = true;
       }
     },
     resetCoin: function resetCoin() {
-      console.log("削除します。");
       this.showCoins = [];
       this.exitCoins = [];
       this.hour_show = true;
@@ -2128,9 +2116,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['list_gn'],
-  mounted: function mounted() {
-    console.log('this.list_gn');
-  }
+  mounted: function mounted() {}
 });
 
 /***/ }),
@@ -2269,11 +2255,6 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.diffTime);
-    console.log(this.users_results);
-    console.log(this.follow_users);
-    console.log(this.autofollow_ready);
-
     if (this.autofollow_ready == 1) {
       this.reset_ok = false;
     } else {
@@ -2289,8 +2270,6 @@ __webpack_require__.r(__webpack_exports__);
         user_name: user.screen_name,
         user_following: user.following
       };
-      console.log(data);
-      console.log(index);
       var self = this;
       var url = this.autofollow_ajax;
       axios.post(url, {
@@ -2299,25 +2278,18 @@ __webpack_require__.r(__webpack_exports__);
         alert('フォローしました。');
 
         _this.users.splice(index, 1);
-
-        console.log("axios成功");
-        console.log(res);
       })["catch"](function (error) {
         console.log(error);
       });
     },
     autofollowStart: function autofollowStart() {
-      console.log("オートフォローします。");
       this.ongoing = true;
       var allusers = this.users;
-      console.log(allusers);
       var self = this;
       var url = this.autofollowall_ajax;
       axios.post(url, {
         allusers: allusers
       }).then(function (res) {
-        console.log("axios成功");
-        console.log(res);
         alert('全ユーザーフォローしました。再読み込みします。');
         location.reload();
       })["catch"](function (error) {

@@ -122,14 +122,11 @@
             }
         },
         mounted(){
-        console.log(this.hour);
-        console.log(this.week);
         this.showHour();
             var self = this;
             var url = this.coin_ajax;
             axios.get(url).then(function(response){
               self.coins = response.data;
-              console.log(self.coins);
             });
         },
         computed:{
@@ -153,7 +150,6 @@
               },
           sortCoinsByWeek:function(){
             if(this.week_show){
-            console.log("一週間でソートします。");
             var arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.week - a.week;
@@ -165,7 +161,6 @@
 
         methods:{
           showHour:function(){
-            console.log("1時間のデータ表示。");
             this.hour_show = true;
             this.showCoins = [];
             this.exitCoins = [];
@@ -173,7 +168,6 @@
             this.week_show = false;
             },
           showDay:function(){
-            console.log("1日のデータ表示。");
             this.day_show = true;
             this.showCoins = [];
             this.exitCoins = [];
@@ -181,7 +175,6 @@
             this.week_show = false;
             },
           showWeek:function(){
-            console.log("1週間のデータ表示。");
             this.week_show = true;
             this.showCoins = [];
             this.exitCoins = [];
@@ -191,23 +184,18 @@
 
           pushCoin(pcoin){
               if (this.exitCoins.indexOf(pcoin.name) == -1){
-                console.log("未登録です、pushcoin実行します。");
                 this.showCoins.push(pcoin);
                 this.isClicked = pcoin.id;
                 this.exitCoins.push(pcoin.name);
-                console.log("exitcoinです");
-                console.log(this.exitCoins);
                 this.hour_show = false;
                 this.day_show = false;
                 this.week_show = false;
                 }else{
-                    console.log("すでに登録済みです。");
                     this.flash_message = true;
 
                 }
               },
           resetCoin(){
-            console.log("削除します。");
               this.showCoins = [];
               this.exitCoins = [];
               this.hour_show = true;

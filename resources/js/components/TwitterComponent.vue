@@ -75,10 +75,7 @@ export default{
         }
       },
       mounted(){
-            console.log(this.diffTime);
-            console.log(this.users_results);
-            console.log(this.follow_users);
-            console.log(this.autofollow_ready);
+
             if (this.autofollow_ready == 1){
               this.reset_ok = false;
             }else{
@@ -94,8 +91,7 @@ export default{
                   user_name: user.screen_name,
                   user_following: user.following
                 }
-                console.log(data);
-                console.log(index)
+
                 var self = this;
                 var url = this.autofollow_ajax;
                 axios.post(url, {
@@ -103,25 +99,19 @@ export default{
                 .then((res)=>{
                 alert('フォローしました。');
                 this.users.splice(index,1)
-
-                console.log("axios成功");
-                console.log(res);
                 }).catch( error => { console.log(error); });
               },
 
           autofollowStart:function()
               {
-                console.log("オートフォローします。")
                 this.ongoing = true;
                 var allusers = this.users;
-                console.log(allusers);
+
                 var self = this;
                 var url = this.autofollowall_ajax;
                 axios.post(url,{
                 allusers})
                 .then((res)=>{
-                console.log("axios成功");
-                console.log(res);
                 alert('全ユーザーフォローしました。再読み込みします。');
                 location.reload();
                 }).catch( error => { console.log(error); });
