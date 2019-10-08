@@ -248,46 +248,46 @@ class CoinController extends Controller
       echo $count . "←tweet_resultsの中身";
 
       for($i = 0; $i < $count; $i++){
-        if(stristr($tweet_results[$i]['text'],"ビットコイン") !== false){
+        if(stristr($tweet_results[$i]['text'],"ビットコイン") !== false || stristr($tweet_results[$i]['text'],"BTC") !== false){
           $btc++;
           }
-        if(stristr($tweet_results[$i]['text'],"イーサリアム") !== false){
+        if(stristr($tweet_results[$i]['text'],"イーサリアム") !== false || stristr($tweet_results[$i]['text'],"ETH") !== false){
           $eth++;
           }
-        if(stristr($tweet_results[$i]['text'],"イーサリアムクラシック") !== false){
+        if(stristr($tweet_results[$i]['text'],"イーサリアムクラシック") !== false || stristr($tweet_results[$i]['text'],"ETC") !== false){
           $etc++;
           }
-        if(stristr($tweet_results[$i]['text'],"リスク") !== false){
+        if(stristr($tweet_results[$i]['text'],"仮想通貨リスク") !== false || stristr($tweet_results[$i]['text'],"LISK") !== false){
           $lsk++;
           }
-        if(stristr($tweet_results[$i]['text'],"ファクトム") !== false){
+        if(stristr($tweet_results[$i]['text'],"ファクトム") !== false || stristr($tweet_results[$i]['text'],"FCT") !== false){
           $fct++;
           }
-        if(stristr($tweet_results[$i]['text'],"リップル") !== false){
+        if(stristr($tweet_results[$i]['text'],"リップル") !== false || stristr($tweet_results[$i]['text'],"XRP") !== false){
           $xrp++;
           }
-        if(stristr($tweet_results[$i]['text'],"ネムコイン") !== false){
+        if(stristr($tweet_results[$i]['text'],"ネムコイン") !== false || stristr($tweet_results[$i]['text'],"XEM") !== false){
           $xem++;
           }
-        if(stristr($tweet_results[$i]['text'],"ライトコイン") !== false){
+        if(stristr($tweet_results[$i]['text'],"ライトコイン") !== false || stristr($tweet_results[$i]['text'],"LTC") !== false){
           $ltc++;
           }
-        if(stristr($tweet_results[$i]['text'],"ビットコインキャッシュ") !== false){
+        if(stristr($tweet_results[$i]['text'],"ビットコインキャッシュ") !== false || stristr($tweet_results[$i]['text'],"BCH") !== false){
           $bch++;
           }
-        if(stristr($tweet_results[$i]['text'],"モナコイン") !== false){
+        if(stristr($tweet_results[$i]['text'],"モナコイン") !== false || stristr($tweet_results[$i]['text'],"mona") !== false){
           $mona++;
           }
-        if(stristr($tweet_results[$i]['text'],"ダッシュ") !== false){
+        if(stristr($tweet_results[$i]['text'],"仮想通貨ダッシュ") !== false || stristr($tweet_results[$i]['text'],"DASH") !== false){
           $dash++;
           }
-        if(stristr($tweet_results[$i]['text'],"ジーキャッシュ") !== false){
+        if(stristr($tweet_results[$i]['text'],"ジーキャッシュ") !== false || stristr($tweet_results[$i]['text'],"ZEC") !== false){
           $zec++;
           }
-        if(stristr($tweet_results[$i]['text'],"モネロ") !== false){
+        if(stristr($tweet_results[$i]['text'],"モネロ") !== false || stristr($tweet_results[$i]['text'],"XMR") !== false){
           $xmr++;
           }
-        if(stristr($tweet_results[$i]['text'],"オーガー") !== false){
+        if(stristr($tweet_results[$i]['text'],"オーガー") !== false || stristr($tweet_results[$i]['text'],"REP") !== false){
           $rep++;
           }
       }

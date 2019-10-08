@@ -22,7 +22,7 @@ class NewsController extends Controller
 
 
     set_time_limit(120);
-    $max_num = 20;
+    $max_num = 50;
     $keywords = "仮想通貨";//検索キーワード
     $query = urlencode(mb_convert_encoding($keywords,"UTF-8", "auto"));
     $API_BASE_URL = "https://news.google.com/rss/search?ie=UTF-8&oe=UTF-8&q=".$keywords."&hl=ja&gl=JP&ceid=JP:ja";

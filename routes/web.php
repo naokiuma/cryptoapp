@@ -64,12 +64,20 @@ Route::group(['middleware' => 'check'],function(){
   Route::get('coin','CoinController@index')->name('coin');
 });
 
+//まとめてフォローのセッションチェック処理を下記、各ページにアクセスするたびに行う
+Route::group(['middleware' => 'allfollo'],function(){
+  Route::get('/', function () { return view('top'); })->name('top');
+  Route::get('/about', function () {return view('about');})->name('about');
+  Route::get('news','NewsController@index')->name('news');
+  Route::get('coin','CoinController@index')->name('coin');
+});
+
 //逆にログインしている場合はトップにリダイレクトさせるページ。（パスワードリマインダーなど）
 //何かおかしいので、これらのページ側でログインしてたらリダイレクトさせる。
 //        return redirect('/')->with('flash_message',__('すでにログインしています。'));
 
-//Route::group(['middleware' => 'logout'],function(){
-//  Route::get('register', 'Auth\RegisterController@showRegistrationForm');//何かおかしいログウト状態で行ったらエラー
-//  Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm');
-//  Route::get('login','Auth\LoginController@showLoginForm');//何かおかしい
-//});
+Route::group(['middleware' => 'logout'],function(){
+  Route::get('register', 'Auth\RegisterController@showRegistrationForm')->name('register');
+  Route::get('password/reset','Auth\ForgotPasswordController@showLinkRequestForm')->name('password.request');
+  Route::get('login','Auth\LoginController@showLoginForm')->name('login');
+});

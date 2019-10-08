@@ -68,18 +68,22 @@
     <h2>動作確認について</h2>
   </div>
   <div class="p-about__contents">
-    <p>本サービスの動作確認は下記環境で行っております。<br>
+    <p>本サービスの動作確認は下記のブラウザで行っております。<br>
     <span>※2019年10月現在</span></p>
     <ul>
-      <li>Safari最新</li>
-      <li>Firefox最新</li>
-      <li>Googlechrome最新</li>
-      <li>iOS最新</li>
-      <li>IE11/EDGE最新 ※ユーザーエージェント確認<li>
+      <li>Mac OS Safari最新</li>
+      <li>Mac OS Firefox最新</li>
+      <li>Mac OS Google Chrome最新</li>
+      <li>iPhone iOS Safari最新</li>
+      <li>Internet ExplorerE11/Edge最新 ※ユーザーエージェント確認<li>
     </ul>
   </div>
 
 </section>
+
+<div class="u-short">
+
+</div>
 
 
 

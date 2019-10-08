@@ -291,24 +291,6 @@ header {
   background-size: cover;
   background-attachment: fixed;
   padding-top: 20px;
-  /*
-                  &:before{
-                    background-image: url("../img/blue.png");
-                  background-size: cover;
-                  background-attachment: fixed;
-                  padding-top: 20px;
-                  position: fixed;
-                  height: 100vh;
-                  content: "";
-                  display: block;
-                  top: 0;
-                  left: 0;
-                  width: 100vw;
-                  height: 100vh;
-                  z-index: -1;
-                  transform: translateZ(0);
-                  }
-  */
 }
 @media screen and (max-width: 768px) {
   .l-main__sub__container {
@@ -319,7 +301,7 @@ header {
 }
 .l-main__mini {
   width: 100%;
-  height: 400px;
+  height: 250px;
 }
 .l-main__twitter {
   width: 100%;
@@ -756,6 +738,7 @@ header {
           animation-duration: 0.3s;
   -webkit-animation-name: toleft;
   animation-name: toleft;
+  margin-bottom: 15px;
 }
 .p-coinranking__table table {
   width: 100%;
@@ -779,6 +762,9 @@ header {
     height: 20px;
     line-height: 20px;
   }
+}
+.p-coinranking__table h4 {
+  background-color: #bcf0c3;
 }
 
 .p-decs__main {
@@ -855,6 +841,7 @@ header {
     height: 900px;
     display: block;
     background-image: none;
+    background-color: #00000014;
   }
 }
 .p-functions__container h2 {
@@ -864,7 +851,7 @@ header {
 }
 .p-functions__container h3 {
   color: black;
-  padding: 10px;
+  padding: 15px 0;
 }
 @media screen and (max-width: 768px) {
   .p-functions__container h3 {

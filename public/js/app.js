@@ -1952,6 +1952,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
@@ -37686,7 +37693,7 @@ var render = function() {
         _vm.hour_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
               _c("h3", [
-                _vm._v("過去1時間 "),
+                _vm._v("過去1時間のツイート数 "),
                 _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.hour))])
               ]),
               _vm._v(" "),
@@ -37728,7 +37735,7 @@ var render = function() {
         _vm.day_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
               _c("h3", [
-                _vm._v("過去1日 "),
+                _vm._v("過去1日のツイート数 "),
                 _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.day))])
               ]),
               _vm._v(" "),
@@ -37770,7 +37777,7 @@ var render = function() {
         _vm.week_show
           ? _c("div", { staticClass: "p-coinranking__table" }, [
               _c("h3", [
-                _vm._v("過去1週間 "),
+                _vm._v("過去1週間のツイート数 "),
                 _c("span", [_vm._v(" 更新日時：" + _vm._s(_vm.week))])
               ]),
               _vm._v(" "),
@@ -37827,20 +37834,28 @@ var render = function() {
               )
             ]),
             _vm._v(" "),
+            _c("h4", [_vm._v("ツイート数集計")]),
+            _vm._v(" "),
             _c("table", [
               _c("th", [_vm._v("hour")]),
               _c("th", [_vm._v("day")]),
               _c("th", [_vm._v("week")]),
-              _c("th", [_vm._v("最高取引価格/24h")]),
-              _c("th", [_vm._v("最安取引価格/24h")]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v(_vm._s(pcoin.hour))]),
                 _c("td", [_vm._v(_vm._s(pcoin.day))]),
-                _c("td", [_vm._v(_vm._s(pcoin.week))]),
-                _vm._v(" "),
+                _c("td", [_vm._v(_vm._s(pcoin.week))])
+              ])
+            ]),
+            _vm._v(" "),
+            _c("h4", [_vm._v("過去24時間の取引価格")]),
+            _vm._v(" "),
+            _c("table", [
+              _c("th", [_vm._v("最高取引価格")]),
+              _c("th", [_vm._v("最安取引価格")]),
+              _vm._v(" "),
+              _c("tr", [
                 _c("td", [_vm._v(_vm._s(pcoin.high))]),
-                _vm._v(" "),
                 _c("td", [_vm._v(_vm._s(pcoin.low))])
               ])
             ])
@@ -37926,7 +37941,9 @@ var render = function() {
       { staticClass: "p-news__container" },
       _vm._l(_vm.list_gn, function(list) {
         return _c("div", { staticClass: "p-news__card" }, [
-          _c("h4", [_vm._v(_vm._s(list.title))]),
+          _c("h4", [
+            _c("a", { attrs: { href: list.url } }, [_vm._v(_vm._s(list.title))])
+          ]),
           _vm._v(" "),
           _c("img", { attrs: { src: list.image_url, alt: "ニュース画像" } }),
           _c("br"),

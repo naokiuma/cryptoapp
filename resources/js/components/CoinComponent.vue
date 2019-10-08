@@ -30,7 +30,7 @@
   <section class="p-coinranking__container">
 
         <div class="p-coinranking__table" v-if="hour_show">
-          <h3>過去1時間 <span> 更新日時：{{hour}}</span></h3>
+          <h3>過去1時間のツイート数 <span> 更新日時：{{hour}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
@@ -43,7 +43,7 @@
 
 
         <div class="p-coinranking__table" v-if="day_show">
-          <h3>過去1日 <span> 更新日時：{{day}}</span></h3>
+          <h3>過去1日のツイート数 <span> 更新日時：{{day}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
@@ -57,7 +57,7 @@
 
 
         <div class="p-coinranking__table" v-if="week_show">
-          <h3>過去1週間 <span> 更新日時：{{week}}</span></h3>
+          <h3>過去1週間のツイート数 <span> 更新日時：{{week}}</span></h3>
 
           <table>
           <th>順位</th><th>コイン名</th><th>ツイート数</th>
@@ -72,14 +72,21 @@
         <div v-for="pcoin in showCoins"class="p-coinranking__table">
         <h3><a :href="'https://twitter.com/search?q=' + pcoin.name + '&src=typed_query'" target="_blank">{{ pcoin.name }}</a></h3>
 
-           <table>
-          <th>hour</th><th>day</th><th>week</th><th>最高取引価格/24h</th><th>最安取引価格/24h</th>
+        <h4>ツイート数集計</h4>
+          <table>
+          <th>hour</th><th>day</th><th>week</th>
+          <tr>
+         <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td >{{pcoin.week}}</td>
+          </tr>
+          </table>
+
+        <h4>過去24時間の取引価格</h4>
+          <table>
+          <th>最高取引価格</th><th>最安取引価格</th>
            <tr>
-          <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td >{{pcoin.week}}</td>
-          <td>{{pcoin.high}}</td>
-          <td>{{pcoin.low}}</td>
+          <td>{{pcoin.high}}</td><td>{{pcoin.low}}</td>
            </tr>
-           </table>
+          </table>
        </div>
 
 

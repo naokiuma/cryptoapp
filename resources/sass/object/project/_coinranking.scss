@@ -42,6 +42,7 @@
       animation-duration: 0.3s;
       -webkit-animation-name: toleft;
       animation-name: toleft;
+      margin-bottom: 15px;
       table{
         width: 100%;
       }
@@ -64,6 +65,10 @@
           height: 20px;
           line-height: 20px;
         }
+      }
+
+      h4{
+        background-color: #bcf0c3;
       }
     }
 
