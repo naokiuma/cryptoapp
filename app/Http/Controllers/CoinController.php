@@ -202,7 +202,7 @@ class CoinController extends Controller
     $data = ['updated_at' => $now_time];
     $addusertime_update->update($data);
 
-    return view('coin/hour');
+    return;
     }
 
 
@@ -385,7 +385,7 @@ class CoinController extends Controller
     $data = ['updated_at' => $now_time];
     $addusertime_update->update($data);
 
-    return view('coin/day');
+    return;
     }
 
 
@@ -560,7 +560,7 @@ class CoinController extends Controller
     $data = ['updated_at' => $now_time];
     $addusertime_update->update($data);
 
-    return view('coin/week');
+    return;
     }
 
 

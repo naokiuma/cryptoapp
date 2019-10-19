@@ -2152,10 +2152,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['autofollowsample_ajax'],
   data: function data() {
@@ -37914,7 +37910,9 @@ var render = function() {
       _vm._l(_vm.list_gn, function(list) {
         return _c("div", { staticClass: "p-news__card" }, [
           _c("h4", [
-            _c("a", { attrs: { href: list.url } }, [_vm._v(_vm._s(list.title))])
+            _c("a", { attrs: { href: list.url, target: "_blank" } }, [
+              _vm._v(_vm._s(list.title))
+            ])
           ]),
           _vm._v(" "),
           _c("img", { attrs: { src: list.image_url, alt: "ニュース画像" } }),
@@ -37981,11 +37979,11 @@ var render = function() {
           _c("p", [
             _vm._v("最新ツイート："),
             _c("br"),
-            _vm._v("\n        " + _vm._s(sampleuser.tweet))
+            _vm._v("\n            " + _vm._s(sampleuser.tweet))
           ]),
           _c("br"),
           _vm._v(
-            "\n        フォロー数：" +
+            "\n            フォロー数：" +
               _vm._s(sampleuser.friends_count) +
               " フォロワー数：" +
               _vm._s(sampleuser.followers_count)

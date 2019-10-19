@@ -38,7 +38,7 @@ Route::get('autofollow','AutofollowController@index')->name('autofollow');//表�
 Route::post('autofollow','AutofollowController@follow')->name('autofollow.follow');//フォロー
 Route::post('autofollow/all','AutofollowController@allfollow')->name('autofollow.all');//フォロー
 Route::get('autofollow/addfollow','AutofollowController@addfollow')->name('autofollow.addfollow');//DBにツイッターアカウントを追加。cronに追加する処理
-
+Route::get('autofollow/autofollow','AutofollowController@addfollow')->name('autofollow.autofollow');//自動フォロー。15分に一度行う。
 
 
 

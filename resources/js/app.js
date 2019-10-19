@@ -35,25 +35,11 @@ Vue.component('nologin-component',require('./components/NologinComponent.vue').d
  */
 
 document.addEventListener("DOMContentLoaded", function(event) {
-
-const newsapp = new Vue({
-  el: '#newsapp',
-})
-
-const coinapp = new Vue({
-  el: '#coinapp',
-})
-
-const twitterapp = new Vue({
-  el: '#twitterapp',
-})
-
-const nologinapp = new Vue({
-  el: '#nologinapp',
-})
-
-
-});
+    const newsapp = new Vue({el: '#newsapp',})
+    const coinapp = new Vue({el: '#coinapp',})
+    const twitterapp = new Vue({el: '#twitterapp',})
+    const nologinapp = new Vue({el: '#nologinapp',})
+  });
 
 //const app = new Vue({
 //    el: '#app',

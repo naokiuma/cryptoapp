@@ -18,7 +18,7 @@ class LoginController extends Controller
     |
     */
 
-    use AuthenticatesUsers;//vendor/larvel/framewor/src/illuminate/foundation/auth/RegistersUsers.php
+    use AuthenticatesUsers;//vendor/larvel/framework/src/illuminate/foundation/auth/RegistersUsers.php
 
     /**
      * Where to redirect users after login.

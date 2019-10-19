@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', 'ログイン')
+@section('description', '本ページは、CryptoTrendのログインページです。')
+@section('keywords', 'CryptoTrend,Twitter,ツイッター,仮想通貨,暗号通貨,ログイン')
 
 @section('content')
 

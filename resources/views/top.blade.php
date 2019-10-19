@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', 'TOP')
+@section('description', 'CryptoTrendは、SNSサービスツイッターを利用し、仮想通貨に関する情報を集約し、情報のキャッチアップの手助けをするサービスです。')
+@section('keywords', 'CryptoTrend,Twitter,ツイッター,仮想通貨,TOP,自動フォロー,通貨トレンド,通貨ニュース,暗号通貨')
 
 @section('content')
 <!--ビルボード-->
@@ -6,7 +9,8 @@
     <div class="p-hero__title">
       <h2>CryptoTrend</h2>
       <p>SNSを使い仮想通貨の<br>
-      情報を集めるお手伝いをするサービスです。</p>
+      情報を集めるお手伝いをするサービスです。
+      ツイッターと連携し、トレンドをキャッチアップしましょう！</p>
     </div>
 </section>
 

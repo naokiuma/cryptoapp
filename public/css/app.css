@@ -431,7 +431,7 @@ header {
 @media screen and (max-width: 768px) {
   .c-form__title {
     margin: 0px 30px 30px 30px;
-    font-size: 20px;
+    font-size: 16px;
   }
 }
 .c-form__body {
@@ -451,6 +451,8 @@ header {
   height: 30px;
   margin-top: 10px;
   border: 1px solid;
+  padding: 0 15px;
+  box-sizing: border-box;
 }
 @media screen and (max-width: 768px) {
   .c-form__control {
@@ -1163,6 +1165,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-plobrem__container {
     margin: 50px auto;
+    display: block;
   }
 }
 .p-plobrem h4 {

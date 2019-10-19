@@ -1,4 +1,7 @@
 @extends('layouts.app')
+@section('title', '通貨トレンド')
+@section('description', '通貨トレンドは、各種仮想通貨のツイート数を集計し、今トレンドのコイン情報をランキング形式で確認することができます。')
+@section('keywords', 'CryptoTrend,Twitter,ツイッター,仮想通貨,通貨トレンド,暗号通貨,Cryptocoin,取引価格')
 
 @section('content')
 <div class="p-desc__container">

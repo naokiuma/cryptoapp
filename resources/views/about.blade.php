@@ -1,5 +1,7 @@
 @extends('layouts.app')
-
+@section('title', '本サービスについて')
+@section('description', '本ページではサービスの概要、仕組みなどについてご案内いたします')
+@section('keywords', 'CryptoTrend,Twitter,ツイッター,仮想通貨,TOP,自動フォロー,通貨トレンド,通貨ニュース,暗号通貨,サービス説明')
 @section('content')
 
 <section class="p-decs__main">
