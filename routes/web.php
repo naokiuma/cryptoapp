@@ -60,7 +60,7 @@ Route::get('ajax/users', 'AjaxController@users')->name('ajax.users');;
 //ログインしていない場合はリダイレクトさせるページ
 Route::group(['middleware' => 'check'],function(){
   Route::get('auth/twitter', 'Auth\TwitterController@redirectToProvider');
-  Route::get('autofollow','AutofollowController@index')->name('news');
+  Route::get('autofollow','AutofollowController@index')->name('autofollow');
   Route::get('coin','CoinController@index')->name('coin');
 });
 

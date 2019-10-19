@@ -479,7 +479,6 @@ header {
 }
 .c-form__container {
   margin: 10% auto;
-  width: 70%;
 }
 
 .c-text {
@@ -1108,41 +1107,83 @@ header {
 }
 
 .p-news__container {
+  width: 95%;
+  margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
   align-content: center;
-}
-
-.p-news__card {
   background-color: #64f38b42;
-  padding: 1%;
-  width: calc(100% / 2);
+}
+.p-news__card {
+  border: 0.3px solid #0000006b;
+  width: 100%;
+  height: 200px;
+  padding: 15px;
   box-sizing: border-box;
   text-align: center;
+  display: flex;
 }
 @media screen and (max-width: 768px) {
   .p-news__card {
     width: 100%;
+    display: block;
   }
 }
 .p-news__card h4 {
-  margin-bottom: 5%;
-  height: 60px;
+  height: 100%;
   text-align: center;
-  padding: 10px 5%;
-  font-size: 16px;
-  background-color: #00afff59;
+  padding: 15px;
+  font-size: 20px;
+  width: 80%;
+  background-color: white;
   text-align: left;
+  box-sizing: border-box;
 }
-.p-news__card img {
-  width: 90%;
-  margin-left: auto;
-  margin-right: auto;
-  display: block;
-  box-shadow: 4px 4px #668AD8;
+@media screen and (max-width: 768px) {
+  .p-news__card h4 {
+    font-size: 14px;
+    height: 60%;
+    width: 100%;
+  }
 }
 .p-news__card span {
   font-size: 0.7rem;
+  width: 30%;
+}
+@media screen and (max-width: 768px) {
+  .p-news__card span {
+    margin: auto;
+  }
+}
+.p-news__card__right {
+  margin: 15px auto;
+  width: 20%;
+}
+@media screen and (max-width: 768px) {
+  .p-news__card__right {
+    display: flex;
+    width: 100%;
+    margin: auto;
+  }
+}
+.p-news__jamp {
+  padding: 0.5em 1em;
+  margin: 15px 0;
+  font-weight: bold;
+  color: #6091d3;
+  /*文字色*/
+  background: #FFF;
+  border: solid 3px #6091d3;
+  /*線*/
+  border-radius: 10px;
+  /*角の丸み*/
+  line-height: 30px;
+  display: inline-block;
+}
+@media screen and (max-width: 768px) {
+  .p-news__jamp {
+    width: 50%;
+  }
 }
 
 .p-plobrem {

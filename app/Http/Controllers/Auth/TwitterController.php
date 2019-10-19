@@ -19,7 +19,7 @@ class TwitterController extends Controller
 
     //ツイッターの認証ページへリダイレクト。
     public function redirectToProvider(){
-          //コールバック関数により本ファイル29行目handleProviderCallbackアクションへ。
+          //コールバック関数により本ファイル28行目handleProviderCallbackアクションへ。
           return Socialite::driver('twitter')->redirect();
         }
 
@@ -58,7 +58,7 @@ class TwitterController extends Controller
            'tokensecret' => $user_tokensecret
          ])->save();
         Auth::login($user_date, true);
-        return redirect()->route('top');
+        return redirect()->route('autofollow');
 
         //ログインしてないなら、ツイッターアカウントののあるユーザーに登録しログインする
       }else{

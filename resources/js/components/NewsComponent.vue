@@ -5,11 +5,13 @@
     <!--各ニュースをfor文で出力する-->
       <div v-for="list in list_gn" class="p-news__card">
         <h4><a :href="list.url" target="_blank">{{ list.title }}</a></h4>
-        <img :src="list.image_url" alt="ニュース画像"><br>
-        <span>投稿日時：{{ list.pubDate }}</span><br>
-        <a :href="list.url">続きを読む</a><br>
+        <div class="p-news__card__right">
+        <a :href="list.url" class="p-news__jamp">続きを読む</a><br>
+        <span>投稿日時：<br>
+        {{ list.pubDate }}
+        </span>
+        </div>
       </div>
-
     </div>
   </section>
 </template>

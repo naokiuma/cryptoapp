@@ -16,12 +16,6 @@
     本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
 </div>
-<div class="l-billboard__mini">
-  <img alt="ツイッター" src="{{ asset('/img/tw_sp.png') }}">
-</div>
-
-
-
 
 @if (session('today_follow_end'))
 <!--セッション情報にtoday_follow_endが入っている場合、本日のフォローができない。-->>

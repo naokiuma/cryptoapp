@@ -15,11 +15,6 @@
   </p>
 </div>
 
-<div class="l-billboard__mini">
-  <img alt="ニュース" src="{{ asset('/img/swiper_news.jpg') }}">
-</div>
-
-
 <div id="newsapp">
   <news-component
   :list_gn="{{ json_encode($list_gn) }}" >

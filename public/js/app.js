@@ -2114,6 +2114,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['list_gn'],
   mounted: function mounted() {}
@@ -37915,14 +37917,20 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
-          _c("img", { attrs: { src: list.image_url, alt: "ニュース画像" } }),
-          _c("br"),
-          _vm._v(" "),
-          _c("span", [_vm._v("投稿日時：" + _vm._s(list.pubDate))]),
-          _c("br"),
-          _vm._v(" "),
-          _c("a", { attrs: { href: list.url } }, [_vm._v("続きを読む")]),
-          _c("br")
+          _c("div", { staticClass: "p-news__card__right" }, [
+            _c(
+              "a",
+              { staticClass: "p-news__jamp", attrs: { href: list.url } },
+              [_vm._v("続きを読む")]
+            ),
+            _c("br"),
+            _vm._v(" "),
+            _c("span", [
+              _vm._v("投稿日時："),
+              _c("br"),
+              _vm._v("\n      " + _vm._s(list.pubDate) + "\n      ")
+            ])
+          ])
         ])
       }),
       0
@@ -50365,10 +50373,10 @@ module.exports = function(module) {
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
- * First we will load all of this project's JavaScript dependencies which
- * includes Vue and other libraries. It is a great starting point when
- * building robust, powerful web applications using Vue and Laravel.
- */
+* First we will load all of this project's JavaScript dependencies which
+* includes Vue and other libraries. It is a great starting point when
+* building robust, powerful web applications using Vue and Laravel.
+*/
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 __webpack_require__(/*! ./flash */ "./resources/js/flash.js");
@@ -50379,12 +50387,12 @@ __webpack_require__(/*! ./mouseover_change */ "./resources/js/mouseover_change.j
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
- * The following block of code may be used to automatically register your
- * Vue components. It will recursively scan this directory for the Vue
- * components and automatically register them with their "basename".
- *
- * Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
- */
+* The following block of code may be used to automatically register your
+* Vue components. It will recursively scan this directory for the Vue
+* components and automatically register them with their "basename".
+*
+* Eg. ./components/ExampleComponent.vue -> <example-component></example-component>
+*/
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
@@ -50398,10 +50406,10 @@ Vue.component('twitter-component', __webpack_require__(/*! ./components/TwitterC
 Vue.component('nologin-component', __webpack_require__(/*! ./components/NologinComponent.vue */ "./resources/js/components/NologinComponent.vue")["default"]); //ログインしていない時用のユーザー一覧
 
 /**
- * Next, we will create a fresh Vue application instance and attach it to
- * the page. Then, you may begin adding components to this application
- * or customize the JavaScript scaffolding to fit your unique needs.
- */
+* Next, we will create a fresh Vue application instance and attach it to
+* the page. Then, you may begin adding components to this application
+* or customize the JavaScript scaffolding to fit your unique needs.
+*/
 
 document.addEventListener("DOMContentLoaded", function (event) {
   var newsapp = new Vue({

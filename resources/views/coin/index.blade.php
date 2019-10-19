@@ -17,9 +17,6 @@
 
   </p>
 </div>
-<div class="l-billboard__mini">
-  <img alt="コイン" src="{{ asset('/img/check-hard.png') }}">
-</div>
 
 <!--コントローラーから持ってきたデータ諸々。-->
 <div id="coinapp">
