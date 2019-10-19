@@ -20,12 +20,12 @@
 </div>
 
 
-  <div id="newsapp">
-      <news-component
-      :list_gn="{{ json_encode($list_gn) }}" >
-    </news-component>
+<div id="newsapp">
+  <news-component
+  :list_gn="{{ json_encode($list_gn) }}" >
+</news-component>
 
-  </div>
+</div>
 
 
 @endsection

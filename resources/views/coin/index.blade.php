@@ -7,7 +7,7 @@
 <div class="p-desc__container">
 
   <h2 class="p-desc__title c-text">
-    <i class="fas fa-coins"></i>コインTweetランキング
+    <i class="fas fa-coins"></i>通貨トレンド
   </h2>
   <p class="p-desc__text c-text">
     Twitter上で各コインについて、つぶやかれた数でカウントをとりました。<br>
@@ -23,13 +23,13 @@
 
 <!--コントローラーから持ってきたデータ諸々。-->
 <div id="coinapp">
-    <coin-component
-    coin_ajax="{{ url('ajax/coin') }}"
-    hour = "{{$hour}}"
-    day = "{{$day}}"
-    week = "{{$week}}"
-    >
-  </coin-component>
+  <coin-component
+  coin_ajax="{{ url('ajax/coin') }}"
+  hour = "{{$hour}}"
+  day = "{{$day}}"
+  week = "{{$week}}"
+  >
+</coin-component>
 </div>
 
 @endsection

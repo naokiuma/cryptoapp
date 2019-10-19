@@ -75,7 +75,7 @@
       <li>Mac OS Firefox最新</li>
       <li>Mac OS Google Chrome最新</li>
       <li>iPhone iOS Safari最新</li>
-      <li>Internet ExplorerE11/Edge最新 ※Mac上ユーザーエージェント確認<li>
+      <li>Internet ExplorerE11/Edge最新<li>
     </ul>
   </div>
 

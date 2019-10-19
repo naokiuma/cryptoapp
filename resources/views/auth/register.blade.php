@@ -63,18 +63,18 @@
         </div>
       </div>
 
-        <div class="c-form__group">
-          <div>
-            <button type="submit" class="c-form__btn">
-              {{ __('Register') }}
-            </button>
-          </div>
+      <div class="c-form__group">
+        <div>
+          <button type="submit" class="c-form__btn">
+            {{ __('Register') }}
+          </button>
         </div>
-      </form>
-    </div>
+      </div>
+    </form>
+  </div>
 
-
-  </section>
+  
+</section>
 
 
 @endsection

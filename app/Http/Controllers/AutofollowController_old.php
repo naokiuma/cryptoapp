@@ -25,21 +25,21 @@ use Abraham\TwitterOAuth\TwitterOAuth;
 class AutofollowController extends Controller
 {
 
-//ログインユーザーのセッション情報を元に、ツイッター認証情報をまとめる関数。
+  //ログインユーザーのセッション情報を元に、ツイッター認証情報をまとめる関数。
   public function twitteroauth(){
-      //Log::debug("セッション情報です");
-      //Log::debug(Session('user_token'));
-      //Log::debug(Session('user_tokensecret'));
-      $config = config('services');
-      $consumerKey = $config['twitter']['client_id'];	// APIキー
-      $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
-      $accessToken = (Session('user_token'));	// ログインユーザーのアクセストークン（twiitercontloreにて、セッション情報として保管）
-      $accessTokenSecret = (Session('user_tokensecret'));	// ログインユーザーのアクセストークンシークレット
-      $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-      return $oAuth;
+    //Log::debug("セッション情報です");
+    //Log::debug(Session('user_token'));
+    //Log::debug(Session('user_tokensecret'));
+    $config = config('services');
+    $consumerKey = $config['twitter']['client_id'];	// APIキー
+    $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
+    $accessToken = (Session('user_token'));	// ログインユーザーのアクセストークン（twiitercontloreにて、セッション情報として保管）
+    $accessTokenSecret = (Session('user_tokensecret'));	// ログインユーザーのアクセストークンシークレット
+    $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+    return $oAuth;
   }
 
-//------------------------------------
+  //------------------------------------
 
   //オートフォロートップページ
   //Sessionに'today_follow_end';が入っていると本日の本サービスでのフォローはできないようにします。1日に385人以上を超えたら制限。
@@ -68,17 +68,17 @@ class AutofollowController extends Controller
       $diffTime = $difMinutes % 60;
       Log::debug($diffTime."分経過しています。");
 
-          if($diffTime > 14){//15分以上経過しているなら
-            Log::debug("前回のまとめてフォローから15分経過しました！タイムをリセットします。");
-            Session::forget('today_follow_time');
-            $autofollow_ready = 0;//オートフォロー可能な状態
-          }else{
-            Log::debug("まだ15分経過していません");
-          }
-
-      }else{
+      if($diffTime > 14){//15分以上経過しているなら
+        Log::debug("前回のまとめてフォローから15分経過しました！タイムをリセットします。");
+        Session::forget('today_follow_time');
         $autofollow_ready = 0;//オートフォロー可能な状態
+      }else{
+        Log::debug("まだ15分経過していません");
       }
+
+    }else{
+      $autofollow_ready = 0;//オートフォロー可能な状態
+    }
 
     Log::debug("まとめてフォローの状態です。".$autofollow_ready);
     Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
@@ -88,41 +88,41 @@ class AutofollowController extends Controller
     //■■■前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）■■■
 
     Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
-      date_default_timezone_set('Asia/Tokyo');
-      $today = date("Y-m-d");
-      Log::debug("本日の日付".$today);
-      $dbfollow_day = Auth::user()->follow_day;
-      Log::debug("DB上のフォローした日".$dbfollow_day);
+    date_default_timezone_set('Asia/Tokyo');
+    $today = date("Y-m-d");
+    Log::debug("本日の日付".$today);
+    $dbfollow_day = Auth::user()->follow_day;
+    Log::debug("DB上のフォローした日".$dbfollow_day);
 
     //db上のフォローをした日付と本日が違う場合
-      if($today !== $dbfollow_day)
-      {
-          Log::debug("日付が異なります。DB上のフォロー数をリセットし、日付を変更します。");
-          //フォロー数をリセットし、本日に日付に更新。
-          Auth::user()->follow_count = 0;
-          Auth::user()->follow_day = $today;
-          Auth::user()->update();
-          Session::forget('today_follow_end');//フォロー自体できなくなる処理をリセット
-          Session::forget('today_follow_time');//まとめてフォローをできなくなる処理もリセット
-        }else{
-          //db上のフォローをした日付と本日が同じ場合は特に何もしない
-          Log::debug("以前の日付と同じです。フォロー数は維持されます。");
-      }
+    if($today !== $dbfollow_day)
+    {
+      Log::debug("日付が異なります。DB上のフォロー数をリセットし、日付を変更します。");
+      //フォロー数をリセットし、本日に日付に更新。
+      Auth::user()->follow_count = 0;
+      Auth::user()->follow_day = $today;
+      Auth::user()->update();
+      Session::forget('today_follow_end');//フォロー自体できなくなる処理をリセット
+      Session::forget('today_follow_time');//まとめてフォローをできなくなる処理もリセット
+    }else{
+      //db上のフォローをした日付と本日が同じ場合は特に何もしない
+      Log::debug("以前の日付と同じです。フォロー数は維持されます。");
+    }
 
     //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
     //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
     $follow_count = Auth::user()->follow_count;
-        //Log::debug("本日このサービスでフォローした数".$follow_count);
-      if($follow_count > 385) //本来は385にする！
-      {
-        Log::debug("すでに385フォロー超えています。");
-        Session::put('today_follow_end', true);
+    //Log::debug("本日このサービスでフォローした数".$follow_count);
+    if($follow_count > 385) //本来は385にする！
+    {
+      Log::debug("すでに385フォロー超えています。");
+      Session::put('today_follow_end', true);
 
-      }else{
-        Log::debug("まだフォロー数は385を超えていません。");
-        Session::put('today_follow_end', false);
-      }
+    }else{
+      Log::debug("まだフォロー数は385を超えていません。");
+      Session::put('today_follow_end', false);
+    }
 
 
 
@@ -138,7 +138,7 @@ class AutofollowController extends Controller
       $randomUser = Autofollow::inRandomOrder()->first();
       //それを$follow_usersに詰め込む
       array_push($follow_users,$randomUser->screen_name);
-      }
+    }
     //$follow_usersはランダムにDBから取得したユーザー情報。
     //ツイッター認証していない場合はそのユーザーをそのまま表示させる。
 
@@ -153,9 +153,9 @@ class AutofollowController extends Controller
     //取得データから「following」がfalse（フォローしてない）ユーザーであれば
     //$temp_userに格納（まとめてフォローは15分に1度実施可能にし、14人まで。）
     for($i=0; $i<15; $i++){
-        if(!$lookupuser[$i]->following){
-         $temp_user[] = ($lookupuser[$i]);
-       }
+      if(!$lookupuser[$i]->following){
+        $temp_user[] = ($lookupuser[$i]);
+      }
     }
     //$temp_userをjsonエンコードし、$users_resultsユーザー情報を取得する。
     $users_results = json_encode($temp_user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
@@ -170,35 +170,35 @@ class AutofollowController extends Controller
 
 
 
-//フォローアクションーーーーーーーー
+  //フォローアクションーーーーーーーー
 
   public function follow(Request $request){
 
     header("Access-Control-Allow-Origin: *");  //CROS
     header("Access-Control-Allow-Headers: Origin, X-Requested-With");
-      $oAuth = $this->twitteroauth();
+    $oAuth = $this->twitteroauth();
 
 
-      Log::debug("リクエストの中身");  //フォローボタンを押した時に送られる中身
-      Log::debug($request->data);  //フォローボタンを押した時に送られる中身
-      $user_id = $request->data{"user_id"};//リクエストからidとスクリーンネームを変数に入れる
-      $username = $request->data{"user_name"};
-      Log::debug("フォローするユーザー情報");//フォローしたいユーザー確認用
-      Log::debug($username);//フォローしたいユーザー確認用
-      Log::debug($user_id);//フォローしたいユーザー確認用
+    Log::debug("リクエストの中身");  //フォローボタンを押した時に送られる中身
+    Log::debug($request->data);  //フォローボタンを押した時に送られる中身
+    $user_id = $request->data{"user_id"};//リクエストからidとスクリーンネームを変数に入れる
+    $username = $request->data{"user_name"};
+    Log::debug("フォローするユーザー情報");//フォローしたいユーザー確認用
+    Log::debug($username);//フォローしたいユーザー確認用
+    Log::debug($user_id);//フォローしたいユーザー確認用
 
-      //$options = array('user_id' => $user_id);
-      Log::debug("フォローします。".$username);
-      $oAuth->post("friendships/create", ["screen_name" => $username]);
+    //$options = array('user_id' => $user_id);
+    Log::debug("フォローします。".$username);
+    $oAuth->post("friendships/create", ["screen_name" => $username]);
 
-      $now_follow_num = Auth::user()->follow_count;
-      Log::debug("db上の数です。".$now_follow_num);
-      $sum = $now_follow_num + 1;
-      Log::debug("dbに1を足しました、saveします！db上の数は→".$sum);
-      Auth::user()->follow_count = $sum;
-      Auth::user()->update();
+    $now_follow_num = Auth::user()->follow_count;
+    Log::debug("db上の数です。".$now_follow_num);
+    $sum = $now_follow_num + 1;
+    Log::debug("dbに1を足しました、saveします！db上の数は→".$sum);
+    Auth::user()->follow_count = $sum;
+    Auth::user()->update();
 
-  return response()->json(['result' => true]);
+    return response()->json(['result' => true]);
   }
 
 
@@ -249,123 +249,123 @@ class AutofollowController extends Controller
     $sum = $now_follow_num + 1;
 
 
-  //まとめてフォローをしたらセッション[today_follow_time]に時間を入れる。
-  //15分経過するまで次のまとめてフォローを実施できないようにする
-  if(!Session::get('today_follow_time')){
-        Log::debug("today_follow_timeのセッションはありません。値を入れます");
-        $nowtime = date("Y/m/d H:i:s");
-        Session::put('today_follow_time', $nowtime);
-      }
+    //まとめてフォローをしたらセッション[today_follow_time]に時間を入れる。
+    //15分経過するまで次のまとめてフォローを実施できないようにする
+    if(!Session::get('today_follow_time')){
+      Log::debug("today_follow_timeのセッションはありません。値を入れます");
+      $nowtime = date("Y/m/d H:i:s");
+      Session::put('today_follow_time', $nowtime);
+    }
 
     return view('autofollow/addfollow');
-}
+  }
 
 
   //ーーーーーユーザーを1日に数人DB追加。cronで数回実施。依存ユーザーの情報がある場合はツイート更新。
   public static function addfollow(){
-      $config = config('services');
-      $consumerKey = $config['twitter']['client_id'];	// APIキー
-      $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
-      $accessToken = $config['twitter']['access_token'];	// アクセストークン
-      $accessTokenSecret = $config['twitter']['access_token_secret'];	// アクセストークンシークレット
+    $config = config('services');
+    $consumerKey = $config['twitter']['client_id'];	// APIキー
+    $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
+    $accessToken = $config['twitter']['access_token'];	// アクセストークン
+    $accessTokenSecret = $config['twitter']['access_token_secret'];	// アクセストークンシークレット
 
-      $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-      //検索ワード
-      $search_key = '仮想通貨';
-      // 取得オプション
-      $options = array('q'=>$search_key, 'count'=>100, 'lang' =>'ja','entities' => false, 'page' => 1,);
-      $users_results = array();
+    $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+    //検索ワード
+    $search_key = '仮想通貨';
+    // 取得オプション
+    $options = array('q'=>$search_key, 'count'=>100, 'lang' =>'ja','entities' => false, 'page' => 1,);
+    $users_results = array();
 
 
-      //ランダムにページ数を取得
-      $num = mt_rand(1,10);
-      $num2 = $num++;
-      $num3 = $num2++;
+    //ランダムにページ数を取得
+    $num = mt_rand(1,10);
+    $num2 = $num++;
+    $num3 = $num2++;
 
-      $options['page'] = $num;
-      $results = $oAuth->get("users/search", $options);
-      for($i=0; $i<20; $i++){
-            $users_results[$i]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i]['twitter_id'] = $results[$i]->id;
-            $users_results[$i]['registtime'] = $results[$i]->created_at;
-            $users_results[$i]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i]['user_id'] = $results[$i]->id;
-            $users_results[$i]['name'] = $results[$i]->name;
-            $users_results[$i]['profile_image'] = $results[$i]->profile_image_url;
-            $users_results[$i]['friends_count'] = $results[$i]->friends_count;
-            $users_results[$i]['followers_count'] = $results[$i]->followers_count;
-            $users_results[$i]['description'] = $results[$i]->description;
-            $users_results[$i]['tweet'] = $results[$i]->status->text;
-            $users_results[$i]['created_at'] = $results[$i]->created_at;
-            $users_results[$i]['following'] = $results[$i]->following;
+    $options['page'] = $num;
+    $results = $oAuth->get("users/search", $options);
+    for($i=0; $i<20; $i++){
+      $users_results[$i]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i]['twitter_id'] = $results[$i]->id;
+      $users_results[$i]['registtime'] = $results[$i]->created_at;
+      $users_results[$i]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i]['user_id'] = $results[$i]->id;
+      $users_results[$i]['name'] = $results[$i]->name;
+      $users_results[$i]['profile_image'] = $results[$i]->profile_image_url;
+      $users_results[$i]['friends_count'] = $results[$i]->friends_count;
+      $users_results[$i]['followers_count'] = $results[$i]->followers_count;
+      $users_results[$i]['description'] = $results[$i]->description;
+      $users_results[$i]['tweet'] = $results[$i]->status->text;
+      $users_results[$i]['created_at'] = $results[$i]->created_at;
+      $users_results[$i]['following'] = $results[$i]->following;
 
-        }
+    }
 
-        $options['page'] = $num2;
-        $results = $oAuth->get("users/search", $options);
-        for($i=0; $i<20; $i++){
-            $users_results[$i+20]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i+20]['twitter_id'] = $results[$i]->id;
-            $users_results[$i+20]['registtime'] = $results[$i]->created_at;
-            $users_results[$i+20]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i+20]['user_id'] = $results[$i]->id;
-            $users_results[$i+20]['name'] = $results[$i]->name;
-            $users_results[$i+20]['profile_image'] = $results[$i]->profile_image_url;
-            $users_results[$i+20]['friends_count'] = $results[$i]->friends_count;
-            $users_results[$i+20]['followers_count'] = $results[$i]->followers_count;
-            $users_results[$i+20]['description'] = $results[$i]->description;
-            $users_results[$i+20]['tweet'] = $results[$i]->status->text;
-            $users_results[$i+20]['created_at'] = $results[$i]->created_at;
-            $users_results[$i+20]['following'] = $results[$i]->following;
+    $options['page'] = $num2;
+    $results = $oAuth->get("users/search", $options);
+    for($i=0; $i<20; $i++){
+      $users_results[$i+20]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i+20]['twitter_id'] = $results[$i]->id;
+      $users_results[$i+20]['registtime'] = $results[$i]->created_at;
+      $users_results[$i+20]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i+20]['user_id'] = $results[$i]->id;
+      $users_results[$i+20]['name'] = $results[$i]->name;
+      $users_results[$i+20]['profile_image'] = $results[$i]->profile_image_url;
+      $users_results[$i+20]['friends_count'] = $results[$i]->friends_count;
+      $users_results[$i+20]['followers_count'] = $results[$i]->followers_count;
+      $users_results[$i+20]['description'] = $results[$i]->description;
+      $users_results[$i+20]['tweet'] = $results[$i]->status->text;
+      $users_results[$i+20]['created_at'] = $results[$i]->created_at;
+      $users_results[$i+20]['following'] = $results[$i]->following;
 
-        }
+    }
 
-        $options['page'] = $num3;
-        $results = $oAuth->get("users/search", $options);
-        for($i=0; $i<20; $i++){
-            $users_results[$i+40]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i+40]['twitter_id'] = $results[$i]->id;
-            $users_results[$i+40]['registtime'] = $results[$i]->created_at;
-            $users_results[$i+40]['screen_name'] = $results[$i]->screen_name;
-            $users_results[$i+40]['user_id'] = $results[$i]->id;
-            $users_results[$i+40]['name'] = $results[$i]->name;
-            $users_results[$i+40]['profile_image'] = $results[$i]->profile_image_url;
-            $users_results[$i+40]['friends_count'] = $results[$i]->friends_count;
-            $users_results[$i+40]['followers_count'] = $results[$i]->followers_count;
-            $users_results[$i+40]['description'] = $results[$i]->description;
-            $users_results[$i+40]['tweet'] = $results[$i]->status->text;
-            $users_results[$i+40]['created_at'] = $results[$i]->created_at;
-            $users_results[$i+40]['following'] = $results[$i]->following;
-        }
+    $options['page'] = $num3;
+    $results = $oAuth->get("users/search", $options);
+    for($i=0; $i<20; $i++){
+      $users_results[$i+40]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i+40]['twitter_id'] = $results[$i]->id;
+      $users_results[$i+40]['registtime'] = $results[$i]->created_at;
+      $users_results[$i+40]['screen_name'] = $results[$i]->screen_name;
+      $users_results[$i+40]['user_id'] = $results[$i]->id;
+      $users_results[$i+40]['name'] = $results[$i]->name;
+      $users_results[$i+40]['profile_image'] = $results[$i]->profile_image_url;
+      $users_results[$i+40]['friends_count'] = $results[$i]->friends_count;
+      $users_results[$i+40]['followers_count'] = $results[$i]->followers_count;
+      $users_results[$i+40]['description'] = $results[$i]->description;
+      $users_results[$i+40]['tweet'] = $results[$i]->status->text;
+      $users_results[$i+40]['created_at'] = $results[$i]->created_at;
+      $users_results[$i+40]['following'] = $results[$i]->following;
+    }
 
-        //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
-        //第二引数で情報を挿入、または既存のユーザー情報があるなら更新。
-        for($i=0; $i<60; $i++){
-          $autofollow = Autofollow::updateOrCreate(
-          [//第一引数
-            'screen_name' => $users_results[$i]['screen_name']
-          ],
-          [//第二引数
+    //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
+    //第二引数で情報を挿入、または既存のユーザー情報があるなら更新。
+    for($i=0; $i<60; $i++){
+      $autofollow = Autofollow::updateOrCreate(
+        [//第一引数
+          'screen_name' => $users_results[$i]['screen_name']
+        ],
+        [//第二引数
           'screen_name' => $users_results[$i]['screen_name'],'twitter_id' => $users_results[$i]['twitter_id'],
           'name' => $users_results[$i]['name'],'text' => $users_results[$i]['tweet'],
           'registtime' => $users_results[$i]['registtime'],
         ]
-        );
-        }
-        //DB上の更新日時記録テーブルを更新
-        date_default_timezone_set('Asia/Tokyo');
-        $now_time = date("Y-m-d H:i:s");//今の時間
-        Log::debug($now_time);
-        $addusertime_update = Updatetime::where('id', 5)->first();//dbからデータ取得
-        $data = ['updated_at' => $now_time];
-        $addusertime_update->update($data);
+      );
+    }
+    //DB上の更新日時記録テーブルを更新
+    date_default_timezone_set('Asia/Tokyo');
+    $now_time = date("Y-m-d H:i:s");//今の時間
+    Log::debug($now_time);
+    $addusertime_update = Updatetime::where('id', 5)->first();//dbからデータ取得
+    $data = ['updated_at' => $now_time];
+    $addusertime_update->update($data);
 
 
-      header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
-      //jsonにする処理
-      $results = json_encode($users_results,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-      print_r($results);
-      return view('autofollow/addfollow');
+    header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
+    //jsonにする処理
+    $results = json_encode($users_results,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+    print_r($results);
+    return view('autofollow/addfollow');
   }
 
 }
