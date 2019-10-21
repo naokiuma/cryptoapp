@@ -585,6 +585,22 @@ header {
   }
 }
 
+.p-autofollow {
+  /*
+    &__start{
+      width: 200px;
+      height: 50px;
+      font-size: 20px;
+      border: 2px solid;
+      box-shadow: 3px 2px;
+        &:hover{
+          transform: translate3d(0, 5px, 0);
+          color: #007db9;;
+          box-shadow: none;
+          background: #fff;
+        }
+    }*/
+}
 .p-autofollow__container {
   text-align: center;
   width: 100%;
@@ -641,19 +657,6 @@ header {
     font-size: 16px;
   }
 }
-.p-autofollow__start {
-  width: 200px;
-  height: 50px;
-  font-size: 20px;
-  border: 2px solid;
-  box-shadow: 3px 2px;
-}
-.p-autofollow__start:hover {
-  transform: translate3d(0, 5px, 0);
-  color: #007db9;
-  box-shadow: none;
-  background: #fff;
-}
 .p-autofollow__ongoing {
   text-align: center;
   color: #0351ff;
@@ -661,6 +664,80 @@ header {
   font-size: 16px;
   -webkit-animation: 2s linear infinite blink_effect;
           animation: 2s linear infinite blink_effect;
+}
+
+.switch {
+  text-align: center;
+}
+
+.switch__label {
+  width: 50px;
+  position: relative;
+  display: inline-block;
+}
+
+.switch__content {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 30px;
+  height: 31px;
+  overflow: hidden;
+}
+
+.switch__content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  top: 0;
+  left: 0;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 30px;
+  background-color: #fff;
+}
+
+.switch__content:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+
+.switch__input {
+  display: none;
+}
+
+.switch__circle {
+  display: block;
+  top: 2px;
+  left: 2px;
+  position: absolute;
+  box-shadow: 0 2px 6px #999;
+  width: 27px;
+  height: 27px;
+  border-radius: 20px;
+  background-color: #fff;
+  transition: all 0.5s;
+}
+
+.switch__input:checked ~ .switch__circle {
+  left: 21px;
+}
+
+.switch__input:checked ~ .switch__content:after {
+  background-color: #4BD964;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 .p-about__container {
@@ -807,6 +884,18 @@ header {
   .p-desc__container h2 {
     font-size: 24px;
     height: 30px;
+  }
+}
+.p-desc__container h3 {
+  text-align: center;
+  font-size: 20px;
+  margin: 45px 15px;
+  background-color: linear-gradient(transparent 70%, yellow 70%);
+}
+@media screen and (max-width: 768px) {
+  .p-desc__container h3 {
+    font-size: 16px;
+    margin: 30px 10px;
   }
 }
 .p-desc__title {

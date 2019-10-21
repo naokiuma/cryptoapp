@@ -2,7 +2,7 @@
 
   <section>
 
- <!--reset_okがfalseの場合、フォローは実施できない-->
+
     <div class="p-autofollow__container" v-show="!reset_ok">
       <p>現在、フォロー機能は利用できません。<br>
       本サービスでのフォローは1日400人までとなります。<br>
@@ -11,27 +11,34 @@
     </div>
 
 
-  <div class="p-autofollow__container" v-show="reset_ok">
+    <div class="p-autofollow__container" v-show="reset_ok">
 
+        <button  v-on:click="autofollow = !autofollow">まとめてフォロー</button>
         <div class="p-autofollow__description">
-          <p>まとめてフォローをONにすると、自動フォローを15分に一度実施します。<br>
-          ※実行中、サイトへのアクセスは不要です。</p>
+        <p>まとめてフォローをONにすると、自動フォローを15分に一度実施します。<br>
+        ※サイトへのアクセスは不要です。</p>
+        </div>
 
-          <!--自動フォローのボタン-->
-          <h3>まとめてフォローON/OFF</h3>
-          <div class="switch">
-              <label class="switch__label">
-                <input type="checkbox" class="switch__input"  v-on:click="!autofollowStart" />
-                <span class="switch__content"></span>
-                <span class="switch__circle"></span>
-              </label>
+          <div class="p-autofollow__description" v-show="autofollow">
+            <p>まとめてフォローは、一度実施すると次の実施まで15分開ける必要があります。<br>
+            詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit">こちら</a></p>
+
+            <h3>まとめてフォロー機能を実施しますか？</h3>
+            実施する
+            <div class="switch">
+                <label class="switch__label">
+                  <input type="checkbox" class="switch__input"  v-on:click="autofollowStart" />
+                  <span class="switch__content"></span>
+                  <span class="switch__circle"></span>
+                </label>
+            </div>
+            <button class="p-autofollow__start" v-on:click="autofollowStart">実施する</button>
           </div>
-        </div>
 
-        <div class="p-autofollow__ongoing" v-show="ongoing">
-          <h4>自動フォロー実施中です。</h4>
-        </div>
-  </div>
+          <div class="p-autofollow__ongoing" v-show="ongoing">
+            <h4>実施中です・・・しばらくお待ちください。</h4>
+          </div>
+    </div>
 
 
 
@@ -67,19 +74,18 @@ export default{
       'follow_users',
       'autofollow_ready',
       'autofollow_ajax',
-      'autofollowall_ajax',
-      'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
+      'autofollowall_ajax'
       ],
       data:function(){
           return{
           el: '#twitter',
           reset_ok:true,
+          autofollow:false,
           ongoing:false,
           users:this.users_results
         }
       },
       mounted(){
-      console.log(this.autofollow_check);
             if (this.autofollow_ready == 1){
               this.reset_ok = false;
             }else{

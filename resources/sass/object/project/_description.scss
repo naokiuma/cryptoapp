@@ -13,9 +13,19 @@
           @media screen and (max-width: $res-max-width){
             font-size: $font-l;
             height: 30px;
+          }
+        }
+        h3{
+          text-align: center;
+          font-size: 20px;
+          margin: 45px 15px;
+          background-color: linear-gradient(transparent 70%, yellow 70%);
+          @media screen and (max-width: $res-max-width){
+            font-size: 16px;
+            margin: 30px 10px;
+        }
         }
       }
-    }
     &__title{
       width: 80%;
       margin: 10% auto 5% auto;

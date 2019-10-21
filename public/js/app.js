@@ -2114,8 +2114,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['list_gn'],
   mounted: function mounted() {}
@@ -2241,18 +2239,23 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax'],
+  props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax', 'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
+  ],
   data: function data() {
     return {
       el: '#twitter',
       reset_ok: true,
-      autofollow: false,
       ongoing: false,
       users: this.users_results
     };
   },
   mounted: function mounted() {
+    console.log(this.autofollow_check);
+
     if (this.autofollow_ready == 1) {
       this.reset_ok = false;
     } else {
@@ -38058,48 +38061,29 @@ var render = function() {
         staticClass: "p-autofollow__container"
       },
       [
-        _c(
-          "button",
-          {
-            on: {
-              click: function($event) {
-                _vm.autofollow = !_vm.autofollow
-              }
-            }
-          },
-          [_vm._v("まとめてフォロー")]
-        ),
-        _vm._v(" "),
-        _vm._m(1),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.autofollow,
-                expression: "autofollow"
-              }
-            ],
-            staticClass: "p-autofollow__description"
-          },
-          [
-            _vm._m(2),
-            _vm._v(" "),
-            _c("h3", [_vm._v("まとめてフォロー機能を実施しますか？")]),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "p-autofollow__start",
-                on: { click: _vm.autofollowStart }
-              },
-              [_vm._v("実施する")]
-            )
-          ]
-        ),
+        _c("div", { staticClass: "p-autofollow__description" }, [
+          _vm._m(1),
+          _vm._v(" "),
+          _c("h3", [_vm._v("まとめてフォローON/OFF")]),
+          _vm._v(" "),
+          _c("div", { staticClass: "switch" }, [
+            _c("label", { staticClass: "switch__label" }, [
+              _c("input", {
+                staticClass: "switch__input",
+                attrs: { type: "checkbox" },
+                on: {
+                  click: function($event) {
+                    !_vm.autofollowStart
+                  }
+                }
+              }),
+              _vm._v(" "),
+              _c("span", { staticClass: "switch__content" }),
+              _vm._v(" "),
+              _c("span", { staticClass: "switch__circle" })
+            ])
+          ])
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -38114,7 +38098,7 @@ var render = function() {
             ],
             staticClass: "p-autofollow__ongoing"
           },
-          [_c("h4", [_vm._v("実施中です・・・しばらくお待ちください。")])]
+          [_c("h4", [_vm._v("自動フォロー実施中です。")])]
         )
       ]
     ),
@@ -38184,20 +38168,12 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("現在、まとめてフォロー機能は利用できません。詳しくは"),
-      _c("a", { attrs: { href: "/about" } }, [_vm._v("こちら")]),
+      _vm._v("現在、フォロー機能は利用できません。"),
       _c("br"),
-      _vm._v("\n    本機能は15分に一度利用可能です。"),
+      _vm._v("\n    本サービスでのフォローは1日400人までとなります。"),
       _c("br"),
-      _vm._v("\n    手動で一人ずつのフォローは可能です。")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "p-autofollow__description" }, [
-      _c("p", [_vm._v("画面上のアカウントをまとめて全てフォローします。")])
+      _vm._v("\n    詳しくは"),
+      _c("a", { attrs: { href: "/about" } }, [_vm._v("こちら")])
     ])
   },
   function() {
@@ -38206,20 +38182,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c("p", [
       _vm._v(
-        "まとめてフォローは、一度実施すると次の実施まで15分開ける必要があります。"
+        "まとめてフォローをONにすると、自動フォローを15分に一度実施します。"
       ),
       _c("br"),
-      _vm._v("\n          詳しくは"),
-      _c(
-        "a",
-        {
-          attrs: {
-            href:
-              "https://help.twitter.com/ja/using-twitter/twitter-follow-limit"
-          }
-        },
-        [_vm._v("こちら")]
-      )
+      _vm._v("\n        ※実行中、サイトへのアクセスは不要です。")
     ])
   }
 ]

@@ -15,14 +15,18 @@
     ※ログインアカウントの未フォローユーザーが表示されます。<br>
     本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
+  @if(session('autofollow'))
+  <h3>現在、まとめてフォロー（自動フォロー）を実行中！</h3>
+  @endif
 </div>
+
 
 @if (session('today_follow_end'))
 <!--セッション情報にtoday_follow_endが入っている場合、本日のフォローができない。-->>
 
 <div class="p-desc__container">
   <p class="p-desc__text c-text">
-    本日はすでに多くのフォローを実施しているため、まとめてフォロー、個別フォローもできません。<br>
+    本日はすでに多くのフォローを実施しているため、フォローは実施できません。<br>
     明日以降アクセスしてください。<br>
     <a href="{{ url('about') }}/#about_limit">※フォロー制限について</a>
   </p>
@@ -42,12 +46,16 @@
   @if (session('user_token'))
   <!--ツイッター認証をしている場合は下記を表示-->
   <!--autofollow_readyが1の場合、前にオールフォローしてから15分経過してないので、フォローできない。0の場合、フォローして良い。-->
+  <!--autofollow_ajaxは一人フォローするurlへのポスト-->
+  <!--autofollow/allは自動フォローをonにする-->
 
+<!--$autofollow_checkこの値で現在オートフォロー中か判断-->
   <div id="twitterapp">
     <Twitter-component
     :users_results="{{ $users_results }}"
     follow_users="{{$follow_users}}"
     autofollow_ready = "{{ $autofollow_ready }}"
+    autofollow_check = "{{ $autofollow_check }}"
     autofollow_ajax = "{{ url('autofollow') }}"
     autofollowall_ajax = "{{ url('autofollow/all') }}"
     >

@@ -38,6 +38,7 @@ class AutofollowController extends Controller
     return $oAuth;
   }
 
+
   //------------------------------------
 
   //オートフォロートップページ
@@ -45,6 +46,17 @@ class AutofollowController extends Controller
   public function index(){
 
 
+    $autofollow_check = Auth::user()->autofollow;
+    if($autofollow_check == 1){
+      Session::put('autofollow', true);//セッションにも入れる。
+    }
+    Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
+    Log::debug("autofollow_checkの状態".$autofollow_check);
+    Log::debug("0だとオートフォローは実施していません");
+    Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
+
+
+//ここからは一旦消す
     //まずはまとめてフォローをできるかどうかの判定（15分ごとの判定）。■■■
     //$autofollow_readyが1ならフォローできない、0ならできる。
     //まずはセッションにtoday_follow_timeがあるかどうかを確認。ある場合はフラグを1にする。
@@ -54,41 +66,44 @@ class AutofollowController extends Controller
       $autofollow_ready = 1;//1の場合はオートフォロー不可能。
       $nowtime = date("Y/m/d H:i:s");//現在時刻
       $last_followtime = Session::get('today_follow_time');
-      Log::debug('最後にオートフォローした時間です'.$last_followtime);
+      //Log::debug('最後にオートフォローした時間です'.$last_followtime);
 
       //今の時間と、前回のフォロー時間をタイムスタンプに入れる。
       $timeStamp1 = strtotime($nowtime);
       $timeStamp2 = strtotime($last_followtime);
 
-
       //タイムスタンプの差を計算
       $difSeconds = $timeStamp1 - $timeStamp2;
-      Log::debug('$timeStamp1と2の差です。'.$difSeconds);
+      //Log::debug('$timeStamp1と2の差です。'.$difSeconds);
 
       $difMinutes = ($difSeconds - ($difSeconds % 60)) / 60;
       $diffTime = $difMinutes % 60;
-      Log::debug($diffTime."分経過しています。");
+      //Log::debug($diffTime."分経過しています。");
 
       if($diffTime > 14){//15分以上経過しているなら
-        Log::debug("前回のまとめてフォローから15分経過しました！タイムをリセットします。");
+      //  Log::debug("前回のまとめてフォローから15分経過しました！タイムをリセットします。");
         Session::forget('today_follow_time');
         $autofollow_ready = 0;//オートフォロー可能な状態
       }else{
-        Log::debug("まだ15分経過していません");
+      //  Log::debug("まだ15分経過していません");
       }
 
     }else{
       $autofollow_ready = 0;//オートフォロー可能な状態
     }
 
-    Log::debug("まとめてフォローの状態です。".$autofollow_ready);
+  //  Log::debug("まとめてフォローの状態です。".$autofollow_ready);
     Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
-    Log::debug("0だと実施可能です。１だと実施できません。");
+  //  Log::debug("0だと実施可能です。１だと実施できません。");
+
+//ここまでーーーーーーーーーーーーーーーーーー消す
+
+
 
 
     //■■■前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）■■■
 
-    Log::debug("処理1:DB上の前回のアクセス日と異なるかチェックします。");
+    Log::debug("処理:DB上の前回のアクセス日と異なるかチェックします。");
     date_default_timezone_set('Asia/Tokyo');
     $today = date("Y-m-d");
     Log::debug("本日の日付".$today);
@@ -110,11 +125,12 @@ class AutofollowController extends Controller
       Log::debug("以前の日付と同じです。フォロー数は維持されます。");
     }
 
+
     //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
-    //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
+    Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
     $follow_count = Auth::user()->follow_count;
-    //Log::debug("本日このサービスでフォローした数".$follow_count);
+    Log::debug("本日このサービスでフォローした数".$follow_count);
     if($follow_count > 385) //本来は385にする！
     {
       Log::debug("すでに385フォロー超えています。");
@@ -124,6 +140,7 @@ class AutofollowController extends Controller
       Log::debug("まだフォロー数は385を超えていません。");
       Session::put('today_follow_end', false);
     }
+
 
 
 
@@ -161,13 +178,13 @@ class AutofollowController extends Controller
     $users_results = json_encode($temp_user,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
 
 
-    return view('autofollow/index',compact('users_results','follow_users','autofollow_ready'));
+    return view('autofollow/index',compact('users_results','follow_users','autofollow_ready','autofollow_check'));//$autofollow_readyを消すよ
     //viewに渡す変数の説明↓
     //$follow_usersはランダムにDBから取得したユーザー情報。
     //$users_resultsは、ログインユーザーがフォローしてないユーザー一覧のスクリーンネーム。
     //autofollow_readyは、まとめてフォローを実施できるかどうかの値。1ならできない、0ならできる。
+    //autofollow_checkは、自動フォローの状態。0ならオートフォローは実施していない
   }
-
 
 
   //フォローアクションーーーーーーーー
@@ -372,9 +389,14 @@ class AutofollowController extends Controller
 
 
 
+
+
+
   //ーーーーーーオートフォロー。自動で行われる処理。15分に一度実施されます。
   //ーーーーーーDBからオートフォロー「1」にされていると実施される
+  //----------自動処理、かつ複数ユーザーで行う可能性があるのでセッションは使わない
   public static function autofollow(){
+    Log::debug("オートフォロー開始します");
 
     //DBからユーザーを20人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
     //そのscreen_nameを$follow_targetsに詰め込む
@@ -391,46 +413,101 @@ class AutofollowController extends Controller
     //フォロー元のユーザーアカウント（db上のautofollowが1のユーザー）を検索。
     //また、そのユーザー数をカウントする。
     $follow_acount = User::where('autofollow', 1)->get();
+    Log::debug("autoフォロー1の人です。".$follow_acount);
     $num = count($follow_acount);
+    Log::debug("numです".$num);
+    if($num == 0){
+      Log::debug("autoフォロー1の人がいません。終了します");
+      return;
+    }
 
+//-------------
+Log::debug("チェックdす");
 
     //カウント数までforで回し、フォロー元ユーザーのツイッター情報認証を取得。
     //フォローしていない ＝ followingがfalseのユーザーのみtempに詰め込む
+    //1週目$iは0 numは2。
     for($i = 0; $i < $num; $i++){
-      $config = config('services');
-      $consumerKey = $config['twitter']['client_id'];	// APIキー
-      $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
-      $accessToken = ($follow_acount[$i]->token);	// ログインユーザーのアクセストークン
-      $accessTokenSecret = ($follow_acount[$i]->tokensecret);	// ログインユーザーのアクセストークンシークレット
-      $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
-      Log::debug($follow_acount[$i]->name."がフォローします");
+      Log::debug("iの中身1です".$i);
+      //1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
+      //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
-      //lookupで先ほど取得したscreen_nameを使い情報取得。$temp_userに詰め込む。
-      $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_targets"]);
-      $temp_user = array();
-      for($i=0; $i<20; $i++){
-        if(!$lookupuser[$i]->following){
-          array_push($temp_user,$lookupuser[$i]->screen_name);
-          Log::debug(count($temp_user));
+            //一人の処理---------------■
+            $follow_count = $follow_acount[$i]->follow_count;
+            Log::debug("本日このサービスでフォローした数".$follow_count);
 
-          if(count($temp_user) > 5){
-            Log::debug("5人に達しました。フォロー対象の検索はここまでです。");
-            break;
-          }
-        }
-      }
-      Log::debug("tempユーザー一覧です。このユーザーたちをフォローします。");
-      Log::debug($temp_user);
+            if($follow_count > 385){
+              Log::debug("すでに385フォロー超えています。処理を終了します。");
 
-      foreach ($temp_user as $value)
-      {
-        Log::debug($value);
-        //$target = $value;
-        //$oAuth->post("friendships/create", ["screen_name" => $target]);
-        //Log::debug($target."をフォローしました");
-      }
-    }
-    return;
+              }else{
+
+                      Log::debug("まだフォロー数は385を超えていません。ここからフォロー処理を実施します。");
+                      $config = config('services');
+                      $consumerKey = $config['twitter']['client_id'];	// APIキー
+                      $consumerSecret = $config['twitter']['client_secret'];	// APIシークレット
+                      $accessToken = ($follow_acount[$i]->token);	// ログインユーザーのアクセストークン
+                      Log::debug("アクセストークンです。".$accessToken);
+                      $accessTokenSecret = ($follow_acount[$i]->tokensecret);	// ログインユーザーのアクセストークンシークレット
+                      Log::debug("アクセストークンシークレットですです。".$accessTokenSecret);
+                      $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
+                      Log::debug($follow_acount[$i]->name."がフォローします");
+
+                      //lookupで先ほど取得したscreen_nameを使い情報取得。そのままscreen_nameを$temp_userに詰め込む。
+                      $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_targets"]);
+                      $temp_user = array();
+
+                    //フォロー対象のまとめ。f
+                    for($f=0; $f<2; $f++){
+                        if(!$lookupuser[$f]->following){
+                          array_push($temp_user,$lookupuser[$f]->screen_name);
+                          Log::debug(count($temp_user));
+                          Log::debug($temp_user);
+                          }
+
+                        if(count($temp_user) == 2){
+                          Log::debug("2人に達しました。フォロー対象の検索はここまでです。forを抜けます。");
+                          break;
+                          }
+
+                    }
+
+
+                    //実際のフォロー
+                    Log::debug("tempユーザー一覧です。このユーザーたちをフォローします。");
+                    Log::debug($temp_user);
+
+                    foreach ($temp_user as $value)
+                    {
+                      //Log::debug($value);
+                      $target = $value;
+                      Log::debug("ターゲットの中身".$target);
+                      $oAuth->post("friendships/create", ["screen_name" => $target]);
+                      Log::debug($target."をフォローしました");
+                    }
+
+                    //フォローした数をカウントとしてdbに追加。
+                    $count = count($temp_user);
+                    Log::debug("フォローした人数です".$count);
+                    $now_follow_num = $follow_acount[$i]->follow_count;//処理中のユーザーのカウント数
+                    Log::debug("db上の数です。".$now_follow_num);
+                    $now_follow_num = $now_follow_num + $count;
+                    Log::debug("dbにオールフォロー数を足しました、saveします！db上の数はこちらに更新されます→".$now_follow_num);
+
+                    $now_usertwiiter_id = $follow_acount[$i]->twitter_id;//処理中のユーザーのツイッターid
+                    Log::debug("処理中のユーザーのツイッターidです".$now_usertwiiter_id);
+
+                    $user = User::where('twitter_id', $now_usertwiiter_id)->first();
+                    $user->follow_count = $now_follow_num;
+                    $user->update();
+                    //Log::debug("DBを更新しました。多分");
+
+
+              Log::debug("フォロー処理を終了します。");
+
+            }
   }
-
 }
+
+
+
+}//classの閉じタグ

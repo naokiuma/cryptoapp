@@ -123,8 +123,8 @@
         },
         mounted(){
         this.showHour();
-            var self = this;
-            var url = this.coin_ajax;
+            let self = this;
+            let url = this.coin_ajax;
             axios.get(url).then(function(response){
               self.coins = response.data;
             });
@@ -133,7 +133,7 @@
           sortCoinsByHour:function(){
             if(this.hour_show){
 
-            var arr =this.coins;
+            let arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.hour - a.hour;
               });
@@ -142,7 +142,7 @@
           sortCoinsByDay:function(){
             if(this.day_show){
 
-            var arr =this.coins;
+            let arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.day - a.day;
               });
@@ -150,7 +150,7 @@
               },
           sortCoinsByWeek:function(){
             if(this.week_show){
-            var arr =this.coins;
+            let arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.week - a.week;
               });
