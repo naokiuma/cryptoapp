@@ -5,9 +5,11 @@
 
   <section class="l-side">
     <div class="p-sidebtn__container">
-      <button class="p-sidebtn" v-on:click="showHour" type="button" name="button">過去1時間</button>
-      <button class="p-sidebtn" v-on:click="showDay" type="button" name="button">過去１日</button>
-      <button class="p-sidebtn" v-on:click="showWeek" type="button" name="button">過去1週間</button>
+    <select>
+      <option class="p-sidebtn" v-on:click="showHour" type="button" name="button">過去1時間</option>
+      <option class="p-sidebtn" v-on:click="showDay" type="button" name="button">過去１日</option>
+      <option class="p-sidebtn" v-on:click="showWeek" type="button" name="button">過去1週間</option>
+    </select>
 
         <div class="p-sidebtn__coin__container">
           <div v-for="pcoin in coins"

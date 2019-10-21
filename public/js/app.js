@@ -1959,6 +1959,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
@@ -2238,12 +2240,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users_results', 'follow_users', 'autofollow_ready', 'autofollow_ajax', 'autofollowall_ajax', 'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
+  props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', 'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
   ],
   data: function data() {
     return {
@@ -2255,12 +2253,6 @@ __webpack_require__.r(__webpack_exports__);
   },
   mounted: function mounted() {
     console.log(this.autofollow_check);
-
-    if (this.autofollow_ready == 1) {
-      this.reset_ok = false;
-    } else {
-      this.reset_ok = true;
-    }
   },
   methods: {
     follow: function follow(user, index) {
@@ -37584,35 +37576,37 @@ var render = function() {
   return _c("section", [
     _c("section", { staticClass: "l-side" }, [
       _c("div", { staticClass: "p-sidebtn__container" }, [
-        _c(
-          "button",
-          {
-            staticClass: "p-sidebtn",
-            attrs: { type: "button", name: "button" },
-            on: { click: _vm.showHour }
-          },
-          [_vm._v("過去1時間")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "p-sidebtn",
-            attrs: { type: "button", name: "button" },
-            on: { click: _vm.showDay }
-          },
-          [_vm._v("過去１日")]
-        ),
-        _vm._v(" "),
-        _c(
-          "button",
-          {
-            staticClass: "p-sidebtn",
-            attrs: { type: "button", name: "button" },
-            on: { click: _vm.showWeek }
-          },
-          [_vm._v("過去1週間")]
-        ),
+        _c("select", [
+          _c(
+            "option",
+            {
+              staticClass: "p-sidebtn",
+              attrs: { type: "button", name: "button" },
+              on: { click: _vm.showHour }
+            },
+            [_vm._v("過去1時間")]
+          ),
+          _vm._v(" "),
+          _c(
+            "option",
+            {
+              staticClass: "p-sidebtn",
+              attrs: { type: "button", name: "button" },
+              on: { click: _vm.showDay }
+            },
+            [_vm._v("過去１日")]
+          ),
+          _vm._v(" "),
+          _c(
+            "option",
+            {
+              staticClass: "p-sidebtn",
+              attrs: { type: "button", name: "button" },
+              on: { click: _vm.showWeek }
+            },
+            [_vm._v("過去1週間")]
+          )
+        ]),
         _vm._v(" "),
         _c(
           "div",
@@ -38031,39 +38025,11 @@ var render = function() {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("section", [
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: !_vm.reset_ok,
-            expression: "!reset_ok"
-          }
-        ],
-        staticClass: "p-autofollow__container"
-      },
-      [_vm._m(0)]
-    ),
-    _vm._v(" "),
-    _c(
-      "div",
-      {
-        directives: [
-          {
-            name: "show",
-            rawName: "v-show",
-            value: _vm.reset_ok,
-            expression: "reset_ok"
-          }
-        ],
-        staticClass: "p-autofollow__container"
-      },
-      [
-        _c("div", { staticClass: "p-autofollow__description" }, [
-          _vm._m(1),
-          _vm._v(" "),
+    _c("div", { staticClass: "p-autofollow__container" }, [
+      _c("div", { staticClass: "p-autofollow__description" }, [
+        _vm._m(0),
+        _vm._v(" "),
+        _c("div", { staticClass: "p-autofollow__btncontainer" }, [
           _c("h3", [_vm._v("まとめてフォローON/OFF")]),
           _vm._v(" "),
           _c("div", { staticClass: "switch" }, [
@@ -38083,25 +38049,25 @@ var render = function() {
               _c("span", { staticClass: "switch__circle" })
             ])
           ])
-        ]),
-        _vm._v(" "),
-        _c(
-          "div",
-          {
-            directives: [
-              {
-                name: "show",
-                rawName: "v-show",
-                value: _vm.ongoing,
-                expression: "ongoing"
-              }
-            ],
-            staticClass: "p-autofollow__ongoing"
-          },
-          [_c("h4", [_vm._v("自動フォロー実施中です。")])]
-        )
-      ]
-    ),
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        {
+          directives: [
+            {
+              name: "show",
+              rawName: "v-show",
+              value: _vm.ongoing,
+              expression: "ongoing"
+            }
+          ],
+          staticClass: "p-autofollow__ongoing"
+        },
+        [_c("h4", [_vm._v("自動フォロー実施中です。")])]
+      )
+    ]),
     _vm._v(" "),
     _c(
       "div",
@@ -38168,24 +38134,11 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v("現在、フォロー機能は利用できません。"),
-      _c("br"),
-      _vm._v("\n    本サービスでのフォローは1日400人までとなります。"),
-      _c("br"),
-      _vm._v("\n    詳しくは"),
-      _c("a", { attrs: { href: "/about" } }, [_vm._v("こちら")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("p", [
       _vm._v(
         "まとめてフォローをONにすると、自動フォローを15分に一度実施します。"
       ),
       _c("br"),
-      _vm._v("\n        ※実行中、サイトへのアクセスは不要です。")
+      _vm._v("\n    ※実行中、サイトへのアクセスは不要です。")
     ])
   }
 ]

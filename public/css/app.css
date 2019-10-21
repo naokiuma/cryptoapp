@@ -585,22 +585,6 @@ header {
   }
 }
 
-.p-autofollow {
-  /*
-    &__start{
-      width: 200px;
-      height: 50px;
-      font-size: 20px;
-      border: 2px solid;
-      box-shadow: 3px 2px;
-        &:hover{
-          transform: translate3d(0, 5px, 0);
-          color: #007db9;;
-          box-shadow: none;
-          background: #fff;
-        }
-    }*/
-}
 .p-autofollow__container {
   text-align: center;
   width: 100%;
@@ -644,6 +628,10 @@ header {
   width: 80%;
   margin: auto;
 }
+.p-autofollow__btncontainer {
+  padding: 15px;
+  border: solid 5px #6091d3;
+}
 .p-autofollow__description {
   width: 80%;
   margin: auto;
@@ -668,6 +656,7 @@ header {
 
 .switch {
   text-align: center;
+  margin: 30px;
 }
 
 .switch__label {
@@ -958,7 +947,7 @@ header {
 }
 .p-functions__container h3 {
   color: black;
-  padding: 15px 0;
+  padding: 15px;
 }
 @media screen and (max-width: 768px) {
   .p-functions__container h3 {

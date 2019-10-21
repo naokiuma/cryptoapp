@@ -2,35 +2,30 @@
 
   <section>
 
- <!--reset_okがfalseの場合、フォローは実施できない-->
-    <div class="p-autofollow__container" v-show="!reset_ok">
-      <p>現在、フォロー機能は利用できません。<br>
-      本サービスでのフォローは1日400人までとなります。<br>
-      詳しくは<a href="/about">こちら</a>
-      </p>
+
+  <div class="p-autofollow__container">
+
+    <div class="p-autofollow__description">
+      <p>まとめてフォローをONにすると、自動フォローを15分に一度実施します。<br>
+      ※実行中、サイトへのアクセスは不要です。</p>
+
+      <!--自動フォローのボタン-->
+      <div class="p-autofollow__btncontainer">
+        <h3>まとめてフォローON/OFF</h3>
+        <div class="switch">
+            <label class="switch__label">
+              <input type="checkbox" class="switch__input"  v-on:click="!autofollowStart" />
+              <span class="switch__content"></span>
+              <span class="switch__circle"></span>
+            </label>
+        </div>
+      </div>
     </div>
 
-
-  <div class="p-autofollow__container" v-show="reset_ok">
-
-        <div class="p-autofollow__description">
-          <p>まとめてフォローをONにすると、自動フォローを15分に一度実施します。<br>
-          ※実行中、サイトへのアクセスは不要です。</p>
-
-          <!--自動フォローのボタン-->
-          <h3>まとめてフォローON/OFF</h3>
-          <div class="switch">
-              <label class="switch__label">
-                <input type="checkbox" class="switch__input"  v-on:click="!autofollowStart" />
-                <span class="switch__content"></span>
-                <span class="switch__circle"></span>
-              </label>
-          </div>
-        </div>
-
-        <div class="p-autofollow__ongoing" v-show="ongoing">
+    <div class="p-autofollow__ongoing" v-show="ongoing">
           <h4>自動フォロー実施中です。</h4>
-        </div>
+    </div>
+
   </div>
 
 
@@ -65,7 +60,6 @@ export default{
       props:[
       'users_results',
       'follow_users',
-      'autofollow_ready',
       'autofollow_ajax',
       'autofollowall_ajax',
       'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
@@ -80,12 +74,6 @@ export default{
       },
       mounted(){
       console.log(this.autofollow_check);
-            if (this.autofollow_ready == 1){
-              this.reset_ok = false;
-            }else{
-              this.reset_ok = true;
-            }
-
       },
       methods:{
             follow:function(user,index)

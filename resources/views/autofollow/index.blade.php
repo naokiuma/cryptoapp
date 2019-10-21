@@ -54,7 +54,6 @@
     <Twitter-component
     :users_results="{{ $users_results }}"
     follow_users="{{$follow_users}}"
-    autofollow_ready = "{{ $autofollow_ready }}"
     autofollow_check = "{{ $autofollow_check }}"
     autofollow_ajax = "{{ url('autofollow') }}"
     autofollowall_ajax = "{{ url('autofollow/all') }}"
