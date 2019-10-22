@@ -226,7 +226,6 @@ class AutofollowController extends Controller
       $users_results[$i]['created_at'] = $results[$i]->created_at;
       $users_results[$i]['following'] = $results[$i]->following;
     }
-    sleep(1);
 
     $options['page'] = $num2;
     $results = $oAuth->get("users/search", $options);
@@ -245,7 +244,6 @@ class AutofollowController extends Controller
       $users_results[$i+20]['created_at'] = $results[$i]->created_at;
       $users_results[$i+20]['following'] = $results[$i]->following;
     }
-    sleep(1);
 
     $options['page'] = $num3;
     $results = $oAuth->get("users/search", $options);
@@ -264,7 +262,6 @@ class AutofollowController extends Controller
       $users_results[$i+40]['created_at'] = $results[$i]->created_at;
       $users_results[$i+40]['following'] = $results[$i]->following;
     }
-    sleep(1);
     //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
     //第二引数で情報を挿入、または既存のユーザー情報があるなら更新。
     for($i=0; $i<60; $i++){
