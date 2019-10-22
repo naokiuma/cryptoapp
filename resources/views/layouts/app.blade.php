@@ -46,7 +46,7 @@
           </ul>
           @else
           <ul>
-            @if (session('today_follow_time'))
+            @if (session('autofollow'))
             <li><a class="p-twiiter__ready" href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>
             @else
             <li><a href="{{ url('autofollow') }}"><i class="fab fa-twitter"></i>まとめてフォロー</a></li>

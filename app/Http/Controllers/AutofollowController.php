@@ -49,6 +49,8 @@ class AutofollowController extends Controller
     $autofollow_check = Auth::user()->autofollow;
     if($autofollow_check == 1){
       Session::put('autofollow', true);//セッションにも入れる。
+    }else{
+      Session::forget('autofollow');
     }
     Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
     Log::debug("autofollow_checkの状態".$autofollow_check);
@@ -177,56 +179,10 @@ class AutofollowController extends Controller
 
 
   //画面上の全ユーザーフォローアクションーーーーーーーーーーーーーーーー
-
+//ではなく、自動フォロー
   public function allfollow(Request $request){
-
-    //Log::debug("リクエストの中身（フォロー対象のユーザー。）");  //フォローボタンを押した時に送られる中身
-    Log::debug($request->allusers);
-    $count = count($request->allusers);
-    Log::debug("オールフォローを実施します。");
-    Log::debug("フォローする人数です".$count);
-
-    //$get_allfollow = explode(",", (array)$request->allusers->screen_name);//クォーテーションをつける。
-    Log::debug("オールフォローを実施しました。");
-    //Log::debug($get_allfollow);
-
-    $now_follow_num = Auth::user()->follow_count;
-    Log::debug("db上の数です。".$now_follow_num);
-    $now_follow_num = $now_follow_num + $count;
-    Log::debug("dbにオールフォロー数を足しました、saveします！db上の数は→".$now_follow_num);
-    Auth::user()->follow_count = $now_follow_num;
-    Auth::user()->update();
-
-    $oAuth = $this->twitteroauth();
-    foreach ($request->allusers as $value)
-    {
-      $target = $value['screen_name'];
-      $oAuth->post("friendships/create", ["screen_name" => $target]);
-      Log::debug($target."をフォローしました");
-    }
-
-
-    $now_follow_num = Auth::user()->follow_count;
-    Log::debug("db上の数です。".$now_follow_num);
-    $sum = $now_follow_num + 1;
-
-    Log::debug("db上の本日のフォロー数はこちらに更新されます。→".$sum);
-    Auth::user()->follow_count = $sum;
-    Auth::user()->update();
-
-
-    $now_follow_num = Auth::user()->follow_count;
-    Log::debug("db上の数です。".$now_follow_num);
-    $sum = $now_follow_num + 1;
-
-
-    //まとめてフォローをしたらセッション[today_follow_time]に時間を入れる。
-    //15分経過するまで次のまとめてフォローを実施できないようにする
-    if(!Session::get('today_follow_time')){
-      Log::debug("today_follow_timeのセッションはありません。値を入れます");
-      $nowtime = date("Y/m/d H:i:s");
-      Session::put('today_follow_time', $nowtime);
-    }
+    Log::debug($request);
+    Log::debug("自動フォローのonoffを切り替えます。");
 
     return;
   }
@@ -436,7 +392,7 @@ Log::debug("チェックdす");
                       $target = $value;
                       Log::debug("ターゲットの中身".$target);
                       $oAuth->post("friendships/create", ["screen_name" => $target]);
-                      Log::debug($target."をフォローしました");
+                      Log::debug($target."をフォローしましたテスト");
                     }
 
                     //フォローした数をカウントとしてdbに追加。

@@ -2,6 +2,7 @@
   &__container{
   text-align: center;
   width: 100%;
+
     @media screen and (max-width: $res-max-width){
       text-align: left;
     }
@@ -34,19 +35,22 @@
     height: 20px;
   }
   p{
-    height: 100px;
     width: 80%;
-    margin: auto;
+    margin: 25px auto;
+    line-height: 30px;
   }
   }
   &__btncontainer{
     padding: 15px;
     border: solid 5px #6091d3;
+    background-color: #FFDE33;
+    width: 80%;
+    margin: auto;
   }
 
   &__description
   {
-    width: 80%;
+    width: 100%;
     margin: auto;
     animation-duration: 0.5s;
     -webkit-animation-name: toup;
@@ -68,7 +72,7 @@
   }
 }
 
-
+/*
 .switch{
   text-align: center;
   margin: 30px;
@@ -147,3 +151,4 @@ overflow: hidden;
 	width: 100%;
 	height: 100%;
 }
+*/

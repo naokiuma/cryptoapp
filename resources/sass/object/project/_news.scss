@@ -6,9 +6,12 @@
       flex-wrap: wrap;
       align-content: center;
       background-color: #64f38b42;
+      border: solid 2px #6091d3;
+      border-radius: 10px;
     }
     &__card{
-      border: 0.3px solid #0000006b;
+      border: solid 1px #6091d3;
+      border-radius: 10px;
       width: 100%;
       height: 200px;
       padding:15px;
@@ -61,8 +64,16 @@
         border-radius: 10px;/*角の丸み*/
         line-height: 30px;
         display: inline-block;
+        border: solid 1px #6091d3;
+        border-radius: 10px;
         @media screen and (max-width: $res-max-width){
           width: 50%;
+        }
+        &:hover{
+          transform: translate3d(0, 5px, 0);
+          color: #007db9;;
+          box-shadow: none;
+          background: #fff;
         }
 
 

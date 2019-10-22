@@ -16,7 +16,9 @@
     本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
   @if(session('autofollow'))
-  <h3>現在、まとめてフォロー（自動フォロー）を実行中！</h3>
+  <h3>現在、まとめてフォローを実行中！</h3>
+  @else
+  <h3>現在、まとめてフォローはOFFにしています。</h3>
   @endif
 </div>
 
@@ -45,7 +47,7 @@
 <section class="l-main__twitter">
   @if (session('user_token'))
   <!--ツイッター認証をしている場合は下記を表示-->
-  <!--autofollow_readyが1の場合、前にオールフォローしてから15分経過してないので、フォローできない。0の場合、フォローして良い。-->
+  <!--autofollow_checkはセッションの状態。1ならば自動フォロー実施中。-->
   <!--autofollow_ajaxは一人フォローするurlへのポスト-->
   <!--autofollow/allは自動フォローをonにする-->
 

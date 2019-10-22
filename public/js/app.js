@@ -2241,18 +2241,26 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', 'autofollow_check' //db上から取得したautofolloが1ならばtrue、つまり自動フォロー中
+  props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', //url情報。autofollow/allです。
+  'autofollow_check' //db上から取得したautofollowの状態。1ならばtrue、つまり自動フォロー中。
   ],
   data: function data() {
     return {
       el: '#twitter',
       reset_ok: true,
       ongoing: false,
-      users: this.users_results
+      users: this.users_results,
+      auto_status: this.autofollow_check
     };
   },
   mounted: function mounted() {
     console.log(this.autofollow_check);
+
+    if (this.autofollow_check == 1) {
+      this.ongoing = true;
+    } else {
+      this.ongoing = false;
+    }
   },
   methods: {
     follow: function follow(user, index) {
@@ -2276,14 +2284,26 @@ __webpack_require__.r(__webpack_exports__);
       });
     },
     autofollowStart: function autofollowStart() {
-      this.ongoing = true;
-      var allusers = this.users;
       var self = this;
-      var url = this.autofollowall_ajax;
+      var url = this.autofollowall_ajax; //ajax先のurl
+
+      var auto_status = this.auto_status;
+
+      if (self.auto_status == 1) {
+        //今現在のDB上のautofollowの状態が1の場合
+        this.ongoing = true;
+        self.auto_status = 0; //フォローの状態を0にする
+      } else {
+        this.ongoing = false;
+        self.auto_status = 1; //今現在のフォローの状態が1ではない場合、フォローの状態を1にする
+      }
+
+      console.log("切り替え後のauto_statusの状態です");
+      console.log(self.auto_status);
       axios.post(url, {
-        allusers: allusers
+        auto_status: auto_status
       }).then(function (res) {
-        alert('全ユーザーフォローしました。再読み込みします。');
+        alert('まとめてフォローの設定を切り替えました。再読み込みします。');
         location.reload();
       })["catch"](function (error) {
         console.log(error);
@@ -38032,21 +38052,18 @@ var render = function() {
         _c("div", { staticClass: "p-autofollow__btncontainer" }, [
           _c("h3", [_vm._v("まとめてフォローON/OFF")]),
           _vm._v(" "),
-          _c("div", { staticClass: "switch" }, [
-            _c("label", { staticClass: "switch__label" }, [
+          _c("div", { staticClass: "c-switch" }, [
+            _c("label", { staticClass: "c-switch__label" }, [
               _c("input", {
-                staticClass: "switch__input",
+                staticClass: "c-switch__input",
+                class: { nowfollow: _vm.ongoing },
                 attrs: { type: "checkbox" },
-                on: {
-                  click: function($event) {
-                    !_vm.autofollowStart
-                  }
-                }
+                on: { click: _vm.autofollowStart }
               }),
               _vm._v(" "),
-              _c("span", { staticClass: "switch__content" }),
+              _c("span", { staticClass: "c-switch__content" }),
               _vm._v(" "),
-              _c("span", { staticClass: "switch__circle" })
+              _c("span", { staticClass: "c-switch__circle" })
             ])
           ])
         ])

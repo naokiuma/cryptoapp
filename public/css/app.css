@@ -264,7 +264,7 @@ header {
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: #c5f4f4;
+  background-color: #32FFFFAD;
   border-bottom: 3px solid;
   position: fixed;
   /* ヘッダーの固定 */
@@ -328,7 +328,7 @@ header {
 }
 
 .l-footernavi__container {
-  background-color: #c5f4f4;
+  background-color: #32FFFFAD;
   color: black;
   border-top: solid black 1px;
   line-height: 20px;
@@ -501,7 +501,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .c-text h3 {
-    background-color: #c5f4f4;
+    background-color: #32FFFFAD;
   }
 }
 .c-text__attention span {
@@ -535,7 +535,7 @@ header {
   }
 }
 .c-box p {
-  line-height: 24px;
+  line-height: 30px;
   text-align: center;
   width: 80%;
   margin: auto;
@@ -585,6 +585,75 @@ header {
   }
 }
 
+.c-switch {
+  text-align: center;
+  margin: 30px;
+}
+.c-switch__label {
+  width: 50px;
+  position: relative;
+  display: inline-block;
+}
+.c-switch__content {
+  display: block;
+  cursor: pointer;
+  position: relative;
+  border-radius: 30px;
+  height: 31px;
+  overflow: hidden;
+}
+.c-switch__content:before {
+  content: "";
+  display: block;
+  position: absolute;
+  width: calc(100% - 3px);
+  height: calc(100% - 3px);
+  top: 0;
+  left: 0;
+  border: 1.5px solid #E5E5EA;
+  border-radius: 30px;
+  background-color: #fff;
+}
+.c-switch__content:after {
+  content: "";
+  display: block;
+  position: absolute;
+  background-color: transparent;
+  width: 0;
+  height: 0;
+  top: 50%;
+  left: 50%;
+  border-radius: 30px;
+  transition: all 0.5s;
+}
+.c-switch__input {
+  display: none;
+}
+.c-switch__circle {
+  display: block;
+  top: 2px;
+  left: 2px;
+  position: absolute;
+  box-shadow: 0 2px 6px #999;
+  width: 27px;
+  height: 27px;
+  border-radius: 20px;
+  background-color: #fff;
+  transition: all 0.5s;
+}
+
+.nowfollow ~ .c-switch__circle {
+  left: 21px;
+}
+
+.nowfollow ~ .c-switch__content:after {
+  background-color: #4BD964;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
 .p-autofollow__container {
   text-align: center;
   width: 100%;
@@ -624,16 +693,19 @@ header {
   height: 20px;
 }
 .p-autofollow__container p {
-  height: 100px;
   width: 80%;
-  margin: auto;
+  margin: 25px auto;
+  line-height: 30px;
 }
 .p-autofollow__btncontainer {
   padding: 15px;
   border: solid 5px #6091d3;
+  background-color: #FFDE33;
+  width: 80%;
+  margin: auto;
 }
 .p-autofollow__description {
-  width: 80%;
+  width: 100%;
   margin: auto;
   -webkit-animation-duration: 0.5s;
           animation-duration: 0.5s;
@@ -654,81 +726,86 @@ header {
           animation: 2s linear infinite blink_effect;
 }
 
-.switch {
+/*
+.switch{
   text-align: center;
   margin: 30px;
 }
-
 .switch__label {
-  width: 50px;
-  position: relative;
-  display: inline-block;
+	width: 50px;
+	position: relative;
+	display: inline-block;
 }
-
 .switch__content {
-  display: block;
+	display: block;
   cursor: pointer;
   position: relative;
   border-radius: 30px;
   height: 31px;
-  overflow: hidden;
+overflow: hidden;
 }
-
 .switch__content:before {
-  content: "";
-  display: block;
-  position: absolute;
-  width: calc(100% - 3px);
-  height: calc(100% - 3px);
-  top: 0;
-  left: 0;
-  border: 1.5px solid #E5E5EA;
-  border-radius: 30px;
-  background-color: #fff;
+	content: "";
+	display: block;
+	position: absolute;
+	width: calc(100% - 3px);
+	height: calc(100% - 3px);
+	top: 0;
+	left: 0;
+	border: 1.5px solid #E5E5EA;
+	border-radius: 30px;
+	background-color: #fff;
 }
-
 .switch__content:after {
-  content: "";
-  display: block;
-  position: absolute;
-  background-color: transparent;
-  width: 0;
-  height: 0;
-  top: 50%;
-  left: 50%;
-  border-radius: 30px;
-  transition: all 0.5s;
+	content: "";
+	display: block;
+	position: absolute;
+	background-color: transparent;
+	width: 0;
+	height: 0;
+	top: 50%;
+	left: 50%;
+	border-radius: 30px;
+	-webkit-transition: all .5s;
+	   -moz-transition: all .5s;
+	    -ms-transition: all .5s;
+	     -o-transition: all .5s;
+	        transition: all .5s;
 }
-
 .switch__input {
-  display: none;
+	display: none;
 }
 
 .switch__circle {
-  display: block;
-  top: 2px;
-  left: 2px;
-  position: absolute;
-  box-shadow: 0 2px 6px #999;
-  width: 27px;
-  height: 27px;
-  border-radius: 20px;
-  background-color: #fff;
-  transition: all 0.5s;
+	display: block;
+	top: 2px;
+	left: 2px;
+	position: absolute;
+	-webkit-box-shadow: 0 2px 6px #999;
+	        box-shadow: 0 2px 6px #999;
+	width: 27px;
+	height: 27px;
+	-webkit-border-radius: 20px;
+	        border-radius: 20px;
+	background-color: #fff;
+	-webkit-transition: all .5s;
+	   -moz-transition: all .5s;
+	    -ms-transition: all .5s;
+	     -o-transition: all .5s;
+	        transition: all .5s;
 }
-
 .switch__input:checked ~ .switch__circle {
-  left: 21px;
+	left: 21px;
 }
 
 .switch__input:checked ~ .switch__content:after {
-  background-color: #4BD964;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+	background-color: #4BD964;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
 }
-
+*/
 .p-about__container {
   text-align: left;
   width: 90%;
@@ -867,7 +944,7 @@ header {
 }
 .p-desc__container h2 {
   font-size: 36px;
-  color: #000000cf;
+  color: black;
 }
 @media screen and (max-width: 768px) {
   .p-desc__container h2 {
@@ -1078,7 +1155,7 @@ header {
   }
 }
 .p-hero__title p {
-  line-height: 24px;
+  line-height: 30px;
 }
 
 .p-hero__icon {
@@ -1191,9 +1268,12 @@ header {
   flex-wrap: wrap;
   align-content: center;
   background-color: #64f38b42;
+  border: solid 2px #6091d3;
+  border-radius: 10px;
 }
 .p-news__card {
-  border: 0.3px solid #0000006b;
+  border: solid 1px #6091d3;
+  border-radius: 10px;
   width: 100%;
   height: 200px;
   padding: 15px;
@@ -1257,11 +1337,19 @@ header {
   /*角の丸み*/
   line-height: 30px;
   display: inline-block;
+  border: solid 1px #6091d3;
+  border-radius: 10px;
 }
 @media screen and (max-width: 768px) {
   .p-news__jamp {
     width: 50%;
   }
+}
+.p-news__jamp:hover {
+  transform: translate3d(0, 5px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 
 .p-plobrem {
@@ -1477,7 +1565,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #c5f4f4;
+  background-color: #32FFFFAD;
 }
 .p-twiiter__container h2 {
   text-align: center;
@@ -1565,7 +1653,7 @@ header {
 .u-width__narrow {
   width: 30%;
   height: 60%;
-  background-color: #c5f4f4;
+  background-color: #32FFFFAD;
   display: block;
   text-align: center;
   line-height: 500px;
