@@ -13,6 +13,8 @@ use App\Coin;
 //indexでページを表示させ、hour/day/week/highandlowでdb上のcoinテーブルの値を更新。cronで定期更新
 class CoinController extends Controller
 {
+
+  //ーーーーーーーーーーページの表示ーーーーーーーーーー
   public function index()
   {
     $coinupdatedate = Updatetime::all();//全てのコインの更新日時をDBより引用
@@ -26,8 +28,7 @@ class CoinController extends Controller
 
 
 
-  //dbに1時間のツイート数をDBインサートする処理（定期バッジをする）
-  //ページにアクセスすると結果も確認可能
+  //ーーーーーーーーーーDBに1時間のツイート数をインサートする処理（定期バッジ）ーーーーーーーーーー
   public static function hour()
   {
     //ツイッター認証
@@ -69,8 +70,6 @@ class CoinController extends Controller
         break; // なければループを抜ける
       }
     }
-    //  Log::debug($tweet_results);確認用
-
 
     $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
     $count = count($tweet_results);//ツイート数
@@ -211,8 +210,7 @@ class CoinController extends Controller
 
 
 
-  //dbに1時間のツイート数をDBインサートする処理（定期バッジをする）
-  //ページにアクセスすると結果も確認可能
+  //ーーーーーーーーーーDBに1日のツイート数をインサートする処理（定期バッジ）ーーーーーーーーーー
   public static function day()
   {
     $config = config('services');
@@ -388,7 +386,7 @@ class CoinController extends Controller
   }
 
 
-  //dbに1週間のツイート数をインサートする処理（cronでの定期バッジをする）
+  //ーーーーーーーーーーDBに1週間のツイート数をインサートする処理（定期バッジ）ーーーーーーーーーー
   public static function week()
   {
 
@@ -402,7 +400,6 @@ class CoinController extends Controller
     $before_week = date('Y-m-d_H:i:s', strtotime('-7 day', time()))."_JST";//先日の時間
     echo '<pre>'; print_r($now_time); echo '</pre>';
     echo '<pre>'; print_r($before_week); echo '</pre>';
-
 
     $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
     #検索ワード複数
@@ -563,8 +560,7 @@ class CoinController extends Controller
   }
 
 
-  //---------------coincheckや、zaifなどのパブリックAPIから取引価格取得しDBに保管
-  //ページにアクセスするとまとめた情報を見ることもできる
+  //ーーーーーーーーーーcoincheckや、zaifなどのパブリックAPIから取引価格取得しDBに保管（定期バッジ）ーーーーーーーーーー
   public static function highandlow(){
 
     $API_btc_URL = "https://coincheck.com/api/ticker";

@@ -16,7 +16,7 @@ class NewsController extends Controller
 {
 
   //------------------ニュース一覧アクション
-
+  //ーーーーーーーーーーページの表示ーーーーーーーーーー
   public function index()
   {
     set_time_limit(120);
@@ -32,28 +32,18 @@ class NewsController extends Controller
       $list[$i]['url'] = mb_convert_encoding($items[$i]->link,"UTF-8", "auto");
       $list[$i]['pubDate'] = mb_convert_encoding($items[$i]->pubDate,"UTF-8", "auto");
       $list[$i]['description'] = mb_convert_encoding($items[$i]->description,"UTF-8", "auto");
-      //メディア画像がある場合はその画像を、ない場合はサービスのデフォルト画像を配置。
-      /*
-      if(isset($items[$i]->children('media', true)->content)){
-      //記事のmedia内に画像があれば読み込む
-      $list[$i]['image_url'] = (string)$items[$i]->children('media', true)->content->attributes()->url;
-    }else{
-    //記事のmedia内に画像がなければサンプル画像
-    $list[$i]['image_url'] = "./img/hero_img.jpg";
-  }
-  */
-  }
-
-  //$max_num以上の記事数の場合は切り捨て
-  if(count($list)>$max_num){
-    for ($i = 0; $i < $max_num; $i++){
-      $list_gn[$i] = $list{$i};
-      $i++;
     }
-  }else{
-    $list_gn = $list;
-  }
-  return view('news/index',compact('list_gn'));
+
+    //$max_num以上の記事数の場合は切り捨て
+    if(count($list)>$max_num){
+      for ($i = 0; $i < $max_num; $i++){
+        $list_gn[$i] = $list{$i};
+        $i++;
+      }
+    }else{
+      $list_gn = $list;
+    }
+    return view('news/index',compact('list_gn'));
   }
 
 }

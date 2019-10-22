@@ -7,7 +7,8 @@ use App\Coin;
 use Abraham\TwitterOAuth\TwitterOAuth;
 
 class AjaxController extends Controller
-{//ajaxデータ。DBから取得したcoinデータをajaxとして出力
+{
+  //ーーーーーーーーーーajaxデータ。DBから取得したcoinデータをajaxとして出力ーーーーーーーーーー
   public function coin() {
     //コインデータ一覧をDBから表示
     return Coin::all();

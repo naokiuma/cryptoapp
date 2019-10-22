@@ -6,24 +6,14 @@
   <div class="p-autofollow__container">
 
     <div class="p-autofollow__description">
-      <p>まとめてフォローをONにすると、自動フォローを15分に一度実施します。<br>
-      ※実行中、サイトへのアクセスは不要です。</p>
+      <p>まとめてフォローをONにすると15分に一度、<span>自動フォロー</span>を実施します。</p>
 
-      <!--自動フォローのボタン。クリックするたびにautofollowStartをon/off切り替える-->
-      <div class="p-autofollow__btncontainer">
-        <h3>まとめてフォローON/OFF</h3>
-        <div class="c-switch">
-            <label class="c-switch__label">
-              <input type="checkbox" class="c-switch__input"  v-on:click="autofollowStart" v-bind:class='{nowfollow:ongoing}'/>
-              <span class="c-switch__content"></span>
-              <span class="c-switch__circle"></span>
-            </label>
-        </div>
+      <!--自動フォロー実施中のみ表示されるテキスト-->
+      <div class="p-autofollow__ongoing" v-show="ongoing">
+            <h4>自動フォロー実施中です。</h4>
       </div>
-    </div>
-
-    <div class="p-autofollow__ongoing" v-show="ongoing">
-          <h4>自動フォロー実施中です。</h4>
+      <!--自動フォローのボタン。クリックするたびにautofollowStartをon/off切り替える-->
+      <button class="p-autofollow__start" v-on:click="autofollowStart" v-bind:class='{nowfollow:ongoing}'>まとめてフォローON/OFF</button>
     </div>
 
   </div>
@@ -68,7 +58,7 @@ export default{
           return{
           el: '#twitter',
           reset_ok:true,
-          ongoing:false,
+          ongoing:"",
           users:this.users_results,
           auto_status:this.autofollow_check
         }
@@ -98,6 +88,16 @@ export default{
                 this.users.splice(index,1)
                 }).catch( error => { console.log(error); });
               },
+            checkOngoing:function(){ //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替える
+            console.log("checkOngoingを呼び出します");
+              if(this.autofollow_check == 1 || true){
+                this.ongoing = true;
+              }else{
+                this.ongoing = false;
+              }
+            console.log("this.ongoingの値です");
+            console.log(this.ongoing);
+            },
 
           autofollowStart:function()
               {
@@ -105,24 +105,29 @@ export default{
                 let url = this.autofollowall_ajax; //ajax先のurl
                 let auto_status = this.auto_status;
                 if(self.auto_status == 1){ //今現在のDB上のautofollowの状態が1の場合
+                  console.log(self.auto_status);
+                  console.log("今現在の値です");
                   this.ongoing = true;
-                  self.auto_status = 0 //フォローの状態を0にする
+                  self.auto_status = 0; //オートフォローの状態を0にする
                 }else{
+                  console.log(self.auto_status);
+                  console.log("今現在の値です");
                   this.ongoing = false;
                   self.auto_status  = 1; //今現在のフォローの状態が1ではない場合、フォローの状態を1にする
                 }
+                let request = self.auto_status;
                 console.log("切り替え後のauto_statusの状態です");
-                console.log(self.auto_status);
+                console.log(request);
                 axios.post(url, {
-                auto_status}).then((res)=>{
-                alert('まとめてフォローの設定を切り替えました。再読み込みします。');
+                request}).then((res)=>{
+                alert('まとめてフォローの設定を切り替えました。再読み込みします');
                 location.reload();
                 }).catch( error => { console.log(error); });
               }
           },
 
         computed:{
-        nofollow:function(){
+        nofollow:function(){ //フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
         return this.users.filter(function(user){
           return user.following == false;
          });

@@ -1,49 +1,50 @@
 .p-autofollow{
   &__container{
-  text-align: center;
-  width: 100%;
-
+    text-align: center;
+    width: 100%;
     @media screen and (max-width: $res-max-width){
       text-align: left;
     }
-  button{
-    height: 50px;
-    width: 50%;
-    margin: auto;
-    line-height: 50px;
-    background-color: aquamarine;
-    margin: 30px auto;
-    border: 3px solid #232323;
-    font-size: 20px;
-    display: block;
-    box-shadow: 3px 2px;
-    &:hover{
-      transform: translate3d(0, 5px, 0);
-      color: #007db9;;
-      box-shadow: none;
-      background: #fff;
+    button{
+      height: 50px;
+      width: 50%;
+      margin: auto;
+      line-height: 50px;
+      margin: 30px auto;
+      border: 3px solid #232323;
+      font-size: 20px;
+      display: block;
+      box-shadow: 3px 2px;
+      @media screen and (max-width: $res-max-width){
+        width:70%;
+      }
+      &:hover{
+        transform: translate3d(0, 5px, 0);
+        color: #007db9;;
+        box-shadow: none;
+        background: #fff;
+      }
     }
-  }
 
-  h3{
-    margin: 30px auto;
-    @media screen and (max-width: $res-max-width){
-      text-align: center;
+    h3{
+      margin: 30px auto;
+      @media screen and (max-width: $res-max-width){
+        text-align: center;
+      }
     }
-  }
-  input{
-    height: 20px;
-  }
-  p{
-    width: 80%;
-    margin: 25px auto;
-    line-height: 30px;
-  }
+    input{
+      height: 20px;
+    }
+    p{
+      width: 80%;
+      margin: 25px auto;
+      line-height: 30px;
+    }
   }
   &__btncontainer{
     padding: 15px;
     border: solid 5px #6091d3;
-    background-color: #FFDE33;
+    background-color: #00000014;
     width: 80%;
     margin: auto;
   }
@@ -56,11 +57,14 @@
     -webkit-animation-name: toup;
     animation-name: toup;
 
-      h3{
-        @media screen and (max-width: $res-max-width){
-          font-size: 16px;
-        }
+    h3{
+      @media screen and (max-width: $res-max-width){
+        font-size: 16px;
       }
+    }
+    span{
+      background: linear-gradient(transparent 70%, yellow 70%);
+    }
   }
 
   &__ongoing{
@@ -70,85 +74,9 @@
     font-size: 16px;
     animation: 2s linear infinite blink_effect;
   }
+
 }
 
-/*
-.switch{
-  text-align: center;
-  margin: 30px;
+.nowfollow{
+    background-color: yellow;
 }
-.switch__label {
-	width: 50px;
-	position: relative;
-	display: inline-block;
-}
-.switch__content {
-	display: block;
-  cursor: pointer;
-  position: relative;
-  border-radius: 30px;
-  height: 31px;
-overflow: hidden;
-}
-.switch__content:before {
-	content: "";
-	display: block;
-	position: absolute;
-	width: calc(100% - 3px);
-	height: calc(100% - 3px);
-	top: 0;
-	left: 0;
-	border: 1.5px solid #E5E5EA;
-	border-radius: 30px;
-	background-color: #fff;
-}
-.switch__content:after {
-	content: "";
-	display: block;
-	position: absolute;
-	background-color: transparent;
-	width: 0;
-	height: 0;
-	top: 50%;
-	left: 50%;
-	border-radius: 30px;
-	-webkit-transition: all .5s;
-	   -moz-transition: all .5s;
-	    -ms-transition: all .5s;
-	     -o-transition: all .5s;
-	        transition: all .5s;
-}
-.switch__input {
-	display: none;
-}
-
-.switch__circle {
-	display: block;
-	top: 2px;
-	left: 2px;
-	position: absolute;
-	-webkit-box-shadow: 0 2px 6px #999;
-	        box-shadow: 0 2px 6px #999;
-	width: 27px;
-	height: 27px;
-	-webkit-border-radius: 20px;
-	        border-radius: 20px;
-	background-color: #fff;
-	-webkit-transition: all .5s;
-	   -moz-transition: all .5s;
-	    -ms-transition: all .5s;
-	     -o-transition: all .5s;
-	        transition: all .5s;
-}
-.switch__input:checked ~ .switch__circle {
-	left: 21px;
-}
-
-.switch__input:checked ~ .switch__content:after {
-	background-color: #4BD964;
-	top: 0;
-	left: 0;
-	width: 100%;
-	height: 100%;
-}
-*/

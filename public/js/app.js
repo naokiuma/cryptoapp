@@ -2230,16 +2230,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', //url情報。autofollow/allです。
   'autofollow_check' //db上から取得したautofollowの状態。1ならばtrue、つまり自動フォロー中。
@@ -2248,7 +2238,7 @@ __webpack_require__.r(__webpack_exports__);
     return {
       el: '#twitter',
       reset_ok: true,
-      ongoing: false,
+      ongoing: "",
       users: this.users_results,
       auto_status: this.autofollow_check
     };
@@ -2283,6 +2273,19 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    checkOngoing: function checkOngoing() {
+      //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替える
+      console.log("checkOngoingを呼び出します");
+
+      if (this.autofollow_check == 1 || true) {
+        this.ongoing = true;
+      } else {
+        this.ongoing = false;
+      }
+
+      console.log("this.ongoingの値です");
+      console.log(this.ongoing);
+    },
     autofollowStart: function autofollowStart() {
       var self = this;
       var url = this.autofollowall_ajax; //ajax先のurl
@@ -2291,19 +2294,24 @@ __webpack_require__.r(__webpack_exports__);
 
       if (self.auto_status == 1) {
         //今現在のDB上のautofollowの状態が1の場合
+        console.log(self.auto_status);
+        console.log("今現在の値です");
         this.ongoing = true;
-        self.auto_status = 0; //フォローの状態を0にする
+        self.auto_status = 0; //オートフォローの状態を0にする
       } else {
+        console.log(self.auto_status);
+        console.log("今現在の値です");
         this.ongoing = false;
         self.auto_status = 1; //今現在のフォローの状態が1ではない場合、フォローの状態を1にする
       }
 
+      var request = self.auto_status;
       console.log("切り替え後のauto_statusの状態です");
-      console.log(self.auto_status);
+      console.log(request);
       axios.post(url, {
-        auto_status: auto_status
+        request: request
       }).then(function (res) {
-        alert('まとめてフォローの設定を切り替えました。再読み込みします。');
+        alert('まとめてフォローの設定を切り替えました。再読み込みします');
         location.reload();
       })["catch"](function (error) {
         console.log(error);
@@ -2312,6 +2320,7 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     nofollow: function nofollow() {
+      //フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
       return this.users.filter(function (user) {
         return user.following == false;
       });
@@ -38049,41 +38058,32 @@ var render = function() {
       _c("div", { staticClass: "p-autofollow__description" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("div", { staticClass: "p-autofollow__btncontainer" }, [
-          _c("h3", [_vm._v("まとめてフォローON/OFF")]),
-          _vm._v(" "),
-          _c("div", { staticClass: "c-switch" }, [
-            _c("label", { staticClass: "c-switch__label" }, [
-              _c("input", {
-                staticClass: "c-switch__input",
-                class: { nowfollow: _vm.ongoing },
-                attrs: { type: "checkbox" },
-                on: { click: _vm.autofollowStart }
-              }),
-              _vm._v(" "),
-              _c("span", { staticClass: "c-switch__content" }),
-              _vm._v(" "),
-              _c("span", { staticClass: "c-switch__circle" })
-            ])
-          ])
-        ])
-      ]),
-      _vm._v(" "),
-      _c(
-        "div",
-        {
-          directives: [
-            {
-              name: "show",
-              rawName: "v-show",
-              value: _vm.ongoing,
-              expression: "ongoing"
-            }
-          ],
-          staticClass: "p-autofollow__ongoing"
-        },
-        [_c("h4", [_vm._v("自動フォロー実施中です。")])]
-      )
+        _c(
+          "div",
+          {
+            directives: [
+              {
+                name: "show",
+                rawName: "v-show",
+                value: _vm.ongoing,
+                expression: "ongoing"
+              }
+            ],
+            staticClass: "p-autofollow__ongoing"
+          },
+          [_c("h4", [_vm._v("自動フォロー実施中です。")])]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "p-autofollow__start",
+            class: { nowfollow: _vm.ongoing },
+            on: { click: _vm.autofollowStart }
+          },
+          [_vm._v("まとめてフォローON/OFF")]
+        )
+      ])
     ]),
     _vm._v(" "),
     _c(
@@ -38151,11 +38151,9 @@ var staticRenderFns = [
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
     return _c("p", [
-      _vm._v(
-        "まとめてフォローをONにすると、自動フォローを15分に一度実施します。"
-      ),
-      _c("br"),
-      _vm._v("\n    ※実行中、サイトへのアクセスは不要です。")
+      _vm._v("まとめてフォローをONにすると15分に一度、"),
+      _c("span", [_vm._v("自動フォロー")]),
+      _vm._v("を実施します。")
     ])
   }
 ]

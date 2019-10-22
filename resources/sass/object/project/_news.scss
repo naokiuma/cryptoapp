@@ -31,6 +31,8 @@
         background-color: white;
         text-align: left;
         box-sizing: border-box;
+        border: solid 1px #6091d3;
+        border-radius: 10px;
         @media screen and (max-width: $res-max-width){
           font-size: 14px;
           height: 60%;

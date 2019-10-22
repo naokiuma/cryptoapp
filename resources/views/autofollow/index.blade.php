@@ -11,15 +11,9 @@
     <i class="fab fa-twitter"></i>まとめてフォロー
   </h2>
   <p class="p-desc__text c-text">
-    Twitter上で『仮想通貨』という名称を含むプロフィールやアカウント一覧を表示します。<br>
-    ※ログインアカウントの未フォローユーザーが表示されます。<br>
+    Twitter上の『仮想通貨』関連のユーザーが表示されます。<br>
     本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
-  @if(session('autofollow'))
-  <h3>現在、まとめてフォローを実行中！</h3>
-  @else
-  <h3>現在、まとめてフォローはOFFにしています。</h3>
-  @endif
 </div>
 
 
@@ -51,7 +45,7 @@
   <!--autofollow_ajaxは一人フォローするurlへのポスト-->
   <!--autofollow/allは自動フォローをonにする-->
 
-<!--$autofollow_checkこの値で現在オートフォロー中か判断-->
+  <!--$autofollow_checkこの値で現在オートフォロー中か判断-->
   <div id="twitterapp">
     <Twitter-component
     :users_results="{{ $users_results }}"
