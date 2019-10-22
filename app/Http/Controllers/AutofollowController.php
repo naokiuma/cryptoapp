@@ -125,7 +125,6 @@ class AutofollowController extends Controller
     for($i=0; $i<10; $i++){
       if(!$lookupuser[$i]->following){
         $temp_user[] = ($lookupuser[$i]);
-        sleep(1);
       }
     }
     //$temp_userをjsonエンコードし、$users_resultsユーザー情報を取得する。
@@ -226,8 +225,8 @@ class AutofollowController extends Controller
       $users_results[$i]['tweet'] = $results[$i]->status->text;
       $users_results[$i]['created_at'] = $results[$i]->created_at;
       $users_results[$i]['following'] = $results[$i]->following;
-      sleep(1);
     }
+    sleep(1);
 
     $options['page'] = $num2;
     $results = $oAuth->get("users/search", $options);
@@ -245,8 +244,8 @@ class AutofollowController extends Controller
       $users_results[$i+20]['tweet'] = $results[$i]->status->text;
       $users_results[$i+20]['created_at'] = $results[$i]->created_at;
       $users_results[$i+20]['following'] = $results[$i]->following;
-      sleep(1);
     }
+    sleep(1);
 
     $options['page'] = $num3;
     $results = $oAuth->get("users/search", $options);
@@ -264,9 +263,8 @@ class AutofollowController extends Controller
       $users_results[$i+40]['tweet'] = $results[$i]->status->text;
       $users_results[$i+40]['created_at'] = $results[$i]->created_at;
       $users_results[$i+40]['following'] = $results[$i]->following;
-      sleep(1);
     }
-
+    sleep(1);
     //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
     //第二引数で情報を挿入、または既存のユーザー情報があるなら更新。
     for($i=0; $i<60; $i++){
@@ -289,15 +287,12 @@ class AutofollowController extends Controller
     $data = ['updated_at' => $now_time];
     $addusertime_update->update($data);
 
-
     header( "Content-Type: application/json; charset=utf-8" );//jsonデータに変換
     //jsonにする処理
     $results = json_encode($users_results,JSON_PRETTY_PRINT | JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
     print_r($results);
     return;
   }
-
-
 
 
 
@@ -341,7 +336,7 @@ class AutofollowController extends Controller
       //1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
       //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
-      //一人の処理---------------■
+      //一人分の処理---------------■
       $follow_count = $follow_acount[$i]->follow_count;
       Log::debug("本日このサービスでフォローした数".$follow_count);
 
@@ -363,7 +358,6 @@ class AutofollowController extends Controller
 
         //lookupで先ほど取得したscreen_nameを使い情報取得。そのままscreen_nameを$temp_userに詰め込む。
         $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_targets"]);
-        sleep(1);
         $temp_user = array();
 
         //フォロー対象のまとめ。fを変数にし、forでフォロー。
@@ -393,7 +387,6 @@ class AutofollowController extends Controller
           Log::debug("ターゲットの中身".$target);
           $oAuth->post("friendships/create", ["screen_name" => $target]);
           Log::debug($target."をフォローしました");
-          sleep(1);
         }
 
         //フォローした数をカウントとしてdbに追加。
@@ -412,9 +405,6 @@ class AutofollowController extends Controller
         $user->update();
         //Log::debug("DBを更新しました。多分");
 
-
-
-        sleep(1);
         Log::debug("フォロー処理を終了します。");
 
       }

@@ -46,10 +46,18 @@ class TwitterController extends Controller
          //ログインしている＝すでにユーザー登録済みなので、ユーザーIDを取得し
          //そのカラムにツイッター情報を追加する
          //Log::debug('最新のTwitter情報をdbに登録します。');
+         //開発中。編集
          $user_id = Auth::user()->id;
          $user_date = User::where('id',$user_id)->first();
          //Log::debug(print_r($twitterUser->id, true));
          //userカラムのtwiiter関連データにツイッター情報を挿入。
+
+         $temp_id = $user_date->twitter_id;
+         Log::debug($temp_id);
+         Log::debug($twitterUser);
+
+         //$user_check = User::where('autofollow', 1)->get();
+
          $user_date->fill([
            'twitter_id' => $twitterUser->id,
            'handle' => $twitterUser->nickname,
