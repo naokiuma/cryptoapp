@@ -19,6 +19,7 @@ class NewsController extends Controller
   //ーーーーーーーーーーページの表示ーーーーーーーーーー
   public function index()
   {
+    Log::debug("ーーーーーーーーーーーーーーーニュースページですーーーーーーーーーーーーーーー");
     set_time_limit(120);
     $max_num = 50;
     $keywords = "仮想通貨";//検索キーワード

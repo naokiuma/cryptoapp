@@ -245,7 +245,7 @@ a {
 }
 .l-billboard {
   width: 100%;
-  height: 100vh;
+  height: 80vh;
   background-image: url("../img/hero_image.jpg");
   background-size: cover;
   background-position: center bottom;
@@ -264,7 +264,7 @@ header {
   height: 60px;
   display: flex;
   justify-content: space-between;
-  background-color: #32FFFFAD;
+  background-color: #c5f4f4;
   border-bottom: 3px solid;
   position: fixed;
   /* ヘッダーの固定 */
@@ -279,7 +279,7 @@ header {
 }
 .l-main__sub {
   width: 95%;
-  height: 600px;
+  height: 500px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
@@ -328,7 +328,7 @@ header {
 }
 
 .l-footernavi__container {
-  background-color: #32FFFFAD;
+  background-color: #c5f4f4;
   color: black;
   border-top: solid black 1px;
   line-height: 20px;
@@ -399,7 +399,7 @@ header {
   justify-content: space-between;
   height: 90px;
   line-height: 30px;
-  margin-top: 3%;
+  margin-top: 1%;
   font-size: 16px;
 }
 .c-card__header h4 {
@@ -493,23 +493,19 @@ header {
   text-align: center;
 }
 .c-text span {
-  color: #364e96;
-  /*文字色*/
+  color: black;
   padding: 0.7em 0;
-  /*上下の余白*/
-  border-top: solid 1px #364e96;
-  /*上線*/
-  border-bottom: solid 1px #364e96;
-  /*下線*/
+  border-top: solid 5px #364e96;
+  border-bottom: solid 5px #364e96;
 }
 .c-text h3 {
-  background-color: #60ded27a;
+  background-color: #BFFFFF;
   width: 100%;
   font-weight: lighter;
 }
 @media screen and (max-width: 768px) {
   .c-text h3 {
-    background-color: #32FFFFAD;
+    background-color: #c5f4f4;
   }
 }
 .c-text__attention span {
@@ -534,7 +530,11 @@ header {
   border-left: solid 10px #ffc06e;
   border-right: solid 10px #ffc06e;
   font-size: 35px;
-  background-color: #fff76eb8;
+  background: #ffe259;
+  /* fallback for old browsers */
+  /* Chrome 10-25, Safari 5.1-6 */
+  background: linear-gradient(to right, #ffe259, #ffa751);
+  /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
 }
 @media screen and (max-width: 768px) {
   .c-box h2 {
@@ -549,7 +549,7 @@ header {
   margin: auto;
   padding: 10px;
   color: black;
-  background-color: #c4f5ffa1;
+  background-color: #BFFFFF;
 }
 @media screen and (max-width: 768px) {
   .c-box p {
@@ -742,7 +742,7 @@ header {
 }
 
 .nowfollow {
-  background-color: yellow;
+  background-color: #FFE100;
 }
 
 .p-about__container {
@@ -1355,7 +1355,7 @@ header {
 }
 .p-sidebtn__coin {
   height: 30px;
-  width: 100%;
+  width: 20%;
   background-color: #07f4b84a;
 }
 .p-sidebtn__coin:hover {
@@ -1366,7 +1366,7 @@ header {
 }
 .p-sidebtn__coin__container {
   height: 70%;
-  text-align: center;
+  text-align: left;
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn__coin__container {
@@ -1506,7 +1506,7 @@ header {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  background-color: #32FFFFAD;
+  background-color: #c5f4f4;
 }
 .p-twiiter__container h2 {
   text-align: center;
@@ -1544,7 +1544,7 @@ header {
     font-size: 16px;
   }
 }
-.p-twiiter__ready::after {
+.p-twiiter__autofollow::after {
   content: "\25CF";
   font-family: "Courier New", Courier, monospace;
   color: #3ad95e;
@@ -1593,8 +1593,8 @@ header {
 
 .u-width__narrow {
   width: 30%;
-  height: 60%;
-  background-color: #32FFFFAD;
+  height: 80%;
+  background-color: #00000014;
   display: block;
   text-align: center;
   line-height: 500px;

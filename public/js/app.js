@@ -1959,8 +1959,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
@@ -1973,9 +1971,7 @@ __webpack_require__.r(__webpack_exports__);
       link_after: '&src=typed_query',
       hour_show: false,
       day_show: false,
-      week_show: false,
-      isClicked: null,
-      flash_message: false
+      week_show: false
     };
   },
   mounted: function mounted() {
@@ -2035,15 +2031,29 @@ __webpack_require__.r(__webpack_exports__);
       this.day_show = false;
     },
     pushCoin: function pushCoin(pcoin) {
+      //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
       if (this.exitCoins.indexOf(pcoin.name) == -1) {
+        //exitCoinにpcoin.nameがなければ追加する
+        console.log("コインがないぽい");
+        console.log(this.exitCoins);
         this.showCoins.push(pcoin);
-        this.isClicked = pcoin.id;
         this.exitCoins.push(pcoin.name);
+        console.log(this.exitCoins);
         this.hour_show = false;
         this.day_show = false;
         this.week_show = false;
       } else {
-        this.flash_message = true;
+        console.log("コインがあるぽい");
+        console.log(this.exitCoins); //this.showCoins.pop(pcoin);//popだと末尾を削除するからダメ。
+        //this.exitCoins.pop(pcoin.name);
+
+        this.exitCoins = this.exitCoins.filter(function (n) {
+          return n !== pcoin.name;
+        });
+        this.showCoins = this.showCoins.filter(function (n) {
+          return n !== pcoin;
+        });
+        console.log(this.exitCoins);
       }
     },
     resetCoin: function resetCoin() {
@@ -37643,24 +37653,16 @@ var render = function() {
           [
             _vm._l(_vm.coins, function(pcoin) {
               return _c("div", { key: pcoin.id }, [
-                _c(
-                  "button",
-                  {
-                    staticClass: "p-sidebtn__coin",
-                    class: [_vm.isClicked == pcoin.id ? "btn_active" : ""],
-                    attrs: { type: "button", name: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.pushCoin(pcoin)
-                      }
+                _c("input", {
+                  staticClass: "p-sidebtn__coin",
+                  attrs: { type: "checkbox", name: "button" },
+                  on: {
+                    click: function($event) {
+                      return _vm.pushCoin(pcoin)
                     }
-                  },
-                  [
-                    _vm._v(
-                      "\n            " + _vm._s(pcoin.name) + "\n            "
-                    )
-                  ]
-                )
+                  }
+                }),
+                _vm._v("\n            " + _vm._s(pcoin.name) + "\n\n          ")
               ])
             }),
             _vm._v(" "),
@@ -37833,9 +37835,9 @@ var render = function() {
             _c("h4", [_vm._v("ツイート数集計")]),
             _vm._v(" "),
             _c("table", [
-              _c("th", [_vm._v("hour")]),
-              _c("th", [_vm._v("day")]),
-              _c("th", [_vm._v("week")]),
+              _c("th", [_vm._v("過去1時間")]),
+              _c("th", [_vm._v("過去1日")]),
+              _c("th", [_vm._v("過去1日")]),
               _vm._v(" "),
               _c("tr", [
                 _c("td", [_vm._v(_vm._s(pcoin.hour))]),

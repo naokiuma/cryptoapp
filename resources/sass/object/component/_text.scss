@@ -2,13 +2,13 @@
   text-align: center;
 
   span{
-    color: #364e96;/*文字色*/
-    padding: 0.7em 0;/*上下の余白*/
-    border-top: solid 1px #364e96;/*上線*/
-    border-bottom: solid 1px #364e96;/*下線*/
+    color: black;
+    padding: 0.7em 0;
+    border-top: solid 5px #364e96;
+    border-bottom: solid 5px #364e96;
   }
   h3{
-    background-color: #60ded27a;
+    background-color: #BFFFFF;
     width: 100%;
     font-weight: lighter;
     @media screen and (max-width: $res-max-width){

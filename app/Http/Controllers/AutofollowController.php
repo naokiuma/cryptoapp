@@ -43,20 +43,20 @@ class AutofollowController extends Controller
   //Sessionに'today_follow_end';が入っていると本日の本サービスでのフォローはできないようにします。1日に385人以上を超えたら制限。
   public function index(){
 
+    Log::debug("ーーーーーーーーーーーーーーーまとめてフォローのページですーーーーーーーーーーーーーーー");
+
     $autofollow_check = Auth::user()->autofollow;
+    Log::debug("autofollow_checkの状態".$autofollow_check);
+    Log::debug("1だとオートフォローはon、0だとオートフォローはoff");
+    Log::debug("セッション：autofollowを調整します");
+
     if($autofollow_check == 1){
       Session::put('autofollow', true);//セッションにautofollo実施中である旨を入れる。
     }else{
       Session::forget('autofollow');
     }
-    Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
-    Log::debug("autofollow_checkの状態".$autofollow_check);
-    Log::debug("0だとオートフォローは実施していません");
-    Log::debug("ーーーーーーーーーーーーーーーーーーーーーーー");
-
 
     //■■■前回にフォローした日付（follow_day）をDBから確認し、違う日であればリセットする。（日本時間）■■■
-
     Log::debug("処理:DB上の前回のアクセス日と異なるかチェックします。");
     date_default_timezone_set('Asia/Tokyo');
     $today = date("Y-m-d");
@@ -73,16 +73,15 @@ class AutofollowController extends Controller
       Auth::user()->follow_day = $today;
       Auth::user()->update();
       Session::forget('today_follow_end');//フォロー自体できなくなる処理をリセット
-      Session::forget('today_follow_time');//まとめてフォローをできなくなる処理もリセット
     }else{
       //db上のフォローをした日付と本日が同じ場合は特に何もしない
       Log::debug("以前の日付と同じです。フォロー数は維持されます。");
     }
 
 
+
     //次に、1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
     Log::debug("一日のフォロー数制限が385超えていたらフォローできないように制限します。");
-
     $follow_count = Auth::user()->follow_count;
     Log::debug("本日このサービスでフォローした数".$follow_count);
     if($follow_count > 385) //本来は385にする！
@@ -112,7 +111,7 @@ class AutofollowController extends Controller
     //ツイッター認証していない場合はそのユーザーをそのまま表示させる。
 
 
-    //●●●アカウント一覧を表示させる処理：ツイッター認証している場合●●●
+    //■■■アカウント一覧を表示させる処理：ツイッター認証している場合■■■
     //ツイッター認証している場合は、$follow_usersから取得した中で、ログインユーザーが
     //「まだフォローしてないユーザーの情報のみ」を取得し$lookupuserに格納。
     //「まだフォローしてないユーザーの情報のみ」を画面に表示させます。
@@ -169,18 +168,16 @@ class AutofollowController extends Controller
     return response()->json(['result' => true]);
   }
 
-
-  //ーーーーーーーーーー自動フォローのonoff切り替えーーーーーーーーーー
+  //ーーーーーーーーーー自動フォローのON/OFF切り替えーーーーーーーーーー
 
   public function allfollow(Request $request){
     Log::debug("自動フォローのonoffを切り替えます。");
     //$status = $request->auto_status;
-    Log::debug("リクエストの内容");
     Log::debug($request['request']);//1
     Log::debug("↑この値に切り替えます。");//1
     //Log::debug($request);
     $user = Auth::user();
-    Log::debug($user);//1
+    //Log::debug($user);//1
 
     $user->autofollow = $request['request'];//数字を更新。
     $user->update();
@@ -371,7 +368,6 @@ class AutofollowController extends Controller
           }
 
         }
-
 
         //実際のフォロー
         Log::debug("tempユーザー一覧です。このユーザーたちをフォローします。");

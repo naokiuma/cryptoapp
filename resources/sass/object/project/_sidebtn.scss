@@ -20,7 +20,7 @@
   }
   &__coin{
     height: 30px;
-    width: 100%;
+    width: 20%;
     background-color: #07f4b84a;
     &:hover{
       transform: translate3d(0, 1px, 0);
@@ -30,7 +30,7 @@
     }
     &__container{
       height: 70%;
-      text-align: center;
+      text-align: left;
       @media screen and (max-width: $res-max-width){
         display: flex;
         justify-content: center;

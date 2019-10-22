@@ -11,16 +11,17 @@
       <option class="p-sidebtn" v-on:click="showWeek" type="button" name="button">過去1週間</option>
     </select>
 
-        <div class="p-sidebtn__coin__container">
-          <div v-for="pcoin in coins"
-                v-bind:key="pcoin.id">
-            <input class="p-sidebtn__coin" v-on:click="pushCoin(pcoin)" type="checkbox" name="button">
-            {{pcoin.name}}
-
-          </div>
-          <button class="p-sidebtn__highlight" v-on:click="resetCoin()">
-          リセット</button>
-        </div>
+    <div class="p-sidebtn__coin__container">
+      <div v-for="pcoin in coins"
+            v-bind:key="pcoin.id">
+        <button class="p-sidebtn__coin" v-on:click="pushCoin(pcoin)"
+        v-bind:class="[isClicked == pcoin.id ? 'btn_active' : '']" type="button" name="button">
+        {{pcoin.name}}
+        </button>
+      </div>
+      <button class="p-sidebtn__highlight" v-on:click="resetCoin()">
+      リセット</button>
+    </div>
 
     </div>
   </section>
@@ -74,7 +75,7 @@
 
         <h4>ツイート数集計</h4>
           <table>
-          <th>過去1時間</th><th>過去1日</th><th>過去1日</th>
+          <th>過去1時間</th><th>過去1日</th><th>過去1週間</th>
           <tr>
          <td>{{pcoin.hour}}</td><td>{{pcoin.day}}</td><td >{{pcoin.week}}</td>
           </tr>
@@ -117,6 +118,8 @@
             hour_show:false,
             day_show:false,
             week_show:false,
+            isClicked:null,
+            flash_message:false
             }
         },
         mounted(){
@@ -180,25 +183,16 @@
             this.day_show = false;
               },
 
-          pushCoin(pcoin){ //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
-              if (this.exitCoins.indexOf(pcoin.name) == -1){ //exitCoinにpcoin.nameがなければ追加する
-              console.log("コインがないぽい");
-              console.log(this.exitCoins);
+          pushCoin(pcoin){
+              if (this.exitCoins.indexOf(pcoin.name) == -1){
                 this.showCoins.push(pcoin);
+                this.isClicked = pcoin.id;
                 this.exitCoins.push(pcoin.name);
-                console.log(this.exitCoins);
                 this.hour_show = false;
                 this.day_show = false;
                 this.week_show = false;
                 }else{
-                console.log("コインがあるぽい");
-                console.log(this.exitCoins);
-                    //this.showCoins.pop(pcoin);//popだと末尾を削除するからダメ。
-                    //this.exitCoins.pop(pcoin.name);
-                    this.exitCoins = this.exitCoins.filter(n => n !== pcoin.name);
-                    this.showCoins = this.showCoins.filter(n => n !== pcoin);
-                console.log(this.exitCoins);
-
+                    this.flash_message = true;
 
                 }
               },
