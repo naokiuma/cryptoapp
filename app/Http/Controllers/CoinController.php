@@ -40,8 +40,8 @@ class CoinController extends Controller
     date_default_timezone_set('Asia/Tokyo');//https://blog.codecamp.jp/php-datetime参考
     $now_time = date("Y-m-d_H:i:s")."_JST";//今の時間
     $before_hour = date('Y-m-d_H:i:s', strtotime('-1 hour', time()))."_JST";//カウント開始の時間
-    echo '<pre>'; print_r($now_time); echo '</pre>';
-    echo '<pre>'; print_r($before_hour); echo '</pre>';
+    //echo '<pre>'; print_r($now_time); echo '</pre>';
+    //echo '<pre>'; print_r($before_hour); echo '</pre>';
 
 
     $oAuth = new TwitterOAuth($consumerKey, $consumerSecret, $accessToken, $accessTokenSecret);
@@ -120,20 +120,20 @@ class CoinController extends Controller
       }
     }
 
-    echo $btc . "←btcの中身";
-    echo $eth . "←ethの中身";
-    echo $etc . "←etcの中身";
-    echo $lsk . "←lskの中身";
-    echo $fct . "←fctの中身";
-    echo $xrp . "←xrpの中身";
-    echo $xem . "←xemの中身";
-    echo $ltc . "←ltcの中身";
-    echo $bch . "←bchの中身";
-    echo $mona. "←monaの中身";
-    echo $dash. "←dashの中身";
-    echo $zec.  "←zecの中身";
-    echo $xmr.  "←xmrの中身";
-    echo $rep.  "←repの中身";
+    //echo $btc . "←btcの中身";
+    //echo $eth . "←ethの中身";
+    //echo $etc . "←etcの中身";
+    //echo $lsk . "←lskの中身";
+    //echo $fct . "←fctの中身";
+    //echo $xrp . "←xrpの中身";
+    //echo $xem . "←xemの中身";
+    //echo $ltc . "←ltcの中身";
+    //echo $bch . "←bchの中身";
+    //echo $mona. "←monaの中身";
+    //echo $dash. "←dashの中身";
+    //echo $zec.  "←zecの中身";
+    //echo $xmr.  "←xmrの中身";
+    //echo $rep.  "←repの中身";
 
     $coin_btc = Coin::where('id', 1)->first();
     $coin_eth = Coin::where('id', 2)->first();
@@ -250,7 +250,7 @@ class CoinController extends Controller
       }
     }
 
-    Log::debug($tweet_results);//確認用
+    //Log::debug($tweet_results);//確認用
 
     $btc = $eth = $etc = $lsk = $fct = $xrp = $xem = $ltc = $bch = $mona = $dash = $zec = $xmr = $rep = 0;
     $count = count($tweet_results);//ツイート数
@@ -301,20 +301,20 @@ class CoinController extends Controller
       }
     }
 
-    echo $btc . "←btcの中身";
-    echo $eth . "←ethの中身";
-    echo $etc . "←etcの中身";
-    echo $lsk . "←lskの中身";
-    echo $fct . "←fctの中身";
-    echo $xrp . "←xrpの中身";
-    echo $xem . "←xemの中身";
-    echo $ltc . "←ltcの中身";
-    echo $bch . "←bchの中身";
-    echo $mona. "←monaの中身";
-    echo $dash. "←dashの中身";
-    echo $zec.  "←zecの中身";
-    echo $xmr.  "←xmrの中身";
-    echo $rep.  "←repの中身";
+    //echo $btc . "←btcの中身";
+    //echo $eth . "←ethの中身";
+    //echo $etc . "←etcの中身";
+    //echo $lsk . "←lskの中身";
+    //echo $fct . "←fctの中身";
+    //echo $xrp . "←xrpの中身";
+    //echo $xem . "←xemの中身";
+    //echo $ltc . "←ltcの中身";
+    //echo $bch . "←bchの中身";
+    //echo $mona. "←monaの中身";
+    //echo $dash. "←dashの中身";
+    //echo $zec.  "←zecの中身";
+    //echo $xmr.  "←xmrの中身";
+    //echo $rep.  "←repの中身";
 
     $coin_btc = Coin::where('id', 1)->first();
     $coin_eth = Coin::where('id', 2)->first();
@@ -476,20 +476,20 @@ class CoinController extends Controller
       }
     }
 
-    echo $btc . "←btcの中身";
-    echo $eth . "←ethの中身";
-    echo $etc . "←etcの中身";
-    echo $lsk . "←lskの中身";
-    echo $fct . "←fctの中身";
-    echo $xrp . "←xrpの中身";
-    echo $xem . "←xemの中身";
-    echo $ltc . "←ltcの中身";
-    echo $bch . "←bchの中身";
-    echo $mona. "←monaの中身";
-    echo $dash. "←dashの中身";
-    echo $zec.  "←zecの中身";
-    echo $xmr.  "←xmrの中身";
-    echo $rep.  "←repの中身";
+    //echo $btc . "←btcの中身";
+    //echo $eth . "←ethの中身";
+    //echo $etc . "←etcの中身";
+    //echo $lsk . "←lskの中身";
+    //echo $fct . "←fctの中身";
+    //echo $xrp . "←xrpの中身";
+    //echo $xem . "←xemの中身";
+    //echo $ltc . "←ltcの中身";
+    //echo $bch . "←bchの中身";
+    //echo $mona. "←monaの中身";
+    //echo $dash. "←dashの中身";
+    //echo $zec.  "←zecの中身";
+    //echo $xmr.  "←xmrの中身";
+    //echo $rep.  "←repの中身";
 
     $coin_btc = Coin::where('id', 1)->first();
     $coin_eth = Coin::where('id', 2)->first();

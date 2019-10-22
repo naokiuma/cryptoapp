@@ -102,8 +102,8 @@ class AutofollowController extends Controller
     //代わりにajaxでdb上のユーザーデータを表示させる。値は$temp_userに入れます。
 
     $follow_users = array();
-    for($i = 0; $i < 30; $i++){
-      //DBからユーザーを30人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
+    for($i = 0; $i < 15; $i++){
+      //DBからユーザーを15人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
       $randomUser = Autofollow::inRandomOrder()->first();
       //それを$follow_usersに詰め込む
       array_push($follow_users,$randomUser->screen_name);
@@ -122,9 +122,10 @@ class AutofollowController extends Controller
     $temp_user = array();
     //取得データから「following」がfalse（フォローしてない）ユーザーであれば
     //$temp_userに格納（まとめてフォローは15分に1度実施可能にし、14人まで。）
-    for($i=0; $i<3; $i++){
+    for($i=0; $i<10; $i++){
       if(!$lookupuser[$i]->following){
         $temp_user[] = ($lookupuser[$i]);
+        sleep(1);
       }
     }
     //$temp_userをjsonエンコードし、$users_resultsユーザー情報を取得する。
@@ -225,7 +226,7 @@ class AutofollowController extends Controller
       $users_results[$i]['tweet'] = $results[$i]->status->text;
       $users_results[$i]['created_at'] = $results[$i]->created_at;
       $users_results[$i]['following'] = $results[$i]->following;
-
+      sleep(1);
     }
 
     $options['page'] = $num2;
@@ -244,7 +245,7 @@ class AutofollowController extends Controller
       $users_results[$i+20]['tweet'] = $results[$i]->status->text;
       $users_results[$i+20]['created_at'] = $results[$i]->created_at;
       $users_results[$i+20]['following'] = $results[$i]->following;
-
+      sleep(1);
     }
 
     $options['page'] = $num3;
@@ -263,6 +264,7 @@ class AutofollowController extends Controller
       $users_results[$i+40]['tweet'] = $results[$i]->status->text;
       $users_results[$i+40]['created_at'] = $results[$i]->created_at;
       $users_results[$i+40]['following'] = $results[$i]->following;
+      sleep(1);
     }
 
     //updateOrCreateを使い同じscreen_nameがDB上autofollowsテーブルにあるかどうか確認し（第一引数）、
@@ -309,7 +311,7 @@ class AutofollowController extends Controller
     //DBからユーザーを20人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
     //そのscreen_nameを$follow_targetsに詰め込む
     $follow_targets = array();
-    for($i = 0; $i < 20; $i++){
+    for($i = 0; $i < 15; $i++){
       $randomUser = Autofollow::inRandomOrder()->first();
       array_push($follow_targets,$randomUser->screen_name);
     }
@@ -330,7 +332,6 @@ class AutofollowController extends Controller
     }
 
     //-------------
-    Log::debug("チェックdす");
 
     //カウント数までforで回し、フォロー元ユーザーのツイッター情報認証を取得。
     //フォローしていない ＝ followingがfalseのユーザーのみtempに詰め込む
@@ -362,6 +363,7 @@ class AutofollowController extends Controller
 
         //lookupで先ほど取得したscreen_nameを使い情報取得。そのままscreen_nameを$temp_userに詰め込む。
         $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_targets"]);
+        sleep(1);
         $temp_user = array();
 
         //フォロー対象のまとめ。fを変数にし、forでフォロー。
@@ -390,7 +392,8 @@ class AutofollowController extends Controller
           $target = $value;
           Log::debug("ターゲットの中身".$target);
           $oAuth->post("friendships/create", ["screen_name" => $target]);
-          Log::debug($target."をフォローしましたテスト");
+          Log::debug($target."をフォローしました");
+          sleep(1);
         }
 
         //フォローした数をカウントとしてdbに追加。
@@ -411,7 +414,7 @@ class AutofollowController extends Controller
 
 
 
-
+        sleep(1);
         Log::debug("フォロー処理を終了します。");
 
       }
