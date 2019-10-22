@@ -1,6 +1,7 @@
 .c-card{
-  width: 45%;
-  height: 300px;
+  width: 80%;
+  max-height: 500px;
+  min-height: 400px;
   background-color: white;
   margin: 10px 10px;
   text-align: center;
@@ -11,38 +12,42 @@
     width: 90%;
   }
   a{
-    font-size: 80%;
+    font-size: 100%;
 
   }
   p{
-    margin: 1rem;
     max-height: 40%;
-    height: 20%;
-    margin: 10px 5px 0px 5px;
-    font-size: 10px;
+    height: auto;
+    margin: 20px auto;
+    font-size: 16px;
     letter-spacing: 1px;
-
+    width: 90%;
+    @media screen and (max-width: $res-max-width){
+      height: auto;
     }
+  }
   button{
     margin-top: 5%;
   }
   &__header{
     display: flex;
     justify-content: space-between;
-    height: 60px;
-    line-height: 60px;
+    height: 90px;
+    line-height: 30px;
     margin-top: 1%;
     font-size: $font-s;
   h4{
       margin-right: 10%;
       letter-spacing: 2px;
       font-weight: bold;
+      font-size: 16px;
         @media screen and (max-width: $res-max-width){
           font-size: 12px;
         }
     }
   img{
-    width: 60px;
+    width: 90px;
+    height: 90px;
     margin-left: 3%;
   }
 }
