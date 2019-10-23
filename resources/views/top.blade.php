@@ -30,6 +30,13 @@
       <br>
     </p>
   </div>
+ <div class="">
+   <img style="height:200px" class="" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
+   <img style="height:200px" class="" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
+   <img style="height:200px" class="" src="{{ asset('/img/tw_sp.png') }}" alt="スマートフォン用の画像" >
+
+ </div>
+
 </section>
 
 
@@ -59,6 +66,11 @@
 
 
 <!--機能紹介-->
+
+<div class="arrow_box">
+  <p class="c-arrow_box_logo">CryptoTorendなら</p>
+</div>
+
 <h2 class="c-text u-short">
   <span>3つの機能で情報収集をお手伝いします！</span>
 </h2>

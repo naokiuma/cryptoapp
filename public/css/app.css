@@ -498,6 +498,11 @@ header {
   border-top: solid 5px #364e96;
   border-bottom: solid 5px #364e96;
 }
+@media screen and (max-width: 768px) {
+  .c-text span {
+    font-size: 14px;
+  }
+}
 .c-text h3 {
   background-color: #BFFFFF;
   width: 100%;
@@ -517,6 +522,11 @@ header {
   /*上線*/
   border-bottom: solid 3px #963636;
   /*下線*/
+}
+@media screen and (max-width: 768px) {
+  .c-text__attention span {
+    font-size: 14px;
+  }
 }
 
 .c-box {
@@ -849,6 +859,7 @@ header {
 .p-coinranking__table th {
   background-color: #bcf0c3;
   border: 1px solid;
+  padding: 3px;
 }
 .p-coinranking__table td {
   font-size: 14px;
@@ -1350,19 +1361,47 @@ header {
   box-shadow: none;
   background: #fff;
 }
+.p-sidebtn__input {
+  display: none;
+}
+.p-sidebtn__checkparts {
+  padding-left: 20px;
+  position: relative;
+  margin-right: 20px;
+}
+.p-sidebtn:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #999;
+  border-radius: 4px;
+}
 .p-sidebtn__container {
   height: 100%;
 }
 .p-sidebtn__coin {
   height: 30px;
-  width: 20%;
-  background-color: #07f4b84a;
+  line-height: 30px;
+  width: 100%;
+  background-color: #00000014;
+}
+.p-sidebtn__coin label {
+  width: 100%;
 }
 .p-sidebtn__coin:hover {
   transform: translate3d(0, 1px, 0);
   color: #007db9;
   box-shadow: none;
   background: #fff;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__coin {
+    width: 50%;
+  }
 }
 .p-sidebtn__coin__container {
   height: 70%;
@@ -1386,6 +1425,23 @@ header {
 
 .btn_active {
   background-color: #00f7ffb0;
+}
+
+.p-sidebtn__input:checked + .p-sidebtn__checkparts {
+  color: #d01137;
+}
+
+.p-sidebtn__input:checked + .p-sidebtn__checkparts::after {
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  width: 7px;
+  height: 14px;
+  transform: rotate(40deg);
+  border-bottom: 3px solid #d01137;
+  border-right: 3px solid #d01137;
 }
 
 .p-spnavi {

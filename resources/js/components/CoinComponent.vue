@@ -1,8 +1,8 @@
 <template>
 
-
 <section>
 
+  <!--過去のツイート数集計を表示させるセレクトボックス。-->
   <section class="l-side">
     <div class="p-sidebtn__container">
     <select>
@@ -12,10 +12,11 @@
     </select>
 
         <div class="p-sidebtn__coin__container">
-          <div v-for="pcoin in coins"
+          <div class="p-sidebtn__coin" v-for="pcoin in coins"
                 v-bind:key="pcoin.id">
-            <input class="p-sidebtn__coin" v-on:click="pushCoin(pcoin)" type="checkbox" name="button">
-            {{pcoin.name}}
+            <label><input class="p-sidebtn__input" v-on:click="pushCoin(pcoin)" type="checkbox" name="button">
+            <span class="p-sidebtn__checkparts">{{pcoin.name}}</span>
+            </label>
 
           </div>
           <button class="p-sidebtn__highlight" v-on:click="resetCoin()">
@@ -135,8 +136,9 @@
             return arr.slice().sort(function(a,b){
               return b.hour - a.hour;
               });
-                }
-              },
+
+            }
+          },
           sortCoinsByDay:function(){
             if(this.day_show){
 
@@ -144,45 +146,46 @@
             return arr.slice().sort(function(a,b){
               return b.day - a.day;
               });
-                }
-              },
+
+            }
+          },
           sortCoinsByWeek:function(){
             if(this.week_show){
             let arr =this.coins;
             return arr.slice().sort(function(a,b){
               return b.week - a.week;
               });
-                }
-              }
 
+            }
+          }
         },
 
         methods:{
           showHour:function(){
             this.hour_show = true;
-            this.showCoins = [];
-            this.exitCoins = [];
+            //this.showCoins = [];
+            //this.exitCoins = [];
             this.day_show = false;
             this.week_show = false;
             },
           showDay:function(){
             this.day_show = true;
-            this.showCoins = [];
-            this.exitCoins = [];
+            //this.showCoins = [];
+            //this.exitCoins = [];
             this.hour_show = false;
             this.week_show = false;
             },
           showWeek:function(){
             this.week_show = true;
-            this.showCoins = [];
-            this.exitCoins = [];
+            //this.showCoins = [];
+            //this.exitCoins = [];
             this.hour_show = false;
             this.day_show = false;
               },
 
           pushCoin(pcoin){ //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
               if (this.exitCoins.indexOf(pcoin.name) == -1){ //exitCoinにpcoin.nameがなければ追加する
-              console.log("コインがないぽい");
+              console.log("コインがないです");
               console.log(this.exitCoins);
                 this.showCoins.push(pcoin);
                 this.exitCoins.push(pcoin.name);
@@ -202,10 +205,26 @@
 
                 }
               },
+          //表示内容を初期化するメソッド。
           resetCoin(){
               this.showCoins = [];
               this.exitCoins = [];
               this.hour_show = true;
+              this.day_show = false;
+              this.week_show = false;
+              this.resetCheckbox();
+              //let checkboxs = document.getElementsByClassName( "p-sidebtn__input" );
+              //for (var i=0; i<checkboxs.length; i++){
+              //     checkboxs[i].checked = false;
+              //     }
+          },
+          //チェックボックスのチェックをリセットするメソッド。
+          //期間集計を表示するときにも使うため「resetCoin」とは分けています。
+          resetCheckbox(){
+          let checkboxs = document.getElementsByClassName( "p-sidebtn__input" );
+          for (var i=0; i<checkboxs.length; i++){
+               checkboxs[i].checked = false;
+               }
 
           }
 

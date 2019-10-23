@@ -6,13 +6,16 @@
     padding: 0.7em 0;
     border-top: solid 5px #364e96;
     border-bottom: solid 5px #364e96;
+    @media screen and (max-width: $res-max-width){
+    font-size: 14px;
+    }
   }
   h3{
     background-color: #BFFFFF;
     width: 100%;
     font-weight: lighter;
     @media screen and (max-width: $res-max-width){
-      background-color: $main-color
+      background-color: $main-color;
     }
   }
   &__attention{
@@ -21,6 +24,10 @@
       padding: 0.5em 0;/*上下の余白*/
       border-top: solid 3px #963636;/*上線*/
       border-bottom: solid 3px #963636;/*下線*/
+      @media screen and (max-width: $res-max-width){
+      font-size: 14px;
+      }
     }
   }
+
 }

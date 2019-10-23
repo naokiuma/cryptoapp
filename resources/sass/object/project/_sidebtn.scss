@@ -15,18 +15,45 @@
     box-shadow: none;
     background: #fff;
   }
+  &__input{
+    display: none;
+  }
+  &__checkparts{
+    padding-left: 20px;
+    position:relative;
+    margin-right: 20px;
+  }
+  &:before{
+    content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 15px;
+  height: 15px;
+  border: 1px solid #999;
+  border-radius: 4px;
+  }
   &__container{
     height: 100%;
   }
   &__coin{
     height: 30px;
-    width: 20%;
-    background-color: #07f4b84a;
+    line-height: 30px;
+    width: 100%;
+    background-color: #00000014;
+    label{
+      width: 100%;
+      display: inline-block;
+    }
     &:hover{
       transform: translate3d(0, 1px, 0);
       color: #007db9;
       box-shadow: none;
       background: #fff;
+    }
+    @media screen and (max-width: $res-max-width){
+      width: 50%;
     }
     &__container{
       height: 70%;
@@ -50,4 +77,20 @@
 
 .btn_active{
   background-color: #00f7ffb0;
+}
+
+.p-sidebtn__input:checked + .p-sidebtn__checkparts{
+  color: #d01137;
+}
+.p-sidebtn__input:checked + .p-sidebtn__checkparts::after{
+  content: "";
+  display: block;
+  position: absolute;
+  top: -5px;
+  left: 5px;
+  width: 7px;
+  height: 14px;
+  transform: rotate(40deg);
+  border-bottom: 3px solid #d01137;
+  border-right: 3px solid #d01137;
 }

@@ -1959,6 +1959,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['coin_ajax', 'hour', 'day', 'week'],
   data: function data() {
@@ -2010,23 +2011,23 @@ __webpack_require__.r(__webpack_exports__);
   },
   methods: {
     showHour: function showHour() {
-      this.hour_show = true;
-      this.showCoins = [];
-      this.exitCoins = [];
+      this.hour_show = true; //this.showCoins = [];
+      //this.exitCoins = [];
+
       this.day_show = false;
       this.week_show = false;
     },
     showDay: function showDay() {
-      this.day_show = true;
-      this.showCoins = [];
-      this.exitCoins = [];
+      this.day_show = true; //this.showCoins = [];
+      //this.exitCoins = [];
+
       this.hour_show = false;
       this.week_show = false;
     },
     showWeek: function showWeek() {
-      this.week_show = true;
-      this.showCoins = [];
-      this.exitCoins = [];
+      this.week_show = true; //this.showCoins = [];
+      //this.exitCoins = [];
+
       this.hour_show = false;
       this.day_show = false;
     },
@@ -2034,7 +2035,7 @@ __webpack_require__.r(__webpack_exports__);
       //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
       if (this.exitCoins.indexOf(pcoin.name) == -1) {
         //exitCoinにpcoin.nameがなければ追加する
-        console.log("コインがないぽい");
+        console.log("コインがないです");
         console.log(this.exitCoins);
         this.showCoins.push(pcoin);
         this.exitCoins.push(pcoin.name);
@@ -2060,6 +2061,19 @@ __webpack_require__.r(__webpack_exports__);
       this.showCoins = [];
       this.exitCoins = [];
       this.hour_show = true;
+      this.day_show = false;
+      this.week_show = false;
+      this.resetCheckbox(); //let checkboxs = document.getElementsByClassName( "p-sidebtn__input" );
+      //for (var i=0; i<checkboxs.length; i++){
+      //     checkboxs[i].checked = false;
+      //     }
+    },
+    resetCheckbox: function resetCheckbox() {
+      var checkboxs = document.getElementsByClassName("p-sidebtn__input");
+
+      for (var i = 0; i < checkboxs.length; i++) {
+        checkboxs[i].checked = false;
+      }
     }
   }
 });
@@ -37652,18 +37666,27 @@ var render = function() {
           { staticClass: "p-sidebtn__coin__container" },
           [
             _vm._l(_vm.coins, function(pcoin) {
-              return _c("div", { key: pcoin.id }, [
-                _c("input", {
-                  staticClass: "p-sidebtn__coin",
-                  attrs: { type: "checkbox", name: "button" },
-                  on: {
-                    click: function($event) {
-                      return _vm.pushCoin(pcoin)
-                    }
-                  }
-                }),
-                _vm._v("\n            " + _vm._s(pcoin.name) + "\n\n          ")
-              ])
+              return _c(
+                "div",
+                { key: pcoin.id, staticClass: "p-sidebtn__coin" },
+                [
+                  _c("label", [
+                    _c("input", {
+                      staticClass: "p-sidebtn__input",
+                      attrs: { type: "checkbox", name: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.pushCoin(pcoin)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "p-sidebtn__checkparts" }, [
+                      _vm._v(_vm._s(pcoin.name))
+                    ])
+                  ])
+                ]
+              )
             }),
             _vm._v(" "),
             _c(
@@ -37948,7 +37971,10 @@ var render = function() {
           _c("div", { staticClass: "p-news__card__right" }, [
             _c(
               "a",
-              { staticClass: "p-news__jamp", attrs: { href: list.url } },
+              {
+                staticClass: "p-news__jamp",
+                attrs: { href: list.url, target: "_blank" }
+              },
               [_vm._v("続きを読む")]
             ),
             _c("br"),
