@@ -72,9 +72,9 @@ Route::group(['middleware' => 'logout'],function(){
 });
 
 //自動フォローのonoffチェック処理を下記、各ページにアクセスするたびに行う
-Route::group(['middleware' => 'allfollow'],function(){
-  Route::get('/', function () { return view('top'); })->name('top');
-  Route::get('/about', function () {return view('about');})->name('about');
-  Route::get('news','NewsController@index')->name('news');
-  Route::get('coin','CoinController@index')->name('coin');
-});
+//Route::group(['middleware' => 'allfollow'],function(){
+//  Route::get('/', function () { return view('top'); })->name('top');
+//  Route::get('/about', function () {return view('about');})->name('about');
+//  Route::get('news','NewsController@index')->name('news');
+//  Route::get('coin','CoinController@index')->name('coin');
+//});

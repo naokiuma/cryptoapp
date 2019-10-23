@@ -2057,6 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
         console.log(this.exitCoins);
       }
     },
+    //表示内容を初期化するメソッド。
     resetCoin: function resetCoin() {
       this.showCoins = [];
       this.exitCoins = [];
@@ -2068,6 +2069,8 @@ __webpack_require__.r(__webpack_exports__);
       //     checkboxs[i].checked = false;
       //     }
     },
+    //チェックボックスのチェックをリセットするメソッド。
+    //期間集計を表示するときにも使うため「resetCoin」とは分けています。
     resetCheckbox: function resetCheckbox() {
       var checkboxs = document.getElementsByClassName("p-sidebtn__input");
 
