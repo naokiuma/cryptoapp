@@ -1,9 +1,9 @@
 .p-hero__title{
   position: absolute;
   bottom: 20%;
-  right: 20%;
+  right: 0;
   color: black;
-  width: 30%;
+  width: 50%;
   height: 30%;
   @media screen and (max-width: $res-max-width){
     top: 20%;

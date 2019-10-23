@@ -1,4 +1,13 @@
 .p-sidebtn{
+  label{
+    position: relative;
+    display: block;
+    padding: 15px 0;
+    padding-right: 35px;
+    cursor: pointer;
+  }
+
+  /*
   width: 100%;
   height: 10%;
   font-size: 10px;
@@ -14,15 +23,13 @@
     color: #007db9;
     box-shadow: none;
     background: #fff;
+    @media screen and (max-width: $res-max-width){
+      display: inline-block;
+      width: 32%;
+      height: 50px;
+    }
   }
-  &__input{
-    display: none;
-  }
-  &__checkparts{
-    padding-left: 20px;
-    position:relative;
-    margin-right: 20px;
-  }
+
   &:before{
     content: "";
   display: block;
@@ -34,14 +41,36 @@
   border: 1px solid #999;
   border-radius: 4px;
   }
+  */
   &__container{
     height: 100%;
+    width:100%;
+    text-align: left;
+    input {
+    	display: none;
+    }
+    label{
+      position: relative;
+      display: block;
+      padding: 15px 0;
+      padding-right: 35px;
+      cursor: pointer;
+    }
   }
   &__coin{
     height: 30px;
     line-height: 30px;
     width: 100%;
     background-color: #00000014;
+    &__input{
+      display: none;
+    }
+    &__checkparts{
+      padding-left: 20px;
+      position:relative;
+      margin-right: 20px;
+    }
+
     label{
       width: 100%;
       display: inline-block;
@@ -79,10 +108,10 @@
   background-color: #00f7ffb0;
 }
 
-.p-sidebtn__input:checked + .p-sidebtn__checkparts{
+.p-sidebtn__coin__input:checked + .p-sidebtn__coin__checkparts{
   color: #d01137;
 }
-.p-sidebtn__input:checked + .p-sidebtn__checkparts::after{
+.p-sidebtn__coin__input:checked + .p-sidebtn__coin__checkparts::after{
   content: "";
   display: block;
   position: absolute;

@@ -4,13 +4,13 @@
   overflow: hidden;
   &__sub{
     width: 95%;
-    height: 500px;
     display: flex;
     margin-left: auto;
     margin-right: auto;
+    height: 500px;
     @media screen and (max-width: $res-max-width){
       display: block;
-      height: 600px;
+      height: 500px;
     }
     &__container{
       width: 100%;

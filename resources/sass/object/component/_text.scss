@@ -1,6 +1,5 @@
 .c-text{
   text-align: center;
-
   span{
     color: black;
     padding: 0.7em 0;
@@ -26,6 +25,24 @@
       border-bottom: solid 3px #963636;/*下線*/
       @media screen and (max-width: $res-max-width){
       font-size: 14px;
+      }
+    }
+  }
+  &__sub{
+    position: relative;
+    &:before{
+    position: absolute;
+    content: "CryptoTorendなら！";
+    display: block;
+    bottom:0;
+    left:0;
+    font-size: 20px;
+    letter-spacing: 2px;
+    font-style: italic;
+    color: red;
+    @media screen and (max-width: $res-max-width){
+    font-size: 16px;
+    bottom:-30px;
       }
     }
   }

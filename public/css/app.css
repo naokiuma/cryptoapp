@@ -243,6 +243,36 @@ a {
     opacity: 1;
   }
 }
+@-webkit-keyframes click-wave {
+  0% {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    opacity: 0.35;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    margin-top: -80px;
+    margin-left: -80px;
+    opacity: 0;
+  }
+}
+@keyframes click-wave {
+  0% {
+    position: relative;
+    width: 30px;
+    height: 30px;
+    opacity: 0.35;
+  }
+  100% {
+    width: 200px;
+    height: 200px;
+    margin-top: -80px;
+    margin-left: -80px;
+    opacity: 0;
+  }
+}
 .l-billboard {
   width: 100%;
   height: 80vh;
@@ -279,15 +309,15 @@ header {
 }
 .l-main__sub {
   width: 95%;
-  height: 500px;
   display: flex;
   margin-left: auto;
   margin-right: auto;
+  height: 500px;
 }
 @media screen and (max-width: 768px) {
   .l-main__sub {
     display: block;
-    height: 600px;
+    height: 500px;
   }
 }
 .l-main__sub__container {
@@ -315,7 +345,6 @@ header {
 
 .l-side {
   width: 20%;
-  height: 70vh;
   float: left;
   margin: 5% 0% 5% 5%;
 }
@@ -414,8 +443,8 @@ header {
   }
 }
 .c-card__header img {
-  width: 90px;
-  height: 90px;
+  width: 60px;
+  height: 60px;
   margin-left: 3%;
 }
 
@@ -526,6 +555,26 @@ header {
 @media screen and (max-width: 768px) {
   .c-text__attention span {
     font-size: 14px;
+  }
+}
+.c-text__sub {
+  position: relative;
+}
+.c-text__sub:before {
+  position: absolute;
+  content: "CryptoTorend\306A\3089\FF01";
+  display: block;
+  bottom: 0;
+  left: 0;
+  font-size: 20px;
+  letter-spacing: 2px;
+  font-style: italic;
+  color: red;
+}
+@media screen and (max-width: 768px) {
+  .c-text__sub:before {
+    font-size: 16px;
+    bottom: -30px;
   }
 }
 
@@ -879,6 +928,7 @@ header {
 }
 .p-coinranking__table h4 {
   background-color: #bcf0c3;
+  padding: 3px;
 }
 
 .p-desc__main {
@@ -1069,9 +1119,9 @@ header {
 .p-hero__title {
   position: absolute;
   bottom: 20%;
-  right: 20%;
+  right: 0;
   color: black;
-  width: 30%;
+  width: 50%;
   height: 30%;
 }
 @media screen and (max-width: 768px) {
@@ -1212,7 +1262,7 @@ header {
 }
 
 .p-news__container {
-  width: 95%;
+  width: 97%;
   margin: 30px auto;
   display: flex;
   flex-wrap: wrap;
@@ -1224,7 +1274,7 @@ header {
 .p-news__card {
   border: solid 1px #6091d3;
   border-radius: 10px;
-  width: 100%;
+  width: 50%;
   height: 200px;
   box-sizing: border-box;
   text-align: center;
@@ -1240,7 +1290,7 @@ header {
   height: 100%;
   text-align: center;
   padding: 15px;
-  font-size: 20px;
+  font-size: 18px;
   width: 80%;
   background-color: white;
   text-align: left;
@@ -1250,9 +1300,10 @@ header {
 }
 @media screen and (max-width: 768px) {
   .p-news__card h4 {
-    font-size: 14px;
+    font-size: 12px;
     height: 60%;
     width: 100%;
+    border-radius: 10px;
   }
 }
 .p-news__card span {
@@ -1338,35 +1389,31 @@ header {
 }
 
 .p-sidebtn {
+  /*
   width: 100%;
   height: 10%;
   font-size: 10px;
   display: block;
   box-shadow: 1px 1px;
-}
-@media screen and (max-width: 768px) {
-  .p-sidebtn {
+  @media screen and (max-width: $res-max-width){
     display: inline-block;
     width: 32%;
     height: 50px;
   }
-}
-.p-sidebtn:hover {
-  transform: translate3d(0, 1px, 0);
-  color: #007db9;
-  box-shadow: none;
-  background: #fff;
-}
-.p-sidebtn__input {
-  display: none;
-}
-.p-sidebtn__checkparts {
-  padding-left: 20px;
-  position: relative;
-  margin-right: 20px;
-}
-.p-sidebtn:before {
-  content: "";
+  &:hover{
+    transform: translate3d(0, 1px, 0);
+    color: #007db9;
+    box-shadow: none;
+    background: #fff;
+    @media screen and (max-width: $res-max-width){
+      display: inline-block;
+      width: 32%;
+      height: 50px;
+    }
+  }
+
+  &:before{
+    content: "";
   display: block;
   position: absolute;
   top: 0;
@@ -1375,15 +1422,44 @@ header {
   height: 15px;
   border: 1px solid #999;
   border-radius: 4px;
+  }
+  */
+}
+.p-sidebtn label {
+  position: relative;
+  display: block;
+  padding: 15px 0;
+  padding-right: 35px;
+  cursor: pointer;
 }
 .p-sidebtn__container {
   height: 100%;
+  width: 100%;
+  text-align: left;
+}
+.p-sidebtn__container input {
+  display: none;
+}
+.p-sidebtn__container label {
+  position: relative;
+  display: block;
+  padding: 15px 0;
+  padding-right: 35px;
+  cursor: pointer;
 }
 .p-sidebtn__coin {
   height: 30px;
   line-height: 30px;
   width: 100%;
   background-color: #00000014;
+}
+.p-sidebtn__coin__input {
+  display: none;
+}
+.p-sidebtn__coin__checkparts {
+  padding-left: 20px;
+  position: relative;
+  margin-right: 20px;
 }
 .p-sidebtn__coin label {
   width: 100%;
@@ -1424,11 +1500,11 @@ header {
   background-color: #00f7ffb0;
 }
 
-.p-sidebtn__input:checked + .p-sidebtn__checkparts {
+.p-sidebtn__coin__input:checked + .p-sidebtn__coin__checkparts {
   color: #d01137;
 }
 
-.p-sidebtn__input:checked + .p-sidebtn__checkparts::after {
+.p-sidebtn__coin__input:checked + .p-sidebtn__coin__checkparts::after {
   content: "";
   display: block;
   position: absolute;
@@ -1576,6 +1652,11 @@ header {
     margin: auto;
   }
 }
+.p-twiiter__top p {
+  font-size: 16px;
+  letter-spacing: 2px;
+  margin-top: 30px;
+}
 .p-twiiter__top a {
   font-size: 20px;
   display: block;
@@ -1610,6 +1691,17 @@ header {
           animation: 2s linear infinite blink_effect;
 }
 
+.p-sampleimg__group {
+  height: 200px;
+  line-height: 200px;
+  text-align: center;
+  display: block;
+}
+.p-sampleimg__group img {
+  width: 200px;
+  max-height: 150px;
+  overflow: hidden;
+}
 .u-error {
   display: block;
   color: red;
@@ -1647,7 +1739,7 @@ header {
 .u-width__narrow {
   width: 30%;
   height: 80%;
-  background-color: #00000014;
+  background-color: #f9efeffc;
   display: block;
   text-align: center;
   line-height: 500px;
@@ -1657,4 +1749,9 @@ header {
   .u-width__narrow {
     display: none;
   }
+}
+
+.u-mark {
+  font-size: 150%;
+  display: inline;
 }

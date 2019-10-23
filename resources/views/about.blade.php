@@ -1,6 +1,6 @@
 @extends('layouts.app')
-@section('title', '本サービスについて')
-@section('description', '本ページではサービスの概要、仕組みなどについてご案内いたします')
+@section('title', 'よくある質問')
+@section('description', '本ページではサービスの機能概要、ご質問などについてご案内いたします')
 @section('keywords', 'CryptoTrend,Twitter,ツイッター,仮想通貨,TOP,自動フォロー,通貨トレンド,通貨ニュース,暗号通貨,サービス説明')
 @section('content')
 
@@ -16,7 +16,7 @@
 
 <section class="p-about__container"  id="about_twitter">
   <div class="p-about__title">
-    <h2>本サービスの一部機能について</h2>
+    <h2>本サービスの機能について教えてください。</h2>
   </div>
   <div class="p-about__contents">
     <h3>【１】まとめてフォロー</h3>
@@ -65,7 +65,7 @@
 
 <section class="p-about__container">
   <div class="p-about__title">
-    <h2>動作確認について</h2>
+    <h2>動作環境について教えてください。</h2>
   </div>
   <div class="p-about__contents">
     <p>本サービスの動作確認は下記のブラウザで行っております。<br>

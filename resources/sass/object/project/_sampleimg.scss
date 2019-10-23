@@ -1,0 +1,23 @@
+.p-sampleimg{
+  &__group{
+    height: 200px;
+    line-height: 200px;
+    text-align: center;
+    display: block;
+    img{
+      width: 270px;
+      height: 150px;
+      overflow: hidden;
+    }
+  }
+  &__sp{
+
+  }
+  &__coin{
+
+  }
+  &__news{
+
+  }
+
+}

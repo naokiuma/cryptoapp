@@ -62,7 +62,7 @@
 
 <!--ツイッター認証をしていない場合は下記を表示-->
 <div class="c-text p-twiiter__top">
-  <p>各アカウントのフォローをするには<br>「Twitter」認証をしてください。</p>
+  <p>各アカウントのフォローをするには<br>「Twitter認証」をしてください。</p>
   <a href="auth/twitter" class=""><i class="fab fa-twitter"></i>Twitter認証を行う。</a>
 </div>
 

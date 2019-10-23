@@ -1948,28 +1948,25 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['coin_ajax', 'hour', 'day', 'week'],
+  props: [//それぞれcoinのindexページから取得
+  'coin_ajax', //coinのデータ。
+  'hour', //過去1時間のデータ。
+  'day', //過去1日のデータ
+  'week' //過去1習慣のデータ
+  ],
   data: function data() {
     return {
       coins: [],
       showCoins: [],
+      //コインのツイート数、取引額の見た目上のデータをここに詰め込む
       exitCoins: [],
+      //コインのツイート数、取引額の実際のデータをここに詰め込む
       coinalldate: this.coinupdatedate,
       link_before: 'https://twitter.com/search?q=',
+      //ツイッター上にリンクするための情報
       link_after: '&src=typed_query',
+      //同上
       hour_show: false,
       day_show: false,
       week_show: false
@@ -2014,6 +2011,7 @@ __webpack_require__.r(__webpack_exports__);
       this.hour_show = true; //this.showCoins = [];
       //this.exitCoins = [];
 
+      this.resetCheckbox();
       this.day_show = false;
       this.week_show = false;
     },
@@ -2021,6 +2019,7 @@ __webpack_require__.r(__webpack_exports__);
       this.day_show = true; //this.showCoins = [];
       //this.exitCoins = [];
 
+      this.resetCheckbox();
       this.hour_show = false;
       this.week_show = false;
     },
@@ -2028,6 +2027,7 @@ __webpack_require__.r(__webpack_exports__);
       this.week_show = true; //this.showCoins = [];
       //this.exitCoins = [];
 
+      this.resetCheckbox();
       this.hour_show = false;
       this.day_show = false;
     },
@@ -2064,15 +2064,12 @@ __webpack_require__.r(__webpack_exports__);
       this.hour_show = true;
       this.day_show = false;
       this.week_show = false;
-      this.resetCheckbox(); //let checkboxs = document.getElementsByClassName( "p-sidebtn__input" );
-      //for (var i=0; i<checkboxs.length; i++){
-      //     checkboxs[i].checked = false;
-      //     }
+      this.resetCheckbox();
     },
     //チェックボックスのチェックをリセットするメソッド。
     //期間集計を表示するときにも使うため「resetCoin」とは分けています。
     resetCheckbox: function resetCheckbox() {
-      var checkboxs = document.getElementsByClassName("p-sidebtn__input");
+      var checkboxs = document.getElementsByClassName("p-sidebtn__coin__input");
 
       for (var i = 0; i < checkboxs.length; i++) {
         checkboxs[i].checked = false;
@@ -37632,82 +37629,77 @@ var render = function() {
   return _c("section", [
     _c("section", { staticClass: "l-side" }, [
       _c("div", { staticClass: "p-sidebtn__container" }, [
-        _c("select", [
-          _c(
-            "option",
-            {
-              staticClass: "p-sidebtn",
-              attrs: { type: "button", name: "button" },
-              on: { click: _vm.showHour }
-            },
-            [_vm._v("過去1時間")]
-          ),
-          _vm._v(" "),
-          _c(
-            "option",
-            {
-              staticClass: "p-sidebtn",
-              attrs: { type: "button", name: "button" },
-              on: { click: _vm.showDay }
-            },
-            [_vm._v("過去１日")]
-          ),
-          _vm._v(" "),
-          _c(
-            "option",
-            {
-              staticClass: "p-sidebtn",
-              attrs: { type: "button", name: "button" },
-              on: { click: _vm.showWeek }
-            },
-            [_vm._v("過去1週間")]
-          )
+        _c("label", [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showHour }
+          }),
+          _vm._v("過去1時間")
         ]),
         _vm._v(" "),
-        _c(
-          "div",
-          { staticClass: "p-sidebtn__coin__container" },
-          [
-            _vm._l(_vm.coins, function(pcoin) {
-              return _c(
-                "div",
-                { key: pcoin.id, staticClass: "p-sidebtn__coin" },
-                [
-                  _c("label", [
-                    _c("input", {
-                      staticClass: "p-sidebtn__input",
-                      attrs: { type: "checkbox", name: "button" },
-                      on: {
-                        click: function($event) {
-                          return _vm.pushCoin(pcoin)
-                        }
+        _c("label", [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showDay }
+          }),
+          _vm._v("過去1日")
+        ]),
+        _vm._v(" "),
+        _c("label", [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showWeek }
+          }),
+          _vm._v("過去1週間")
+        ])
+      ]),
+      _vm._v(" "),
+      _c(
+        "div",
+        { staticClass: "p-sidebtn__coin__container" },
+        [
+          _vm._l(_vm.coins, function(pcoin) {
+            return _c(
+              "div",
+              { key: pcoin.id, staticClass: "p-sidebtn__coin" },
+              [
+                _c("label", [
+                  _c("input", {
+                    staticClass: "p-sidebtn__coin__input",
+                    attrs: { type: "checkbox", name: "button" },
+                    on: {
+                      click: function($event) {
+                        return _vm.pushCoin(pcoin)
                       }
-                    }),
-                    _vm._v(" "),
-                    _c("span", { staticClass: "p-sidebtn__checkparts" }, [
-                      _vm._v(_vm._s(pcoin.name))
-                    ])
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("span", { staticClass: "p-sidebtn__coin__checkparts" }, [
+                    _vm._v(_vm._s(pcoin.name))
                   ])
-                ]
-              )
-            }),
-            _vm._v(" "),
-            _c(
-              "button",
-              {
-                staticClass: "p-sidebtn__highlight",
-                on: {
-                  click: function($event) {
-                    return _vm.resetCoin()
-                  }
-                }
-              },
-              [_vm._v("\n          リセット")]
+                ])
+              ]
             )
-          ],
-          2
-        )
-      ])
+          }),
+          _vm._v(" "),
+          _c(
+            "button",
+            {
+              staticClass: "p-sidebtn__highlight",
+              on: {
+                click: function($event) {
+                  return _vm.resetCoin()
+                }
+              }
+            },
+            [_vm._v("リセット")]
+          )
+        ],
+        2
+      )
     ]),
     _vm._v(" "),
     _c(
