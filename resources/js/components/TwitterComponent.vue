@@ -30,11 +30,12 @@
         <img :src="user.profile_image_url" alt="">
         <h4><a :href="'https://twitter.com/' + user.screen_name" target="_blank">{{ user.name }}</a></h4>
       </div>
+        <button v-on:click="follow(user,index)">@{{ user.screen_name }} をフォローする</button>
         <p>{{ user.description}}</p>
-        <p>最新ツイート：<br>
+        <p>《最新ツイート》<br>
         {{user.status.text}}</p><br>
         フォロー数：{{user.friends_count}} フォロワー数：{{user.followers_count}}<br>
-        <button v-on:click="follow(user,index)">@{{ user.screen_name }} をフォローする</button>
+
 
     </div>
 

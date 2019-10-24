@@ -1,22 +1,21 @@
 .p-news{
     &__container{
-      width: 97%;
+      width: 100%;
       margin: 30px auto;
       display: flex;
       flex-wrap: wrap;
       align-content: center;
-      background-color: #64f38b42;
-      border: solid 2px #6091d3;
-      border-radius: 10px;
+      justify-content: center;
     }
     &__card{
       border: solid 1px #6091d3;
       border-radius: 10px;
-      width: 50%;
+      width: 48%;
       height: 200px;
       box-sizing: border-box;
       text-align: center;
       display: flex;
+      margin: 3px;
       @media screen and (max-width: $res-max-width){
         width: 100%;
         display: block;
@@ -27,7 +26,7 @@
         padding: 15px;
         font-size: 18px;
         width: 80%;
-        background-color: white;
+        background-color: #00000014;
         text-align: left;
         box-sizing: border-box;
         border: solid 1px #6091d3;
@@ -47,8 +46,8 @@
         }
       }
       &__right{
-        margin: 15px auto;
         width: 20%;
+        background-color: #64f38b42;
         @media screen and (max-width: $res-max-width){
           display: flex;
           width: 100%;

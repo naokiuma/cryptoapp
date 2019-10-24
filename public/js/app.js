@@ -2189,7 +2189,8 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log(this.autofollowsample_ajax);
     var self = this;
-    var url = this.autofollowsample_ajax;
+    var url = this.autofollowsample_ajax; //axiosでajaxデータを取得
+
     axios.get(url).then(function (response) {
       self.sampleusers = response.data;
     });
@@ -2207,6 +2208,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -38031,23 +38033,23 @@ var render = function() {
             ])
           ]),
           _vm._v(" "),
+          _c("button", [_vm._v("フォローするにはツイッター認証が必要です。")]),
+          _vm._v(" "),
           _c("p", [_vm._v(_vm._s(sampleuser.description))]),
           _vm._v(" "),
           _c("p", [
-            _vm._v("最新ツイート："),
+            _vm._v("《最新ツイート》"),
             _c("br"),
-            _vm._v("\n            " + _vm._s(sampleuser.tweet))
+            _vm._v("\n      " + _vm._s(sampleuser.tweet))
           ]),
           _c("br"),
           _vm._v(
-            "\n            フォロー数：" +
+            "\n      フォロー数：" +
               _vm._s(sampleuser.friends_count) +
               " フォロワー数：" +
               _vm._s(sampleuser.followers_count)
           ),
-          _c("br"),
-          _vm._v(" "),
-          _c("button", [_vm._v("フォローするにはツイッター認証が必要です。")])
+          _c("br")
         ])
       }),
       0
@@ -38134,22 +38136,6 @@ var render = function() {
               ])
             ]),
             _vm._v(" "),
-            _c("p", [_vm._v(_vm._s(user.description))]),
-            _vm._v(" "),
-            _c("p", [
-              _vm._v("最新ツイート："),
-              _c("br"),
-              _vm._v("\n      " + _vm._s(user.status.text))
-            ]),
-            _c("br"),
-            _vm._v(
-              "\n      フォロー数：" +
-                _vm._s(user.friends_count) +
-                " フォロワー数：" +
-                _vm._s(user.followers_count)
-            ),
-            _c("br"),
-            _vm._v(" "),
             _c(
               "button",
               {
@@ -38160,7 +38146,23 @@ var render = function() {
                 }
               },
               [_vm._v("@" + _vm._s(user.screen_name) + " をフォローする")]
-            )
+            ),
+            _vm._v(" "),
+            _c("p", [_vm._v(_vm._s(user.description))]),
+            _vm._v(" "),
+            _c("p", [
+              _vm._v("《最新ツイート》"),
+              _c("br"),
+              _vm._v("\n      " + _vm._s(user.status.text))
+            ]),
+            _c("br"),
+            _vm._v(
+              "\n      フォロー数：" +
+                _vm._s(user.friends_count) +
+                " フォロワー数：" +
+                _vm._s(user.followers_count)
+            ),
+            _c("br")
           ])
         })
       ],

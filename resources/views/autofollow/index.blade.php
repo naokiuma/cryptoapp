@@ -30,10 +30,10 @@
 
   <!--ユーザーのツイッター情報がないので、管理者の引っ張ってきた情報を見本として表示-->
   <div id="nologinapp">
-    <Nologin-component
+   <Nologin-component
     autofollowsample_ajax = "{{ url('autofollow/addfollow') }}">
-  </Nologin-component>
-</div>
+   </Nologin-component>
+  </div>
 </div>
 
 @else

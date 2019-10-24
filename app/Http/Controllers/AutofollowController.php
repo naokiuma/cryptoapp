@@ -300,7 +300,7 @@ class AutofollowController extends Controller
     //DBからユーザーを20人、screen_nameのみランダムに取得し、$randomUserに詰め込む。
     //そのscreen_nameを$follow_targetsに詰め込む
     $follow_targets = array();
-    for($i = 0; $i < 15; $i++){
+    for($i = 0; $i < 20; $i++){
       $randomUser = Autofollow::inRandomOrder()->first();
       array_push($follow_targets,$randomUser->screen_name);
     }
@@ -316,21 +316,24 @@ class AutofollowController extends Controller
     $num = count($follow_acount);
     Log::debug("numです".$num);
     if($num == 0){
-      Log::debug("autoフォロー1の人がいません。終了します");
+      Log::debug("自動フォロー実行中の人がいません。終了します");
       return;
     }
+    Log::debug("1秒休憩します。");
+    sleep(1);
 
-    //-------------
+    //----------------------------各々のユーザーで自動フォローを行う。
 
     //カウント数までforで回し、フォロー元ユーザーのツイッター情報認証を取得。
     //フォローしていない ＝ followingがfalseのユーザーのみtempに詰め込む
     //1週目$iは0 numは2。
     for($i = 0; $i < $num; $i++){
+
       Log::debug("iの中身1です".$i);
       //1日のフォロー数制限が385超えていたらフォローできないようにするフラグをonにする
       //Log::debug("処理2:一日のフォロー数制限が385超えていたらフォローできないように制限します。");
 
-      //一人分の処理---------------■
+      //一人分の自動フォロー処理。------------------------------■
       $follow_count = $follow_acount[$i]->follow_count;
       Log::debug("本日このサービスでフォローした数".$follow_count);
 
@@ -355,15 +358,15 @@ class AutofollowController extends Controller
         $temp_user = array();
 
         //フォロー対象のまとめ。fを変数にし、forでフォロー。
-        for($f=0; $f<2; $f++){
+        for($f=0; $f<15; $f++){//15を超えないように。
           if(!$lookupuser[$f]->following){
             array_push($temp_user,$lookupuser[$f]->screen_name);
             Log::debug(count($temp_user));
             Log::debug($temp_user);
           }
 
-          if(count($temp_user) == 2){
-            Log::debug("2人に達しました。フォロー対象の検索はここまでです。forを抜けます。");
+          if(count($temp_user) == 14){
+            Log::debug("14人に達しました。フォロー対象の検索はここまでです。forを抜けます。");
             break;
           }
 
@@ -396,11 +399,14 @@ class AutofollowController extends Controller
         $user = User::where('twitter_id', $now_usertwiiter_id)->first();
         $user->follow_count = $now_follow_num;
         $user->update();
-        //Log::debug("DBを更新しました。多分");
+        //Log::debug("DBを更新しました"");
 
         Log::debug("フォロー処理を終了します。");
 
       }
+      Log::debug($i++."人目の処理が終わりました。");
+      Log::debug("5秒休憩します。");
+      sleep(5);
     }
   }
 

@@ -3,20 +3,68 @@
     height: 200px;
     line-height: 200px;
     text-align: center;
-    display: block;
+    display: flex;
+    justify-content: center;
+    @media screen and (max-width: $res-max-width){
+      height: 100px;
+      line-height: 100px;
+    }
     img{
       width: 270px;
       height: 150px;
       overflow: hidden;
+      @media screen and (max-width: $res-max-width){
+        width: 110px;
+        height: 70px;
+      }
     }
   }
-  &__sp{
-
+  &__picture{
+    width: 270px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
+    margin: 5px;
+    @media screen and (max-width: $res-max-width){
+      width: 110px;
+      height: 70px;
+    }
+    .caption {
+    	font-size:		130%;
+    	text-align: 		center;
+    	color:			#fff;
+      @media screen and (max-width: $res-max-width){
+        font-size: 100%;
+      }
+    }
+    .mask{
+      width:			100%;
+      height:			100%;
+      position:		absolute;	/* 絶対位置指定 */
+      top:			0;
+      left:			0;
+      opacity:		0;	/* マスクを表示しない */
+      background-color:	rgba(0,0,0,0.4);	/* マスクは半透明 */
+      -webkit-transition:	all 0.2s ease;
+      transition:		all 0.2s ease;
+    }
+    &:hover .mask {
+    	opacity:		1;	/* マスクを表示する */
+    }
   }
+
   &__coin{
+    width: 270px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
 
   }
   &__news{
+    width: 270px;
+    height: 150px;
+    overflow: hidden;
+    position: relative;
 
   }
 

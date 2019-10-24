@@ -54,20 +54,24 @@
             <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
             <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
             <li><a href="{{ url('about') }}">本サービスについて</a></li>
+            <li class="u-mark__sp">{{$user->name}}</li>
+            @if ($user->handle)<!--もしツイッターアカウントがあれば表示-->
+            <li class="u-mark__sp"><a href="https://twitter.com/{{$user->handle}}" target="_blank"><img src="{{$user->avatar}}" class="p-header__icon"></a></li>
+            @endif
             <li>Today`s follow：{{$user->follow_count}}</li>
             <li><a href="{{ url('auth/twitter/logout') }}"><i class="fas fa-sign-out-alt"></i>ログアウト</a></li>
           </ul>
         </div>
 
-        <div class="p-header__user">
+        <div><!--スマホでは非表示。名前が長い場合、サービス名と名前がかぶるため-->
           <ul>
-            <li>{{$user->name}}</li>
+            <li class="p-header__user>{{$user->name}}</li>
             @if ($user->handle)<!--もしツイッターアカウントがあれば表示-->
             <li><a href="https://twitter.com/{{$user->handle}}" target="_blank"><img src="{{$user->avatar}}" class="p-header__icon"></a></li>
             @endif
           </ul>
-
         </div>
+
         @endguest
 
       </section>

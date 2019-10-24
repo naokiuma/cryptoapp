@@ -1,4 +1,10 @@
 .u-mark{
   font-size: 150%;
   display: inline;
+  &__sp{
+    display: none;
+    @media screen and (max-width: $res-max-width){
+
+    }
+  }
 }

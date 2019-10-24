@@ -8,7 +8,7 @@
 <section class="l-billboard" id="top">
   <div class="p-hero__title">
     <h2>CryptoTrend</h2>
-    <p>本サービスは、SNSサービス<span class="u-mark">『Twitter』</span>を使い、<br>仮装通貨の情報を集めるお手伝いをするサービスです。
+    <p>本サービスは、SNSサービス<br><span class="u-mark">『Twitter』</span><br>を使い、仮装通貨の情報を集めるお手伝いをするサービスです。
     </p>
   </div>
 </section>
@@ -24,7 +24,7 @@
     <p class="p-desc__text c-text">
       仮想通貨取引が始まり数年。<br>
       取引可能な通貨の種類は多く、ユーザーの各通貨への興味の推移や関連ニュースは非常に多種多様です。<br>
-      通貨の取引にあたり、こういった情報を抑える作業は欠かせません。
+      通貨の取引にあたり、こういった情報を抑える作業は欠かせません。<br>
       『CryptoTrend』は、仮想通貨をこれから始める方、初めて間もない方の情報収集のお手伝いをするサービスです。<br>
       <br>
     </p>
@@ -59,14 +59,38 @@
 
 <!--機能紹介-->
 
+<style>
+.p-sampleimg{
+
+}
+
+</style>
 <h2 class="c-text u-short">
   <span class="c-text__sub">3つの機能で情報収集をお手伝いします！</span>
 </h2>
 
 <div class="p-sampleimg__group">
-  <img  class="p-sampleimg__sp" src="{{ asset('/img/auto_follow.png') }}" alt="スマホ" >
-  <img  class="p-sampleimg__coin" src="{{ asset('/img/hero_img.jpg') }}" alt="仮想通貨" >
-  <img  class="p-sampleimg__news" src="{{ asset('/img/news.jpg') }}" alt="ニュース" >
+  <div class="p-sampleimg__picture">
+    <img  src="{{ asset('/img/auto_follow.png') }}" alt="スマホ" >
+    <div class="mask">
+  		<div class="caption">まとめてフォロー</div>
+  	</div>
+  </div>
+
+  <div class="p-sampleimg__picture">
+    <img src="{{ asset('/img/hero_img.jpg') }}" alt="仮想通貨" >
+    <div class="mask">
+      <div class="caption">通貨トレンド</div>
+    </div>
+  </div>
+
+  <div class="p-sampleimg__picture">
+    <img src="{{ asset('/img/news.jpg') }}" alt="ニュース" >
+    <div class="mask">
+      <div class="caption">仮想通貨ニュース</div>
+    </div>
+  </div>
+
 </div>
 
 

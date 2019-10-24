@@ -1,5 +1,5 @@
 .c-card{
-  width: 80%;
+  width: 45%;
   max-height: 500px;
   min-height: 400px;
   background-color: white;
@@ -8,8 +8,10 @@
   animation-duration: 0.8s;
   -webkit-animation-name: toleft;
   animation-name: toleft;
+
   @media screen and (max-width: $res-max-width){
     width: 90%;
+    padding: 5px 0;
   }
   a{
     font-size: 100%;
@@ -32,7 +34,7 @@
   &__header{
     display: flex;
     justify-content: space-between;
-    height: 90px;
+    //height: 90px;
     line-height: 30px;
     margin-top: 1%;
     font-size: $font-s;
