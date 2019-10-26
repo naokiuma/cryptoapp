@@ -1947,9 +1947,13 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [//それぞれcoinのindexページから取得
-  'coin_ajax', //coinのデータ。
+  'coin_ajax', //coinのデータを取得するためのajaxに使うURL。
   'hour', //過去1時間のデータ。
   'day', //過去1日のデータ
   'week' //過去1習慣のデータ
@@ -1968,7 +1972,8 @@ __webpack_require__.r(__webpack_exports__);
       //同上
       hour_show: false,
       day_show: false,
-      week_show: false
+      week_show: false,
+      check_show: false
     };
   },
   mounted: function mounted() {
@@ -2073,6 +2078,11 @@ __webpack_require__.r(__webpack_exports__);
       for (var i = 0; i < checkboxs.length; i++) {
         checkboxs[i].checked = false;
       }
+    },
+    //コインの表示をするためのボックスを出し入れするメソッド。
+    coinbuttonShow: function coinbuttonShow() {
+      console.log("スタート");
+      this.check_show = !this.check_show;
     }
   }
 });
@@ -2246,8 +2256,12 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', //url情報。autofollow/allです。
+  props: ['users_results', //利用中のユーザーがフォローしていないアカウントの情報。Twitter認証していればこの情報を出します。
+  'follow_users', //ランダムにDBから取得したユーザー情報
+  'autofollow_ajax', //個別フォローするurlへのポストの時のurl
+  'autofollowall_ajax', //url情報。autofollow/allです。
   'autofollow_check' //db上から取得したautofollowの状態。1ならばtrue、つまり自動フォロー中。
   ],
   data: function data() {
@@ -2269,6 +2283,7 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    //個別フォローのメソッド
     follow: function follow(user, index) {
       var _this = this;
 
@@ -2289,8 +2304,8 @@ __webpack_require__.r(__webpack_exports__);
         console.log(error);
       });
     },
+    //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替えるメソッド
     checkOngoing: function checkOngoing() {
-      //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替える
       console.log("checkOngoingを呼び出します");
 
       if (this.autofollow_check == 1 || true) {
@@ -2302,6 +2317,7 @@ __webpack_require__.r(__webpack_exports__);
       console.log("this.ongoingの値です");
       console.log(this.ongoing);
     },
+    //まとめてフォロー（自動フォローのONOFFを切り替えるメソッド）
     autofollowStart: function autofollowStart() {
       var self = this;
       var url = this.autofollowall_ajax; //ajax先のurl
@@ -2327,7 +2343,7 @@ __webpack_require__.r(__webpack_exports__);
       axios.post(url, {
         request: request
       }).then(function (res) {
-        alert('まとめてフォローの設定を切り替えました。再読み込みします');
+        alert('まとめてフォローの設定を切り替えました。ページを読み込みします。');
         location.reload();
       })["catch"](function (error) {
         console.log(error);
@@ -2335,8 +2351,8 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   computed: {
+    //個別フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
     nofollow: function nofollow() {
-      //フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
       return this.users.filter(function (user) {
         return user.following == false;
       });
@@ -37661,49 +37677,63 @@ var render = function() {
         )
       ]),
       _vm._v(" "),
-      _c(
-        "div",
-        { staticClass: "p-sidebtn__coin__container" },
-        [
-          _vm._l(_vm.coins, function(pcoin) {
-            return _c(
-              "div",
-              { key: pcoin.id, staticClass: "p-sidebtn__coin" },
-              [
-                _c("label", [
-                  _c("input", {
-                    staticClass: "p-sidebtn__coin__input",
-                    attrs: { type: "checkbox", name: "button" },
-                    on: {
-                      click: function($event) {
-                        return _vm.pushCoin(pcoin)
-                      }
-                    }
-                  }),
-                  _vm._v(" "),
-                  _c("span", { staticClass: "p-sidebtn__coin__checkparts" }, [
-                    _vm._v(_vm._s(pcoin.name))
-                  ])
-                ])
-              ]
-            )
-          }),
-          _vm._v(" "),
-          _c(
-            "button",
-            {
-              staticClass: "p-sidebtn__highlight",
-              on: {
-                click: function($event) {
-                  return _vm.resetCoin()
-                }
+      _c("div", { staticClass: "p-sidebtn__coinshow" }, [
+        _c(
+          "button",
+          {
+            on: {
+              click: function($event) {
+                return _vm.coinbuttonShow()
               }
-            },
-            [_vm._v("リセット")]
+            }
+          },
+          [_vm._v("各種コイン情報を表示する")]
+        ),
+        _vm._v(" "),
+        _c(
+          "button",
+          {
+            staticClass: "p-sidebtn__highlight",
+            on: {
+              click: function($event) {
+                return _vm.resetCoin()
+              }
+            }
+          },
+          [_vm._v("リセット")]
+        )
+      ]),
+      _vm._v(" "),
+      _vm.check_show
+        ? _c(
+            "div",
+            { staticClass: "p-sidebtn__coin__container" },
+            _vm._l(_vm.coins, function(pcoin) {
+              return _c(
+                "div",
+                { key: pcoin.id, staticClass: "p-sidebtn__coin" },
+                [
+                  _c("label", [
+                    _c("input", {
+                      staticClass: "p-sidebtn__coin__input",
+                      attrs: { type: "checkbox", name: "button" },
+                      on: {
+                        click: function($event) {
+                          return _vm.pushCoin(pcoin)
+                        }
+                      }
+                    }),
+                    _vm._v(" "),
+                    _c("span", { staticClass: "p-sidebtn__coin__checkparts" }, [
+                      _vm._v(_vm._s(pcoin.name))
+                    ])
+                  ])
+                ]
+              )
+            }),
+            0
           )
-        ],
-        2
-      )
+        : _vm._e()
     ]),
     _vm._v(" "),
     _c(
@@ -38085,10 +38115,6 @@ var render = function() {
       _c("div", { staticClass: "p-autofollow__description" }, [
         _vm._m(0),
         _vm._v(" "),
-        _c("span", [
-          _vm._v("※まとめてフォローONの状態でも、個別フォローが可能です。")
-        ]),
-        _vm._v(" "),
         _c(
           "div",
           {
@@ -38115,6 +38141,10 @@ var render = function() {
           [_vm._v("まとめてフォローON/OFF")]
         )
       ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "u-mark__small" }, [
+      _vm._v("※まとめてフォローONの状態でも、個別フォローが可能です。")
     ]),
     _vm._v(" "),
     _c(
@@ -38159,11 +38189,11 @@ var render = function() {
             _c("p", [
               _vm._v("《最新ツイート》"),
               _c("br"),
-              _vm._v("\n        " + _vm._s(user.status.text))
+              _vm._v("\n    " + _vm._s(user.status.text))
             ]),
             _c("br"),
             _vm._v(
-              "\n        フォロー数：" +
+              "\n    フォロー数：" +
                 _vm._s(user.friends_count) +
                 " フォロワー数：" +
                 _vm._s(user.followers_count)

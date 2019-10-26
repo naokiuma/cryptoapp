@@ -7,7 +7,7 @@
     width: 100%;
     margin: 10px auto;
     @media screen and (max-width: $res-max-width){
-      width: 70%;
+      width: 95%;
       display: flex;
       justify-content: space-between;
     }
@@ -19,8 +19,12 @@
       &:hover{
         transform: translate3d(0, 1px, 0);
         color: #007db9;
-        box-shadow: none;
+        box-shadow: 1px 1px;
         background: #fff;
+      }
+      @media screen and (max-width: $res-max-width){
+        width: 200px;
+        text-align: center;
       }
     }
   }
@@ -44,9 +48,7 @@
     }
 
     label{
-      display: inline-block;
       margin: 1px auto;
-      box-shadow: 1px 1px;
       display: block;
         @media screen and (max-width: $res-max-width){
           width: 100%;
@@ -62,12 +64,13 @@
       box-shadow: none;
       background: #fff;
     }
-    //@media screen and (max-width: $res-max-width){
-    //  width: 50%;
-    //}
+
+
     &__container{
       height: 70%;
       text-align: left;
+      animation-duration: 0.3s;
+      animation-name:toup;
       @media screen and (max-width: $res-max-width){
         display: flex;
         justify-content: flex-start;
@@ -82,6 +85,26 @@
     background-color: #ff570061;
     font-weight: liter;
     width: 100%;
+    @media screen and (max-width: $res-max-width){
+      width: 100px;
+    }
+  }
+  &__coinshow{
+    width: 100%;
+    margin: 0 auto;
+    margin-bottom: 10px;
+    button{
+      width: 200px;
+      height: 25px;
+      box-shadow: 2px 2px;
+      @media screen and (max-width: $res-max-width){
+      }
+      &:hover{
+        box-shadow: 1px 1px;
+        color: #007db9;
+      }
+    }
+
   }
 }
 

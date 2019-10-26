@@ -880,10 +880,11 @@ header {
   line-height: 20px;
   font-size: 16px;
   padding: 1%;
-  background-color: #bcf0c3;
+  background-color: #b0e3ff;
   width: 100;
   margin: auto auto;
   text-align: center;
+  border-bottom: 0.1px solid;
 }
 @media screen and (max-width: 768px) {
   .p-coinranking__container h3 {
@@ -1411,7 +1412,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn__container {
-    width: 70%;
+    width: 95%;
     display: flex;
     justify-content: space-between;
   }
@@ -1425,8 +1426,14 @@ header {
 .p-sidebtn__container label:hover {
   transform: translate3d(0, 1px, 0);
   color: #007db9;
-  box-shadow: none;
+  box-shadow: 1px 1px;
   background: #fff;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__container label {
+    width: 200px;
+    text-align: center;
+  }
 }
 .p-sidebtn__coin {
   height: 30px;
@@ -1449,9 +1456,7 @@ header {
   margin-right: 20px;
 }
 .p-sidebtn__coin label {
-  display: inline-block;
   margin: 1px auto;
-  box-shadow: 1px 1px;
   display: block;
 }
 @media screen and (max-width: 768px) {
@@ -1472,6 +1477,10 @@ header {
 .p-sidebtn__coin__container {
   height: 70%;
   text-align: left;
+  -webkit-animation-duration: 0.3s;
+          animation-duration: 0.3s;
+  -webkit-animation-name: toup;
+          animation-name: toup;
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn__coin__container {
@@ -1487,6 +1496,25 @@ header {
   background-color: #ff570061;
   font-weight: liter;
   width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__highlight {
+    width: 100px;
+  }
+}
+.p-sidebtn__coinshow {
+  width: 100%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+}
+.p-sidebtn__coinshow button {
+  width: 200px;
+  height: 25px;
+  box-shadow: 2px 2px;
+}
+.p-sidebtn__coinshow button:hover {
+  box-shadow: 1px 1px;
+  color: #007db9;
 }
 
 .btn_active {
@@ -1816,4 +1844,15 @@ header {
 }
 .u-mark__sp {
   display: none;
+}
+.u-mark__small {
+  background: none;
+  font-size: 14px;
+  width: 100%;
+  text-align: center;
+}
+@media screen and (max-width: 768px) {
+  .u-mark__small {
+    font-size: 12px;
+  }
 }

@@ -7,4 +7,13 @@
 
     }
   }
+  &__small{
+    background: none;
+    font-size: 14px;
+    width: 100%;
+    text-align: center;
+    @media screen and (max-width: $res-max-width){
+      font-size: 12px;
+    }
+  }
 }

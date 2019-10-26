@@ -24,10 +24,11 @@
         line-height: 20px;
         font-size: 16px;
         padding: 1%;
-        background-color: #bcf0c3;
+        background-color: #b0e3ff;;
         width: 100;
         margin: auto auto;
         text-align: center;
+        border-bottom: 0.1px solid;
         @media screen and (max-width: $res-max-width){
           font-size: 12px;
         }

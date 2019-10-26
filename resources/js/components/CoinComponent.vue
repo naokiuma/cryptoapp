@@ -10,15 +10,19 @@
       <label v-bind:class='{btn_active:week_show}' onclick=""><input class="p-sidebtn" v-on:click="showWeek" type="radio" name="tweet">過去1週間</label>
     </div>
 
+  <!--コイン一覧の表示非表示とリセットボタン。-->
+   <div class="p-sidebtn__coinshow">
+   <button v-on:click = "coinbuttonShow()">各種コイン情報を表示する</button>
+   <button class="p-sidebtn__highlight" v-on:click="resetCoin()">リセット</button>
+   </div>
+
   <!--各種コインの情報を表示させるチェックボックス。-->
-    <div class="p-sidebtn__coin__container">
+    <div class="p-sidebtn__coin__container" v-if="check_show">
       <div class="p-sidebtn__coin" v-for="pcoin in coins" v-bind:key="pcoin.id">
         <label><input class="p-sidebtn__coin__input" v-on:click="pushCoin(pcoin)" type="checkbox" name="button">
         <span class="p-sidebtn__coin__checkparts">{{pcoin.name}}</span>
         </label>
       </div>
-      <!--リセット。初期化する-->
-      <button class="p-sidebtn__highlight" v-on:click="resetCoin()">リセット</button>
     </div>
 
   </section>
@@ -88,7 +92,7 @@
 <script>
     export default {
         props:[ //それぞれcoinのindexページから取得
-        'coin_ajax', //coinのデータ。
+        'coin_ajax', //coinのデータを取得するためのajaxに使うURL。
         'hour', //過去1時間のデータ。
         'day', //過去1日のデータ
         'week' //過去1習慣のデータ
@@ -105,6 +109,7 @@
             hour_show:false,
             day_show:false,
             week_show:false,
+            check_show:false,
             }
         },
         mounted(){
@@ -211,7 +216,11 @@
           for (var i=0; i<checkboxs.length; i++){
                checkboxs[i].checked = false;
                }
-
+          },
+          //コインの表示をするためのボックスを出し入れするメソッド。
+          coinbuttonShow(){
+           console.log("スタート");
+           this.check_show = !this.check_show;
           }
 
         }

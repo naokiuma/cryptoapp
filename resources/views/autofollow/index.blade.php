@@ -12,9 +12,10 @@
   </h2>
   <p class="p-desc__text c-text">
     Twitter上の『仮想通貨』関連のユーザーが表示されます。<br>
-    本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。
   </p>
 </div>
+<div class="u-mark__small">本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。</div>
+
 
 
 @if (session('today_follow_end'))
@@ -40,10 +41,11 @@
 
 <section class="l-main__twitter">
   @if (session('user_token'))
-  <!--ツイッター認証をしている場合は下記を表示-->
+  <!--ツイッター認証をしている場合は下記コンポーネントを表示。受け渡す変数の内容は以下の通りです。-->
   <!--autofollow_checkはセッションの状態。1ならば自動フォロー実施中。-->
-  <!--autofollow_ajaxは一人フォローするurlへのポスト-->
-  <!--autofollow/allは自動フォローをonにする-->
+  <!--users_resultsはログインユーザーがフォローしてないユーザー一覧のスクリーンネーム。-->
+  <!--autofollow_ajaxは個別フォローするurlへのポストの時のurl-->
+  <!--autofollowall_ajaxは自動フォローをonにするポストのurl-->
 
   <!--$autofollow_checkこの値で現在オートフォロー中か判断-->
   <div id="twitterapp">
@@ -66,7 +68,8 @@
   <a href="auth/twitter" class=""><i class="fab fa-twitter"></i>Twitter認証を行う。</a>
 </div>
 
-<!--ユーザーのツイッター情報がないので、情報を見本として表示-->
+<!--ユーザーのツイッター情報がないので、情報を見本としてコンポーネントで表示-->
+<!--autofollowsample_ajaxは、DBから取得するためのajax用の変数-->
 <div id="nologinapp">
   <Nologin-component
   autofollowsample_ajax = "{{ url('autofollow/addfollow') }}"
