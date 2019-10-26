@@ -9,13 +9,13 @@
     }
     &__card{
       border: solid 1px #6091d3;
-      border-radius: 10px;
       width: 48%;
       height: 200px;
       box-sizing: border-box;
       text-align: center;
       display: flex;
       margin: 3px;
+      background-color: #64f38b42;
       @media screen and (max-width: $res-max-width){
         width: 100%;
         display: block;
@@ -26,16 +26,16 @@
         padding: 15px;
         font-size: 18px;
         width: 80%;
-        background-color: #00000014;
         text-align: left;
         box-sizing: border-box;
-        border: solid 1px #6091d3;
-        border-radius: 10px 0 0 10px;
+        border-right: solid 1px #6091d3;
+        border-bottom: solid  1px #6091d3;
+        //border-radius: 10px 0 0 10px;
         @media screen and (max-width: $res-max-width){
           font-size: 12px;
           height: 60%;
           width: 100%;
-          border-radius: 10px
+        //  border-radius: 10px
         }
       }
       span{
@@ -47,7 +47,7 @@
       }
       &__right{
         width: 20%;
-        background-color: #64f38b42;
+        background-color: white;
         @media screen and (max-width: $res-max-width){
           display: flex;
           width: 100%;
@@ -56,7 +56,7 @@
       }
       }
       &__jamp{
-        padding: 0.5em 1em;
+        padding: 0.5em;
         margin: 15px 0;
         font-weight: bold;
         color: black;
@@ -69,6 +69,7 @@
         border-radius: 10px;
         @media screen and (max-width: $res-max-width){
           width: 50%;
+          margin-left: 5px;
         }
         &:hover{
           transform: translate3d(0, 5px, 0);

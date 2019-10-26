@@ -7,6 +7,7 @@
 
     <div class="p-autofollow__description">
       <p>まとめてフォローをONにすると15分に一度、<span>自動フォロー</span>を実施します。</p>
+      <span>※まとめてフォローONの状態でも、個別フォローが可能です。</span>
 
       <!--自動フォロー実施中のみ表示されるテキスト-->
       <div class="p-autofollow__ongoing" v-show="ongoing">

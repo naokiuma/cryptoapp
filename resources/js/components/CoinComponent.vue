@@ -5,11 +5,10 @@
 
   <!--過去のツイート数集計を表示させるラジオボタン。-->
     <div class="p-sidebtn__container">
-      <label><input class="p-sidebtn" v-on:click="showHour" type="radio" name="tweet">過去1時間</label>
-      <label><input class="p-sidebtn" v-on:click="showDay" type="radio" name="tweet">過去1日</label>
-      <label><input class="p-sidebtn" v-on:click="showWeek" type="radio" name="tweet">過去1週間</label>
+      <label v-bind:class='{btn_active:hour_show}' onclick=""><input class="p-sidebtn" v-on:click="showHour" type="radio" name="tweet">過去1時間</label>
+      <label v-bind:class='{btn_active:day_show}' onclick=""><input class="p-sidebtn" v-on:click="showDay" type="radio" name="tweet">過去1日</label>
+      <label v-bind:class='{btn_active:week_show}' onclick=""><input class="p-sidebtn" v-on:click="showWeek" type="radio" name="tweet">過去1週間</label>
     </div>
-
 
   <!--各種コインの情報を表示させるチェックボックス。-->
     <div class="p-sidebtn__coin__container">

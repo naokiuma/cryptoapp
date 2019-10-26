@@ -1,67 +1,40 @@
 .p-sidebtn{
-  label{
-    position: relative;
-    display: block;
-    padding: 15px 0;
-    padding-right: 35px;
-    cursor: pointer;
-  }
-
-  /*
-  width: 100%;
-  height: 10%;
-  font-size: 10px;
-  display: block;
-  box-shadow: 1px 1px;
-  @media screen and (max-width: $res-max-width){
-    display: inline-block;
-    width: 32%;
-    height: 50px;
-  }
-  &:hover{
-    transform: translate3d(0, 1px, 0);
-    color: #007db9;
-    box-shadow: none;
-    background: #fff;
-    @media screen and (max-width: $res-max-width){
-      display: inline-block;
-      width: 32%;
-      height: 50px;
-    }
-  }
-
-  &:before{
-    content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #999;
-  border-radius: 4px;
-  }
-  */
+  position: relative;
+  padding-left: 20px;
+  margin-right: 20px;
+  display: none;
   &__container{
-    height: 100%;
-    width:100%;
-    text-align: left;
-    input {
-    	display: none;
+    width: 100%;
+    margin: 10px auto;
+    @media screen and (max-width: $res-max-width){
+      width: 70%;
+      display: flex;
+      justify-content: space-between;
     }
     label{
-      position: relative;
+      margin: 5px;
+      padding: 5px;
+      box-shadow: 2px 2px;
       display: block;
-      padding: 15px 0;
-      padding-right: 35px;
-      cursor: pointer;
+      &:hover{
+        transform: translate3d(0, 1px, 0);
+        color: #007db9;
+        box-shadow: none;
+        background: #fff;
+      }
     }
   }
+
   &__coin{
     height: 30px;
     line-height: 30px;
     width: 100%;
     background-color: #00000014;
+    @media screen and (max-width: $res-max-width){
+      font-size: 10px;
+      width: 50%;
+      width :calc(100% / 3);
+    }
     &__input{
       display: none;
     }
@@ -72,8 +45,17 @@
     }
 
     label{
-      width: 100%;
       display: inline-block;
+      margin: 1px auto;
+      box-shadow: 1px 1px;
+      display: block;
+        @media screen and (max-width: $res-max-width){
+          width: 100%;
+          display: inline-block;
+          margin: auto;
+          padding: auto;
+          box-shadow: none;
+        }
     }
     &:hover{
       transform: translate3d(0, 1px, 0);
@@ -81,15 +63,15 @@
       box-shadow: none;
       background: #fff;
     }
-    @media screen and (max-width: $res-max-width){
-      width: 50%;
-    }
+    //@media screen and (max-width: $res-max-width){
+    //  width: 50%;
+    //}
     &__container{
       height: 70%;
       text-align: left;
       @media screen and (max-width: $res-max-width){
         display: flex;
-        justify-content: center;
+        justify-content: flex-start;
         flex-wrap: wrap;
         height: auto;
         background-color: #7fffdf54;
@@ -103,6 +85,8 @@
     width: 100%;
   }
 }
+
+
 
 .btn_active{
   background-color: #00f7ffb0;

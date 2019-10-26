@@ -876,6 +876,8 @@ header {
   padding: 5%;
 }
 .p-coinranking__container h3 {
+  height: 20px;
+  line-height: 20px;
   font-size: 16px;
   padding: 1%;
   background-color: #bcf0c3;
@@ -1282,13 +1284,13 @@ header {
 }
 .p-news__card {
   border: solid 1px #6091d3;
-  border-radius: 10px;
   width: 48%;
   height: 200px;
   box-sizing: border-box;
   text-align: center;
   display: flex;
   margin: 3px;
+  background-color: #64f38b42;
 }
 @media screen and (max-width: 768px) {
   .p-news__card {
@@ -1302,18 +1304,16 @@ header {
   padding: 15px;
   font-size: 18px;
   width: 80%;
-  background-color: #00000014;
   text-align: left;
   box-sizing: border-box;
-  border: solid 1px #6091d3;
-  border-radius: 10px 0 0 10px;
+  border-right: solid 1px #6091d3;
+  border-bottom: solid 1px #6091d3;
 }
 @media screen and (max-width: 768px) {
   .p-news__card h4 {
     font-size: 12px;
     height: 60%;
     width: 100%;
-    border-radius: 10px;
   }
 }
 .p-news__card span {
@@ -1327,7 +1327,7 @@ header {
 }
 .p-news__card__right {
   width: 20%;
-  background-color: #64f38b42;
+  background-color: white;
 }
 @media screen and (max-width: 768px) {
   .p-news__card__right {
@@ -1337,7 +1337,7 @@ header {
   }
 }
 .p-news__jamp {
-  padding: 0.5em 1em;
+  padding: 0.5em;
   margin: 15px 0;
   font-weight: bold;
   color: black;
@@ -1352,6 +1352,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-news__jamp {
     width: 50%;
+    margin-left: 5px;
   }
 }
 .p-news__jamp:hover {
@@ -1399,69 +1400,46 @@ header {
 }
 
 .p-sidebtn {
-  /*
-  width: 100%;
-  height: 10%;
-  font-size: 10px;
-  display: block;
-  box-shadow: 1px 1px;
-  @media screen and (max-width: $res-max-width){
-    display: inline-block;
-    width: 32%;
-    height: 50px;
-  }
-  &:hover{
-    transform: translate3d(0, 1px, 0);
-    color: #007db9;
-    box-shadow: none;
-    background: #fff;
-    @media screen and (max-width: $res-max-width){
-      display: inline-block;
-      width: 32%;
-      height: 50px;
-    }
-  }
-
-  &:before{
-    content: "";
-  display: block;
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 15px;
-  height: 15px;
-  border: 1px solid #999;
-  border-radius: 4px;
-  }
-  */
-}
-.p-sidebtn label {
   position: relative;
-  display: block;
-  padding: 15px 0;
-  padding-right: 35px;
-  cursor: pointer;
-}
-.p-sidebtn__container {
-  height: 100%;
-  width: 100%;
-  text-align: left;
-}
-.p-sidebtn__container input {
+  padding-left: 20px;
+  margin-right: 20px;
   display: none;
 }
+.p-sidebtn__container {
+  width: 100%;
+  margin: 10px auto;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__container {
+    width: 70%;
+    display: flex;
+    justify-content: space-between;
+  }
+}
 .p-sidebtn__container label {
-  position: relative;
+  margin: 5px;
+  padding: 5px;
+  box-shadow: 2px 2px;
   display: block;
-  padding: 15px 0;
-  padding-right: 35px;
-  cursor: pointer;
+}
+.p-sidebtn__container label:hover {
+  transform: translate3d(0, 1px, 0);
+  color: #007db9;
+  box-shadow: none;
+  background: #fff;
 }
 .p-sidebtn__coin {
   height: 30px;
   line-height: 30px;
   width: 100%;
   background-color: #00000014;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__coin {
+    font-size: 10px;
+    width: 50%;
+    width: calc(100% / 3);
+  }
 }
 .p-sidebtn__coin__input {
   display: none;
@@ -1472,19 +1450,25 @@ header {
   margin-right: 20px;
 }
 .p-sidebtn__coin label {
-  width: 100%;
   display: inline-block;
+  margin: 1px auto;
+  box-shadow: 1px 1px;
+  display: block;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__coin label {
+    width: 100%;
+    display: inline-block;
+    margin: auto;
+    padding: auto;
+    box-shadow: none;
+  }
 }
 .p-sidebtn__coin:hover {
   transform: translate3d(0, 1px, 0);
   color: #007db9;
   box-shadow: none;
   background: #fff;
-}
-@media screen and (max-width: 768px) {
-  .p-sidebtn__coin {
-    width: 50%;
-  }
 }
 .p-sidebtn__coin__container {
   height: 70%;
@@ -1493,7 +1477,7 @@ header {
 @media screen and (max-width: 768px) {
   .p-sidebtn__coin__container {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     flex-wrap: wrap;
     height: auto;
     background-color: #7fffdf54;

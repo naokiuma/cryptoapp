@@ -1947,7 +1947,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [//それぞれcoinのindexページから取得
   'coin_ajax', //coinのデータ。
@@ -2208,6 +2207,7 @@ __webpack_require__.r(__webpack_exports__);
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+//
 //
 //
 //
@@ -37631,32 +37631,44 @@ var render = function() {
   return _c("section", [
     _c("section", { staticClass: "l-side" }, [
       _c("div", { staticClass: "p-sidebtn__container" }, [
-        _c("label", [
-          _c("input", {
-            staticClass: "p-sidebtn",
-            attrs: { type: "radio", name: "tweet" },
-            on: { click: _vm.showHour }
-          }),
-          _vm._v("過去1時間")
-        ]),
+        _c(
+          "label",
+          { class: { btn_active: _vm.hour_show }, attrs: { onclick: "" } },
+          [
+            _c("input", {
+              staticClass: "p-sidebtn",
+              attrs: { type: "radio", name: "tweet" },
+              on: { click: _vm.showHour }
+            }),
+            _vm._v("過去1時間")
+          ]
+        ),
         _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            staticClass: "p-sidebtn",
-            attrs: { type: "radio", name: "tweet" },
-            on: { click: _vm.showDay }
-          }),
-          _vm._v("過去1日")
-        ]),
+        _c(
+          "label",
+          { class: { btn_active: _vm.day_show }, attrs: { onclick: "" } },
+          [
+            _c("input", {
+              staticClass: "p-sidebtn",
+              attrs: { type: "radio", name: "tweet" },
+              on: { click: _vm.showDay }
+            }),
+            _vm._v("過去1日")
+          ]
+        ),
         _vm._v(" "),
-        _c("label", [
-          _c("input", {
-            staticClass: "p-sidebtn",
-            attrs: { type: "radio", name: "tweet" },
-            on: { click: _vm.showWeek }
-          }),
-          _vm._v("過去1週間")
-        ])
+        _c(
+          "label",
+          { class: { btn_active: _vm.week_show }, attrs: { onclick: "" } },
+          [
+            _c("input", {
+              staticClass: "p-sidebtn",
+              attrs: { type: "radio", name: "tweet" },
+              on: { click: _vm.showWeek }
+            }),
+            _vm._v("過去1週間")
+          ]
+        )
       ]),
       _vm._v(" "),
       _c(
@@ -38082,6 +38094,10 @@ var render = function() {
     _c("div", { staticClass: "p-autofollow__container" }, [
       _c("div", { staticClass: "p-autofollow__description" }, [
         _vm._m(0),
+        _vm._v(" "),
+        _c("span", [
+          _vm._v("※まとめてフォローONの状態でも、個別フォローが可能です。")
+        ]),
         _vm._v(" "),
         _c(
           "div",
