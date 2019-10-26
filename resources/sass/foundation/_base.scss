@@ -87,6 +87,19 @@ a{
 }
 
 /*------アニメーション------*/
+
+@keyframes toright{
+  from {
+  opacity: 0;
+  transform: translateX(-100px);
+}
+
+  to {
+opacity: 01;
+transform: translateX(0);
+}
+}
+
 @keyframes toleft{
   from {
   opacity: 0;

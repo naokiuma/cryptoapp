@@ -4,6 +4,7 @@
   &__sp{
     display: none;
     @media screen and (max-width: $res-max-width){
+    display: block;
 
     }
   }
@@ -11,6 +12,7 @@
     background: none;
     font-size: 14px;
     width: 100%;
+    margin: 5px;
     text-align: center;
     @media screen and (max-width: $res-max-width){
       font-size: 12px;

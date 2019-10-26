@@ -181,6 +181,26 @@ a {
 }
 
 /*------アニメーション------*/
+@-webkit-keyframes toright {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+@keyframes toright {
+  from {
+    opacity: 0;
+    transform: translateX(-100px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
 @-webkit-keyframes toleft {
   from {
     opacity: 0;
@@ -389,7 +409,7 @@ header {
 
 .c-card {
   width: 45%;
-  max-height: 500px;
+  max-height: 600px;
   min-height: 400px;
   background-color: white;
   margin: 10px 10px;
@@ -426,12 +446,13 @@ header {
 }
 .c-card__header {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   line-height: 30px;
   margin-top: 1%;
   font-size: 16px;
 }
 .c-card__header h4 {
+  width: 100%;
   margin-right: 10%;
   letter-spacing: 2px;
   font-weight: bold;
@@ -445,7 +466,7 @@ header {
 .c-card__header img {
   width: 60px;
   height: 60px;
-  margin-left: 3%;
+  margin: 3%;
 }
 
 .c-form {
@@ -823,10 +844,11 @@ header {
   font-size: 16px;
   line-height: 24px;
   height: 36px;
+  margin-top: 10px;
 }
 .p-about__container p {
   line-height: 25px;
-  margin: 20px 5px;
+  margin: 5px;
 }
 @media screen and (max-width: 768px) {
   .p-about__container p {
@@ -846,6 +868,7 @@ header {
 .p-about__container img {
   margin: 10px;
   width: 200px;
+  border: 1px solid;
 }
 .p-about__contents {
   background-color: #00000014;
@@ -912,12 +935,14 @@ header {
   background-color: #bcf0c3;
   border: 1px solid;
   padding: 7px 3px;
+  vertical-align: middle;
 }
 .p-coinranking__table td {
   font-size: 14px;
   letter-spacing: 5px;
   padding: 5px;
   border: 1px solid;
+  vertical-align: middle;
 }
 .p-coinranking__table tr {
   height: 50px;
@@ -1158,6 +1183,21 @@ header {
 .p-hero__title p {
   line-height: 30px;
 }
+.p-hero__catchphrase h1 {
+  letter-spacing: 0.5rem;
+  position: absolute;
+  top: 20%;
+  left: 5%;
+  -webkit-animation-duration: 1s;
+          animation-duration: 1s;
+  -webkit-animation-name: toright;
+          animation-name: toright;
+}
+@media screen and (max-width: 768px) {
+  .p-hero__catchphrase h1 {
+    font-size: 20px;
+  }
+}
 
 .p-hero__icon {
   position: absolute;
@@ -1261,11 +1301,6 @@ header {
     width: 100%;
   }
 }
-@media screen and (max-width: 768px) {
-  .p-header__user {
-    display: none;
-  }
-}
 .p-header__user_name {
   display: none;
 }
@@ -1347,13 +1382,12 @@ header {
   border-radius: 10px;
   line-height: 30px;
   display: inline-block;
-  border: solid 1px #6091d3;
   border-radius: 10px;
 }
 @media screen and (max-width: 768px) {
   .p-news__jamp {
-    width: 50%;
-    margin-left: 5px;
+    width: 40%;
+    margin-left: 10px;
   }
 }
 .p-news__jamp:hover {
@@ -1399,6 +1433,11 @@ header {
   width: 80%;
   margin: 25px;
 }
+@media screen and (max-width: 768px) {
+  .p-plobrem img {
+    width: 55%;
+  }
+}
 
 .p-sidebtn {
   position: relative;
@@ -1422,6 +1461,9 @@ header {
   padding: 5px;
   box-shadow: 2px 2px;
   display: block;
+  height: 25px;
+  line-height: 25px;
+  text-align: center;
 }
 .p-sidebtn__container label:hover {
   transform: translate3d(0, 1px, 0);
@@ -1503,12 +1545,11 @@ header {
   }
 }
 .p-sidebtn__coinshow {
-  width: 100%;
+  width: 95%;
   margin: 0 auto;
   margin-bottom: 10px;
 }
 .p-sidebtn__coinshow button {
-  width: 200px;
   height: 25px;
   box-shadow: 2px 2px;
 }
@@ -1845,10 +1886,16 @@ header {
 .u-mark__sp {
   display: none;
 }
+@media screen and (max-width: 768px) {
+  .u-mark__sp {
+    display: block;
+  }
+}
 .u-mark__small {
   background: none;
   font-size: 14px;
   width: 100%;
+  margin: 5px;
   text-align: center;
 }
 @media screen and (max-width: 768px) {

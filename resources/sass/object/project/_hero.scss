@@ -1,33 +1,47 @@
-.p-hero__title{
-  position: absolute;
-  bottom: 20%;
-  right: 0;
-  color: black;
-  width: 50%;
-  height: 30%;
-  @media screen and (max-width: $res-max-width){
-    width: 80%;
-  }
-  h2{
-    font-size: 5vw;
-    animation-duration: 2s;
-    animation-name: toleft;
+.p-hero{
+  &__title{
+    position: absolute;
+    bottom: 20%;
+    right: 0;
+    color: black;
+    width: 50%;
+    height: 30%;
     @media screen and (max-width: $res-max-width){
-      font-size: $font-xl;
+      width: 80%;
     }
-    &::after{
-      content:"クリプトトレンド";
-      font-size: 1.5vw;
-      display: block;
-      padding: 15px;
+    h2{
+      font-size: 5vw;
+      animation-duration: 2s;
+      animation-name: toleft;
       @media screen and (max-width: $res-max-width){
-        font-size: 14px;
+        font-size: $font-xl;
+      }
+      &::after{
+        content:"クリプトトレンド";
+        font-size: 1.5vw;
+        display: block;
+        padding: 15px;
+        @media screen and (max-width: $res-max-width){
+          font-size: 14px;
+        }
       }
     }
+    p{
+      line-height: 30px;
+    }
   }
-  p{
-    line-height: 30px;
-
+  &__catchphrase{
+    h1{
+      letter-spacing: 0.5rem;
+      position: absolute;
+      top: 20%;
+      left: 5%;
+      animation-duration: 1s;
+      animation-name: toright;
+      @media screen and (max-width: $res-max-width){
+        font-size: 20px;
+      }
+    }
   }
 }
 

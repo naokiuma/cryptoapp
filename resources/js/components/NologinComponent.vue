@@ -34,7 +34,7 @@
     mounted(){
       console.log(this.autofollowsample_ajax)
       let self = this;
-      let url = this.autofollowsample_ajax; //axiosでajaxデータを取得
+      let url = this.autofollowsample_ajax; //axiosでajaxデータを取得する。
       axios.get(url).then(function(response){
       self.sampleusers = response.data;
       });

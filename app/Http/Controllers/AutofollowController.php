@@ -118,10 +118,13 @@ class AutofollowController extends Controller
     $follow_users = implode(",", $follow_users);//クォーテーションをつける。
     $oAuth = $this->twitteroauth();//関数
     $lookupuser = $oAuth->get("users/lookup", ["screen_name" => "$follow_users"]);
+    $getuser = count($lookupuser);
+    Log::debug("取得できた数。");
+    Log::debug($getuser);
     $temp_user = array();
     //取得データから「following」がfalse（フォローしてない）ユーザーであれば
     //$temp_userに格納（まとめてフォローは15分に1度実施可能にし、14人まで。）
-    for($i=0; $i<14; $i++){
+    for($i=0; $i<$getuser; $i++){
       if(!$lookupuser[$i]->following){
         $temp_user[] = ($lookupuser[$i]);
       }
@@ -356,7 +359,7 @@ class AutofollowController extends Controller
           if(!$lookupuser[$f]->following){
             array_push($temp_user,$lookupuser[$f]->screen_name);
           }
-          //if(count($temp_user) == 14){不要かどうか、動きを見て判断
+          //if(count($temp_user) == 14){不要か
           //Log::debug("14人に達しました。フォロー対象をまとめました。");
             //break;
           //}

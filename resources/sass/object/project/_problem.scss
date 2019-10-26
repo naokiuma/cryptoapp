@@ -27,5 +27,8 @@
   img{
     width: 80%;
     margin: 25px;
+    @media screen and (max-width: $res-max-width){
+    width: 55%;
+    }
   }
 }

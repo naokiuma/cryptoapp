@@ -19,7 +19,7 @@
 <script>
   export default {
     props:[
-    'list_gn'
+    'list_gn' //ニュースデータ。viewから受け取っています。
     ],
   mounted() {
     }

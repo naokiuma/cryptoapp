@@ -54,7 +54,7 @@
             <li><a href="{{ url('coin') }}"><i class="fas fa-coins"></i>通貨トレンド</a></li>
             <li><a href="{{ url('news') }}"><i class="far fa-newspaper"></i>仮想通貨ニュース</a></li>
             <li><a href="{{ url('about') }}">本サービスについて</a></li>
-            <li class="u-mark__sp">{{$user->name}}</li>
+            <li class="u-mark__sp">{{$user->name}}</li><!--スマホでのみ表示-->
             @if ($user->handle)<!--もしツイッターアカウントがあれば表示-->
             <li class="u-mark__sp"><a href="https://twitter.com/{{$user->handle}}" target="_blank"><img src="{{$user->avatar}}" class="p-header__icon"></a></li>
             @endif
@@ -65,7 +65,7 @@
 
         <div><!--スマホでは非表示。名前が長い場合、サービス名と名前がかぶるため-->
           <ul>
-            <li class="p-header__user>{{$user->name}}</li>
+            <li class="p-header__user">{{$user->name}}</li>
             @if ($user->handle)<!--もしツイッターアカウントがあれば表示-->
             <li><a href="https://twitter.com/{{$user->handle}}" target="_blank"><img src="{{$user->avatar}}" class="p-header__icon"></a></li>
             @endif
@@ -84,45 +84,45 @@
 
       <style>
       .arrow_box {
-    	position: relative;
-    	background: #ddd6c0;
-    	border: 3px solid #414b52;
-      width: 200px;
-      height: 100px;
-    }
-    .c-arrow_box_logo{
-      color: #ddf8c6;
-      text-align: center;
-      font-size: 20px;
-      line-height: 20px;
-      font-weight: bold;
-      text-transform: uppercase;
-      text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
+        position: relative;
+        background: #ddd6c0;
+        border: 3px solid #414b52;
+        width: 200px;
+        height: 100px;
+      }
+      .c-arrow_box_logo{
+        color: #ddf8c6;
+        text-align: center;
+        font-size: 20px;
+        line-height: 20px;
+        font-weight: bold;
+        text-transform: uppercase;
+        text-shadow: 0 1px 2px rgba(0, 0, 0, 0.4);
 
-    }
-    .arrow_box:after, .arrow_box:before {
-    	left: 100%;
-    	top: 50%;
-    	border: solid transparent;
-    	content: " ";
-    	height: 0;
-    	width: 0;
-    	position: absolute;
-    	pointer-events: none;
-    }
+      }
+      .arrow_box:after, .arrow_box:before {
+        left: 100%;
+        top: 50%;
+        border: solid transparent;
+        content: " ";
+        height: 0;
+        width: 0;
+        position: absolute;
+        pointer-events: none;
+      }
 
-    .arrow_box:after {
-    	border-color: rgba(221, 214, 192, 0);
-    	border-left-color: #ddd6c0;
-    	border-width: 20px;
-    	margin-top: -20px;
-    }
-    .arrow_box:before {
-    	border-color: rgba(65, 75, 82, 0);
-    	border-left-color: #414b52;
-    	border-width: 24px;
-    	margin-top: -24px;
-    }
+      .arrow_box:after {
+        border-color: rgba(221, 214, 192, 0);
+        border-left-color: #ddd6c0;
+        border-width: 20px;
+        margin-top: -20px;
+      }
+      .arrow_box:before {
+        border-color: rgba(65, 75, 82, 0);
+        border-left-color: #414b52;
+        border-width: 24px;
+        margin-top: -24px;
+      }
       </style>
 
     </header>

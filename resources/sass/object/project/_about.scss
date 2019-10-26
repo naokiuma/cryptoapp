@@ -17,10 +17,11 @@
     font-size: 16px;
     line-height: 24px;
     height: 36px;
+    margin-top: 10px;
   }
   p{
     line-height: 25px;
-    margin: 20px 5px;
+    margin: 5px;
     @media screen and (max-width: $res-max-width){
       font-size: 14px;
       letter-spacing: 0.2px;
@@ -38,6 +39,8 @@
   img{
     margin: 10px;
     width: 200px;
+    border: 1px solid;
+
   }
   }
   &__contents{

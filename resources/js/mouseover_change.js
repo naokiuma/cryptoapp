@@ -12,5 +12,4 @@ $(document).ready(function(){
       $(".u-mouseover__resurt").css('background-image','url("./img/swiper_news.jpg")');
     })
   }
-}
-);
+});

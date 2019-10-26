@@ -1951,6 +1951,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: [//それぞれcoinのindexページから取得
   'coin_ajax', //coinのデータを取得するためのajaxに使うURL。
@@ -1965,17 +1967,21 @@ __webpack_require__.r(__webpack_exports__);
       //コインのツイート数、取引額の見た目上のデータをここに詰め込む
       exitCoins: [],
       //コインのツイート数、取引額の実際のデータをここに詰め込む
-      coinalldate: this.coinupdatedate,
       link_before: 'https://twitter.com/search?q=',
-      //ツイッター上にリンクするための情報
+      //ツイッター上にリンクするためのURL情報前半
       link_after: '&src=typed_query',
       //同上
       hour_show: false,
+      //trueになれば1時間ごとのツイート数を表示
       day_show: false,
+      //trueになれば1日ごとのツイート数を表示
       week_show: false,
-      check_show: false
+      //trueになれば1週間ごとのツイート数を表示
+      check_show: false //trueになればコインボタンの表示を行う。
+
     };
   },
+  //ページ表示の時点では1時間ごとの表示を行う。
   mounted: function mounted() {
     this.showHour();
     var self = this;
@@ -1985,6 +1991,7 @@ __webpack_require__.r(__webpack_exports__);
     });
   },
   computed: {
+    //時間ごとのツイート数を多い順に並び替える算出プロパティ。hour_showは。
     sortCoinsByHour: function sortCoinsByHour() {
       if (this.hour_show) {
         var arr = this.coins;
@@ -1993,6 +2000,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    //1日ごとのツイート数を多い順に並び替える。
     sortCoinsByDay: function sortCoinsByDay() {
       if (this.day_show) {
         var arr = this.coins;
@@ -2011,36 +2019,37 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
+    //1時間ごとのコインのツイート数を出すメソッド
     showHour: function showHour() {
-      this.hour_show = true; //this.showCoins = [];
-      //this.exitCoins = [];
-
+      this.hour_show = true;
+      this.showCoins = [];
+      this.exitCoins = [];
       this.resetCheckbox();
       this.day_show = false;
       this.week_show = false;
     },
+    //1日ごとのコインのツイート数を出すメソッド
     showDay: function showDay() {
-      this.day_show = true; //this.showCoins = [];
-      //this.exitCoins = [];
-
+      this.day_show = true;
+      this.showCoins = [];
+      this.exitCoins = [];
       this.resetCheckbox();
       this.hour_show = false;
       this.week_show = false;
     },
+    //1週間ごとのコインのツイート数を出すメソッド
     showWeek: function showWeek() {
-      this.week_show = true; //this.showCoins = [];
-      //this.exitCoins = [];
-
+      this.week_show = true;
+      this.showCoins = [];
+      this.exitCoins = [];
       this.resetCheckbox();
       this.hour_show = false;
       this.day_show = false;
     },
+    //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
     pushCoin: function pushCoin(pcoin) {
-      //exitCoinsは表示上のコインではなく、データ上登録されているcoinデータ。
+      //exitCoinにpcoin.nameがなければ追加する
       if (this.exitCoins.indexOf(pcoin.name) == -1) {
-        //exitCoinにpcoin.nameがなければ追加する
-        console.log("コインがないです");
-        console.log(this.exitCoins);
         this.showCoins.push(pcoin);
         this.exitCoins.push(pcoin.name);
         console.log(this.exitCoins);
@@ -2048,10 +2057,7 @@ __webpack_require__.r(__webpack_exports__);
         this.day_show = false;
         this.week_show = false;
       } else {
-        console.log("コインがあるぽい");
-        console.log(this.exitCoins); //this.showCoins.pop(pcoin);//popだと末尾を削除するからダメ。
-        //this.exitCoins.pop(pcoin.name);
-
+        console.log(this.exitCoins);
         this.exitCoins = this.exitCoins.filter(function (n) {
           return n !== pcoin.name;
         });
@@ -2089,39 +2095,6 @@ __webpack_require__.r(__webpack_exports__);
 
 /***/ }),
 
-/***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!***************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \***************************************************************************************************************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-/* harmony default export */ __webpack_exports__["default"] = ({
-  mounted: function mounted() {
-    console.log('Component mounted.');
-  }
-});
-
-/***/ }),
-
 /***/ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/NewsComponent.vue?vue&type=script&lang=js&":
 /*!************************************************************************************************************************************************************************!*\
   !*** ./node_modules/babel-loader/lib??ref--4-0!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/NewsComponent.vue?vue&type=script&lang=js& ***!
@@ -2150,7 +2123,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 /* harmony default export */ __webpack_exports__["default"] = ({
-  props: ['list_gn'],
+  props: ['list_gn' //ニュースデータ。viewから受け取っています。
+  ],
   mounted: function mounted() {}
 });
 
@@ -2198,7 +2172,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     console.log(this.autofollowsample_ajax);
     var self = this;
-    var url = this.autofollowsample_ajax; //axiosでajaxデータを取得
+    var url = this.autofollowsample_ajax; //axiosでajaxデータを取得する。
 
     axios.get(url).then(function (response) {
       self.sampleusers = response.data;
@@ -2254,9 +2228,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users_results', //利用中のユーザーがフォローしていないアカウントの情報。Twitter認証していればこの情報を出します。
   'follow_users', //ランダムにDBから取得したユーザー情報
@@ -2269,11 +2240,15 @@ __webpack_require__.r(__webpack_exports__);
       el: '#twitter',
       reset_ok: true,
       ongoing: "",
+      //自動フォローを実施している状態。trueであれば自動フォローON。
       users: this.users_results,
+      //users_resultsをusersに詰め込んでおく。
       auto_status: this.autofollow_check
     };
   },
   mounted: function mounted() {
+    //mountedでページアクセス時に自動フォローを実施しているか判定。1なら自動フォロー中で、ongoingをtrue。
+    //ongoingがtrueの場合、「自動フォロー実施中です」という表示が出る。
     console.log(this.autofollow_check);
 
     if (this.autofollow_check == 1) {
@@ -2283,7 +2258,10 @@ __webpack_require__.r(__webpack_exports__);
     }
   },
   methods: {
-    //個別フォローのメソッド
+    //個別フォローのメソッド。
+    //Autofollowコントローラーのfollowメソッドへフォロー対象のユーザーデータとともにajaxでアクセス。
+    //アクセス先でそのユーザーデータを元にフォローし、「フォローしました」アラートと共に、
+    //対象のユーザーデータを「users」から削除（画面から非表示にする）
     follow: function follow(user, index) {
       var _this = this;
 
@@ -2322,28 +2300,27 @@ __webpack_require__.r(__webpack_exports__);
       var self = this;
       var url = this.autofollowall_ajax; //ajax先のurl
 
-      var auto_status = this.auto_status;
+      var auto_status = this.auto_status; //今現在のDB上のautofollowの状態が1の場合オートフォローの状態を0にする
 
       if (self.auto_status == 1) {
-        //今現在のDB上のautofollowの状態が1の場合
-        console.log(self.auto_status);
-        console.log("今現在の値です");
+        //console.log(self.auto_status);
+        //console.log("今現在の値です");
         this.ongoing = true;
-        self.auto_status = 0; //オートフォローの状態を0にする
+        self.auto_status = 0;
       } else {
-        console.log(self.auto_status);
-        console.log("今現在の値です");
+        //console.log(self.auto_status);
+        //console.log("今現在の値です");
         this.ongoing = false;
         self.auto_status = 1; //今現在のフォローの状態が1ではない場合、フォローの状態を1にする
       }
 
-      var request = self.auto_status;
-      console.log("切り替え後のauto_statusの状態です");
-      console.log(request);
+      var request = self.auto_status; //console.log("切り替え後のauto_statusの状態です");
+      //console.log(request);
+
       axios.post(url, {
         request: request
       }).then(function (res) {
-        alert('まとめてフォローの設定を切り替えました。ページを読み込みします。');
+        alert('まとめてフォローの設定を切り替えました。ページを再読み込みします。');
         location.reload();
       })["catch"](function (error) {
         console.log(error);
@@ -37637,44 +37614,32 @@ var render = function() {
   return _c("section", [
     _c("section", { staticClass: "l-side" }, [
       _c("div", { staticClass: "p-sidebtn__container" }, [
-        _c(
-          "label",
-          { class: { btn_active: _vm.hour_show }, attrs: { onclick: "" } },
-          [
-            _c("input", {
-              staticClass: "p-sidebtn",
-              attrs: { type: "radio", name: "tweet" },
-              on: { click: _vm.showHour }
-            }),
-            _vm._v("過去1時間")
-          ]
-        ),
+        _c("label", { class: { btn_active: _vm.hour_show } }, [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showHour }
+          }),
+          _vm._v("過去1時間")
+        ]),
         _vm._v(" "),
-        _c(
-          "label",
-          { class: { btn_active: _vm.day_show }, attrs: { onclick: "" } },
-          [
-            _c("input", {
-              staticClass: "p-sidebtn",
-              attrs: { type: "radio", name: "tweet" },
-              on: { click: _vm.showDay }
-            }),
-            _vm._v("過去1日")
-          ]
-        ),
+        _c("label", { class: { btn_active: _vm.day_show } }, [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showDay }
+          }),
+          _vm._v("過去1日")
+        ]),
         _vm._v(" "),
-        _c(
-          "label",
-          { class: { btn_active: _vm.week_show }, attrs: { onclick: "" } },
-          [
-            _c("input", {
-              staticClass: "p-sidebtn",
-              attrs: { type: "radio", name: "tweet" },
-              on: { click: _vm.showWeek }
-            }),
-            _vm._v("過去1週間")
-          ]
-        )
+        _c("label", { class: { btn_active: _vm.week_show } }, [
+          _c("input", {
+            staticClass: "p-sidebtn",
+            attrs: { type: "radio", name: "tweet" },
+            on: { click: _vm.showWeek }
+          }),
+          _vm._v("過去1週間")
+        ])
       ]),
       _vm._v(" "),
       _c("div", { staticClass: "p-sidebtn__coinshow" }, [
@@ -37687,7 +37652,7 @@ var render = function() {
               }
             }
           },
-          [_vm._v("各種コイン情報を表示する")]
+          [_vm._v("コイン情報を調べる")]
         ),
         _vm._v(" "),
         _c(
@@ -37752,7 +37717,7 @@ var render = function() {
                 [
                   _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
-                  _c("th", [_vm._v("ツイート数")]),
+                  _c("th", [_vm._v("ツイート")]),
                   _vm._v(" "),
                   _vm._l(_vm.sortCoinsByHour, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
@@ -37794,7 +37759,7 @@ var render = function() {
                 [
                   _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
-                  _c("th", [_vm._v("ツイート数")]),
+                  _c("th", [_vm._v("ツイート")]),
                   _vm._v(" "),
                   _vm._l(_vm.sortCoinsByDay, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
@@ -37836,7 +37801,7 @@ var render = function() {
                 [
                   _c("th", [_vm._v("順位")]),
                   _c("th", [_vm._v("コイン名")]),
-                  _c("th", [_vm._v("ツイート数")]),
+                  _c("th", [_vm._v("ツイート")]),
                   _vm._v(" "),
                   _vm._l(_vm.sortCoinsByWeek, function(coin, i) {
                     return _c("tr", { key: coin.id }, [
@@ -37917,53 +37882,6 @@ var render = function() {
   ])
 }
 var staticRenderFns = []
-render._withStripped = true
-
-
-
-/***/ }),
-
-/***/ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*******************************************************************************************************************************************************************************************************************!*\
-  !*** ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/vue-loader/lib??vue-loader-options!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*******************************************************************************************************************************************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "render", function() { return render; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return staticRenderFns; });
-var render = function() {
-  var _vm = this
-  var _h = _vm.$createElement
-  var _c = _vm._self._c || _h
-  return _vm._m(0)
-}
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "container" }, [
-      _c("div", { staticClass: "row justify-content-center" }, [
-        _c("div", { staticClass: "col-md-8" }, [
-          _c("div", { staticClass: "card" }, [
-            _c("div", { staticClass: "card-header" }, [
-              _vm._v("Example Component")
-            ]),
-            _vm._v(" "),
-            _c("div", { staticClass: "card-body" }, [
-              _vm._v(
-                "\n                    I'm an example component.\n                "
-              )
-            ])
-          ])
-        ])
-      ])
-    ])
-  }
-]
 render._withStripped = true
 
 
@@ -50380,6 +50298,8 @@ __webpack_require__(/*! ./sp-menu */ "./resources/js/sp-menu.js");
 
 __webpack_require__(/*! ./mouseover_change */ "./resources/js/mouseover_change.js");
 
+__webpack_require__(/*! ./scroll */ "./resources/js/scroll.js");
+
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 /**
 * The following block of code may be used to automatically register your
@@ -50390,8 +50310,8 @@ window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.
 */
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 
-Vue.component('example-component', __webpack_require__(/*! ./components/ExampleComponent.vue */ "./resources/js/components/ExampleComponent.vue")["default"]);
 Vue.component('news-component', __webpack_require__(/*! ./components/NewsComponent.vue */ "./resources/js/components/NewsComponent.vue")["default"]); //ニュースデータを出力するvue
 
 Vue.component('coin-component', __webpack_require__(/*! ./components/CoinComponent.vue */ "./resources/js/components/CoinComponent.vue")["default"]); //コインのトレンドデータをajaxで取得するvue
@@ -50547,75 +50467,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CoinComponent_vue_vue_type_template_id_6e3ae711___WEBPACK_IMPORTED_MODULE_0__["render"]; });
 
 /* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_CoinComponent_vue_vue_type_template_id_6e3ae711___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
-
-
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue":
-/*!******************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue ***!
-  \******************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony import */ var _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./ExampleComponent.vue?vue&type=script&lang=js& */ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
-
-
-
-
-
-/* normalize component */
-
-var component = Object(_node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__["default"])(
-  _ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__["default"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"],
-  _ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"],
-  false,
-  null,
-  null,
-  null
-  
-)
-
-/* hot reload */
-if (false) { var api; }
-component.options.__file = "resources/js/components/ExampleComponent.vue"
-/* harmony default export */ __webpack_exports__["default"] = (component.exports);
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&":
-/*!*******************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js& ***!
-  \*******************************************************************************/
-/*! exports provided: default */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/babel-loader/lib??ref--4-0!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=script&lang=js& */ "./node_modules/babel-loader/lib/index.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=script&lang=js&");
-/* empty/unused harmony star reexport */ /* harmony default export */ __webpack_exports__["default"] = (_node_modules_babel_loader_lib_index_js_ref_4_0_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_0__["default"]); 
-
-/***/ }),
-
-/***/ "./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&":
-/*!*************************************************************************************!*\
-  !*** ./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e& ***!
-  \*************************************************************************************/
-/*! exports provided: render, staticRenderFns */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-__webpack_require__.r(__webpack_exports__);
-/* harmony import */ var _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! -!../../../node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!../../../node_modules/vue-loader/lib??vue-loader-options!./ExampleComponent.vue?vue&type=template&id=299e239e& */ "./node_modules/vue-loader/lib/loaders/templateLoader.js?!./node_modules/vue-loader/lib/index.js?!./resources/js/components/ExampleComponent.vue?vue&type=template&id=299e239e&");
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "render", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["render"]; });
-
-/* harmony reexport (safe) */ __webpack_require__.d(__webpack_exports__, "staticRenderFns", function() { return _node_modules_vue_loader_lib_loaders_templateLoader_js_vue_loader_options_node_modules_vue_loader_lib_index_js_vue_loader_options_ExampleComponent_vue_vue_type_template_id_299e239e___WEBPACK_IMPORTED_MODULE_0__["staticRenderFns"]; });
 
 
 
@@ -50862,6 +50713,35 @@ $(document).ready(function () {
     }), $(".u-mouseover__news").hover(function () {
       $(".u-mouseover__resurt").css('background-image', 'url("./img/swiper_news.jpg")');
     });
+  }
+});
+
+/***/ }),
+
+/***/ "./resources/js/scroll.js":
+/*!********************************!*\
+  !*** ./resources/js/scroll.js ***!
+  \********************************/
+/*! no static exports found */
+/***/ (function(module, exports) {
+
+//$(document).ready(function(){
+$(function () {
+  if ($('.js-scroll').length) {
+    $(document).scroll(function () {
+      var obj_pos = $('.js-scroll').offset().top;
+      var scr_count = $(window).scrollTop();
+      var wh = $(window).height();
+      console.log("こっちが1。変わらない");
+      console.log(obj_pos);
+
+      if (scr_count > obj_pos - wh + 200) {
+        console.log("超えた！");
+        $('.js-scroll').addClass('p-desc__title');
+      }
+    });
+  } else {
+    console.log("特になし");
   }
 });
 

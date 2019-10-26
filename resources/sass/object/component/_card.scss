@@ -1,6 +1,6 @@
 .c-card{
   width: 45%;
-  max-height: 500px;
+  max-height: 600px;
   min-height: 400px;
   background-color: white;
   margin: 10px 10px;
@@ -33,16 +33,16 @@
   }
   &__header{
     display: flex;
-    justify-content: space-between;
-    //height: 90px;
+    justify-content: flex-start;
     line-height: 30px;
     margin-top: 1%;
     font-size: $font-s;
   h4{
-      margin-right: 10%;
-      letter-spacing: 2px;
-      font-weight: bold;
-      font-size: 16px;
+    width: 100%;
+    margin-right: 10%;
+    letter-spacing: 2px;
+    font-weight: bold;
+    font-size: 16px;
         @media screen and (max-width: $res-max-width){
           font-size: 12px;
         }
@@ -50,7 +50,7 @@
   img{
     width: 60px;
     height: 60px;
-    margin-left: 3%;
+    margin: 3%;
   }
 }
 }

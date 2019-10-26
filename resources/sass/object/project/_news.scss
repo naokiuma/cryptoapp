@@ -65,11 +65,10 @@
         border-radius: 10px;
         line-height: 30px;
         display: inline-block;
-        border: solid 1px #6091d3;
         border-radius: 10px;
         @media screen and (max-width: $res-max-width){
-          width: 50%;
-          margin-left: 5px;
+          width: 40%;
+          margin-left: 10px;
         }
         &:hover{
           transform: translate3d(0, 5px, 0);

@@ -8,6 +8,7 @@ require('./bootstrap');
 require('./flash');
 require('./sp-menu');
 require('./mouseover_change');
+require('./scroll')
 
 
 window.Vue = require('vue');
@@ -23,7 +24,7 @@ window.Vue = require('vue');
 // const files = require.context('./', true, /\.vue$/i);
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default));
 
-Vue.component('example-component', require('./components/ExampleComponent.vue').default);
+//Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('news-component', require('./components/NewsComponent.vue').default);//ニュースデータを出力するvue
 Vue.component('coin-component', require('./components/CoinComponent.vue').default);//コインのトレンドデータをajaxで取得するvue
 Vue.component('twitter-component',require('./components/TwitterComponent.vue').default);//ツイッターのログイン時ユーザー一覧
