@@ -2246,16 +2246,6 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['users_results', 'follow_users', 'autofollow_ajax', 'autofollowall_ajax', //url情報。autofollow/allです。
   'autofollow_check' //db上から取得したautofollowの状態。1ならばtrue、つまり自動フォロー中。
@@ -38169,11 +38159,11 @@ var render = function() {
             _c("p", [
               _vm._v("《最新ツイート》"),
               _c("br"),
-              _vm._v("\n      " + _vm._s(user.status.text))
+              _vm._v("\n        " + _vm._s(user.status.text))
             ]),
             _c("br"),
             _vm._v(
-              "\n      フォロー数：" +
+              "\n        フォロー数：" +
                 _vm._s(user.friends_count) +
                 " フォロワー数：" +
                 _vm._s(user.followers_count)

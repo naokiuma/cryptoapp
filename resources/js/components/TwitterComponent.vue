@@ -1,46 +1,36 @@
 <template>
-
   <section>
-
-
-  <div class="p-autofollow__container">
-
+   <div class="p-autofollow__container">
     <div class="p-autofollow__description">
       <p>まとめてフォローをONにすると15分に一度、<span>自動フォロー</span>を実施します。</p>
       <span>※まとめてフォローONの状態でも、個別フォローが可能です。</span>
 
       <!--自動フォロー実施中のみ表示されるテキスト-->
       <div class="p-autofollow__ongoing" v-show="ongoing">
-            <h4>自動フォロー実施中です。</h4>
+        <h4>自動フォロー実施中です。</h4>
       </div>
+
       <!--自動フォローのボタン。クリックするたびにautofollowStartをon/off切り替える-->
       <button class="p-autofollow__start" v-on:click="autofollowStart" v-bind:class='{nowfollow:ongoing}'>まとめてフォローON/OFF</button>
     </div>
-
-  </div>
-
+   </div>
 
 
-  <div class="p-twiiter__container">
-
-  <h2>仮想通貨アカウント一覧</h2>
-
-    <div v-for="(user,index) in users" v-bind:key="index" class="c-card">
-
+   <!--アカウント情報一覧。usersからforで表示。-->
+   <div class="p-twiiter__container">
+     <h2>仮想通貨アカウント一覧</h2>
+     <div v-for="(user,index) in users" v-bind:key="index" class="c-card">
       <div class="c-card__header">
-        <img :src="user.profile_image_url" alt="">
-        <h4><a :href="'https://twitter.com/' + user.screen_name" target="_blank">{{ user.name }}</a></h4>
+       <img :src="user.profile_image_url" alt="">
+       <h4><a :href="'https://twitter.com/' + user.screen_name" target="_blank">{{ user.name }}</a></h4>
       </div>
-        <button v-on:click="follow(user,index)">@{{ user.screen_name }} をフォローする</button>
-        <p>{{ user.description}}</p>
-        <p>《最新ツイート》<br>
-        {{user.status.text}}</p><br>
-        フォロー数：{{user.friends_count}} フォロワー数：{{user.followers_count}}<br>
-
-
+      <button v-on:click="follow(user,index)">@{{ user.screen_name }} をフォローする</button>
+      <p>{{ user.description}}</p>
+          <p>《最新ツイート》<br>
+          {{user.status.text}}</p><br>
+          フォロー数：{{user.friends_count}} フォロワー数：{{user.followers_count}}<br>
+      </div>
     </div>
-
-  </div>
   </section>
 
 </template>

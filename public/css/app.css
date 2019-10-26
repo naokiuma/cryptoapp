@@ -910,7 +910,7 @@ header {
 .p-coinranking__table th {
   background-color: #bcf0c3;
   border: 1px solid;
-  padding: 3px;
+  padding: 7px 3px;
 }
 .p-coinranking__table td {
   font-size: 14px;
@@ -1438,7 +1438,6 @@ header {
   .p-sidebtn__coin {
     font-size: 10px;
     width: 50%;
-    width: calc(100% / 3);
   }
 }
 .p-sidebtn__coin__input {
