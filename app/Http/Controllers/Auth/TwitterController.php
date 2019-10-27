@@ -78,11 +78,11 @@ class TwitterController extends Controller
       $user_date = User::where('twitter_id',$twitterUser->id)->first();
       //ツイッターのidがすでにテーブルにあれば同じツイッターidのユーザー情報を返す
       if($user_date){
-        Log::debug(print_r("twiiteridがDBにあり", true));
+        //Log::debug(print_r("twiiteridがDBにあり", true));
         return $user_date;
       }else{
         //なければそのまま作成。
-        Log::debug(print_r("twiiteridがDBになし", true));
+        //Log::debug(print_r("twiiteridがDBになし", true));
         return User::create([
           'twitter_id' => $twitterUser->id,
           'handle' => $twitterUser->nickname,

@@ -140,6 +140,7 @@
           });
         }
       },
+      //1週間ごとのツイート数を多い順に並び替える。
       sortCoinsByWeek:function(){
         if(this.week_show){
           let arr =this.coins;

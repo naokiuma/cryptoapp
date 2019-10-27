@@ -1,22 +1,35 @@
 
 //$(document).ready(function(){
 $(function(){
-if($('.js-scroll').length){
+if($('.js-scrollup').length){
 
 $(document).scroll(function(){
-  var obj_pos = $('.js-scroll').offset().top; //要素のいち
+  var obj_pos = $('.js-scrollup').offset().top; //要素のいち
   var scr_count = $(window).scrollTop(); //どの程度スクロールしたか
   var wh = $(window).height(); //ウインドウの高さ
-    console.log("こっちが1。変わらない");
-    console.log(obj_pos);
+    //console.log(obj_pos);
   if(scr_count > obj_pos - wh + 200){
-    console.log("超えた！");
-    $('.js-scroll').addClass('p-desc__title');
+    //console.log("超えた！");
+    $('.js-scrollup').addClass('effect__toup');
+    $('.js-scrollup').removeClass('effect');
   }
 });
+}
+});
 
-}else{
-  console.log("特になし");
+$(function(){
+if($('.js-scrollup_func').length){
+
+$(document).scroll(function(){
+  var obj_pos = $('.js-scrollup_func').offset().top; //要素のいち
+  var scr_count = $(window).scrollTop(); //どの程度スクロールしたか
+  var wh = $(window).height(); //ウインドウの高さ
+    //console.log(obj_pos);
+  if(scr_count > obj_pos - wh + 200){
+    //console.log("超えた！");
+    $('.js-scrollup_func').addClass('effect__toup');
+    $('.js-scrollup_func').removeClass('effect');
+  }
+});
 }
-}
-);
+});

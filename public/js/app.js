@@ -2009,6 +2009,7 @@ __webpack_require__.r(__webpack_exports__);
         });
       }
     },
+    //1週間ごとのツイート数を多い順に並び替える。
     sortCoinsByWeek: function sortCoinsByWeek() {
       if (this.week_show) {
         var arr = this.coins;
@@ -2173,7 +2174,7 @@ __webpack_require__.r(__webpack_exports__);
     };
   },
   mounted: function mounted() {
-    console.log(this.autofollowsample_ajax);
+    //console.log(this.autofollowsample_ajax)
     var self = this;
     var url = this.autofollowsample_ajax; //axiosでajaxデータを取得する。
 
@@ -2252,8 +2253,7 @@ __webpack_require__.r(__webpack_exports__);
   mounted: function mounted() {
     //mountedでページアクセス時に自動フォローを実施しているか判定。1なら自動フォロー中で、ongoingをtrue。
     //ongoingがtrueの場合、「自動フォロー実施中です」という表示が出る。
-    console.log(this.autofollow_check);
-
+    //console.log(this.autofollow_check);
     if (this.autofollow_check == 1) {
       this.ongoing = true;
     } else {
@@ -2287,16 +2287,14 @@ __webpack_require__.r(__webpack_exports__);
     },
     //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替えるメソッド
     checkOngoing: function checkOngoing() {
-      console.log("checkOngoingを呼び出します");
-
+      //console.log("checkOngoingを呼び出します");
       if (this.autofollow_check == 1 || true) {
         this.ongoing = true;
       } else {
         this.ongoing = false;
-      }
+      } //console.log("this.ongoingの値です");
+      //console.log(this.ongoing);
 
-      console.log("this.ongoingの値です");
-      console.log(this.ongoing);
     },
     //まとめてフォロー（自動フォローのONOFFを切り替えるメソッド）
     autofollowStart: function autofollowStart() {
@@ -50731,24 +50729,39 @@ $(document).ready(function () {
 
 //$(document).ready(function(){
 $(function () {
-  if ($('.js-scroll').length) {
+  if ($('.js-scrollup').length) {
     $(document).scroll(function () {
-      var obj_pos = $('.js-scroll').offset().top; //要素のいち
+      var obj_pos = $('.js-scrollup').offset().top; //要素のいち
 
       var scr_count = $(window).scrollTop(); //どの程度スクロールしたか
 
       var wh = $(window).height(); //ウインドウの高さ
-
-      console.log("こっちが1。変わらない");
-      console.log(obj_pos);
+      //console.log(obj_pos);
 
       if (scr_count > obj_pos - wh + 200) {
-        console.log("超えた！");
-        $('.js-scroll').addClass('p-desc__title');
+        //console.log("超えた！");
+        $('.js-scrollup').addClass('effect__toup');
+        $('.js-scrollup').removeClass('effect');
       }
     });
-  } else {
-    console.log("特になし");
+  }
+});
+$(function () {
+  if ($('.js-scrollup_func').length) {
+    $(document).scroll(function () {
+      var obj_pos = $('.js-scrollup_func').offset().top; //要素のいち
+
+      var scr_count = $(window).scrollTop(); //どの程度スクロールしたか
+
+      var wh = $(window).height(); //ウインドウの高さ
+      //console.log(obj_pos);
+
+      if (scr_count > obj_pos - wh + 200) {
+        //console.log("超えた！");
+        $('.js-scrollup_func').addClass('effect__toup');
+        $('.js-scrollup_func').removeClass('effect');
+      }
+    });
   }
 });
 

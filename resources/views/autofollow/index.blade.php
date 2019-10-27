@@ -11,7 +11,7 @@
     <i class="fab fa-twitter"></i>まとめてフォロー
   </h2>
   <p class="p-desc__text c-text">
-    Twitter上の『仮想通貨』関連のユーザーが表示されます。<br>
+    Twitter上の『仮想通貨』関連ユーザーをフォローし、情報のキャッチアップを効率的に行いましょう。
   </p>
 </div>
 <div class="u-mark__small">本機能の仕組みについては<a href="{{ url('about') }}/#about_twitter" target="_blank">[こちら]</a>を参照してください。</div>

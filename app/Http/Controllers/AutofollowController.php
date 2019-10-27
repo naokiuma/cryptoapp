@@ -140,8 +140,6 @@ class AutofollowController extends Controller
   }
 
 
-
-
   //ーーーーーーーーーーフォローアクションーーーーーーーーーー
 
   public function follow(Request $request){
@@ -170,6 +168,7 @@ class AutofollowController extends Controller
 
     return response()->json(['result' => true]);
   }
+
 
   //ーーーーーーーーーー自動フォローのON/OFF切り替えーーーーーーーーーー
 
@@ -290,9 +289,7 @@ class AutofollowController extends Controller
   }
 
 
-
-
-  //ーーーーーーオートフォロー。cronで自動で行われる処理。15分に一度実施されます。
+  //ーーーーーーオートフォローアクション。cronで自動で行われる処理。15分に一度実施されます。
   //ーーーーーーDBからオートフォロー「1」にされていると実施される
   //----------自動処理、かつ複数ユーザーで行う可能性があるのでセッションは使わない
   public static function autofollow(){

@@ -56,7 +56,7 @@ export default{
     mounted(){
       //mountedでページアクセス時に自動フォローを実施しているか判定。1なら自動フォロー中で、ongoingをtrue。
       //ongoingがtrueの場合、「自動フォロー実施中です」という表示が出る。
-      console.log(this.autofollow_check);
+      //console.log(this.autofollow_check);
       if(this.autofollow_check == 1){
         this.ongoing = true;
       }else{
@@ -85,14 +85,14 @@ export default{
       },
       //自動フォローを切り替えた際にボタンの表示、「自動フォロー実施中です」の表示非表示を切り替えるメソッド
       checkOngoing:function(){
-        console.log("checkOngoingを呼び出します");
+        //console.log("checkOngoingを呼び出します");
         if(this.autofollow_check == 1 || true){
           this.ongoing = true;
         }else{
           this.ongoing = false;
         }
-        console.log("this.ongoingの値です");
-        console.log(this.ongoing);
+        //console.log("this.ongoingの値です");
+        //console.log(this.ongoing);
       },
       //まとめてフォロー（自動フォローのONOFFを切り替えるメソッド）
       autofollowStart:function(){
@@ -122,11 +122,11 @@ export default{
       }
     },
     computed:{
-     //個別フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
-     nofollow:function(){
-     return this.users.filter(function(user){
-     return user.following == false;
-     });
+      //個別フォローをした際にfollowingがfalseのユーザーを表示から削除する算出プロパティ
+      nofollow:function(){
+      return this.users.filter(function(user){
+      return user.following == false;
+      });
      }
    }
 }

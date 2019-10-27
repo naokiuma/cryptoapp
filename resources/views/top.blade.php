@@ -20,7 +20,7 @@
 <!--サービスの説明-->
 <section class="p-decs__main">
   <div class="p-desc__container">
-    <h2 class="p-desc__title c-text">
+    <h2 class="p-desc__title c-text js-scrollup effect">
       CryptoTrendとは？
     </h2>
     <p class="p-desc__text c-text">
@@ -35,11 +35,12 @@
 </section>
 
 
-<h2>仮想通貨取引を始めたばかりの方。</h2>
 <!--サービスの説明続き-->
 <h2 class="c-text__attention u-short">
-  <span>こんなことに困っていませんか？</span>
+  <span>お困りではないですか？</span>
 </h2>
+
+
 
 <section class="p-plobrem__container">
   <div class="p-plobrem">
@@ -58,7 +59,7 @@
 
 <!--機能紹介-->
 
-<h2 class="c-text u-short js-scroll">
+<h2 class="c-text u-short js-scrollup_func effect">
   <span class="c-text__sub">3つの機能で情報収集をお手伝いします！</span>
 </h2>
 

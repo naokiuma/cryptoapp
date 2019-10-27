@@ -550,7 +550,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .c-text span {
-    font-size: 16px;
+    font-size: 18px;
   }
 }
 .c-text h3 {
@@ -580,6 +580,7 @@ header {
 }
 .c-text__sub {
   position: relative;
+  font-size: 30px;
 }
 .c-text__sub:before {
   position: absolute;
@@ -594,7 +595,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .c-text__sub:before {
-    font-size: 16px;
+    font-size: 18px;
     bottom: -30px;
   }
 }
@@ -933,6 +934,7 @@ header {
   width: 100%;
 }
 .p-coinranking__table th {
+  font-size: 70%;
   background-color: #bcf0c3;
   border: 1px solid;
   padding: 7px 3px;
@@ -1188,7 +1190,7 @@ header {
   letter-spacing: 0.5rem;
   position: absolute;
   top: 20%;
-  left: 5%;
+  left: 15%;
   -webkit-animation-duration: 1s;
           animation-duration: 1s;
   -webkit-animation-name: toright;
@@ -1228,7 +1230,6 @@ header {
 }
 
 .p-header__logo {
-  width: 15%;
   text-align: center;
   height: inherit;
   line-height: 60px;
@@ -1838,6 +1839,16 @@ header {
   height: 150px;
   overflow: hidden;
   position: relative;
+}
+
+.effect {
+  opacity: 0;
+}
+.effect__toup {
+  -webkit-animation-duration: 0.3s;
+  animation-duration: 0.3s;
+  -webkit-animation-name: toup;
+  animation-name: toup;
 }
 
 .u-error {

@@ -17,7 +17,7 @@ class CoinController extends Controller
   //ーーーーーーーーーーページの表示ーーーーーーーーーー
   public function index()
   {
-    Log::debug("ーーーーーーーーーーーーーーー仮想通貨トレンドのページですーーーーーーーーーーーーーーー");
+    //Log::debug("ーーーーーーーーーーーーーーー仮想通貨トレンドのページですーーーーーーーーーーーーーーー");
 
     $coinupdatedate = Updatetime::all();//全てのコインの更新日時をDBより引用
     $hour = $coinupdatedate[0]["updated_at"];//時間単位のツイートの更新日時
