@@ -1055,7 +1055,7 @@ header {
 }
 .p-functions__container h3 {
   color: black;
-  padding: 15px 0;
+  padding: 15px;
 }
 @media screen and (max-width: 768px) {
   .p-functions__container h3 {
@@ -1353,6 +1353,9 @@ header {
     height: 60%;
     width: 100%;
   }
+}
+.p-news__card h4 a {
+  font-size: 14px;
 }
 .p-news__card span {
   font-size: 0.7rem;

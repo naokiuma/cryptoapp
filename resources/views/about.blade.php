@@ -28,16 +28,15 @@
 
     <h4>■自動フォローと自動フォロー中マークについて</h4>
     <p>まとめてフォローボタンをクリックすると、
-    <span>サービスにアクセスしていない間も、自動フォロー</span>する事も可能です。
+    <span>サービスにアクセスしていない間も、自動フォロー（15分に最大15人まで）</span>をしてくれます。
     自動フォローをONにすると、ボタンカラーが変わり、またメニュー部分に自動フォロー中のマークが表示されます。</p>
     <img src="{{ asset('/img/auto_on.png') }}" alt="まとめてフォローON">
     <img src="{{ asset('/img/badge.png') }}" alt="まとめてフォローバッジ">
 
     <h4 id="about_limit">■1日のフォロー数について</h4>
-    <p>Twitterは、1日のフォロー数を400人までにするよう制限をしています。<br>
+    <p>Twitterは、1日のフォローは400人を超えないよう制限をしています。<br>
     詳しくは<a href="https://help.twitter.com/ja/using-twitter/twitter-follow-limit" target="_blank">[こちら]</a>を参照してください。<br>
-    本サービスでは、1日に395人のフォローカウントを超えると、<br>
-    個別フォローが利用できないよう制限をかけています。<br>
+    本サービスでは、1日に395人のフォローカウントを超えると、個別フォローが利用できないよう制限をかけています。<br>
     なお、本サービスで1日にフォローした人数はメニューの「Today`s follow」で確認可能です。</p>
     <img src="{{ asset('/img/todayfollow.png') }}" alt="まとめてフォローバッジ">
   </div>
@@ -68,7 +67,7 @@
       「まとめてフォロー」、「通貨トレンド」へのアクセスにはサービスへのログインが必要です。<br>
       また、「まとめてフォロー」で実際にフォロー/自動フォロー機能を利用するには、<br>
       「まとめてフォロー」ページ内でTwitterアカウント認証を行う必要があります。<br>
-    <span class ="u-mark__small">※一定時間経過すると、Twitter認証が解除されますので、。</span></p>
+    <span class ="u-mark__small">※一定時間経過すると、Twitter認証が解除されます。その場合は改めて「まとめてフォロー」ページで認証してください。</span></p>
   </div>
 </section>
 
@@ -78,10 +77,23 @@
     <h2>Q.ログインするためのパスワードを忘れました。</h2>
   </div>
   <div class="p-about__contents">
-    <p>こちらより再発行が可能です。<br>
-    <span class ="u-mark__small">登録時のメールアドレスへ再発行のためのリンクを送信します。</span></p>
+    <p><a href="{{ url('password/reset') }}">[こちら]</a>より再発行が可能です。<br>
+    登録時のメールアドレスへ再発行のためのリンクを送信します。</p>
   </div>
 </section>
+
+<section class="p-about__container">
+  <div class="p-about__title">
+    <h2>Q.一つのTwitterアカウントの認証を複数ユーザー（複数メールアドレス）で行うことはできますか？</h2>
+  </div>
+  <div class="p-about__contents">
+    <p>できません。<br>
+    一つのTwitterアカウントは、一つのメールアドレスでの登録となります。<br>
+    複数アカウントで1つのTwitterアカウントを登録し、同時に自動フォローを行えてしまうと、Twitterが設けるフォロー制限を超えてしまう可能性があるため、制限しています。<br>
+    もし、自分のツイッターアカウントを登録しているメールアドレスのパスワードを忘れた場合は<a href="{{ url('password/reset') }}">[こちら]</a>より再発行してください。</p>
+  </div>
+</section>
+
 
 
 <section class="p-about__container">

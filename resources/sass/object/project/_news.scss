@@ -30,12 +30,13 @@
         box-sizing: border-box;
         border-right: solid 1px #6091d3;
         border-bottom: solid  1px #6091d3;
-        //border-radius: 10px 0 0 10px;
         @media screen and (max-width: $res-max-width){
           font-size: 12px;
           height: 60%;
           width: 100%;
-        //  border-radius: 10px
+        }
+        a{
+          font-size: 14px;
         }
       }
       span{

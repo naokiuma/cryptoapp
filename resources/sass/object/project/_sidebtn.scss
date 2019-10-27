@@ -16,15 +16,12 @@
       padding: 5px;
       box-shadow: 2px 2px;
       display: block;
-      //width: 100%;
       height: 25px;
       line-height: 25px;
       text-align: center;
       &:hover{
         transform: translate3d(0, 1px, 0);
-        //color: #007db9;
         box-shadow: 1px 1px;
-        //background: #fff;
       }
       @media screen and (max-width: $res-max-width){
         width: 200px;
