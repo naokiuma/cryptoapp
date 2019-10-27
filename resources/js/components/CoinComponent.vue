@@ -12,9 +12,9 @@
     </div>
 
     <!--コイン一覧のチェックボックスの表示非表示とリセットボタン。-->
-    <!--スマホではコイン情報（行21~28）をデフォルトで表示すると、実際のデータの表示部分がかなり下になるため、表示非表示を切り替え可能にしました。-->
+    <!--スマホではコイン情報（行21~29）をデフォルトで表示すると、実際のデータの表示部分がかなり下になるため、表示非表示を切り替え可能にしました。-->
     <div class="p-sidebtn__coinshow">
-      <button v-on:click = "coinbuttonShow()">コイン情報を調べる</button>
+      <button class="p-sidebtn__toshowcoin" v-on:click ="coinbuttonShow()">コイン情報を調べる</button>
       <button class="p-sidebtn__highlight" v-on:click="resetCoin()">リセット</button>
     </div>
 
@@ -153,6 +153,7 @@
       //1時間ごとのコインのツイート数を出すメソッド
       showHour:function(){
       this.hour_show = true;
+      console.log(this.hour_show);
       this.showCoins = [];
       this.exitCoins = [];
       this.resetCheckbox();
@@ -162,6 +163,7 @@
       //1日ごとのコインのツイート数を出すメソッド
       showDay:function(){
         this.day_show = true;
+        console.log(this.day_show);
         this.showCoins = [];
         this.exitCoins = [];
         this.resetCheckbox();
@@ -171,6 +173,7 @@
       //1週間ごとのコインのツイート数を出すメソッド
       showWeek:function(){
         this.week_show = true;
+        console.log(this.week_show);
         this.showCoins = [];
         this.exitCoins = [];
         this.resetCheckbox();

@@ -2022,6 +2022,7 @@ __webpack_require__.r(__webpack_exports__);
     //1時間ごとのコインのツイート数を出すメソッド
     showHour: function showHour() {
       this.hour_show = true;
+      console.log(this.hour_show);
       this.showCoins = [];
       this.exitCoins = [];
       this.resetCheckbox();
@@ -2031,6 +2032,7 @@ __webpack_require__.r(__webpack_exports__);
     //1日ごとのコインのツイート数を出すメソッド
     showDay: function showDay() {
       this.day_show = true;
+      console.log(this.day_show);
       this.showCoins = [];
       this.exitCoins = [];
       this.resetCheckbox();
@@ -2040,6 +2042,7 @@ __webpack_require__.r(__webpack_exports__);
     //1週間ごとのコインのツイート数を出すメソッド
     showWeek: function showWeek() {
       this.week_show = true;
+      console.log(this.week_show);
       this.showCoins = [];
       this.exitCoins = [];
       this.resetCheckbox();
@@ -37646,6 +37649,7 @@ var render = function() {
         _c(
           "button",
           {
+            staticClass: "p-sidebtn__toshowcoin",
             on: {
               click: function($event) {
                 return _vm.coinbuttonShow()
@@ -50729,9 +50733,12 @@ $(document).ready(function () {
 $(function () {
   if ($('.js-scroll').length) {
     $(document).scroll(function () {
-      var obj_pos = $('.js-scroll').offset().top;
-      var scr_count = $(window).scrollTop();
-      var wh = $(window).height();
+      var obj_pos = $('.js-scroll').offset().top; //要素のいち
+
+      var scr_count = $(window).scrollTop(); //どの程度スクロールしたか
+
+      var wh = $(window).height(); //ウインドウの高さ
+
       console.log("こっちが1。変わらない");
       console.log(obj_pos);
 

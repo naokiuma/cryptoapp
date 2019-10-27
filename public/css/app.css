@@ -831,9 +831,10 @@ header {
   margin: auto;
 }
 .p-about__container h2 {
-  line-height: 80px;
-  font-size: 24px;
+  line-height: 40px;
+  font-size: 20px;
   color: #000000cf;
+  margin: 20px 0;
 }
 .p-about__container h3 {
   font-size: 20px;
@@ -1467,9 +1468,7 @@ header {
 }
 .p-sidebtn__container label:hover {
   transform: translate3d(0, 1px, 0);
-  color: #007db9;
   box-shadow: 1px 1px;
-  background: #fff;
 }
 @media screen and (max-width: 768px) {
   .p-sidebtn__container label {
@@ -1556,6 +1555,17 @@ header {
 .p-sidebtn__coinshow button:hover {
   box-shadow: 1px 1px;
   color: #007db9;
+}
+.p-sidebtn__toshowcoin {
+  width: 100%;
+  box-shadow: 2px 2px;
+  background-color: #ffff00ba;
+  height: 25px;
+}
+@media screen and (max-width: 768px) {
+  .p-sidebtn__toshowcoin {
+    width: 40%;
+  }
 }
 
 .btn_active {
