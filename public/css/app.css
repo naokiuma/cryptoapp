@@ -550,7 +550,7 @@ header {
 }
 @media screen and (max-width: 768px) {
   .c-text span {
-    font-size: 18px;
+    font-size: 20px;
   }
 }
 .c-text h3 {
@@ -572,11 +572,6 @@ header {
   /*上線*/
   border-bottom: solid 3px #963636;
   /*下線*/
-}
-@media screen and (max-width: 768px) {
-  .c-text__attention span {
-    font-size: 14px;
-  }
 }
 .c-text__sub {
   position: relative;

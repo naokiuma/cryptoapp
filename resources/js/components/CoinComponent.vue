@@ -14,7 +14,7 @@
     <!--コイン一覧のチェックボックスの表示非表示とリセットボタン。-->
     <!--スマホではコイン情報（行21~29）をデフォルトで表示すると、実際のデータの表示部分がかなり下になるため、表示非表示を切り替え可能にしました。-->
     <div class="p-sidebtn__coinshow">
-      <button class="p-sidebtn__toshowcoin" v-on:click ="coinbuttonShow()">コイン情報を調べる</button>
+      <button class="p-sidebtn__toshowcoin" v-on:click ="coinbuttonShow()">コイン毎の情報を調べる</button>
       <button class="p-sidebtn__highlight" v-on:click="resetCoin()">リセット</button>
     </div>
 
